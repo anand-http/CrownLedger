@@ -1,0 +1,5 @@
+Import Template — Invoice  |  Columns marked * are REQUIRED (yellow header).  |  Date format: DD-MM-YYYY  |  For multi-line items: repeat header fields on each line item row.  |  Delete this row before importing.,,,,,,,,,,,
+VendorCode *,Status *,ExpenseAmount,Date,Currency,Department,Description,PaidFrom,Branch,TaxAmount,LedgerAccount,RecordType
+CANHOR776,Draft,50000,2026-04-28,USD,BP,Expense for goods,Bank,Delhi,50,DLAC10002,BulkBooking
+CANHOR776,Draft,40000,2026-04-27,USD,BP,Expense for services,Cash,Delhi,100,DLAC10003,BulkBooking
+DUBROS736,Approved,5300,2026-05-14,USD,Due on Receipt,Expense for services,Online,Delhi,50,DLAC10004,BulkBooking

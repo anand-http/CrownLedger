@@ -1,0 +1,753 @@
+@{
+    ViewBag.Title = "user-access";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html lang="en">
+<head>
+    <link href="../assets/css/configuration.css" rel="stylesheet">
+    <link href="../assets/css/component.css" rel="stylesheet">
+    <style>
+
+
+    </style>
+</head>
+<body class="bg-sky-light">
+
+    @Html.Partial("~/Views/Shared/_PartialHeader.cshtml")
+
+    <aside class="left-sidebar">
+        <nav class="sidebar-nav">
+            <ul class="sidebarnav">
+                <li class="nav-title-name">
+                    <span class="">General Settings</span>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("company_details","Home")" aria-expanded="false">
+                        <span class="">Business Information</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("opening_balance","Home")" aria-expanded="false">
+                        <span class="">Opening Balance</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("AddBranch","Configuration")" aria-expanded="false">
+                        <span class="">Branch</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("Department","Configuration")" aria-expanded="false">
+                        <span class="">Department</span>
+                    </a>
+                </li>
+                <li class="nav-title-name">
+                    <span class="">Accounting</span>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("chart_of_accounts","Home")" aria-expanded="false">
+                        <span class="">Chart of Accounts</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("maintain_tax_details","Home")" aria-expanded="false">
+                        <span class="">Taxes</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("maintain_currency_details","Home")" aria-expanded="false">
+                        <span class="">Currency</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="javascript:void(0);" aria-expanded="false">
+                        <span class="">Fiscal Position</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("TransactionsSettings","Configuration")" aria-expanded="false">
+                        <span class="">Transaction Settings</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("NumberSeries","Configuration")" aria-expanded="false">
+                        <span class="">Number Series</span>
+                    </a>
+                </li>
+                <li class="nav-title-name">
+                    <span class="">Approval</span>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("UserAccess","Configuration")" aria-expanded="false">
+                        <span class="">User Access</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("TransactionApproval","Configuration")" aria-expanded="false">
+                        <span class="">Transaction Approval</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+
+    <div class="container">
+        <div class="row">
+            <main class="main-body">
+                <div class="main-body-wrapper">
+                    <div class="collapsebody bg-f8f8f8 collapse show group-lookuptab" id="">
+                        <div class="collapsewrap card bx-shadow ">
+                            <div class="collapseheader ps-0 pe-0 me-0">
+                                <div class="top_content d-flex align-item-center justify-content-end">
+                                    <div class="right-sort-bar">
+                                        <a href="javascript:void();" id="auditbtn" data-bs-toggle="modal" data-bs-target="#inviteuser" class="action-btn bg-action-light active">Invite User</a>
+                                    </div>
+                                </div>
+
+                                <div class="box_container table_manage_container">
+                                    <div id="" class="dataTables_wrapper">
+                                        <table class="display customize-table-style dataTable" id="userAccessData" role="grid" aria-describedby="basic-14_info">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th>User Name</th>
+                                                    <th>Email</th>
+                                                    <th>Role</th>
+                                                    <th>Last Logged In</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div class="modal fade" id="inviteuser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle">Invite User</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body " style="background:#fff;">
+                    <div class="row g-3">
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <input class="form-control" type="text" placeholder="Enter User Name" id="userName">
+                                <label for="floatingSelect">User Name*</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <input class="form-control" type="email" placeholder="Enter Email" id="email">
+                                <label for="floatingSelect">Email*</label>
+                            </div>
+                        </div>
+                        @*<div class="col-md-12">
+                            <div class="form-floating">
+                                <select class="form-select" id="" onchange="Accesshow(this)" aria-label="Floating label select example">
+                                    <option value="1" selected="">Full Access</option>
+                                    <option value="2">Read Only</option>
+                                    <option value="3">Custom Access</option>
+                                </select>
+                                <label for="teamName">Role*</label>
+                            </div>
+                        </div>*@
+                        <div class="col-md-12">
+                            <div class="border rounded invite_access_container">
+                                <div class="p-3">
+                                    <div class="row g-3">
+                                        <div class="col-md-12">
+                                            <div class="border p-2 rounded d-flex justify-content-between">
+                                                <span class="me-2 fw-bold">Module</span>
+                                                <div class="d-flex">
+                                                    <span class=" me-4 fw-bold">Read</span>
+                                                    <span class=" me-4 fw-bold">Write</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 FullAccess">
+                                            <div class="access border p-2 rounded d-flex justify-content-between">
+                                                <span class="account-type me-2">Sales</span>
+                                                <div class="d-flex">
+                                                    <div class="form-switch me-4">
+                                                        <input class="form-check-input mt-0" type="checkbox">
+                                                    </div>
+                                                    <div class="form-switch me-4">
+                                                        <input class="form-check-input mt-0" type="checkbox">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 FullAccess">
+                                            <div class="access border p-2 rounded d-flex justify-content-between">
+                                                <span class="account-type me-2">Purchase</span>
+                                                <div class="d-flex">
+                                                    <div class="form-switch me-4">
+                                                        <input class="form-check-input mt-0" type="checkbox">
+                                                    </div>
+                                                    <div class="form-switch me-4">
+                                                        <input class="form-check-input mt-0" type="checkbox">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 FullAccess">
+                                            <div class="access border p-2 rounded d-flex justify-content-between">
+                                                <span class="account-type me-2">Customer</span>
+                                                <div class="d-flex">
+                                                    <div class="form-switch me-4">
+                                                        <input class="form-check-input mt-0" type="checkbox">
+                                                    </div>
+                                                    <div class="form-switch me-4">
+                                                        <input class="form-check-input mt-0" type="checkbox">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 FullAccess">
+                                            <div class="access border p-2 rounded d-flex justify-content-between">
+                                                <span class="account-type me-2">Vendor</span>
+                                                <div class="d-flex">
+                                                    <div class="form-switch me-4">
+                                                        <input class="form-check-input mt-0" type="checkbox">
+                                                    </div>
+                                                    <div class="form-switch me-4">
+                                                        <input class="form-check-input mt-0" type="checkbox">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                         </div>
+
+                                        <div class="col-md-12 FullAccess">
+                                            <div class="access border p-2 rounded d-flex justify-content-between">
+                                                <span class="account-type me-2">Bank</span>
+                                                <div class="d-flex">
+                                                    <div class="form-switch me-4">
+                                                        <input class="form-check-input mt-0" type="checkbox">
+                                                    </div>
+                                                    <div class="form-switch me-4">
+                                                        <input class="form-check-input mt-0" type="checkbox">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 FullAccess">
+                                            <div class="access border p-2 rounded d-flex justify-content-between">
+                                                <span class="account-type me-2">Adjustments</span>
+                                                <div class="d-flex">
+                                                    <div class="form-switch  me-4">
+                                                        <input class="form-check-input mt-0" type="checkbox">
+                                                    </div>
+                                                    <div class="form-switch me-4 ">
+                                                        <input class="form-check-input mt-0" type="checkbox">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 FullAccess">
+                                            <div class="access border p-2 rounded d-flex justify-content-between">
+                                                <span class="account-type me-2">Settings</span>
+                                                <div class="d-flex">
+                                                    <div class="form-switch me-4">
+                                                        <input class="form-check-input mt-0" type="checkbox">
+                                                    </div>
+                                                    <div class="form-switch me-4">
+                                                        <input class="form-check-input mt-0" type="checkbox">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                         </div>
+
+                                        <div class="col-md-12 FullAccess">
+                                            <div class="access border p-2 rounded d-flex justify-content-between">
+                                                <span class="account-type me-2">Reporting</span>
+                                                <div class="d-flex">
+                                                    <div class="form-switch me-4">
+                                                        <input class="form-check-input mt-0" type="checkbox">
+                                                    </div>
+                                                    <div class="form-switch me-4">
+                                                        <input class="form-check-input mt-0" type="checkbox">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 FullAccess">
+                                            <div class="access border p-2 rounded d-flex justify-content-between">
+                                                <span class="account-type me-2">Financial Statements</span>
+                                                <div class="d-flex">
+                                                    <div class="form-switch me-4">
+                                                        <input class="form-check-input mt-0" type="checkbox">
+                                                    </div>
+                                                    <div class="form-switch me-4">
+                                                        <input class="form-check-input mt-0" type="checkbox">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn action-btn bg-action-light active" onclick="SaveUserAccess()">Save</button>
+                    <button type="button" class="btn action-btn bg-action-light" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+ // Get user access data
+ var UserAccessData;
+ $(document).ready(function () {
+          UserAccessData = $("#userAccessData").DataTable({
+         "serverSide": true,
+         "ajax": {
+            "url": '@Url.Action("GetUserAccess", "Configuration")',
+            "type": "POST",
+            "datatype": "json",
+             "data": function (d) {
+                 d.icolelngth = 4;
+             },
+            "complete": function () {
+            }
+          },
+          createdRow: function (row, data, dataIndex) {
+              $(row).attr('data-id', data.UserId);
+          },
+        "columns": [
+            { "data": "UserName", "name": "UserName", "autoWidth": true ,"visible": true, "class":"text-capitalize" },
+            { "data": "Email", "name": "Email", "autoWidth": true,"visible": true, "class": "center"},
+            { "data": "Role", "name": "Role", "autoWidth": true, "visible": true, "class": "center" },
+            { "data": "LastLoggedIn", "name": "LastLoggedIn", "autoWidth": true, "visible": true, "class": "center" },
+            {
+                "data": "Action", "name": "Action", "autoWidth": true, "visible": true, "class": "text-capitalize", render: function (data, index, row) {
+
+                    return `<div class="d-flex align-items-center justify-content-end pe-2">
+        <span class="action-btn-icon d-inline-block">
+            <a href="javascript:void(0)" class="edit-icon" data-bs-toggle="modal" data-bs-target="#inviteuser">
+                <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9.01348 1.03516H5.58608C2.76733 1.03516 1 3.03074 1 5.85591V13.4771C1 16.3023 2.75908 18.2978 5.58608 18.2978H13.6748C16.5027 18.2978 18.2618 16.3023 18.2618 13.4771V9.78478" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.57059 8.48961L13.4209 1.63938C14.2743 0.786875 15.6576 0.786875 16.511 1.63938L17.6266 2.75496C18.48 3.60838 18.48 4.99255 17.6266 5.84505L10.7433 12.7283C10.3702 13.1014 9.86415 13.3113 9.33615 13.3113H5.90234L5.98851 9.84631C6.00134 9.33661 6.20942 8.85081 6.57059 8.48961Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M12.3809 2.69727L16.5664 6.88277" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+            </a>
+            <a href="javascript:void(0)" class="delete-icon ms-1">
+                <svg width="18" height="21" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5.05799 0.0975361C4.62397 0.25612 4.29011 0.606673 3.8394 1.34951L3.4638 1.98385H1.9197C0.200316 1.98385 0 2.03393 0 2.47629C0 2.77677 0.150237 2.90196 0.575909 2.96039L0.90977 3.00212L0.934809 8.52751L0.959849 14.0446L1.17686 14.5036C1.45229 15.0879 1.83623 15.4718 2.42049 15.7472L2.87955 15.9643L6.75233 15.9893C10.4415 16.0143 10.6501 16.006 11.1843 15.8474C11.8854 15.6304 12.4196 15.1797 12.695 14.5704L12.8954 14.128L12.9204 8.56924L12.9454 3.01047L13.3294 2.96039C13.8802 2.90196 14.0973 2.55976 13.8218 2.18416C13.7133 2.04227 13.5714 2.02558 12.0774 2.00054L10.4498 1.9755L9.89896 1.1492C9.13943 0.00572395 9.19785 0.0307636 7.09453 0.00572395C5.78413 -0.0109692 5.30838 0.00572395 5.05799 0.0975361ZM8.9725 1.44132C9.13108 1.69172 9.26463 1.91708 9.26463 1.94211C9.26463 1.96715 8.22966 1.98385 6.96934 1.98385C5.19153 1.98385 4.67405 1.95881 4.67405 1.87534C4.67405 1.82526 4.80759 1.59991 4.96617 1.37455L5.2583 0.982265H6.96934H8.68037L8.9725 1.44132ZM11.9772 8.45239V13.8776L11.7853 14.2115C11.6768 14.3951 11.4598 14.6455 11.2928 14.754L10.984 14.9627H6.9276H2.86285L2.55403 14.7206C1.903 14.2282 1.9197 14.4702 1.9197 8.38562V2.98543L6.95264 3.00212L11.9772 3.02716V8.45239Z" fill="currentColor"></path>
+                    <path d="M3.75599 5.04717C3.68922 5.07221 3.60575 5.13898 3.57236 5.18906C3.4889 5.30591 3.4889 12.6842 3.57236 12.8094C3.69756 13.0097 4.06481 13.0264 4.24843 12.8428C4.42371 12.6675 4.42371 12.6091 4.42371 8.99507C4.42371 5.43111 4.41536 5.31425 4.25678 5.15567C4.08985 4.98874 3.98134 4.9637 3.75599 5.04717Z" fill="currentColor"></path>
+                    <path d="M6.69339 5.12204L6.50977 5.24723V8.99482V12.7424L6.69339 12.8676C6.94378 13.0429 7.06064 13.0345 7.26095 12.8342C7.41954 12.6756 7.42788 12.5588 7.42788 8.99482C7.42788 5.43086 7.41954 5.31401 7.26095 5.15542C7.06064 4.95511 6.94378 4.94676 6.69339 5.12204Z" fill="currentColor"></path>
+                    <path d="M9.69925 5.12228L9.51562 5.24748V8.97837C9.51562 11.0316 9.54901 12.751 9.5824 12.8094C9.70759 13.0097 10.0748 13.0264 10.2585 12.8428C10.4337 12.6675 10.4337 12.6091 10.4337 8.99507C10.4337 5.43111 10.4254 5.31425 10.2668 5.15567C10.0665 4.95535 9.94964 4.94701 9.69925 5.12228Z" fill="currentColor"></path>
+                </svg>
+            </a>
+        </span>
+    </div>`
+                }
+            }
+        ],
+
+        "fnInitComplete": function (oSettings) {
+            var j = 0;
+        },
+    });
+
+});
+
+
+// Save User Access
+function SaveUserAccess() {
+    // Validate form inputs
+    var modalTitleText = $('#modalTitle').text().trim();
+    var isEditMode = modalTitleText === 'Edit User Access';
+    var userName = $('#inviteuser').find('#userName').val().trim();
+    var email = $('#inviteuser').find('#email').val().trim();
+
+    if (!userName) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Validation Error',
+            text: 'User Name is required'
+        });
+        return false;
+    }
+
+    if (!email) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Validation Error',
+            text: 'Email is required'
+        });
+        return false;
+    }
+    ``
+    // Validate email format
+    if (!IsValidEmail(email)) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Validation Error',
+            text: 'Please enter a valid email address'
+        });
+        return false;
+    }
+
+    // Collect module access data
+    var moduleAccess = [];
+    var accessElements = $('#inviteuser').find('.access');
+
+    accessElements.each(function (index) {
+        var moduleName = $(this).find('.account-type').first().text().trim();
+        var readCheckbox = $(this).find('input[type="checkbox"]').eq(0);
+        var writeCheckbox = $(this).find('input[type="checkbox"]').eq(1);
+
+        moduleAccess.push({
+            ModuleDesc: moduleName,
+            IsRead: readCheckbox.is(':checked'),
+            IsWrite: writeCheckbox.is(':checked')
+        });
+    });
+
+
+    //var hasAccess = moduleAccess.some(m => m.IsRead || m.IsWrite);
+    //if (!hasAccess) {
+    //    Swal.fire({
+    //        icon: 'error',
+    //        title: 'Validation Error',
+    //        text: 'Please select at least one module access'
+    //    });
+    //    return false;
+    //}
+
+    // Prepare request object
+    var request = {
+        UserName: userName,
+        Email: email,
+        ModuleAccess: moduleAccess
+    };
+
+    // Make AJAX call
+    $.ajax({
+        url: '@Url.Action("SaveUserAccess", "Configuration")',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(request),
+        success: function (response) {
+            if (response.success) {
+                if (!isEditMode) {
+                   SendInvitationEmail(userName,email,moduleAccess);
+                }
+                ClearModalForm();
+                var modal = bootstrap.Modal.getInstance(document.getElementById('inviteuser'));
+                if (modal) {
+                    modal.hide();
+                }
+                UserAccessData.draw();
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: response.message,
+                    timer: 2000
+                })
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: response.message || 'Failed to save user access'
+                });
+            }
+        },
+        error: function (xhr, status, error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'An error occurred while saving user access: ' + error
+            });
+        }
+    });
+
+    return false;
+ }
+
+ function SendInvitationEmail(userName,email,moduleAccess){
+            var toEmail = email;
+            var EmailSub = "Invitation to User Access";
+            var accessHtml = "";
+
+            moduleAccess.forEach(function (m) {
+                var role = m.IsRead && m.IsWrite
+                    ? "Full Access"
+                    : m.IsRead
+                        ? "Read Only"
+                        : m.IsWrite
+                            ? "Write Only"
+                            : "No Access";
+
+                accessHtml += `<tr>
+        <td>${m.ModuleDesc}</td>
+        <td>${role}</td>
+    </tr>`;
+            });
+
+            var EmailBody = `
+<p>Hi ${userName},</p>
+
+<p>You have been granted access to the following modules:</p>
+
+<table border="1" cellpadding="5" cellspacing="0">
+    <tr>
+        <th>Module</th>
+        <th>Access</th>
+    </tr>
+    ${accessHtml}
+</table>
+
+<p>Regards,<br/>Team</p>
+`;
+
+   _showToast('Hang tight, we are sending your email...');
+  _postAction({ toEmail: toEmail, EmailSub: EmailSub, EmailBody: EmailBody });
+        }
+
+ function _postAction(payload, onSuccess) {
+            $.ajax({
+                url: '@Url.Action("SendEmail", "Configuration")',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(payload),
+                success: function (response) {
+                    if (response.success) {
+                        _showToast('Email sent successfully');
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Action Failed',
+                            text: response.message || 'Something went wrong.'
+                        });
+                    }
+                },
+                error: function (xhr) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Server Error',
+                        text: xhr.responseJSON && xhr.responseJSON.message
+                            ? xhr.responseJSON.message
+                            : xhr.statusText
+                    });
+                }
+            });
+        }
+
+ function _showToast(msg) {
+            if ($('#ieToast').length === 0) {
+                $('body').append(
+                    '<div id="ieToast" style="position:fixed;bottom:24px;right:24px;'
+                    + 'background:#323232;color:#fff;padding:12px 20px;border-radius:6px;'
+                    + 'z-index:9999;display:none;font-size:14px;"></div>'
+                );
+            }
+            $('#ieToast').text(msg).fadeIn(200).delay(2500).fadeOut(400);
+        }
+
+        function IsValidEmail(email) {
+    const emailRegex = /^[^\s@@]+@@[^\s@@]+\.[^\s@@]+$/;
+    return emailRegex.test(email);
+}
+
+// Clear modal form
+function ClearModalForm() {
+    currentEditingUserId = 0;
+    $('#inviteuser').find('#userName').val('');
+    $('#inviteuser').find('#email').val('');
+    $('#inviteuser').find('input[type="checkbox"]').prop('checked', false);
+    $('#modalTitle').text('Invite User');
+}
+
+     //Delete
+     $(document).on("click", ".delete-icon", function () {
+            var row = $(this).closest('tr');
+            var id = row.data('id');
+            Swal.fire({
+                icon: 'warning',
+                title: 'Delete',
+                text: "Are you sure you want to delete?",
+                showCancelButton: true,
+                confirmButtonText: 'Yes',
+                cancelButtonText: 'No',
+                confirmButtonColor: '#6c757d',
+                cancelButtonColor: '#d33'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: '@Url.Action("DeleteUser", "Configuration")',
+                        type: 'POST',
+                        data: { userId: id },
+                        success: function (res) {
+                            UserAccessData.draw();
+                        },
+                        error: function () {
+                            alert('An error occurred while updating the status.');
+                        }
+                    });
+                } else {
+                    result.dismiss === Swal.DismissReason.cancel
+                }
+
+            })
+     });
+
+      //Edit - Get User Details
+     $(document).on('click', '.edit-icon', function () {
+         var row = $(this).closest('tr');
+         var userId = row.data('id');
+
+         if (!userId) {
+             Swal.fire({
+                 icon: 'error',
+                 title: 'Error',
+                 text: 'Invalid user ID'
+             });
+             return false;
+         }
+
+         // Make AJAX call to fetch user details
+         $.ajax({
+             url: '@Url.Action("GetUserAccessById", "Configuration")',
+             type: 'POST',
+             contentType: 'application/json',
+             data: JSON.stringify({ userId: userId }),
+             success: function (response) {
+                 if (response.success) {
+                     currentEditingUserId = userId;
+
+                     $('#userName').val(response.data.userName || '');
+                     $('#email').val(response.data.email || '');
+
+                     $('#inviteuser').find('input[type="checkbox"]').prop('checked', false);
+
+                     // Populate module access checkboxes
+                     if (response.data.moduleAccess && response.data.moduleAccess.length > 0) {
+                         response.data.moduleAccess.forEach(function (module) {
+                             var accessElement = $('#inviteuser').find('.access').filter(function () {
+                                 return $(this).find('.account-type').first().text().trim() === module.moduleDesc;
+                             });
+
+                             if (accessElement.length > 0) {
+                                 // Check Read checkbox
+                                 if (module.isRead) {
+                                     accessElement.find('input[type="checkbox"]').eq(0).prop('checked', true);
+                                 }
+                                 // Check Write checkbox
+                                 if (module.isWrite) {
+                                     accessElement.find('input[type="checkbox"]').eq(1).prop('checked', true);
+                                 }
+                             }
+                         });
+                     }
+
+                     // Update modal title
+                     $('#modalTitle').text('Edit User Access');
+
+                 } else {
+                     Swal.fire({
+                         icon: 'error',
+                         title: 'Error',
+                         text: response.message || 'Failed to fetch user details'
+                     });
+                 }
+             },
+             error: function (xhr, status, error) {
+                 Swal.fire({
+                     icon: 'error',
+                     title: 'Error',
+                     text: 'An error occurred while fetching user details: ' + error
+                 });
+             }
+         });
+     });
+
+
+        $('#auditbtn').on('click', function () {
+            ClearModalForm();
+        });
+
+        // function Accesshow(select){
+        //   if(select.value==1){
+        //     $(".FullAccess").show();
+        //   } else{
+        //     $(".FullAccess").hide();
+        //   }
+        // }
+
+
+        $(function () {
+            $('input[name="fiscaldate"]').daterangepicker({
+                singleDatePicker: true,
+                showDropdowns: true,
+                minYear: 1901,
+                maxYear: parseInt(moment().format('YYYY'), 10)
+            }, function (start, end, label) {
+                var years = moment().diff(start, 'years');
+            });
+        });
+
+        $(function () {
+            $('input[name="daterange"]').daterangepicker(
+                {
+                    ssingleDatePicker: 'true',
+                    showShortcuts: 'false',
+                    showTopbar: 'false'
+                }
+            );
+        });
+
+
+        $('#datatable1').DataTable({
+            "columnDefs": [
+                {
+                    "targets": -1,
+                    "orderable": false
+                }
+            ],
+            language: {
+                search: "_INPUT_",
+                searchPlaceholder: "Search..."
+            },
+            fixedHeader: {
+                header: true,
+            },
+            "dom": '<"top"<"toolbar">tf<"clear">>rt<"bottom"lip<"clear">>'
+        });
+
+
+
+
+    </script>
+    <script>
+        $(".form-switch").click(function () {
+            if ($(this).parent().hasClass("yes")) {
+                $(this).parent().removeClass("yes");
+                $(this).parent().addClass("no");
+            } else {
+                $(this).parent().removeClass("no");
+                $(this).parent().addClass("yes");
+            }
+        });
+    </script>
+
+</body>
+</html>

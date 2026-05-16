@@ -1,0 +1,4 @@
+VendorCode *,Status *,PurchaseOrderNumber,BillDate,AccountingDate,Currency,PaymentTerms,DeliveryAddress,DueDate *,Reference,Branch,ItemCode *,ItemType,LedgerAccount,Quantity *,Rate *,TaxType,Amount *,Discount,DiscountType,OtherAdjustment,Tax,SubTotal,Total,Comments,TermsAndConditions
+CANHOR776,Draft,PO33,2026-03-01,2026-03-01,USD,Due on Receipt,Delhi ,2026-04-22,14587,Ahemdabad,A5NG4549D,P,DLAC10002,2,25000.00,I - GST,50000.00,500.00,A,0.00,9000.00,50000.00,58500.00,Thank you for your business,Pay on delivery
+CANHOR776,Draft,PO33,2026-03-25,2026-03-02,USD,Due on Receipt,New delhi,2026-04-21,14587,Ahemdabad,PRIG96F84,P,DLAC10002,5,25000.00,I - GST,50000.00,500.00,A,0.00,9000.00,50000.00,58500.00,Thank you for your business,Pay on delivery
+DUBROS736,Approved,PO34,2026-03-15,2026-03-26,USD,Due on Receipt,Mumbai,2026-04-24,14587,Ahemdabad,SPIG3C619,P,DLAC10002,5,500.00,I - GST,2500.00,1500,A,0.01,9000.01,50000.01,58500.01,Payment expected by due date,Pay on delivery

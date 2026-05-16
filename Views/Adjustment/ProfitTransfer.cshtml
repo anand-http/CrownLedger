@@ -1,0 +1,303 @@
+@{
+    ViewBag.Title = "ProfitTranfer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html lang="en">
+<head>
+    <link href="../assets/css/adjustment.css" rel="stylesheet">
+</head>
+<body class="bg-sky-light">
+
+    @Html.Partial("~/Views/Shared/_PartialHeader.cshtml")
+
+    <div class="container">
+        <div class="row">
+            <main class="main-body">
+                <div class="main-body-wrapper">
+                    <div class="collapsebody bg-f8f8f8 collapse show group-lookuptab" id="">
+                        <div class="collapsewrap card bx-shadow ">
+                            <div class="collapseheader ps-0 pe-0 me-0">
+                                <div class="top_content">
+                                    <h1 class="heading">Profit Transfer</h1>
+                                </div>
+
+                                <div class="form-container">
+                                    <div class="row g-3">
+                                        <div class="col-md-3">
+                                            <div class="form-floating" id="the-basics-agents">
+                                                <input class="form-select typeahead offline-agent" type="text" placeholder="Select Customer">
+                                                <label for="floatingSelect">Fiscal Year</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <div class="form-floating mb-3">
+                                                <input type="text" class="form-control datepicker" name="fiscaldate" placeholder="Fiscal Year End Date">
+                                                <label for="floatingSelect">Transaction Date</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-floating" id="the-basics-agents">
+                                                <input class="form-select typeahead offline-agent" type="text" placeholder="Select Account">
+                                                <label for="floatingSelect">Transfer Account</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-floating">
+                                                <input type="text" class="form-control" id="" value="Enter Note" placeholder="Please enter last name">
+                                                <label for="teamName">Description</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="prfit_trnsfer_container">
+                                    <div class="tabboxcontainer sub-ledger-container mt-4 pt-4">
+                                        <div class="bg-white sub-ledger-content">Revenue</div>
+                                        <div class="form-container p-3">
+                                            <div class="row g-3">
+                                                <div class="col-md-6 mt-2">
+                                                    <div class="dash-form-group mb-3">
+                                                        <label class="form-check-label" for="status">Revenue</label>
+                                                        <div class="display-label yes">
+                                                            <span class="dash-check-group">
+                                                                <span class="yes">Yes</span>
+                                                                <span class="no">No</span>
+                                                            </span>
+                                                            <div class="form-switch">
+                                                                <input class="form-check-input" type="checkbox" id="status" checked>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row g-3">
+                                                <div class="col-md-6">
+                                                    <div class="form-floating" id="the-basics-agents">
+                                                        <input class="form-select typeahead offline-agent" type="text" placeholder="Select Branch">
+                                                        <label for="floatingSelect">Branch</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-floating" id="the-basics-agents">
+                                                        <input class="form-select typeahead offline-agent" type="text" placeholder="Select Branch">
+                                                        <label for="floatingSelect">Department</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="dash-form-group">
+                                                        <label class="form-check-label d-block mb-2">Account</label>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="recivableinvoice1" value="option1">
+                                                            <label class="form-check-label" for="recivableinvoice1">All</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="recivableinvoice2" value="option2">
+                                                            <label class="form-check-label" for="recivableinvoice2">Include</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="recivableinvoice3" value="option3">
+                                                            <label class="form-check-label" for="recivableinvoice3">Exclude</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-floating" id="">
+                                                        <input class="form-control" type="text" placeholder="" value="Revenue Account">
+                                                        <label for="floatingSelect">Select Account</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tabboxcontainer sub-ledger-container mt-4 pt-4">
+                                        <div class="bg-white sub-ledger-content">Expense</div>
+                                        <div class="form-container p-3">
+                                            <div class="row g-3">
+                                                <div class="col-md-6 mt-2">
+                                                    <div class="dash-form-group mb-3">
+                                                        <label class="form-check-label" for="status">Expense</label>
+                                                        <div class="display-label yes">
+                                                            <span class="dash-check-group">
+                                                                <span class="yes">Yes</span>
+                                                                <span class="no">No</span>
+                                                            </span>
+                                                            <div class="form-switch">
+                                                                <input class="form-check-input" type="checkbox" id="status" checked>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row g-3">
+                                                <div class="col-md-6">
+                                                    <div class="form-floating" id="the-basics-agents">
+                                                        <input class="form-select typeahead offline-agent" type="text" placeholder="Select Branch">
+                                                        <label for="floatingSelect">Branch</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-floating" id="the-basics-agents">
+                                                        <input class="form-select typeahead offline-agent" type="text" placeholder="Select Branch">
+                                                        <label for="floatingSelect">Department</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="dash-form-group">
+                                                        <label class="form-check-label d-block mb-2">Account</label>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="recivableinvoice1" value="option1">
+                                                            <label class="form-check-label" for="recivableinvoice1">All</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="recivableinvoice2" value="option2">
+                                                            <label class="form-check-label" for="recivableinvoice2">Include</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="recivableinvoice3" value="option3">
+                                                            <label class="form-check-label" for="recivableinvoice3">Exclude</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-floating" id="">
+                                                        <input class="form-control" type="text" placeholder="" value="Expense Account">
+                                                        <label for="floatingSelect">Select Account</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-action-section new-estimate-button pt-4">
+                                    <a href="javascript:void(0);" class="action-btn bg-action-light active">Review</a>
+                                    <a href="javascript:void(0);" class="action-btn bg-action-light active">Save</a>
+                                    <a href="javascript:void(0);" class="action-btn bg-action-light">Cancel</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+
+
+    <script>
+  $(document).ready(function() {
+   $('.input-edit').click(function (){
+    $(this).parent().find('.customer-name-control, .typeahead').toggleClass('edit-form');
+   });
+  });
+  $(document).ready(function () {
+      var substringMatcher = function (strs) {
+          return function findMatches(q, cb) {
+              var matches, substringRegex;
+              matches = [];
+              substrRegex = new RegExp(q, 'i');
+              $.each(strs, function (i, str) {
+                  if (substrRegex.test(str)) {
+                      matches.push(str);
+                  }
+              });
+
+              cb(matches);
+          };
+      };
+
+      var agents = ['Nicole Prejean', 'David', 'Smith', 'WEI MIAO', 'laili',
+          'Onsri', 'Wan Yun', 'Enyu', 'Rio Rica', 'Sanjay', 'Priscilla Jia', 'John Smith',
+          'Redha Nuruinda', 'Mylon Jan', 'Ma Lothel', 'Raufa', 'Areanne Glee', 'Mary Jasmine',
+
+      ];
+
+      $('#the-basics-agents .typeahead').typeahead({
+          hint: true,
+          highlight: true,
+          minLength: 1
+      },
+          {
+              name: 'states',
+              source: substringMatcher(agents)
+          });
+  });
+
+
+
+
+    </script>
+
+    <script>
+$(function() {
+  $('input[name="fiscaldate"]').daterangepicker({
+    singleDatePicker: true,
+    showDropdowns: true,
+    minYear: 1901,
+    maxYear: parseInt(moment().format('YYYY'),10)
+  }, function(start, end, label) {
+    var years = moment().diff(start, 'years');
+  });
+});
+
+$(function() {
+            $('input[name="daterange"]').daterangepicker(
+                {
+                    ssingleDatePicker: 'true',
+                    showShortcuts: 'false',
+                    showTopbar: 'false'
+                }
+            );
+        });
+
+
+        $('#datatable1').DataTable({
+                "columnDefs": [
+                    {
+                        "targets": -1,
+                        "orderable": false
+                    }
+                ],
+                language: {
+                    search: "_INPUT_",
+                    searchPlaceholder: "Search..."
+                },
+                fixedHeader: {
+                    header: true,
+                },
+                "dom": '<"top"<"toolbar">tf<"clear">>rt<"bottom"lip<"clear">>'
+            });
+
+
+
+
+    </script>
+
+    <script>
+ $(".form-switch").click(function () {
+    if ($(this).parent().hasClass("yes")) {
+      $(this).parent().removeClass("yes");
+      $(this).parent().addClass("no");
+    } else {
+      $(this).parent().removeClass("no");
+      $(this).parent().addClass("yes");
+    }
+  });
+    </script>
+    <script>
+  $(document).ready(function () {
+      $('#productservice').DataTable({
+          pagingType: 'full_numbers',
+      });
+
+      $('#framework').multiselect({
+        nonSelectedText: 'Select Framework',
+        enableFiltering: true,
+        enableCaseInsensitiveFiltering: true,
+        buttonWidth:'400px'
+      });
+  });
+    </script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+
+a{
+    text-decoration: none;
+}
+ul{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.bg-sky-light{
+    background-color: var(--theme-bg-sky-light);
+}
+
+
+.modal-body{
+    background-color: var(--theme-bg-light-clr);
+}
+
+.client--info-section{
+    background: #FFFFFF;
+    border: 1px solid #DADADA;
+    border-radius: 4px;
+    padding: 12px 15px;
+}
+.client--info-section .client--info{
+    border-bottom: 1px  dashed #DADADA;
+    margin-bottom: 15px;
+}.client--info-section .client--info:last-child{
+    border-bottom: 0;
+}
+.client--info p{
+    color: #8E8E8E;
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+.intosection{
+    margin-top: 15px;
+}
+.close-btn-primary{
+    background-color: transparent !important;
+    background: #FFFFFF;
+border: 1px solid var(--theme-reg--light-color) !important;
+box-sizing: border-box;
+border-radius: 4px;
+padding: 10px 18px;
+color:#000000;
+}
+.customize-modal-button{
+    display: grid;
+    position: relative;
+    grid-template-columns: auto auto auto;
+    vertical-align: middle;
+    align-items: center;
+}
+.customize-modal-button li{
+    display: grid;
+    position: relative;
+    width: 30px;
+}
+.customize-modal-button li .btn-close{
+    position: relative;
+    top:0;
+    right:0;
+    margin: 0;
+    padding: 0;
+}
+.modal-title span{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 19px;
+    color: var(--theme-reg--light-color);
+}
+.modal-title span a{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 19px;
+    color: var(--theme-deafult);
+}
+div.dataTables_wrapper div.dataTables_length label{
+    font-size: 0;
+}
+div.dataTables_wrapper div.dataTables_length select{
+    font-size: 14px !IMPORTANT;
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+}
+body.dark-only .page-body-wrapper div.sidebar-wrapper .logo-wrapper{
+    background-color: #262932;
+}
+
+.body-page-wrapper{
+    background-color: var(--theme-bg-sky-light);
+    padding: 24px 36px;
+}
+.badge-pink-primary {
+    width: 24px;
+    height: 24px;
+    background-color: rgb(207, 58, 89);
+    color: rgb(255, 255, 255);
+    vertical-align: middle;
+    align-items: center;
+    display: inline-grid;
+    margin-right: 0px;
+    border-radius: 4px;
+}

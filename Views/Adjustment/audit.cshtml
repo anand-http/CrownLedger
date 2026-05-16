@@ -1,0 +1,324 @@
+﻿
+@{
+    ViewBag.Title = "audit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="generator" content="Hugo 0.88.1">
+    <link rel="icon" href="../assets/images/favicon-icon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/images/favicon-icon.png" type="image/x-icon">
+    <title>Fintech</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="../assets/css/bootstrap-select.min.css" rel="stylesheet">
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/css/datatables.min.css" rel="stylesheet">
+    <link href="../assets/css/daterangepicker.css" rel="stylesheet">
+    <link href="../assets/css/component.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="../assets/css/header.css" rel="stylesheet">
+    <link href="../assets/css/vendor.css" rel="stylesheet">
+    <link href="../assets/css/adjustment.css" rel="stylesheet">
+</head>
+<body class="bg-sky-light">
+    @Html.Partial("~/Views/Shared/_PartialHeader.cshtml")
+    <div class="container">
+        <div class="row">
+            <main class="main-body">
+                <div class="main-body-wrapper">
+                    <div class="collapsebody bg-f8f8f8 collapse show group-lookuptab" id="">
+                        <div class="collapsewrap card bx-shadow ">
+                            <div class="collapseheader ps-0 pe-0 me-0">
+                                <div class="top_content">
+                                    <h1 class="heading">Audit</h1>
+                                </div>
+                                <div class="prfit_trnsfer_container">
+                                    <div class="tabboxcontainer sub-ledger-container mt-4 pt-4">
+                                        <div class="bg-white sub-ledger-content">Audit Details</div>
+                                        <div class="profile-card pt-0 p-3" id="journal_profile">
+                                            <div class="profile-info-box">
+                                                <div class="profile-item">
+                                                    <div class="row g-0">
+                                                        <div class="col-6">
+                                                            <span class="profile-label">Type</span>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <span class="font-14 f-w-600 bg-regular">Journal Voucher</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="profile-item ">
+                                                    <div class="row g-0">
+                                                        <div class="col-6">
+                                                            <span class="profile-label">Reference</span>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <span class="font-14 f-w-600 bg-regular">JV560</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="profile-item">
+                                                    <div class="row g-0">
+                                                        <div class="col-6">
+                                                            <span class="profile-label">Debit Total:</span>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <span class="font-14 f-w-600 bg-regular">$500.00</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="profile-item">
+                                                    <div class="row g-0">
+                                                        <div class="col-6">
+                                                            <span class="profile-label">Credit Total:</span>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <span class="font-14 f-w-600 bg-regular">$500.00</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="profile-item">
+                                                    <div class="row g-0">
+                                                        <div class="col-6">
+                                                            <span class="profile-label">Date</span>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <span class="font-14 f-w-600 bg-regular">30-03-2023</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tabboxcontainer sub-ledger-container mt-4 pt-4">
+                                        <div class="bg-white sub-ledger-content">Audit History</div>
+                                        <div class="profile-card pt-0 p-3">
+                                            <div class="profile-info-box">
+                                                <div class="profile-item">
+                                                    <div class="row g-0">
+                                                        <div class="col-6">
+                                                            <span class="profile-label">Created Date</span>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <span class="font-14 f-w-600 bg-regular">01-04-2022,  15:25:06</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="profile-item ">
+                                                    <div class="row g-0">
+                                                        <div class="col-6">
+                                                            <span class="profile-label">Created By</span>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <span class="font-14 f-w-600 bg-regular">Jaya Sharma</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="profile-item">
+                                                    <div class="row g-0">
+                                                        <div class="col-6">
+                                                            <span class="profile-label">Approved Date</span>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <span class="font-14 f-w-600 bg-regular">01-04-2022,  15:25:06</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="profile-item">
+                                                    <div class="row g-0">
+                                                        <div class="col-6">
+                                                            <span class="profile-label">Approved By</span>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <span class="font-14 f-w-600 bg-regular">Kapil Sharma</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class=" jurnal-entry-container p-0">
+                                    <div class="sort-bar theme-secondary p-4 pt-3 pb-3 mt-4">
+                                        <div class="left-sort-bar d-block">
+                                            <div class="">
+                                                <label class="bg-regular f-w-500">Journal Entry</label>
+                                                <span class="bg-regular f-w-600">JV560</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bg-white jurnal-entry-table pb-3">
+                                        <table class="display customize-table-style" id="" role="grid" aria-describedby="basic-14_info">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th>Period</th>
+                                                    <th>Debit Account</th>
+                                                    <th>Credit Account</th>
+                                                    <th>Currency</th>
+                                                    <th>Amount</th>
+                                                    <th>Rate</th>
+                                                    <th>Base Amount</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr role="row">
+                                                    <td>202303</td>
+                                                    <td>DlAC30021-Repair Others</td>
+                                                    <td></td>
+                                                    <td>USD</td>
+                                                    <td>$500.00</td>
+                                                    <td>1.00</td>
+                                                    <td>$500.00</td>
+                                                </tr>
+                                                <tr role="row">
+                                                    <td>202303</td>
+                                                    <td></td>
+                                                    <td>DlAC30521-Prepaid Expense</td>
+                                                    <td>USD</td>
+                                                    <td>$500.00</td>
+                                                    <td>1.00</td>
+                                                    <td>-$500.00</td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-end pt-4">
+                                    <a href="javascript:void(0);" class="action-btn bg-action-light">Cancel</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+
+
+
+    <script>
+  $(document).ready(function() {
+   $('.input-edit').click(function (){
+    $(this).parent().find('.customer-name-control, .typeahead').toggleClass('edit-form');
+   });
+  });
+  $(document).ready(function () {
+      var substringMatcher = function (strs) {
+          return function findMatches(q, cb) {
+              var matches, substringRegex;
+              matches = [];
+              substrRegex = new RegExp(q, 'i');
+              $.each(strs, function (i, str) {
+                  if (substrRegex.test(str)) {
+                      matches.push(str);
+                  }
+              });
+
+              cb(matches);
+          };
+      };
+
+      var agents = ['Nicole Prejean', 'David', 'Smith', 'WEI MIAO', 'laili',
+          'Onsri', 'Wan Yun', 'Enyu', 'Rio Rica', 'Sanjay', 'Priscilla Jia', 'John Smith',
+          'Redha Nuruinda', 'Mylon Jan', 'Ma Lothel', 'Raufa', 'Areanne Glee', 'Mary Jasmine',
+
+      ];
+
+      $('#the-basics-agents .typeahead').typeahead({
+          hint: true,
+          highlight: true,
+          minLength: 1
+      },
+          {
+              name: 'states',
+              source: substringMatcher(agents)
+          });
+  });
+
+
+
+
+    </script>
+
+    <script>
+$(function() {
+  $('input[name="fiscaldate"]').daterangepicker({
+    singleDatePicker: true,
+    showDropdowns: true,
+    minYear: 1901,
+    maxYear: parseInt(moment().format('YYYY'),10)
+  }, function(start, end, label) {
+    var years = moment().diff(start, 'years');
+  });
+});
+
+$(function() {
+            $('input[name="daterange"]').daterangepicker(
+                {
+                    ssingleDatePicker: 'true',
+                    showShortcuts: 'false',
+                    showTopbar: 'false'
+                }
+            );
+        });
+
+
+        $('#datatable1').DataTable({
+                "columnDefs": [
+                    {
+                        "targets": -1,
+                        "orderable": false
+                    }
+                ],
+                language: {
+                    search: "_INPUT_",
+                    searchPlaceholder: "Search..."
+                },
+                fixedHeader: {
+                    header: true,
+                },
+                "dom": '<"top"<"toolbar">tf<"clear">>rt<"bottom"lip<"clear">>'
+            });
+
+
+
+
+    </script>
+
+    <script>
+ $(".form-switch").click(function () {
+    if ($(this).parent().hasClass("yes")) {
+      $(this).parent().removeClass("yes");
+      $(this).parent().addClass("no");
+    } else {
+      $(this).parent().removeClass("no");
+      $(this).parent().addClass("yes");
+    }
+  });
+    </script>
+    <script>
+  $(document).ready(function () {
+      $('#productservice').DataTable({
+          pagingType: 'full_numbers',
+      });
+
+      $('#framework').multiselect({
+        nonSelectedText: 'Select Framework',
+        enableFiltering: true,
+        enableCaseInsensitiveFiltering: true,
+        buttonWidth:'400px'
+      });
+  });
+    </script>
+</body>
+

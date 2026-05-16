@@ -1,0 +1,317 @@
+﻿@model fintech.GetAllChartOfAccounts_Result
+
+<div class="modal fade" id="glcodemodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Business Expenses_10000</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            @using (Html.BeginForm("SaveGLCode", "Home", FormMethod.Post, new { @class = "glcode-form" }))
+            {
+                <div class="modal-body " style="background:#fff;">
+                    <div class="row g-3">
+                        @Html.HiddenFor(m => m.GL_ID)
+                        @Html.HiddenFor(m => m.GL_CODE)
+                        @Html.HiddenFor(m => m.Active)
+                        @Html.HiddenFor(m => m.Curncy_ID)
+                        <input type="hidden" id="GL_BRANCHID" name="GL_BRANCHID" value="@Model.GL_BRANCHID" />
+                        <input type="hidden" id="GL_DeptmtID" name="GL_DeptmtID" value="@Model.GL_DeptmtID" />
+                        <div class="col-md-3">
+                            <div class="form-floating" id="the-basics-agents">
+                                @Html.TextBox("GL_CODE", null, new { @class = "form-control", placeholder = "Enter Name", id = "glcode-input" })
+                                <label for="GLCode">GL Code*</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-floating">
+                                @Html.TextBox("GL_DESC", null, new { @class = "form-control", placeholder = "Enter Name", id = "description-input" })
+                                <label for="Description">Description*</label>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="dash-form-group">
+                                <label class="form-check-label d-block mb-2" for="Classification">Classification</label>
+                                <div class="form-check form-check-inline">
+                                    @Html.RadioButtonFor(m => m.GL_CLASS, "R", new { @class = "form-check-input", id = "GL_CLASS1" })
+                                    <label class="form-check-label" for="GL_CLASS1">Revenue</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    @Html.RadioButtonFor(m => m.GL_CLASS, "E", new { @class = "form-check-input", id = "GL_CLASS2" })
+                                    <label class="form-check-label" for="GL_CLASS2">Expense</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    @Html.RadioButtonFor(m => m.GL_CLASS, "A", new { @class = "form-check-input", id = "GL_CLASS3" })
+                                    <label class="form-check-label" for="GL_CLASS3">Asset</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    @Html.RadioButtonFor(m => m.GL_CLASS, "L", new { @class = "form-check-input", id = "GL_CLASS4" })
+                                    <label class="form-check-label" for="GL_CLASS4">Liability</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-floating" id="the-basics-agents">
+                                @Html.TextBox("Branch", null, new { @class = "form-select typeahead offline-agent", placeholder = "Unselected", id = "txtCOAbranch" })
+                                <label for="Branch">Branch*</label>
+                                <input type="hidden" id="hdnCOAbranch" value="@Model.GL_BRANCHID" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-floating" id="the-basics-agents">
+                                @Html.TextBox("Department", null, new { @class = "form-select typeahead offline-agent", placeholder = "Unselected", id = "txtCOAdept" })
+                                <label for="Department">Department*</label>
+                                <input type="hidden" id="hdnCOADept" value="@Model.GL_DeptmtID" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-floating" id="the-basics-agents">
+                                @Html.TextBox("Currency", null, new { @class = "form-select typeahead offline-agent", placeholder = "Unselected", id = "txtCOACurrency" })
+                                <label for="Currency">Currency</label>
+                                <input type="hidden" id="hdnCOACurrencyId" value="@Model.Curncy_ID" />
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <div class="dash-form-group">
+                                        <label class="form-check-label" for="icaccount">IC Account</label>
+                                        <div class="display-label yes">
+                                            <span class="dash-check-group">
+                                                <span class="yes">Yes</span>
+                                                <span class="no">No</span>
+                                            </span>
+                                            <div class="form-switch">
+                                                @Html.CheckBox("GL_IC", true, new { @class = "form-check-input", id = "icaccount-checkbox" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="dash-form-group">
+                                        <label class="form-check-label" for="controlaccount">Control Account</label>
+                                        <div class="display-label yes">
+                                            <span class="dash-check-group">
+                                                <span class="yes">Yes</span>
+                                                <span class="no">No</span>
+                                            </span>
+                                            <div class="form-switch">
+                                                @Html.CheckBox("GL_Control", true, new { @class = "form-check-input", id = "controlaccount-checkbox" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="dash-form-group">
+                                        <label class="form-check-label" for="bankaccount">Bank Account</label>
+                                        <div class="display-label yes">
+                                            <span class="dash-check-group">
+                                                <span class="yes">Yes</span>
+                                                <span class="no">No</span>
+                                            </span>
+                                            <div class="form-switch">
+                                                @Html.CheckBox("GL_Bank", true, new { @class = "form-check-input", id = "bankaccount-checkbox" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        @*<div class="col-md-3">
+            <div class="form-floating">
+                @Html.DropDownList("TaxCode", new SelectList(new[] { "Select Tax Code", "Select Tax Code 2" }), new { @class = "form-select", id = "taxcode-select", @aria_label = "Floating label select example" })
+                <label for="TaxCode">Set Default Tax Code</label>
+            </div>
+        </div>*@
+                        <div class="col-md-2">
+                            <div class="dash-form-group">
+                                <label class="form-check-label" for="activeaccount">Bank Account</label>
+                                <div class="display-label yes">
+                                    <span class="dash-check-group">
+                                        <span class="yes">Yes</span>
+                                        <span class="no">No</span>
+                                    </span>
+                                    <div class="form-switch">
+                                        @Html.CheckBox("ActiveAccount", true, new { @class = "form-check-input", id = "activeaccount-checkbox" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-md-12">
+                            <div class="modal-sub-heading mt-3">
+                                Receivable
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="dash-form-group">
+                                <label class="form-check-label d-block mb-2">Invoice</label>
+                                <div class="form-check form-check-inline">
+                                    @Html.RadioButtonFor(m => m.GL_R_Invoice, "N", new { @class = "form-check-input", id = "GL_R_Invoice1" })
+                                    <label class="form-check-label" for="GL_R_Invoice1">None</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    @Html.RadioButtonFor(m => m.GL_R_Invoice, "D",  new { @class = "form-check-input", id = "GL_R_Invoice2" })
+                                    <label class="form-check-label" for="GL_R_Invoice2">Debit</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    @Html.RadioButtonFor(m => m.GL_R_Invoice, "C",  new { @class = "form-check-input", id = "GL_R_Invoice3" })
+                                    <label class="form-check-label" for="GL_R_Invoice3">Credit</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    @Html.RadioButtonFor(m => m.GL_R_Invoice, "B",  new { @class = "form-check-input", id = "GL_R_Invoice4" })
+                                    <label class="form-check-label" for="GL_R_Invoice4">Both</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="dash-form-group">
+                                <label class="form-check-label d-block mb-2">Credit Note</label>
+                                <div class="form-check form-check-inline">
+                                    @Html.RadioButtonFor(m => m.GL_R_Credit, "N", new { @class = "form-check-input", id = "GL_R_Credit1" })
+                                    <label class="form-check-label" for="GL_R_Credit1">None</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    @Html.RadioButtonFor(m => m.GL_R_Credit, "D", new { @class = "form-check-input", id = "GL_R_Credit2" })
+                                    <label class="form-check-label" for="GL_R_Credit2">Debit</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    @Html.RadioButtonFor(m => m.GL_R_Credit, "C",new { @class = "form-check-input", id = "GL_R_Credit3" })
+                                    <label class="form-check-label" for="GL_R_Credit3">Credit</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    @Html.RadioButtonFor(m => m.GL_R_Credit, "B", new { @class = "form-check-input", id = "GL_R_Credit4" })
+                                    <label class="form-check-label" for="GL_R_Credit4">Both</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="dash-form-group">
+                                <label class="form-check-label d-block mb-2">Receipt</label>
+                                <div class="form-check form-check-inline">
+                                    @Html.RadioButtonFor(m => m.GL_R_Reciept, "N", new { @class = "form-check-input", id = "GL_R_Reciept1" })
+                                    <label class="form-check-label" for="GL_R_Reciept1">None</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    @Html.RadioButtonFor(m => m.GL_R_Reciept, "D", new { @class = "form-check-input", id = "GL_R_Reciept2" })
+                                    <label class="form-check-label" for="GL_R_Reciept2">Debit</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    @Html.RadioButtonFor(m => m.GL_R_Reciept, "C", new { @class = "form-check-input", id = "GL_R_Reciept3" })
+                                    <label class="form-check-label" for="GL_R_Reciept3">Credit</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    @Html.RadioButtonFor(m => m.GL_R_Reciept, "B", new { @class = "form-check-input", id = "GL_R_Reciept4" })
+                                    <label class="form-check-label" for="GL_R_Reciept4">Both</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-md-12">
+                            <div class="modal-sub-heading mt-3">
+                                Payable
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="dash-form-group">
+                                <label class="form-check-label d-block mb-2">Bill</label>
+                                <div class="form-check form-check-inline">
+                                    @Html.RadioButtonFor(m => m.GL_P_Invoice, "N",new { @class = "form-check-input", id = "GL_P_Invoice1" })
+                                    <label class="form-check-label" for="GL_P_Invoice1">None</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    @Html.RadioButtonFor(m => m.GL_P_Invoice, "D", new { @class = "form-check-input", id = "GL_P_Invoice2" })
+                                    <label class="form-check-label" for="GL_P_Invoice2">Debit</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    @Html.RadioButtonFor(m => m.GL_P_Invoice, "C", new { @class = "form-check-input", id = "GL_P_Invoice3" })
+                                    <label class="form-check-label" for="GL_P_Invoice3">Credit</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    @Html.RadioButtonFor(m => m.GL_P_Invoice, "B", new { @class = "form-check-input", id = "GL_P_Invoice4" })
+                                    <label class="form-check-label" for="GL_P_Invoice4">Both</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="dash-form-group">
+                                <label class="form-check-label d-block mb-2">Debit Note</label>
+                                <div class="form-check form-check-inline">
+                                    @Html.RadioButtonFor(m => m.GL_P_Debit, "N", new { @class = "form-check-input", id = "GL_P_Debit1" })
+                                    <label class="form-check-label" for="GL_P_Debit1">None</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    @Html.RadioButtonFor(m => m.GL_P_Debit, "D", new { @class = "form-check-input", id = "GL_P_Debit2" })
+                                    <label class="form-check-label" for="GL_P_Debit2">Debit</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    @Html.RadioButtonFor(m => m.GL_P_Debit, "C", new { @class = "form-check-input", id = "GL_P_Debit3" })
+                                    <label class="form-check-label" for="GL_P_Debit3">Credit</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    @Html.RadioButtonFor(m => m.GL_P_Debit, "B", new { @class = "form-check-input", id = "GL_P_Debit4" })
+                                    <label class="form-check-label" for="GL_P_Debit4">Both</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="dash-form-group">
+                                <label class="form-check-label d-block mb-2">Payment</label>
+                                <div class="form-check form-check-inline">
+                                    @Html.RadioButtonFor(m => m.GL_P_Payment, "N", new { @class = "form-check-input", id = "GL_P_Payment1" })
+                                    <label class="form-check-label" for="GL_P_Payment1">None</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    @Html.RadioButtonFor(m => m.GL_P_Payment, "D", new { @class = "form-check-input", id = "GL_P_Payment2" })
+                                    <label class="form-check-label" for="GL_P_Payment2">Debit</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    @Html.RadioButtonFor(m => m.GL_P_Payment, "C", new { @class = "form-check-input", id = "GL_P_Payment3" })
+                                    <label class="form-check-label" for="GL_P_Payment3">Credit</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    @Html.RadioButtonFor(m => m.GL_P_Payment, "B", new { @class = "form-check-input", id = "GL_P_Payment4" })
+                                    <label class="form-check-label" for="GL_P_Payment4">Both</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-md-12">
+                            <div class="modal-sub-heading mt-3">
+                                GL_G_Posting
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="">
+                                <div class="form-check form-check-inline">
+                                    @Html.RadioButtonFor(m => m.GL_G_Posting, "N", new { @class = "form-check-input", id = "GL_G_Posting1" })
+                                    <label class="form-check-label font-14" for="GL_G_Posting1">None</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    @Html.RadioButtonFor(m => m.GL_G_Posting, "D", new { @class = "form-check-input", id = "GL_G_Posting2" })
+                                    <label class="form-check-label font-14" for="GL_G_Posting2">Debit</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    @Html.RadioButtonFor(m => m.GL_G_Posting, "C",  new { @class = "form-check-input", id = "GL_G_Posting3" })
+                                    <label class="form-check-label font-14" for="GL_G_Posting3">Credit</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    @Html.RadioButtonFor(m => m.GL_G_Posting, "B",  new { @class = "form-check-input", id = "GL_G_Posting4" })
+                                    <label class="form-check-label font-14" for="GL_G_Posting4">Both</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn action-btn bg-action-light active" onclick="saveGLCode()">Save</button>
+                    <button type="button" class="btn action-btn bg-action-light" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

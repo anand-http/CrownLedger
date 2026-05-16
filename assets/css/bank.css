@@ -1,0 +1,175 @@
+.search-bank input{
+    height: 46px;
+    border-radius: 5px;
+    padding: 0 15px 0px 36px;
+}
+.card-header .header-title,
+.account-details .title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--theme-reg-color);
+}
+.price-text {
+    font-size: 18px;
+    color: var(--theme-reg-color);
+    font-weight: 600;
+}
+.label-title {
+    font-size: 14px;
+    color: var(--theme-reg--light-color);
+    font-weight: 400;
+}
+.search-bank .icon{
+    position: absolute;
+    z-index: 5;
+    left: 10px;
+    right: auto;
+    top: 50%;
+    cursor: pointer;
+    width: 30px;
+    transform: translateY(-50%);
+    text-align: center;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.border-box{
+    border: 1px solid var(--theme-border-light-clr);
+    color: var(--theme-reg--light-color);
+    font-size: 14px;
+    padding: 0.375rem 1rem 0.375rem 0.75rem;
+    background: #fff;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+}
+.item .product .title{
+    font-size: 14px;
+    font-weight: 600;
+    color:var(--theme-reg-color);
+}
+.item .product .title{
+    font-size: 14px;
+    font-weight: 600;
+    color:var(--theme-reg-color);
+}
+.card{
+    margin-bottom: 0;
+}
+.text-clr-green,
+.dash-amount-sec .label.text-clr-green{
+    color:var(--theme-green-color);
+}
+.text-clr-red,
+.dash-amount-sec .label.text-clr-red{
+    color:var(--theme-red-color);
+}
+.recentActivities .price{
+    font-weight: 600;
+    font-size: 14px;
+}
+.dash-amount-sec .label,
+.account-details-sec .account-number,
+.account-details-sec .account-type{
+    font-size: 14px;
+    color: var(--theme-reg--light-color);
+}
+.account-details-sec .account-type{
+    font-size: 16px;
+}
+.account-details-sec .account-number{
+    font-weight: 600;
+}
+.pending-receipt .card-body,
+.pending-payments .card-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.upcoming-payment-sec{
+    position: relative;
+}
+.upcoming-payment-sec .card-body{
+    background-color: #D8F6F5;
+}
+.upcoming-payment-sec::before{
+    background-color: #D8F6F5;
+    min-height:90px;
+    background-image: url(../images/bill-file.svg);
+    height:110px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    height: 100%;
+    border-radius:7px;
+    opacity: 0.2;
+    content: '';
+    position: absolute;
+}
+.product-sec .price{
+    font-weight: 600;
+}
+.upcoming-payment-sec .title{
+    font-weight: 600;
+}
+.account-history table th{
+    font-size: 14px;
+}
+.account_dropdown .dropdown-item:hover svg ellipse {
+    fill: #043376;
+    transition: 0.3s ease-in-out;
+}
+.account_dropdown .dropdown-item:hover svg path {
+    fill: #fff;
+    transition: 0.3s ease-out;
+}
+.upcoming-payment-sec .border-top {
+    border-top: 1px solid var(--theme-green-color) !important;
+}
+.overview .action-btn,
+.dashboard-see_all{
+    padding: 0px 12px;
+    font-size: 13px;
+    font-weight: 500;
+    min-width: inherit;
+    border-radius: 30px;
+}
+.dashboard-see_all{
+    font-size: 12px;
+}
+.bank-logo{
+    font-weight: 600;
+    font-size: 14px;
+    transition: 0.3s ease-in-out;
+    color:var(--theme-reg-color);
+}
+.bank-logo:hover{
+    color:var(--theme-deafult);
+}
+
+#yourbankaccount .accordion-header button{
+    color: var(--theme-reg-color);
+    background: var(--theme-secondary);
+    font-weight: 600;
+}
+
+#yourbankaccount .accordion-item{
+    margin-bottom: 15px;
+}
+.account-details-sec .account-details{
+    min-width: 220px;
+}
+.bankng_tab .tab-content{
+    background:#fff;
+}
+.bankng_tab .nav-pills{
+    background-color: var(--theme-bg-sky-light);
+}
+.bankng_tab ul li button.active{
+    background-color: #fff!important;
+}
+#cash-bank-summary-tab{
+    width:100%!important;
+}

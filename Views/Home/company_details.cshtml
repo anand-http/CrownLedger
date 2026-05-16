@@ -1,0 +1,487 @@
+﻿@model fintech.Company
+@{
+    ViewBag.Title = "company-details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <link href="~/assets/css/component.css" rel="stylesheet">
+</head>
+<body class="bg-sky-light">
+    <div class="main-container">
+        @Html.Partial("~/Views/Shared/_PartialHeader.cshtml")
+        <div class="container">
+            <div class="row">
+                <main class="main-body">
+                    <div class="main-body-wrapper">
+                        <div class="collapsebody bg-f8f8f8 collapse show group-lookuptab" id="">
+                            <div class="collapsewrap card bx-shadow ">
+                                <div class="collapseheader ps-0 pe-0 me-0">
+                                    <div class="back_button">
+                                        <a href="@Url.Action("DashBoard","Home")" class=" left_arrow">
+                                            <span class="arrow-wrapper">
+                                                <svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M5.3048 9.75292C5.38285 9.82121 5.47378 9.87319 5.57222 9.90582C5.67066 9.93845 5.77464 9.95106 5.87803 9.94291C5.98142 9.93476 6.08213 9.90601 6.17425 9.85837C6.26637 9.81072 6.34802 9.74513 6.41442 9.66546C6.48081 9.58578 6.5306 9.49364 6.56086 9.39444C6.59111 9.29524 6.60122 9.19099 6.5906 9.08783C6.57997 8.98466 6.54881 8.88467 6.49897 8.79372C6.44912 8.70277 6.38159 8.62271 6.30035 8.55825L2.85479 5.6867L11.7261 5.6867C11.9324 5.6867 12.1302 5.60475 12.2761 5.45889C12.422 5.31303 12.5039 5.1152 12.5039 4.90892C12.5039 4.70264 12.422 4.50481 12.2761 4.35895C12.1302 4.21308 11.9324 4.13114 11.7261 4.13114L2.99635 4.13114L6.30035 1.37781C6.45898 1.24579 6.55867 1.05616 6.57748 0.850643C6.5963 0.645123 6.5327 0.440547 6.40068 0.281918C6.26866 0.123289 6.07904 0.0236021 5.87352 0.00478612C5.668 -0.0140308 5.46342 0.0495659 5.30479 0.181585L0.28035 4.3707C0.192818 4.44369 0.122398 4.53503 0.0740733 4.63825C0.0257488 4.74147 0.000699552 4.85406 0.000699562 4.96803C0.000699572 5.082 0.0257488 5.19458 0.0740734 5.29781C0.122398 5.40103 0.192818 5.49237 0.28035 5.56536L5.3048 9.75292Z" fill="#043376" />
+                                                </svg>
+                                            </span>
+                                            Back
+                                        </a>
+                                    </div>
+                                    <div class="top_content">
+                                        <h1 class="heading">Enter information about your company</h1>
+                                        <span class="sub-heading">Where do you run your day-to-day business?</span>
+                                    </div>
+                                    <div class="box_container d-flex align-items-center">
+                                        <span class="box_container-heading me-3 text-nowrap">Add Logo</span>
+                                        <form id="file-upload-form" class="uploader w-100">
+                                            <input id="file-upload" type="file" d-maxsize="2" d-imgtype="B2B" d-imgsubtype="@HttpContext.Current.Session["ClientId"]" d-Imageid="Logo" onchange="UploadSingleImage(this);" name="fileUpload" accept="image/*">
+                                            <input type="hidden" id="LogoUrl" name="LogoUrl" value="@Model.LogoUrl" />
+
+                                            <label for="file-upload" id="file-drag" class="d-flex align-items-center justify-content-start w-100">
+
+                                                <!-- ✅ Image pinned to left corner, same 120x120 size -->
+                                                <img id="file-image"
+                                                     src="@(string.IsNullOrEmpty(Model.LogoUrl) ? "#" : Model.LogoUrl)"
+                                                     alt="Preview"
+                                                     class="@(string.IsNullOrEmpty(Model.LogoUrl) ? "hidden" : "")"
+                                                     style="max-width:120px; max-height:120px; border-radius:6px; margin-right:12px; object-fit:cover;" />
+
+                                                <span id="start" class="d-flex align-items-center">
+                                                    <i class="fa fa-download" aria-hidden="true"></i>
+                                                    <span id="notimage" class="hidden"></span>
+                                                    <span class="d-flex align-items-center">
+                                                        <span id="file-upload-btn" class="btn upload_file btn-primary"></span>
+                                                        <span class="d-block text-start ms-3">
+                                                            <b>Click to upload </b> or drag &amp; drop<br />
+                                                            SVG, PNG, JPG or GIF (Image size 240 X 240 Max size 1mb)
+                                                        </span>
+                                                    </span>
+                                                </span>
+
+                                                <span class="hidden" id="response">
+                                                    <span id="messages"></span>
+                                                    <progress class="progress" id="file-progress" value="0">
+                                                        <span>0</span>%
+                                                    </progress>
+                                                </span>
+
+                                            </label>
+                                        </form>
+                                    </div>
+                                    <div class="box_container pb-4">
+                                        <div class="box_container-heading mb-3">Company Details</div>
+                                        <div class="form-container">
+                                            <!-- Hidden field for Company Id -->
+                                            <input type="hidden" id="CompanyId" name="Id" value="@Model.Id" />
+                                            <div class="row g-3">
+                                                <div class="col-md-4">
+                                                    <div class="form-floating">
+                                                        <input type="text" class="form-control" id="companyname" name="Name" value="@Model.Name" placeholder="Please enter company name">
+                                                        <label for="companyname">Business / Organization Name</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-floating">
+                                                        <input type="text" class="form-control" id="Industry" name="Industry" value="@Model.Industry" placeholder="Please enter industry">
+                                                        <label for="Industry">Industry</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-floating">
+                                                        <input type="text" class="form-control" id="Website" name="Website" value="@Model.Website" placeholder="Please enter website">
+                                                        <label for="Website">Website</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-floating">
+                                                        <input type="text" class="form-control" id="Address" name="Address" value="@Model.Address" placeholder="Please enter address">
+                                                        <label for="Address">Address</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-floating">
+                                                        <input type="text" class="form-control" id="TaxNumber" name="TaxNumber" value="@Model.TaxNumber" placeholder="Please enter tax number">
+                                                        <label for="TaxNumber">Tax Number</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-floating">
+                                                        <input type="text" class="form-control" id="ContactPerson" name="ContactPerson" value="@Model.ContactPerson" placeholder="Please enter contact person">
+                                                        <label for="ContactPerson">Contact Person</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-floating">
+                                                        <input type="text" class="form-control" id="Telephone" name="Telephone" value="@Model.Telephone" placeholder="Please enter telephone">
+                                                        <label for="Telephone">Telephone</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-floating">
+                                                        <input type="email" class="form-control" id="PrimaryEmail" name="PrimaryEmail" value="@Model.PrimaryEmail" placeholder="Please enter primary email">
+                                                        <label for="PrimaryEmail">Primary Email Id</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-floating">
+                                                        <input type="text" class="form-control" id="PAN" name="PAN" value="@Model.PAN" placeholder="Please enter PAN">
+                                                        <label for="PAN">PAN</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-floating">
+                                                        <input type="text" class="form-control" id="VAT" name="VAT" value="@Model.VAT" placeholder="Please enter VAT/GST">
+                                                        <label for="VAT">VAT/ GST</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-floating">
+                                                        <input type="text" class="form-control" id="TimeZone" name="TimeZone" value="@Model.TimeZone" placeholder="Please enter time zone">
+                                                        <label for="TimeZone">Time Zone</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-floating">
+                                                        <input type="text" class="form-control offline-age" id="txtCompLang" name="Language" value="@Model.Language" placeholder="Please enter language">
+                                                        <label for="floatingSelect">Language</label>
+                                                        <input type="hidden" id="hdnLangID" value="@Model.LanguageId">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="box_container-heading mt-4 mb-3">Address Details</div>
+                                            <div class="row g-3">
+                                                <div class="col-md-4">
+                                                    <div class="form-floating">
+                                                        <input type="text" class="form-control" id="Address1" name="Address1" value="@Model.Address1" placeholder="Please enter address 1">
+                                                        <label for="Address1">Address 1 *</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-floating">
+                                                        <input type="text" class="form-control" id="Address2" name="Address2" value="@Model.Address2" placeholder="Please enter address 2">
+                                                        <label for="Address2">Address 2</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-floating" id="the-basics-agents">
+                                                        <input class="form-select offline-age" type="text" placeholder="Please select Country" id="txtCompCntry" value="@Model.Country">
+                                                        <label for="floatingSelect">Country</label>
+                                                        <input type="hidden" id="hdnCompCntryID" value="@Model.Contry_Id">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-floating" id="the-basics-agents">
+                                                        <input class="form-select  offline-agent" type="text" placeholder="Please select State" id="txtCompSte" value="@Model.State">
+                                                        <label for="floatingSelect">State</label>
+                                                        <input type="hidden" id="hdnCompSteID" value="@Model.State_Id">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-floating" id="the-basics-agents">
+                                                        <input class="form-select  offline-agent" type="text" placeholder="Unselected" id="txtCompCity" value="@Model.City">
+                                                        <label for="floatingSelect">City / Town</label>
+                                                        <input type="hidden" id="hdnCompCityID" value="@Model.City_Id">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-floating">
+                                                        <input type="text" class="form-control" id="txtCompZip" value="@Model.Zipcode" placeholder="Please enter last name">
+                                                        <label for="teamName">Zip</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="box_container-heading mt-4 mb-3">Accounting Details</div>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="form-floating mb-3">
+                                                        <input type="text" class="form-control datepicker" name="fiscalstartdate" placeholder="Fiscal Year Start Date" value="@Model.FiscalYearStart">
+                                                        <label for="floatingSelect">Fiscal Year Start Date</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-floating mb-3">
+                                                        <input type="text" class="form-control datepicker" name="fiscalenddate" placeholder="Fiscal Year End Date" value="@Model.FiscalYearEnd">
+                                                        <label for="floatingSelect">Fiscal Year End Date</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-floating mb-3" id="the-basics-agents">
+                                                        <input class="form-select typeahead offline-agent" type="text" placeholder="Unselected" value="@Model.AccountingBasis">
+                                                        <label for="floatingSelect">Accounting Basis</label>
+                                                        <input type="hidden" id="hdnAcctID" value="@Model.Accounting_Id">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-floating mb-3" id="the-basics-agents">
+                                                        <input class="form-select  offline-agent" type="text" placeholder="Please select Currency" id="txtCompCrncy" value="@Model.DefaultCurrency">
+                                                        <label for="floatingSelect">Base Currency</label>
+                                                        <input type="hidden" id="hdnCompCrncyID" value="@Model.Currency_Id">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-action-section justify-content-end pt-4">
+                                        @*<a href="javascript:void(0);" class="action-btn bg-action-light" data-status="Draft" onclick="submitCompanyForm('Draft')">Save as Draft</a>*@
+                                        <a href="javascript:void(0);" class="action-btn bg-action-light active" data-status="Active" onclick="submitCompanyForm('Active')">Save</a>
+                                        @*<a href="javascript:void(0);" class="action-btn bg-action-light" data-status="Active" onclick="submitCompanyForm('Active')">Edit Changes</a>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+
+
+
+    
+    <script>
+        $(document).ready(function () {
+
+            var arrPterm2 = [{ "ParamName": "State_CountryID", "CtrName": $('#hdnCountryID').attr('id') }];
+            $('#txtCompSte').typeheadAutoComplete('Core.mst_State', 'State', $('#hdnCompSteID'), arrPterm2);
+            $('#txtCompCrncy').typeheadAutoComplete('[Core].[mst_Currency]', 'Curncy', $('#hdnCompCrncyID'));
+            $('#txtCompCntry').typeheadAutoComplete('Core.mst_Country', 'Contry', $('#hdnCompCntryID'));
+            $('#txtCompCity').typeheadAutoComplete('CORE.mst_city', 'City', $('#hdnCompCityID'));
+            $('#txtCompLang').typeheadAutoComplete('Core.mst_Language', 'Langug', $('#hdnLangID'));
+        });
+        document.getElementById("file-upload").addEventListener("change", function () {
+            const file = this.files[0];
+            if (!file) return;
+
+            const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/gif", "image/svg+xml"];
+            const MAX_SIZE = 1024 * 1024; // 1MB
+
+            if (!ALLOWED_TYPES.includes(file.type)) {
+                alert("Invalid file type. Please upload a JPEG, PNG, GIF, or SVG.");
+                this.value = ""; // Reset input
+                return;
+            }
+
+            if (file.size > MAX_SIZE) {
+                alert("File size must be less than 1MB.");
+                this.value = ""; // Reset input
+                return;
+            }
+
+            previewImage(file);
+        });
+
+        function previewImage(file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                $("#file-image")
+                    .attr("src", e.target.result)
+                    .removeClass("hidden");
+            };
+            reader.readAsDataURL(file);
+        }
+
+
+        function UploadSingleImage(ctrl_sgl_img, res) {
+            if ($(ctrl_sgl_img)[0].files.length > 0) {
+                var f = $(ctrl_sgl_img)[0].files[0]
+                var mS_totalBytes = f.size;
+                var _sizemb = parseFloat(mS_totalBytes / 1024000);
+                var chksize = parseFloat(Number($(ctrl_sgl_img).attr("d-maxsize")))
+                if (_sizemb > chksize) {
+                    swalValidationAlert('File Size', 'error', 'File must be less than ' + chksize + ' MB.');
+
+
+                }
+                else {
+                    if (f) {
+                        var EntityImgdata = new FormData();
+                        var FileID = GenerateRandonNumber();
+                        EntityImgdata.append('Image', $(ctrl_sgl_img)[0].files[0]);
+                        EntityImgdata.append('FileID', FileID);
+
+                        EntityImgdata.append('ImageType', $(ctrl_sgl_img).attr('d-imgtype'));
+                        EntityImgdata.append('ImageSubType', $(ctrl_sgl_img).attr('d-imgsubtype'));
+                        EntityImgdata.append('ImageId', $(ctrl_sgl_img).attr('d-Imageid'));
+                        if (res != undefined && res != "") {
+                            EntityImgdata.append('Datatext', res);
+                        }
+                        $.ajax({
+                            url: '/AppService/CdnSingleFileUpload',
+                            type: "POST",
+                            dataType: "json",
+                            contentType: false, // Not to set any content header
+                            processData: false, // Not to process data
+                            data: EntityImgdata,
+                            beforeSend: function () {
+                                $(ctrl_sgl_img).parents(".Miandivsgl_imgupload").find(".loader-2").show();
+                                $(ctrl_sgl_img).parents(".Miandivsgl_imgupload").find(".sgl_previewfile").hide();
+                                $(".btnsavedetailhs").attr('disabled', 'true');
+                            },
+                            success: function (response) {
+                                var result = $.parseJSON(response);
+                                if (result.Files[0] != null) {
+                                    if (result.Files[0].CloudAccessURL != "") {
+                                        $("#LogoUrl").val(result.Files[0].CloudAccessURL);
+                                    }
+                                    else {
+                                        swalValidationAlert('File Type', 'error', result.Files[0].ErrorMessage);
+
+                                    }
+                                }
+
+                            }, error: function (response) {
+
+                            }, failure: function (response) {
+
+                            }, complete: function (response) {
+
+                            }
+                        });
+                    }
+                }
+
+            }
+        }
+
+        function GenerateRandonNumber() {
+            function s4() {
+                return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+            }
+            return s4() + s4() + s4();
+        }
+        $(document).ready(function () {
+            var table = $('#tdstables').DataTable();
+            var counter = 1;
+            $('#savebuton').on('click', function () {
+                var Name = $("#ads1").val();
+                var Address = $("#ads2").val();
+                table.row.add([
+                    Name,
+                    Address
+                ]).draw(false);
+
+                counter++;
+
+            });
+            $('#savebuton').click();
+
+        });
+        $(document).ready(function () {
+            var substringMatcher = function (strs) {
+                return function findMatches(q, cb) {
+                    var matches, substringRegex;
+                    matches = [];
+                    substrRegex = new RegExp(q, 'i');
+                    $.each(strs, function (i, str) {
+                        if (substrRegex.test(str)) {
+                            matches.push(str);
+                        }
+                    });
+                    cb(matches);
+                };
+            };
+
+            var agents = ['Nicole Prejean', 'David', 'Smith', 'WEI MIAO', 'laili',
+                'Onsri', 'Wan Yun', 'Enyu', 'Rio Rica', 'Sanjay', 'Priscilla Jia', 'John Smith',
+                'Redha Nuruinda', 'Mylon Jan', 'Ma Lothel', 'Raufa', 'Areanne Glee', 'Mary Jasmine',
+            ];
+
+            $('#the-basics-agents .typeahead').typeahead({
+                hint: true,
+                highlight: true,
+                minLength: 1
+            },
+                {
+                    name: 'states',
+                    source: substringMatcher(agents)
+                });
+        });
+        $(function () {
+                $('input[name="fiscalstartdate"]').daterangepicker({
+                    singleDatePicker: true,
+                    showDropdowns: true,
+                    minYear: 1901,
+                    maxYear: parseInt(moment().format('YYYY'), 10) + 1, // +1 to allow next year
+                    startDate: moment() // Start from today
+                }, function (start, end, label) {
+                    var years = moment().diff(start, 'years');
+                });
+            });
+
+            $(function () {
+                $('input[name="fiscalenddate"]').daterangepicker({
+                    singleDatePicker: true,
+                    showDropdowns: true,
+                    minYear: 1901,
+                    maxYear: parseInt(moment().format('YYYY'), 10) + 1, // +1 to allow next year
+                    startDate: moment().add(1, 'year') // One year ahead from today
+                }, function (start, end, label) {
+                    var years = moment().diff(start, 'years');
+                });
+            });
+        function submitCompanyForm(status) {
+            // Validate company name
+            var companyName = $('#companyname').val();
+            if (!companyName || companyName.trim() === '') {
+                alert('Company name is mandatory.');
+                $('#companyname').focus();
+                return;
+            }
+
+            var formData = {
+                // Company Details
+                Id: $('#CompanyId').val(),
+                Name: $('#companyname').val(),
+                Industry: $('#Industry').val(),
+                Website: $('#Website').val(),
+                TaxNumber: $('#TaxNumber').val(),
+                ContactPerson: $('#ContactPerson').val(),
+                Telephone: $('#Telephone').val(),
+                PrimaryEmail: $('#PrimaryEmail').val(),
+                PAN: $('#PAN').val(),
+                VAT: $('#VAT').val(),
+                TimeZone: $('#TimeZone').val(),
+                Language: $('#txtCompLang').val(),
+                LanguageId: $('#hdnLangID').val(),
+
+                // Address Details
+                Address1: $('#Address1').val(),
+                Address2: $('#Address2').val(),
+                Zipcode: $('#txtCompZip').val(),       // model: Zipcode
+                Contry_Id: $('#hdnCompCntryID').val(),   // model: Contry_Id
+                State_Id: $('#hdnCompSteID').val(),     // model: State_Id
+                City_Id: $('#hdnCompCityID').val(),    // model: City_Id
+
+                // Accounting Details
+                FiscalYearStart: $('input[name="fiscalstartdate"]').val(),
+                FiscalYearEnd: $('input[name="fiscalenddate"]').val(),
+                Accounting_Id: $('#hdnAcctID').val(),      // model: Accounting_Id
+                Currency_Id: $('#hdnCompCrncyID').val(), // model: Currency_Id
+
+                // Logo & Status
+                //LogoUrl: $('#LogoUrl').val(),          // model: LogoUrl
+                LogoUrl: "https://cdn.sriggle.tech/kantents/production/68/223/01/177b37be-bac9-4aaf-9fe5-b90c76e82fef.png",          // model: LogoUrl
+                Status: status
+            };
+
+            $.ajax({
+                url: '@Url.Action("SaveOrUpdateCompany", "Home")',
+                type: 'POST',
+                data: formData,
+                success: function (response) {
+                    //alert(response.message);
+                    if (response.success == true ) {
+                        swalValidationAlert(response.message, "success").then(function () {
+                            window.location.href = "@Url.Action("company_Details", "Home")"; // ✅ fixed typo: locationn → location
+                        });
+                    } else {
+                        swalValidationAlert(response.message, "error");
+                    }
+                },
+                error: function () {
+                    swalValidationAlert("Failed to save estimate. Please try again.", "error");
+                }
+            });
+}
+    </script>
+</body>

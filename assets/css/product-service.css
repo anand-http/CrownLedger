@@ -1,0 +1,12 @@
+.product-service-fields .label{
+    min-width: 160px;
+    font-size: 14px;
+    color: var(--theme-reg--light-color);
+    display: flex;
+    flex-grow: 1;
+}
+.product-service-fields .dropdown,
+.product-service-fields .input-group { 
+    min-width: 172px;
+    max-width: 172px;
+}

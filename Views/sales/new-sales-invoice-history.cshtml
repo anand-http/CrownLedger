@@ -1,0 +1,382 @@
+
+@{
+    ViewBag.Title = "new-sales-invoice-history";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html lang="en">
+<head>
+    <link href="../assets/css/vendor.css" rel="stylesheet">
+</head>
+<body class="bg-sky-light">
+
+    @Html.Partial("~/Views/Shared/_PartialHeader.cshtml")
+
+    <div class="container">
+        <div class="row">
+            <main class="main-body">
+                <div class="main-body-wrapper">
+                    <div class="collapsebody bg-f8f8f8 collapse show group-lookuptab" id="">
+                        <div class="collapsewrap card bx-shadow ">
+                            <div class="collapseheader ps-0 pe-0 me-0">
+
+
+                                <div class="top_content">
+                                    <h1 class="heading">Create New Sales Invoice</h1>
+                                    <span class="sub-heading">Create, view, and manage the invoices you send to your customers.</span>
+                                </div>
+
+                                <div class="row pt-3 g-3">
+                                    <div class="col">
+                                        <div class="form-floating">
+                                            <input class="form-select typeahead offline-agent"
+                                                   type="text" placeholder="" id="customerName">
+                                            <label for="teamName">Customer Name*</label>
+                                            <input type="hidden" id="hdnClientID" value="">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="" value="As per Number Series" placeholder="Please enter last name" disabled>
+                                            <label for="teamName">Invoice Number*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="" value="As per Number Series" placeholder="Please enter last name" disabled>
+                                            <label for="teamName">Order Number</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating mb-3">
+                                            <input id="txtInvoiceDate" type="text" class="form-control datepicker" name="fiscaldate" placeholder="Fiscal Year Start Date">
+                                            <label for="floatingSelect">Invoice Date*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" id="txtAccinvDate" class="form-control datepicker" name="fiscaldate" placeholder="Fiscal Year Start Date">
+                                            <label for="floatingSelect">Accounting Date*</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-3">
+                                    <div class="col">
+                                        <div class="form-floating input-edit">
+                                            <input class="form-select typeahead offline-agent" type="text" id="txtCurrency" value="" placeholder="Please enter Currency">
+                                            <label for="teamName">Currency</label>
+                                            <input type="hidden" id="hdnCurrencyID" value="">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating input-edit">
+                                            <input class="form-select typeahead offline-agent" type="text" id="txtTerm" value="" placeholder="Please enter Payment Terms">
+                                            <label for="teamName">Payment Terms</label>
+                                            <input type="hidden" id="hdnTerm2Id" value="">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" id="txtDueDate" class="form-control datepicker" name="fiscaldate" placeholder="Fiscal Year End Date">
+                                            <label for="floatingSelect">Due Date*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating">
+                                            <input class="form-select typeahead offline-agent" id="txtUser" value="" type="text" placeholder="Please select sales person">
+                                            <label for="floatingSelect">Sales Person</label>
+                                            <input type="hidden" id="hdnUserID" value="">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating">
+                                            <input class="form-select typeahead offline-agent" id="txtBranch" value="" type="text" placeholder="Select Branch">
+                                            <label for="floatingSelect">Branch</label>
+                                            <input type="hidden" id="hdnBranchId" value="">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @Html.Partial("~/Views/Shared/_PartialItemWithGL.cshtml")
+                                <div class="form-action-section new-estimate-button pt-4">
+                                    <div class="upload form-floating  d-flex align-items-center">
+                                        <span>Upload</span><input type="file">
+                                    </div>
+                                    @*<a href="javascript:void(0);" class="action-btn bg-action-light active">Save as Draft</a>*@
+                                    <div class="dropdown">
+                                        <a class="form-select dropdown-toggle text-decoration-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <span class="">Save</span>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item sale-action" href="#" data-status="Draft">Save and New</a></li>
+                                            <li><a class="dropdown-item sale-action" href="#" data-status="Pending for approval">Save and Approve</a></li>
+                                            <li><a class="dropdown-item sale-action" href="#" data-status="Approved">Save and Submit</a></li>
+                                        </ul>
+                                    </div>
+                                    <a href="@Url.Action("ViewCustomer","Sales")" class="action-btn bg-action-light">Cancel</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modal -->
+
+
+    <script>
+        $(document).ready(function () {
+            $('#customerName').typeheadAutoComplete('Client.mst_Client', 'Client', $('#hdnClientID'));
+            $('#txtCurrency').typeheadAutoComplete('[Core].[mst_Currency]', 'Curncy', $('#hdnCurrencyID'));
+            $('#txtBranch').val('').typeheadAutoComplete('CORE.mst_Branch', 'Branch', $('#hdnBranchId'));
+            $('#txtUser').typeheadAutoComplete('UMS.mst_User', 'User', $('#hdnUserID'));
+            var arrPterm2 = [{ "ParamName": "Term_Type", "CtrName": $('#hdnPterm2Default').attr('id') }];
+            $('#txtTerm').typeheadAutoComplete('COMMON.mst_Terms', 'Term', $('#hdnTermId'), arrPterm2);
+            $('.input-edit').click(function (){
+            $(this).parent().find('.customer-name-control').toggleClass('edit-form');
+             });
+        });
+
+
+        $(".sale-action").click(function () {
+            if (!validateEstimate()) return;
+
+            var status = $(this).data("status");
+            var items = getAllItemRows();
+            var data  = {
+                Sale_InvoiceId:     $("#hdnEstimateId").val() || 0,
+                Sale_InvoiceDate:   $("#txtInvoiceDate").val(),
+                AccountingDate:     $("#txtAccinvDate").val(),
+                CustomerId:         $("#hdnClientID").val(),
+                PaymentTerm:        $("#hdnTerm2Id").val(),
+                Branch:             $("#hdnBranchId").val(),
+                Currency:           $("#hdnCurrencyID").val(),
+                ExpiryDate:         $("#txtDueDate").val(),
+                SubTotal:           $("#lblSubTotal").text().replace("$", "").trim(),
+                Discount:           getTotalDiscount(),
+                OtherAdjustment:    $("#txtOtherAdjustment").val() || 0,
+                Tax_Value:          $("#txtTax").val() || 0,
+                TotalAmount:        $("#lblTotal").text().replace("$", "").trim(),
+                Status:             status,
+                Comments:           $("#txtComments").val(),
+                TermsAndConditions: $("#txtTermsConditions").val(),
+                LoginId:            "@Session["LoginId"]",
+                Entity_ID:          "@Session["Entity_ID"]",
+                Items:              items
+            };
+
+            $(this).prop("disabled", true).html('<i class="fa fa-spinner fa-spin"></i> Saving...');
+
+            $.ajax({
+                url:"@Url.Action("SaveInvoice", "Sales")",
+                type:"POST",
+                contentType: "application/json",
+                data:JSON.stringify(data),
+                success: function (res) {
+                    if (res.status) {
+                        swalValidationAlert(res.message, "success").then(function () {
+                            window.location.href = "@Url.Action("SalesInvoiceHistory", "Sales")"; // ✅ fixed typo: locationn → location
+                        });
+                    } else {
+                        swalValidationAlert(res.message, "error");
+                    }
+                },
+                error: function () {
+                    swalValidationAlert("Failed to save estimate. Please try again.", "error");
+                },
+                complete: function () {
+                    $("#btnSaveEstimate").prop("disabled", false)
+                                         .html('<i class="fa fa-save"></i> Save');
+                }
+            });
+        });
+
+        $(".swal2-confirm").click(function () {
+
+        });
+
+
+        function getAllItemRows() {
+            var items = [];
+            $(".item-row").each(function () {
+                var suffix = getSuffix(this);
+                items.push({
+                    ItemType:  getItemType(suffix),        // "P" or "S"
+                    ItemId:    $("#hdnItemDetail_" + suffix).val(),
+                    Quantity:  $("#txtQuantity_"   + suffix).val(),
+                    Rate:      $("#txtRate_"       + suffix).val(),
+                    TaxGroupId:$("#hdnTaxID_"      + suffix).val() || 0,
+                    GL_ID: $("#hdnGLAccID_"      + suffix).val() || 0,
+                    BaseAmount: $("#txtAmount_" + suffix).val(),
+                    DiscountType: $("#ddlDiscountType_" + suffix).val(),
+                    DiscountValue: $("#txtDiscount_" + suffix).val()
+                });
+            });
+            return items;
+        }
+
+            function getItemType(suffix) {
+                // get item type from the locally stored itemList using selected ItemId
+                var itemId = $("#hdnItemType_" + suffix).val();
+                var selected = itemId;
+                return selected ? selected : "S"; // default to S (Service)
+            }
+
+            function getTotalDiscount() {
+                var total = 0;
+                $(".item-row").each(function () {
+                    var suffix = getSuffix(this);
+                    var quantity     = parseFloat($("#txtQuantity_"    + suffix).val()) || 0;
+                    var rate         = parseFloat($("#txtRate_"        + suffix).val()) || 0;
+                    var discount     = parseFloat($("#txtDiscount_"    + suffix).val()) || 0;
+                    var discountType = $("#ddlDiscountType_"           + suffix).val();
+                    var gross        = quantity * rate;
+
+                    total += discountType === "P"
+                             ? (gross * discount) / 100
+                             : discount;
+                });
+                return total.toFixed(2);
+            }
+
+            function validateEstimate() {
+                if (!$("#hdnClientID").val() || $("#hdnCustomerID").val() == "0") {
+                    swalValidationAlert("Please select a Customer.", "warning");
+                    return false;
+                }
+                if (!$("#txtInvoiceDate").val()) {
+                    swalValidationAlert("Please enter Invoice Date.", "warning");
+                    return false;
+                }
+                if (!$("#txtDueDate").val()) {
+                    swalValidationAlert("Please enter Due Date.", "warning");
+                    return false;
+                }
+
+                var valid = true;
+                $(".item-row").each(function () {
+                    var suffix = getSuffix(this);
+                    if (!$("#hdnItemDetail_" + suffix).val() ||
+                         $("#hdnItemDetail_" + suffix).val() == "0") {
+                        swalValidationAlert("Please select Item Details for all rows.", "warning");
+                        valid = false;
+                        return false;
+                    }
+                    if (!$("#txtQuantity_" + suffix).val() ||
+                         parseFloat($("#txtQuantity_" + suffix).val()) <= 0) {
+                        swalValidationAlert("Please enter valid Quantity for all rows.", "warning");
+                        valid = false;
+                        return false;
+                    }
+                    if (!$("#txtRate_" + suffix).val() ||
+                         parseFloat($("#txtRate_" + suffix).val()) <= 0) {
+                        swalValidationAlert("Please enter valid Rate for all rows.", "warning");
+                        valid = false;
+                        return false;
+                    }
+                });
+                return valid;
+            }
+
+        $(document).ready(function () {
+      var substringMatcher = function (strs) {
+          return function findMatches(q, cb) {
+              var matches, substringRegex;
+              matches = [];
+              substrRegex = new RegExp(q, 'i');
+              $.each(strs, function (i, str) {
+                  if (substrRegex.test(str)) {
+                      matches.push(str);
+                  }
+              });
+
+              cb(matches);
+          };
+      };
+
+      var agents = ['Nicole Prejean', 'David', 'Smith', 'WEI MIAO', 'laili',
+          'Onsri', 'Wan Yun', 'Enyu', 'Rio Rica', 'Sanjay', 'Priscilla Jia', 'John Smith',
+          'Redha Nuruinda', 'Mylon Jan', 'Ma Lothel', 'Raufa', 'Areanne Glee', 'Mary Jasmine',
+      ];
+
+      $('#the-basics-agents .typeahead').typeahead({
+          hint: true,
+          highlight: true,
+          minLength: 1
+      },
+          {
+              name: 'states',
+              source: substringMatcher(agents)
+          });
+  });
+    </script>
+
+    <script>
+        $(function() {
+          $('input[name="fiscaldate"]').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            minYear: 1901,
+            maxYear: parseInt(moment().format('YYYY'),10)
+          }, function(start, end, label) {
+            var years = moment().diff(start, 'years');
+          });
+        });
+
+        $(function() {
+            $('input[name="daterange"]').daterangepicker(
+                {
+                    ssingleDatePicker: 'true',
+                    showShortcuts: 'false',
+                    showTopbar: 'false'
+                }
+            );
+        });
+
+
+        $('#datatable1').DataTable({
+                "columnDefs": [
+                    {
+                        "targets": -1,
+                        "orderable": false
+                    }
+                ],
+                language: {
+                    search: "_INPUT_",
+                    searchPlaceholder: "Search..."
+                },
+                fixedHeader: {
+                    header: true,
+                },
+                "dom": '<"top"<"toolbar">tf<"clear">>rt<"bottom"lip<"clear">>'
+            });        
+    </script>
+
+    <script>
+ $(".form-switch").click(function () {
+    if ($(this).parent().hasClass("yes")) {
+      $(this).parent().removeClass("yes");
+      $(this).parent().addClass("no");
+    } else {
+      $(this).parent().removeClass("no");
+      $(this).parent().addClass("yes");
+    }
+  });
+    </script>
+    <script>
+  $(document).ready(function () {
+      $('#productservice').DataTable({
+          pagingType: 'full_numbers',
+      });
+
+      $('#framework').multiselect({
+        nonSelectedText: 'Select Framework',
+        enableFiltering: true,
+        enableCaseInsensitiveFiltering: true,
+        buttonWidth:'400px'
+      });
+  });
+    </script>
+</body>
+</html>

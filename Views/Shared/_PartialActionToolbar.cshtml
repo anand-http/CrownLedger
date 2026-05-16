@@ -1,0 +1,322 @@
+﻿@{ 
+    var controller = ViewContext.RouteData.Values["controller"]?.ToString();
+    var action = ViewContext.RouteData.Values["action"]?.ToString();
+}
+
+<div class="sort-bar mt-4">
+    <div class="left-sort-bar">
+        @if (action == "PurchaseOrderHistory" || action == "BillHistory" || action == "PurchaseCreditNotesHistory" || action == "RecurringBillsHistory" || action == "ExpenseHistory")
+        {
+            @Html.Partial("~/Views/Shared/_PartialGridActions.cshtml")
+        }
+        <div class="search_container d-none">
+            <div class="input-group">
+                <span>
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5.13149 10.263C6.27003 10.2628 7.37576 9.88161 8.27261 9.18024L11.0924 12L11.9994 11.093L9.1796 8.27325C9.88134 7.37631 10.2627 6.27033 10.263 5.13149C10.263 2.30212 7.96087 0 5.13149 0C2.30212 0 0 2.30212 0 5.13149C0 7.96087 2.30212 10.263 5.13149 10.263ZM5.13149 1.28287C7.25401 1.28287 8.98012 3.00898 8.98012 5.13149C8.98012 7.25401 7.25401 8.98012 5.13149 8.98012C3.00898 8.98012 1.28287 7.25401 1.28287 5.13149C1.28287 3.00898 3.00898 1.28287 5.13149 1.28287Z" fill="black" />
+                    </svg>
+                </span>
+                <input type="text" class="form-control rounded search-input" placeholder="Search" aria-label="Search" aria-describedby="addon-wrapping">
+            </div>
+        </div>
+        <div class="account_dropdown  @(action == "PurchaseOrderHistory" || action == "PurchaseCreditNotesHistory" ? "" : "d-none")">
+            <div class="dropdown">
+                <span class="form-select dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Action </span>
+                <ul class="dropdown-menu">
+                    @*<li><a class="dropdown-item action-option" data-status="I" href="#">Mark as Issued</a></li>*@
+                    <li><a class="dropdown-item action-option" data-status="B" href="#">Convert to Bill</a></li>
+                    <li><a class="dropdown-item action-option" data-status="C" href="#">Cancel PO</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="account_dropdown @(action == "BillHistory" ? "" : "d-none")">
+            <div class="dropdown">
+                <span class="form-select dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Action </span>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Link to Purchase Order</a></li>
+                    <li><a class="dropdown-item" href="#">Record Payment</a></li>
+                    <li><a class="dropdown-item" href="#">Make Recurring</a></li>
+                    <li><a class="dropdown-item" href="#">Reverse</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="account_dropdown @(action == "RecurringBillsHistory" || action == "ExpenseHistory"? "" : "d-none")">
+            <div class="dropdown">
+                <span class="form-select dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Action </span>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Mark as Issued</a></li>
+                    <li><a class="dropdown-item" href="#">Convert to Bill</a></li>
+                    <li><a class="dropdown-item" href="#">Cancel PO</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="account_dropdown @(action == "PurchaseOrderHistory" ? "" : "d-none")">
+            <div class="dropdown">
+                <span class="form-select dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Filter </span>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item status-option" data-status="" href="#">All</a></li>
+                    <li><a class="dropdown-item status-option" data-status="O" href="#">Open</a></li>
+                    <li><a class="dropdown-item status-option" data-status="S" href="#">Closed</a></li>
+                    <li><a class="dropdown-item status-option" data-status="C" href="#">Cancelled</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="account_dropdown @(action == "BillHistory" ? "" : "d-none")">
+            <div class="dropdown">
+                <span class="form-select dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Filter </span>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item status-option" data-status="" href="#">All</a></li>
+                    <li><a class="dropdown-item status-option" data-status="O" href="#">Open</a></li>
+                    <li><a class="dropdown-item status-option" data-status="C" href="#">Closed</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="account_dropdown @(action == "PurchaseCreditNotesHistory" ? "" : "d-none")">
+            <div class="dropdown">
+                <span class="form-select dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Filter </span>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item status-option" data-status="" href="#">All</a></li>
+                    <li><a class="dropdown-item status-option" data-status="O" href="#">Open</a></li>
+                    <li><a class="dropdown-item status-option" data-status="U" href="#">Used</a></li>
+                    <li><a class="dropdown-item status-option" data-status="L" href="#">Linked</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="account_dropdown @(action == "RecurringBillsHistory"? "" : "d-none")">
+            <div class="dropdown">
+                <span class="form-select dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Filter </span>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item status-option" data-status="" href="#">All</a></li>
+                    <li><a class="dropdown-item status-option" data-status="O" href="#">Active</a></li>
+                    <li><a class="dropdown-item status-option" data-status="S" href="#">Stopped</a></li>
+                    <li><a class="dropdown-item status-option" data-status="E" href="#">Expired</a></li>
+                    <li><a class="dropdown-item status-option" data-status="A" href="#">Approved</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="account_dropdown @(action == "ExpenseHistory"? "" : "d-none")">
+            <div class="dropdown">
+                <span class="form-select dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Filter </span>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item status-option" data-status="" href="#">All</a></li>
+                    <li><a class="dropdown-item status-option" data-status="B" href="#">Billed</a></li>
+                    <li><a class="dropdown-item status-option" data-status="N" href="#">Not Billed</a></li>
+                    <li><a class="dropdown-item status-option" data-status="D" href="#">Draft</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="two_date_container">
+            <div class="input-group">
+                <input type="text" class="calendar" name="daterange" value="01/01/2026 - 01/15/2026" />
+            </div>
+        </div>
+        <div class="account_dropdown  @(action == "PurchaseOrderHistory" ? "" : "d-none")">
+            <div class="dropdown">
+                <span class="form-select dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Sort by </span>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item sort-by" data-status="V" href="#">Vendor Name</a></li>
+                    <li><a class="dropdown-item sort-by" data-status="D" href="#">PO Date</a></li>
+                    <li><a class="dropdown-item sort-by" data-status="A" href="#">Amount</a></li>
+                    <li><a class="dropdown-item sort-by" data-status="R" href="#">Created by</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="account_dropdown  @(action == "BillHistory" ? "" : "d-none")">
+            <div class="dropdown">
+                <span class="form-select dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Sort by </span>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item sort-by" data-status="V" href="#">Vendor Name</a></li>
+                    <li><a class="dropdown-item sort-by" data-status="D" href="#">Bill Date</a></li>
+                    <li><a class="dropdown-item sort-by" data-status="A" href="#">Bill Amount</a></li>
+                    <li><a class="dropdown-item sort-by" data-status="R" href="#">Created by</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="account_dropdown  @(action == "PurchaseCreditNotesHistory" ? "" : "d-none")">
+            <div class="dropdown">
+                <span class="form-select dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Sort by </span>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item sort-by" data-status="V" href="#">Vendor Name</a></li>
+                    <li><a class="dropdown-item sort-by" data-status="D" href="#">Date</a></li>
+                    <li><a class="dropdown-item sort-by" data-status="A" href="#">Bill Note Amount</a></li>
+                    <li><a class="dropdown-item sort-by" data-status="R" href="#">Created by</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="account_dropdown  @(action == "RecurringBillsHistory" ? "" : "d-none")">
+            <div class="dropdown">
+                <span class="form-select dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Sort by </span>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item sort-by" data-status="V" href="#">Vendor Name</a></li>
+                    <li><a class="dropdown-item sort-by" data-status="D" href="#">Previous Invoice Date</a></li>
+                    <li><a class="dropdown-item sort-by" data-status="A" href="#">Amount</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="account_dropdown  @(action == "ExpenseHistory" ? "" : "d-none")">
+            <div class="dropdown">
+                <span class="form-select dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Sort by </span>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item sort-by" data-status="V" href="#">Vendor Name</a></li>
+                    <li><a class="dropdown-item sort-by" data-status="D" href="#">Date</a></li>
+                    <li><a class="dropdown-item sort-by" data-status="A" href="#">Expense Amount</a></li>
+                    <li><a class="dropdown-item sort-by" data-status="R" href="#">Created By</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="right-sort-bar  @(action == "ExpenseHistory" ? "" : "")">
+
+        @{
+            string createUrl = "#";
+
+            if (controller == "Purchases" && action == "PurchaseOrderHistory")
+            {
+                createUrl = Url.Action("CreatenewPurchaseOrder", "Purchases");
+            }
+            else if (controller == "Purchases" && action == "PurchaseCreditNotesHistory")
+            {
+                createUrl = Url.Action("CreatenewPurchaseCreditNotes", "Purchases");
+            }
+            else if (action == "BillHistory")
+            {
+                createUrl = Url.Action("CreatenewPurchaseBillHistory", "Purchases");
+            }
+            else if (action == "RecurringBillsHistory")
+            {
+                createUrl = Url.Action("NewRecurringPurchaseBillHistory", "Purchases");
+            }
+
+        }
+        <a href="@createUrl" class="add-customer bg-regular f-w-500 ms-0 d-flex align-items-center" @(action == "ExpenseHistory" ? "data-bs-toggle=modal data-bs-target=#recording-of-expense" : "")>
+            <span class="icon me-2">
+                <svg width="26" height="24" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <ellipse cx="12.5294" cy="12" rx="12.5294" ry="12" fill="#043376"></ellipse>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7578 6.75C11.7578 6.55109 11.8373 6.36032 11.9789 6.21967C12.1204 6.07902 12.3124 6 12.5126 6C12.7128 6 12.9048 6.07902 13.0463 6.21967C13.1879 6.36032 13.2674 6.55109 13.2674 6.75V17.25C13.2674 17.4489 13.1879 17.6397 13.0463 17.7803C12.9048 17.921 12.7128 18 12.5126 18C12.3124 18 12.1204 17.921 11.9789 17.7803C11.8373 17.6397 11.7578 17.4489 11.7578 17.25V6.75Z" fill="white"></path>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.25781 12.0002C6.25781 11.8085 6.34032 11.6246 6.48717 11.4891C6.63403 11.3535 6.83321 11.2773 7.0409 11.2773H18.0041C18.2118 11.2773 18.411 11.3535 18.5579 11.4891C18.7047 11.6246 18.7872 11.8085 18.7872 12.0002C18.7872 12.192 18.7047 12.3758 18.5579 12.5114C18.411 12.647 18.2118 12.7231 18.0041 12.7231H7.0409C6.83321 12.7231 6.63403 12.647 6.48717 12.5114C6.34032 12.3758 6.25781 12.192 6.25781 12.0002Z" fill="white"></path>
+                </svg>
+            </span>
+            Create New
+        </a>
+        <div class="emport-dropdown-box">
+            <div class="dropdown">
+                <a class="dropdown-toggle emport_button" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <svg width="15" height="11" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10.5646 0.296875L6.20007 4.58988L1.83552 0.296875L0.397949 1.71087L6.20007 7.41787L12.0022 1.71087L10.5646 0.296875Z" fill="#ADBFCD" />
+                    </svg>
+                </a>
+                <ul class="dropdown-menu" id="btnCreateNewDropdown">
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+
+<script>
+
+    var isPurchaseOrderPage = '@(controller == "Purchases" && action == "PurchaseOrderHistory")' === 'True';
+
+    var isBillHistory = '@(controller == "Purchases" && action == "BillHistory")' === 'True';
+
+    var isPurchaseCreditNotesHistory = '@(controller == "Purchases" && action == "PurchaseCreditNotesHistory")' === 'True';
+
+    var isRecurringBillsHistory = '@(controller == "Purchases" && action == "RecurringBillsHistory")' === 'True';
+
+    var isExpenseHistory = '@(controller == "Purchases" && action == "ExpenseHistory")' === 'True';
+
+ 
+    // Search functionality
+    $('.search-input').on('keyup', function () {
+        var value = this.value.trim();
+        if (value.length >= 3 || value.length == 0) {
+            isPurchaseOrderPage ? PurchaseOrderHistory.search(value).draw() : "";
+            isBillHistory ? BillsHistory.search(value).draw() : ""
+        }
+    });
+
+
+    // Filter by date
+    $('input[name="daterange"]').on('apply.daterangepicker', function (ev, picker) {
+        startDate = picker.startDate.format('YYYY-MM-DD');
+        endDate = picker.endDate.format('YYYY-MM-DD');
+
+        isPurchaseOrderPage ? PurchasesOrderHistory.draw() : "";
+        isBillHistory ? BillsHistory.draw() : "";
+        isPurchaseCreditNotesHistory ? PurchasesCreditNotesHistory.draw() : "";
+        isRecurringBillsHistory ? RecurringBillsHistory.draw() : "";
+        isExpenseHistory ? ExpenseHistory.draw() : "";
+
+    });
+
+    // Filter functionality
+    $('.status-option').on('click', function (e) {
+        e.preventDefault();
+        selectedStatus = $(this).attr('data-status') || "";
+        let selectedText = $(this).text();
+        $(this).closest('.dropdown').find('.dropdown-toggle').text(selectedText + ' ');
+        isPurchaseOrderPage ? PurchasesOrderHistory.draw() : "";
+        isBillHistory ? BillsHistory.draw() : "";
+        isPurchaseCreditNotesHistory ? PurchasesCreditNotesHistory.draw() : "";
+        isRecurringBillsHistory ? RecurringBillsHistory.draw() : "";
+        isExpenseHistory ? ExpenseHistory.draw() : "";
+    });
+
+
+    // Action
+    //$('.action-option').on('click', function (e) {
+    //    e.preventDefault();
+    //    selectedStatus = $(this).attr('data-status') || "";
+    //    console.log(selectedStatus);
+    //    let selectedText = $(this).text();
+    //    $(this).closest('.dropdown').find('.dropdown-toggle').text(selectedText + ' ');
+    //    isPurchaseOrderPage ? PurchasesOrderHistory.draw() : PurchasesCreditNotesHistory.draw();
+    //});
+
+
+    // Sort filter of purchase order
+    $('.sort-by').on('click', function (e) {
+        let currentDir = 'asc';
+        e.preventDefault();
+        let selectedSort = $(this).attr('data-status') || "";
+        let selectedText = $(this).text();
+
+        if (selectedSort == 'V') {
+            $(this).closest('.dropdown').find('.dropdown-toggle').text(selectedText + ' ');
+            isPurchaseOrderPage? PurchasesOrderHistory.order([2, currentDir]).draw() : "";
+            isBillHistory ? BillsHistory.order([2, currentDir]).draw() : "";
+            isPurchaseCreditNotesHistory ? PurchasesCreditNotesHistory.order([3, currentDir]).draw() : "";
+            isRecurringBillsHistory ? RecurringBillsHistory.order([0, currentDir]).draw() : "";
+            isExpenseHistory ? ExpenseHistory.order([1, currentDir]).draw() : "";
+        }
+        else if (selectedSort == 'D') {
+            $(this).closest('.dropdown').find('.dropdown-toggle').text(selectedText + ' ');
+            isPurchaseOrderPage ? PurchasesOrderHistory.order([0, currentDir]).draw() : "";
+            isBillHistory ? BillsHistory.order([0, currentDir]).draw() : "";
+            isPurchaseCreditNotesHistory ? PurchasesCreditNotesHistory.order([0, currentDir]).draw() : "";
+            isRecurringBillsHistory ? RecurringBillsHistory.order([3, currentDir]).draw() : "";
+            isExpenseHistory ? ExpenseHistory.order([0, currentDir]).draw() : "";
+
+        }
+        else if (selectedSort == 'A') {
+            $(this).closest('.dropdown').find('.dropdown-toggle').text(selectedText + ' ');
+            isPurchaseOrderPage ? PurchasesOrderHistory.order([3, currentDir]).draw() : "";
+            isBillHistory ? BillsHistory.order([4, currentDir]).draw() : "";
+            isPurchaseCreditNotesHistory ? PurchasesCreditNotesHistory.order([4, currentDir]).draw() : "";
+            isRecurringBillsHistory ? RecurringBillsHistory.order([7, currentDir]).draw() : "";
+            isExpenseHistory ? ExpenseHistory.order([3, currentDir]).draw() : "";
+        }
+        else if (selectedSort == 'R') {
+            $(this).closest('.dropdown').find('.dropdown-toggle').text(selectedText + ' ');
+            isPurchaseOrderPage ? PurchasesOrderHistory.order([6, currentDir]).draw() : "";
+            isBillHistory ? BillsHistory.order([8, currentDir]).draw() : "";
+            isPurchaseCreditNotesHistory ? PurchasesCreditNotesHistory.order([6, currentDir]).draw() : "";
+            isExpenseHistory ? ExpenseHistory.order([6, currentDir]).draw() : "";
+        }
+    });
+
+
+</script>

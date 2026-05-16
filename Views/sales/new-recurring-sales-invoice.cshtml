@@ -1,0 +1,380 @@
+
+@{
+    ViewBag.Title = "new-recurring-ales-invoice";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html lang="en">
+<head>
+    <link href="../assets/css/vendor.css" rel="stylesheet">
+</head>
+<body class="bg-sky-light">
+
+    @Html.Partial("~/Views/Shared/_PartialHeader.cshtml")
+
+    <div class="container">
+        <div class="row">
+            <main class="main-body">
+                <div class="main-body-wrapper">
+                    <div class="collapsebody bg-f8f8f8 collapse show group-lookuptab" id="">
+                        <div class="collapsewrap card bx-shadow ">
+                            <div class="collapseheader ps-0 pe-0 me-0">
+
+
+                                <div class="top_content">
+                                    <h1 class="heading">Create New Recurring  Sales Invoice</h1>
+                                    <span class="sub-heading">Create, view, and manage recurring invoices.</span>
+                                </div>
+
+                                <div class="row pt-3 g-3">
+                                    <div class="col">
+                                        <div class="form-floating">
+                                            <input class="form-select typeahead offline-agent"
+                                                   type="text" placeholder="" id="customerName">
+                                            <label for="teamName">Customer Name*</label>
+                                            <input type="hidden" id="hdnClientID" value="">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" id="" value="As per Number Series" placeholder="Please enter last name" disabled>
+                                            <label for="teamName">Invoice Number</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class=" form-floating">
+                                            <select class="form-select" id="txtfrequency">
+                                                <option value="" selected>Select Frequency</option>
+                                                <option value="Weekly">Weekly</option>
+                                                <option value="Monthly">Monthly</option>
+                                                <option value="Quarterly">Quarterly</option>
+                                                <option value="HalfYearly">Half Yearly</option>
+                                                <option value="Yearly">Yearly</option>
+                                            </select>
+                                            <label for="floatingSelect">Frequency</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control datepicker" id="txtstartdate" name="fiscaldate" placeholder="Fiscal Year Start Date">
+                                            <label for="floatingSelect">Start Date </label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control datepicker" id="txtenddate" name="fiscaldate" placeholder="Fiscal Year Start Date">
+                                            <label for="floatingSelect">End Date</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-3">
+                                    <div class="col">
+                                        <div class="form-floating mb-3 input-edit">
+                                            <input class="form-select typeahead offline-agent" type="text" id="txtCurrency" value="" placeholder="Please enter Currency">
+                                            <label for="teamName">Currency</label>
+                                            <input type="hidden" id="hdnCurrencyID" value="">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating mb-3 input-edit">
+                                            <input class="form-select typeahead offline-agent" type="text" id="txtTerm" value="" placeholder="Due Date Based On">
+                                            <label for="floatingSelect">Payment Terms</label>
+                                            <input type="hidden" id="hdnTermId" value="">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating mb-3" id="the-basics-agents">
+                                            <input class="form-select offline-agent"
+                                                   type="text" placeholder="Please select Sales Person" id="txtUser">
+                                            <label for="floatingSelect">Sales Person</label>
+                                            <input type="hidden" id="hdnUserID" value="">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating mb-3">
+                                            <input class="form-select typeahead offline-agent" type="text" id="txtBranch" placeholder="Select Branch">
+                                            <label for="floatingSelect">Branch</label>
+                                            <input type="hidden" id="hdnBranchId" value="">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @Html.Partial("~/Views/Shared/_PartialItemWithGL.cshtml")
+                                <div class="form-action-section new-estimate-button pt-4">
+                                    <div class="upload form-floating  d-flex align-items-center">
+                                        <span>Upload</span><input type="file">
+                                    </div>
+                                    <a href="javascript:void(0);" class="action-btn bg-action-light active">Save</a>
+                                    <a class="action-btn bg-action-light active sale-action" href="#" data-status="Approved">Save and Submit</a>
+                                    <a href="@Url.Action("ViewCustomer", "Sales")" class="action-btn bg-action-light">Cancel</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    </div>
+
+    <!-- Modal -->
+
+
+    <script>
+        $(document).ready(function () {
+            $('#txtCurrency').typeheadAutoComplete('[Core].[mst_Currency]', 'Curncy', $('#hdnCurrencyID'));
+            var arrPterm2 = [{ "ParamName": "Term_Type", "CtrName": $('#hdnPterm2Default').attr('id') }];
+            $('#txtTerm').typeheadAutoComplete('COMMON.mst_Terms', 'Term', $('#hdnTermId'), arrPterm2);
+            $('#customerName').typeheadAutoComplete('Client.mst_Client', 'Client', $('#hdnClientID'));
+            $('#txtBranch').val('').typeheadAutoComplete('CORE.mst_Branch', 'Branch', $('#hdnBranchId'));
+            $('#txtUser').typeheadAutoComplete('UMS.mst_User', 'User', $('#hdnUserID'));
+       $('.input-edit').click(function (){
+        $(this).parent().find('.customer-name-control').toggleClass('edit-form');
+       });
+  });
+  $(document).ready(function () {
+      var substringMatcher = function (strs) {
+          return function findMatches(q, cb) {
+              var matches, substringRegex;
+              matches = [];
+              substrRegex = new RegExp(q, 'i');
+              $.each(strs, function (i, str) {
+                  if (substrRegex.test(str)) {
+                      matches.push(str);
+                  }
+              });
+
+              cb(matches);
+          };
+      };
+
+      var agents = ['Nicole Prejean', 'David', 'Smith', 'WEI MIAO', 'laili',
+          'Onsri', 'Wan Yun', 'Enyu', 'Rio Rica', 'Sanjay', 'Priscilla Jia', 'John Smith',
+          'Redha Nuruinda', 'Mylon Jan', 'Ma Lothel', 'Raufa', 'Areanne Glee', 'Mary Jasmine',
+      ];
+
+      $('#the-basics-agents .typeahead').typeahead({
+          hint: true,
+          highlight: true,
+          minLength: 1
+      },
+          {
+              name: 'states',
+              source: substringMatcher(agents)
+          });
+  });
+
+    $(".sale-action").click(function () {
+    if (!validateEstimate()) return;
+
+    var status = $(this).data("status");
+    var items = getAllItemRows();
+    var data  = {
+        StartDate:          $("#txtstartdate").val(),
+        EndDate:            $("#txtenddate").val(),
+        Frequency:          $("#txtfrequency").val(),
+        Paymentterms:       $("#hdnTermId").val(),
+        CustomerId:         $("#hdnClientID").val(),
+        Branch:             $("#hdnBranchId").val(),
+        Reason:             $("#txtReason").val(),
+        SalesPerson:        $("#hdnUserID").val(),
+        Currency:           $("#hdnCurrencyID").val(),
+        SubTotal:           $("#lblSubTotal").text().replace("$", "").trim(),
+        Discount:           getTotalDiscount(),
+        OtherAdjustment:    $("#txtOtherAdjustment").val() || 0,
+        Tax_Value:          $("#txtTax").val() || 0,
+        TotalAmount:        $("#lblTotal").text().replace("$", "").trim(),
+        Status:             status,
+        Comments:           $("#txtComments").val(),
+        TermsAndConditions: $("#txtTermsConditions").val(),
+        LoginId:            "@Session["LoginId"]",
+        Entity_ID:          "@Session["Entity_ID"]",
+        Items:              items
+    };
+
+    $(this).prop("disabled", true).html('<i class="fa fa-spinner fa-spin"></i> Saving...');
+
+    $.ajax({
+        url:"@Url.Action("SaveRecurringInv", "Sales")",
+        type:"POST",
+        contentType: "application/json",
+        data:JSON.stringify(data),
+        success: function (res) {
+            if (res.status) {
+                swalValidationAlert(res.message, "success").then(function () {
+                    window.location.href = "@Url.Action("RecurringInvoiceHistory", "Sales")"; // ✅ fixed typo: locationn → location
+                });
+            } else {
+                swalValidationAlert(res.message, "error");
+            }
+        },
+        error: function () {
+            swalValidationAlert("Failed to save estimate. Please try again.", "error");
+        },
+        complete: function () {
+            $("#btnSaveEstimate").prop("disabled", false)
+                                 .html('<i class="fa fa-save"></i> Save');
+        }
+    });
+});
+
+$(".swal2-confirm").click(function () {
+
+});
+
+
+    function getAllItemRows() {
+    var items = [];
+    $(".item-row").each(function () {
+        var suffix = getSuffix(this);
+        items.push({
+            ItemType:  getItemType(suffix),        // "P" or "S"
+            ItemId:    $("#hdnItemDetail_" + suffix).val(),
+            Quantity:  $("#txtQuantity_"   + suffix).val(),
+            Rate:      $("#txtRate_"       + suffix).val(),
+            TaxGroupId: $("#hdnTaxID_" + suffix).val() || 0,
+            GL_ID: $("#hdnGLAccID_" + suffix).val() || 0,
+            BaseAmount: $("#txtAmount_" + suffix).val(),
+            DiscountType: $("#ddlDiscountType_" + suffix).val(),
+            DiscountValue: $("#txtDiscount_" + suffix).val()
+        });
+    });
+    return items;
+}
+
+    function getItemType(suffix) {
+        // get item type from the locally stored itemList using selected ItemId
+        var itemId = $("#hdnItemType_" + suffix).val();
+        var selected = itemId;
+        return selected ? selected : "S"; // default to S (Service)
+    }
+
+    function getTotalDiscount() {
+        var total = 0;
+        $(".item-row").each(function () {
+            var suffix = getSuffix(this);
+            var quantity     = parseFloat($("#txtQuantity_"    + suffix).val()) || 0;
+            var rate         = parseFloat($("#txtRate_"        + suffix).val()) || 0;
+            var discount     = parseFloat($("#txtDiscount_"    + suffix).val()) || 0;
+            var discountType = $("#ddlDiscountType_"           + suffix).val();
+            var gross        = quantity * rate;
+
+            total += discountType === "P"
+                     ? (gross * discount) / 100
+                     : discount;
+        });
+        return total.toFixed(2);
+    }
+
+    function validateEstimate() {
+        if (!$("#hdnClientID").val() || $("#hdnCustomerID").val() == "0") {
+            swalValidationAlert("Please select a Customer.", "warning");
+            return false;
+        }
+        if (!$("#txtenddate").val()) {
+            swalValidationAlert("Please enter End Date.", "warning");
+        }
+        if (!$("#txtstartdate").val()) {
+            swalValidationAlert("Please enter Start Date.", "warning");
+            return false;
+        }
+
+        var valid = true;
+        $(".item-row").each(function () {
+            var suffix = getSuffix(this);
+            if (!$("#hdnItemDetail_" + suffix).val() ||
+                 $("#hdnItemDetail_" + suffix).val() == "0") {
+                swalValidationAlert("Please select Item Details for all rows.", "warning");
+                valid = false;
+                return false;
+            }
+            if (!$("#txtQuantity_" + suffix).val() ||
+                 parseFloat($("#txtQuantity_" + suffix).val()) <= 0) {
+                swalValidationAlert("Please enter valid Quantity for all rows.", "warning");
+                valid = false;
+                return false;
+            }
+            if (!$("#txtRate_" + suffix).val() ||
+                 parseFloat($("#txtRate_" + suffix).val()) <= 0) {
+                swalValidationAlert("Please enter valid Rate for all rows.", "warning");
+                valid = false;
+                return false;
+            }
+        });
+        return valid;
+    }
+
+
+    </script>
+
+    <script>
+$(function() {
+  $('input[name="fiscaldate"]').daterangepicker({
+    singleDatePicker: true,
+    showDropdowns: true,
+    minYear: 1901,
+    maxYear: parseInt(moment().format('YYYY'),10)
+  }, function(start, end, label) {
+    var years = moment().diff(start, 'years');
+  });
+});
+
+$(function() {
+            $('input[name="daterange"]').daterangepicker(
+                {
+                    ssingleDatePicker: 'true',
+                    showShortcuts: 'false',
+                    showTopbar: 'false'
+                }
+            );
+        });
+
+
+        $('#datatable1').DataTable({
+                "columnDefs": [
+                    {
+                        "targets": -1,
+                        "orderable": false
+                    }
+                ],
+                language: {
+                    search: "_INPUT_",
+                    searchPlaceholder: "Search..."
+                },
+                fixedHeader: {
+                    header: true,
+                },
+                "dom": '<"top"<"toolbar">tf<"clear">>rt<"bottom"lip<"clear">>'
+            });
+
+
+
+
+    </script>
+
+    <script>
+ $(".form-switch").click(function () {
+    if ($(this).parent().hasClass("yes")) {
+      $(this).parent().removeClass("yes");
+      $(this).parent().addClass("no");
+    } else {
+      $(this).parent().removeClass("no");
+      $(this).parent().addClass("yes");
+    }
+  });
+    </script>
+    <script>
+  $(document).ready(function () {
+      $('#productservice').DataTable({
+          pagingType: 'full_numbers',
+      });
+
+      $('#framework').multiselect({
+        nonSelectedText: 'Select Framework',
+        enableFiltering: true,
+        enableCaseInsensitiveFiltering: true,
+        buttonWidth:'400px'
+      });
+  });
+    </script>
+</body>
+</html>

@@ -1,0 +1,600 @@
+
+.main-body-wrapper .nav-pills{
+    background-color: #fff;
+    padding: 10px 0px 0px 10px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+.published-Quote{
+    margin-top: 17px;
+}
+.collapseheader {
+    padding: 0.7rem 2rem 0.7rem 1rem;
+    color: var(--theme-reg-color);
+    font-weight: 600;
+    padding-right: 60px;
+    position: relative;
+}
+.group-lookuptab .nav-pills .nav-link{
+    color: var(--theme-reg-color);
+    font-size: 16px;
+    font-weight: 600;
+ }
+ .group-lookuptab .nav-pills .nav-link.active {
+     background: none;
+     color:var(--theme-deafult);
+     border-bottom: 2px solid var(--theme-deafult);
+ }
+
+.dashboard-card {
+    width: 100%;
+    display: block;
+    padding:30px 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 15px 8px rgb(0 0 0 / 6%);
+}
+.border-bt-chat {
+    padding-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+
+}
+.border-bt-chat:last-child{
+    padding-bottom: 0px;
+}
+.heading-content{
+    display: flex;
+}
+.forhrd-width{
+    width:60px;
+
+}
+.cus-chat-name {
+    width: 36px;
+    height: 36px;
+    border-radius: 30px;
+    color: #ADBFCD;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 33px;
+    text-align: center;
+    border: 1px solid #E6EBEE;
+    background-color: #E6EBEE;
+}
+.cus-chat-name img{
+    height: 12px;
+    width: 18px;
+}
+.travel-leads-section .cus-chat-name-details p{
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    align-items: center;
+    color: var(--theme-reg-color);
+    margin-bottom: 2px;
+}
+.travel-leads-section .cus-chat-name-details span{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 19px;
+}
+.cus-chat-date {
+    text-align: right;
+    font-weight: 400;
+    font-size: 11px;
+    color: #6A6565;
+    display: flex;
+    align-items: center;
+}
+.border-bt-chat.blank .cus-chat-name {
+    background: transparent;
+}
+.border-bt-chat.blank .cus-chat-name img{
+    display: none;
+}
+.dashboard-tab-container{
+    background-color: var(--theme-deafult);
+    padding: 10px 15px;
+    border-radius: 6px;
+    display: flex;
+    gap: 12px;
+}
+.dashboard-item{
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: transparent;
+    border-radius: 5px;
+    padding: 6px 15px;
+    cursor: pointer;
+    border: 1px solid #fff;
+}
+.dashboard-item.active{
+    background-color: #fff;
+}
+.dashboard-item .icon{
+    width: 36px;
+    height: 36px;
+    border-radius: 5px;
+    background-image: url(../images/bg-round-shape.svg);
+    background-position: center right;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.theme-orange{
+    background-color: var(--theme-orange-color);
+}
+
+.theme-red{
+    background-color: var(--theme-red-color);
+}
+.theme-green{
+    background-color: var(--theme-green-color);
+}
+.theme-pink{
+    background-color: var(--theme-pink);
+}
+.icon-bg-naviblue{
+    background-color: #3C58F0;
+}
+.icon-bg-orange{
+    background-color: #F66B4E;
+}
+.icon-bg-green{
+    background-color: #3BD855;
+}
+.icon--bg-sapphire-blue{
+    background-color: #1CA2D5;
+}
+.icon-bg-red{
+    background-color: #FF5E5E;
+}
+.icon-bg-light-red{
+    background-color: var(--theme-light-red-color);
+}
+.icon-bg-sky-blue{
+    background-color: #1FBAFC;
+}
+.icon-bg-violet{
+    background-color: #BF83FF;
+}
+.bg-light-sky{
+    background-color: #D2E8FD;
+}
+.bg-light-theme{
+    background-color: #E7E9F8;
+}
+.bg-light-orange{
+    background-color: #FFF4DE;
+}
+.bg-light-sky-blue{
+    background-color: #ECF9FF;
+}
+.bg-light-red{
+    background-color: #FFEEE6;
+}
+.bg-light-green{
+    background-color: #DCFCE7;
+}
+.bg-light-violet{
+    background-color: #F4E8FF;
+}
+
+.dash-widget{
+    background: #fff;
+    margin-bottom: 0px;
+    border-radius: 6px;
+    padding:10px 15px;
+    display: flex;
+    gap: 10px;
+}
+.label-title{
+    font-size: 14px;
+    color: var(--theme-reg--light-color);
+    font-weight: 400;
+}
+.price-text{
+    font-size: 18px;
+    color: var(--theme-reg-color);
+    font-weight: 600;
+}
+.text-clr-yellow{
+    color:var(--theme-yellow-color)
+}
+.text-clr-blue{
+    color:var(--theme-blue-color)
+}
+.text-clr-green{
+    color:var(--theme-green-color);
+}
+.text-clr-red{
+    color:var(--theme-red-color)
+}
+.dash-widgetimg .icon{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.sales-vs-purchase-sec{
+    position: relative;
+}
+.sales-vs-purchase-sec .card-body{
+    z-index: 999;
+    position: relative;
+}
+
+.sales-vs-purchase-sec::before{
+    content: '';
+    background-image: url(../images/bg-round-shape.svg);
+    background-position: center right -90px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+    z-index: 0;
+    right: 0;
+    position: absolute;
+    top:0;
+}
+.card-header {
+    border-bottom: 1px solid var(--theme-border-light-clr); 
+}
+.card-header .header-title{
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--theme-reg-color);
+}
+.profile-media {
+    position: relative;
+    padding-bottom: 15px;
+    z-index: 9;
+    width: 100%;
+    justify-content: space-between;
+}
+.profile-media:before {
+    content: "";
+    border-right: 2px solid var(--theme-border-light-clr);
+    background: var(--theme-border-light-clr);
+    height: 100%;
+    width: 1px;
+    position: absolute;
+    left: 9px;
+    top: 0.5rem;
+    z-index: -1;
+}
+.profile-dots-pills {
+    height: 20px;
+    width: 20px;
+    border: 2px solid;
+    -webkit-border-radius: 50rem;
+    border-radius: 50rem;
+    background: #fff;
+    min-width: 20px;
+    position: absolute;
+}
+.profile-media .title{
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 3px !important;
+    color: var(--theme-reg-color);
+}
+.profile-media .date-time{
+    color:var(--theme-reg--light-color);
+    font-size: 12px;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+.profile-border-success{
+    border-color: var(--theme-green-color);
+}
+.profile-border-warning{
+    border-color: var(--theme-orange-color);
+}
+.profile-border-dark{
+    border-color: var(--theme-reg-color);
+}
+.profile-border-info{
+    border-color: var(--theme-blue-color);
+}
+.profile-border-info{
+    border-color: var(--theme-blue-color);
+}
+.media-edit-delete{
+    display: flex;
+    gap:10px;
+}
+.card-body > .d-flex:last-child .profile-media:before{
+    display: none;
+}
+.sales-vs-purchase-sec .box_container-heading{
+    color:#FFFFFF;
+}
+.media-edit-delete span{
+    border-radius: 5px;
+    height: 30px;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    display: flex;
+}
+.media-edit-delete span.delete{
+    background-color: #FFF2F2;
+    cursor: pointer;
+}
+.media-edit-delete span.edit{
+    background-color: #E6F5FF;
+}
+.sales-vs-purchase-sec .bottom-container {
+    border-top: 1px solid #fff;
+    display: flex;
+    justify-content: space-between;
+    z-index: 9;
+    position: relative;
+    align-items: center;
+    padding-top: 15px;
+}
+.sales-vs-purchase-sec .bottom-container a{
+    gap:10px;
+    padding: 8px 15px;
+}
+.sales-vs-purchase-sec .bottom-container a:hover{
+    background-color: #fff;
+}
+svg.icon-path-white{
+    fill: #ffffff;
+}
+.growth-text{
+    font-size: 14px;
+    display: flex;
+    align-items: baseline;
+    vertical-align: middle;
+    gap: 5px;
+}
+.dashboard-item .text{
+    color:#FFFFFF;
+    font-weight:500;
+}
+.dashboard-item.active .text{
+    color:var(--theme-reg-color);
+    font-weight:600;
+}
+.business-overview-dashboard .nav-tabs{
+    border-bottom: 0!important;
+}
+.business-overview-dashboard .nav-tabs li{
+    margin-right: 12px;
+}
+.growth-text.upline{
+    color:var(--theme-green-color);
+}
+.growth-text.downline{
+    color:var(--theme-red-color);
+}
+.dash-third-sec .card {
+    margin-bottom: 0;
+}
+.card-bottom-align{
+    position: absolute;
+    bottom: 0;
+    top: auto;
+}
+
+
+
+
+
+
+/* Sales Dashboard Style */
+.sales-overview-box,
+.gross-card{
+    position: relative;
+    border-radius: 5px;
+    min-height: 144px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 12px;
+}
+
+
+.sales-overview-box .count-text,
+.gross-card .count-text{
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--theme-reg-color);
+}
+.sales-overview-box .label-text{
+    font-weight: 400;
+    font-size: 14px;
+    color: var(--theme-reg-color);
+    margin-top: 5px;
+}
+.sales-overview-box .icon{
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.gross-profit-loss-sec{
+    margin-top: 20px;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap:15px;
+}
+.gross-card{
+    min-height: 109px;
+    background-color: #ffffff;
+    justify-content: start;
+}
+.gross-card .label-text,
+.gross-card .status{
+    font-size: 15px;
+    color: var(--theme-reg--light-color);
+    font-weight: 400;
+}
+.gross-card .status.profit{
+    color:var(--theme-green-color);
+    font-weight: 500;
+}
+.gross-card .status.loss{
+    color:var(--theme-red-color);
+    font-weight: 500;
+}
+.gross-card .status.sales {
+    color: #03C3EC;
+    display: inline-flex;
+    background: #E5F8FE;
+    border-radius: 5px;
+    text-align: center;
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    font-weight: 500;
+    vertical-align: middle;
+    align-items: center;
+    gap: 5px;
+    padding: 0 10px;
+}
+.title-row .title,
+.top-customes-sec .customesname,
+.top-customes-sec .product-sev.title {
+    font-size: 13px;
+    font-weight: 600;
+}
+.top-customes-sec .product-sev,
+.top-customes-sec .amount{
+    font-weight: 400;
+    font-size: 13px;
+}
+.top-customes-sec{
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--theme-border-light-clr);
+    padding-bottom: 10px;
+}
+.top-customes-sec:last-child {
+    border-bottom: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+.top-customes-sec .amount {
+    font-weight: 600;
+    color: var(--theme-reg-color);
+}
+.productname{
+    font-weight: 400;
+    font-size: 13px;
+}
+.city-locations{
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--theme-reg-color);
+    margin-top: 10px;
+}
+.progress-bar{
+    background-color: var(--theme-deafult);
+}
+.progress, .progress-bar{
+    height: 6px;
+}
+.sales-card-third-row .card-body{
+    height: 183px;
+}
+.sales-card-third-row .chart-items{
+    height: 250px;
+    vertical-align: middle;
+    align-items: center;
+    display: flex;
+}
+#saleschartitems li span{
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    margin-right: 5px;
+}
+.sales-item-label-text {
+    position: absolute; 
+    top: 0px; 
+    left: 0px; 
+    width: 100%; 
+    height: 100%; 
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    font-size: 1.5rem;
+    padding-top: 1.5rem;
+  }
+
+/* Sales Dashboard Style end */
+/* Purchase Dashboard Style start */
+
+
+.card.d-grid {
+    grid-template-rows: max-content;
+}
+.card.d-grid .card-body{
+    padding-bottom: 0;
+}
+
+
+/* Purchase Dashboard Style end */
+
+/*----CFO Dashboard start here------*/
+#cfo .sales-overview-summary-sec .sales-overview-box
+{
+    flex-direction: initial;
+    justify-content: initial;
+    min-height:115px;
+    }
+    .outflow-color{
+        color: #FF947A;
+    }
+    .inflow-color{
+        color:#00DAC5;
+    }
+/*-----CFO Dashboard end here--------*/
+
+/*-----outstanding Dashboard start here--------*/
+#outstanding .sales-overview-summary-sec .sales-overview-box{
+    flex-direction: initial;
+    justify-content: initial;
+    min-height:102px;
+}
+.outstandreportheadform{
+    display: flex;
+    gap: 10px;
+}
+.showhidemonth,
+.exportfiles{
+    border: 1px solid var(--theme-border-light-clr);
+    font-weight: 500;
+    color: var(--theme-reg-color);
+    font-size: 14px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    border-radius: 3px;
+}
+
+/*-----outstanding Dashboard end here--------*/
+#expenses .sales-overview-box {
+    position: relative;
+    border-radius: 5px;
+    min-height: 120px;
+    display: flex;
+    flex-direction: row; 
+    justify-content: start;
+    padding: 12px;
+}

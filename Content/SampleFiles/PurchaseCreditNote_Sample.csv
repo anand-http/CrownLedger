@@ -1,0 +1,5 @@
+Import Template — Invoice  |  Columns marked * are REQUIRED (yellow header).  |  Date format: DD-MM-YYYY  |  For multi-line items: repeat header fields on each line item row.  |  Delete this row before importing.,,,,,,,,,,,,,,,,,,,,,,
+VendorCode *,Status *,CreditNoteDate,AccountingDate,Currency,BillNumber,Branch,Reason,ItemCode *,ItemType,Ledger,Quantity *,Rate *,TaxType,Amount *,Discount,DiscountType,OtherAdjustment,Tax,SubTotal,Total,Comments,TermsAndCondition
+CANHOR776,Draft,2026-04-30,2026-04-21,USD,BILL29,Delhi,Due on Receipt,BLUG0A006,P,DLAC10002,2,25000.00,I - GST,50000.00,500.00,A,0.00,9000.00,50000.00,58500.00,Thank you for your business,TermsAndCondition 1
+CANHOR776,Draft,2026-04-05,2026-04-21,USD,BILL31,Delhi,Due on Receipt,A5NG4549D,P,DLAC10002,5,25000.00,I - GST,50000.00,500.00,A,0.00,9000.00,50000.00,58500.00,Thank you for your business,TermsAndCondition 2
+DUBROS736,Approved,2026-04-29,2026-05-20,USD,BILL30,Delhi,Due on Receipt,BLUG0A006,P,DLAC10002,5,500.00,I - GST,2500.00,1500,A,0.01,9000.01,50000.01,58500.01,Payment expected by due date,TermsAndCondition 3

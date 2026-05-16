@@ -1,0 +1,87 @@
+:root {
+    --theme-deafult: #043376  ;
+    --theme-secondary:  #E6EBEE;
+    --theme-dark-secondary:  #ADBFCD;
+    --theme-bg-sky-light:  #F5F5F5;;
+    --theme-reg-color:  #2A353A;
+    --theme-reg--light-color:  #8E8E8E;
+    --theme-reg--dark--light:  #919191;
+    --theme-bg-light-clr:  #F5F7FB;
+    --theme-border-light-clr:  #D5DFE7;
+    --theme-green-color:#3FE0D3
+}
+.debit-table-row, .credit-table-row,
+.summary-row .debit-balance, 
+.summary-row .credit-balance{
+    width: 136px;
+}
+.customize-table-style  .details-control{
+    width: 250px;
+}
+.customize-table-style  .add-customer,
+.customize-table-style .add-vendor,
+.customize-table-style  .upload,
+.customize-table-style  .download{
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+    color: var(--theme-reg--light-color);
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+    gap: 6px;
+    margin-left: 10px;
+}
+.customize-table-style  .add-customer,
+.customize-table-style .add-vendor{
+    min-width: 150px;
+}
+.customize-table-style  .upload, .customize-table-style  .download{
+    color: var(--theme-deafult);
+}
+.box_container .dataTables_wrapper .summary{
+    text-align: right;
+}
+.box_container .dataTables_wrapper .summary-row{
+    display: flex;
+    justify-content: end;
+    margin-top: 6px;
+}
+.summary-row .debit-balance, .summary-row .credit-balance, .summary-row .sub-title{
+    font-size: 16px;
+    color: var(--theme-reg-color);
+    padding-right:20px;
+}
+.summary-row .sub-title,
+.summary-row.total-row .credit-balance,
+.summary-row.total-row .debit-balance{
+    font-weight: 600;
+}
+a.inputlabel{
+    color: var(--theme-deafult);
+    text-decoration: underline;
+}
+.download-sample{
+    color: var(--theme-reg-color);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+    gap: 10px;
+    font-size: 14px;
+}
+.download-sample a::after{
+    display: none;
+}
+.download-sample a:hover{
+    background-color: var(--theme-bg-light-clr);
+    color:var(--theme-reg-color)
+}
+.Openingupload-sec{
+    display: none;
+}
+.download-sample a{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}

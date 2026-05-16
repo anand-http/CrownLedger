@@ -1,0 +1,457 @@
+@{
+    ViewBag.Title = "bussinessCalender";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html lang="en">
+<head>
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="../assets/css/configuration.css" rel="stylesheet">
+    <link href="../assets/css/header.css" rel="stylesheet">
+    <link href="../assets/css/component.css" rel="stylesheet">
+</head>
+<body class="bg-sky-light">
+
+    @Html.Partial("~/Views/Shared/_PartialHeader.cshtml")
+
+    @Html.Partial("~/Views/Shared/_PartialSidebar.cshtml")
+
+    <div class="container">
+        <div class="row">
+            <main class="main-body">
+                <div class="main-body-wrapper">
+                    <div class="collapsebody bg-f8f8f8 collapse show group-lookuptab" id="">
+                        <div class="collapsewrap card bx-shadow ">
+                            <div class="collapseheader ps-0 pe-0 me-0">
+                                <div class="top_content d-flex align-item-center justify-content-between">
+                                    <h1 class="heading">Business Calender</h1>
+                                    <div class="right-sort-bar">
+                                        <a href="javascript:void(0);" class="add-customer f-w-500 bg-regular ms-0 d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#addnewperiod">
+                                            <span class="icon me-2">
+                                                <svg width="22" height="22" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <ellipse cx="12.5294" cy="12" rx="12.5294" ry="12" fill="#043376"></ellipse>
+                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7578 6.75C11.7578 6.55109 11.8373 6.36032 11.9789 6.21967C12.1204 6.07902 12.3124 6 12.5126 6C12.7128 6 12.9048 6.07902 13.0463 6.21967C13.1879 6.36032 13.2674 6.55109 13.2674 6.75V17.25C13.2674 17.4489 13.1879 17.6397 13.0463 17.7803C12.9048 17.921 12.7128 18 12.5126 18C12.3124 18 12.1204 17.921 11.9789 17.7803C11.8373 17.6397 11.7578 17.4489 11.7578 17.25V6.75Z" fill="white"></path>
+                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.25781 12.0002C6.25781 11.8085 6.34032 11.6246 6.48717 11.4891C6.63403 11.3535 6.83321 11.2773 7.0409 11.2773H18.0041C18.2118 11.2773 18.411 11.3535 18.5579 11.4891C18.7047 11.6246 18.7872 11.8085 18.7872 12.0002C18.7872 12.192 18.7047 12.3758 18.5579 12.5114C18.411 12.647 18.2118 12.7231 18.0041 12.7231H7.0409C6.83321 12.7231 6.63403 12.647 6.48717 12.5114C6.34032 12.3758 6.25781 12.192 6.25781 12.0002Z" fill="white"></path>
+                                                </svg>
+                                            </span>
+                                            Add New
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="box_container table_manage_container">
+                                    <div id="" class="dataTables_wrapper">
+                                        <table class="display customize-table-style dataTable" id="busscalendar" role="grid" aria-describedby="basic-14_info">
+                                            <thead>
+                                                <tr role="row">
+                                                    @*<th>Calender Type</th>*@
+                                                    <th>From</th>
+                                                    <th>To</th>
+                                                    <th>Period</th>
+                                                    <th>Active</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div class="modal fade" id="addnewperiod" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add New Period</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body " style="background:#fff;">
+                    <div class="row gx-3">
+                        <div class="col-md-12">
+                            <div class="form-floating mb-3">
+                                <select class="form-select py-1" id="modal_ddlcalendartype">
+                                    <option value="">-- Select --</option>
+                                    <option value="">Custom</option>
+                                    <option value="Y">Yearly</option>
+                                    <option value="Q">Quarterly</option>
+                                    <option value="M">Monthly</option>
+                                </select>
+                                <label for="floatingSelect">Calender Type</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control datepicker" id="modal_fromdate" name="fiscaldate" placeholder="Fiscal Year Start Date">
+                                <label for="floatingSelect">From</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control datepicker" id="modal_todate" name="fiscaldate" placeholder="Fiscal Year Start Date">
+                                <label for="floatingSelect">To</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating" id="the-basics-agents">
+                                <input class="form-control" id="modal_period" type="text" placeholder="Enter Name">
+                                <label for="floatingSelect">Period</label>
+                            </div>
+                        </div>
+                        @*<div class="col-md-12">
+                            <div class="form-switch">
+                                <input class="form-check-input mt-0" type="checkbox" id="modal_icaccount" checked="">
+                                <label for="floatingSelect">Active</label>
+                            </div>
+                        </div>*@
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn action-btn bg-action-light active" onclick="SavePeriod()">Save</button>
+                    <button type="button" class="btn action-btn bg-action-light" data-bs-dismiss="modal" onclick="ResetPeriodModal()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var BussinessCalendarTable;
+        var selectedStatus = "";
+        var startDate;
+        var endDate;
+        $(function () {
+            $('input[name="fiscaldate"]').daterangepicker({
+                singleDatePicker: true,
+                showDropdowns: true,
+                minYear: 1901,
+                maxYear: parseInt(moment().format('YYYY'), 10)
+            }, function (start, end, label) {
+                var years = moment().diff(start, 'years');
+            });
+        });
+
+        $(function () {
+            $('input[name="daterange"]').daterangepicker(
+                {
+                    ssingleDatePicker: 'true',
+                    showShortcuts: 'false',
+                    showTopbar: 'false'
+                }
+            );
+        });
+
+
+        $('#datatable1').DataTable({
+            "columnDefs": [
+                {
+                    "targets": -1,
+                    "orderable": false
+                }
+            ],
+            language: {
+                search: "_INPUT_",
+                searchPlaceholder: "Search..."
+            },
+            fixedHeader: {
+                header: true,
+            },
+            "dom": '<"top"<"toolbar">tf<"clear">>rt<"bottom"lip<"clear">>'
+        });
+
+        $(".form-switch").click(function () {
+            if ($(this).parent().hasClass("yes")) {
+                $(this).parent().removeClass("yes");
+                $(this).parent().addClass("no");
+            } else {
+                $(this).parent().removeClass("no");
+                $(this).parent().addClass("yes");
+            }
+        });
+
+        $(document).ready(function () {
+            BussinessCalendarTable = $("#busscalendar").DataTable({
+            "serverSide": true,
+            "ajax": {
+                "url": "@Url.Action("GetBussinessCalendarList")",
+                "type": "POST",
+                "datatype": "json",
+                "data": function (d) {
+                    d.icolelngth = 5;
+                    d.statusFilter = selectedStatus;
+                    d.startDate = startDate;
+                    d.endDate = endDate;
+                },
+                "beforeSend": function () {
+
+                },
+                "complete": function () {
+                }
+
+            },
+            createdRow: function (row, data, dataIndex) {
+                $(row).attr('data-id', data.BusCal_ID); // ← your PK column name
+            },
+                "columns": [
+                    //{
+                    //    // ── Column 1: Calendar Type ──
+                    //    "data": "CalendarType",
+                    //    "name": "CalendarType",
+                    //    "autoWidth": true,
+                    //    "visible": true,
+                    //    "class": "center"
+
+                    //},
+                    {
+                        // ── Column 2: From Date ──
+                        "data": "FromDate",
+                        "name": "BusCal_From",
+                        "autoWidth": true,
+                        "visible": true,
+                        "render": function (data, type, row, meta) {
+                            return `
+                                <div class="d-flex align-items-center" style="width:109px">
+                                    <div class="inputlabel d-flex align-items-center me-2">
+                                        <input class="form-check-input mt-0 row-check" type="checkbox" value="" id="FromDate${meta.row}">
+                                    </div>
+                                    ${data ? moment(data).format("DD-MM-YYYY") : ""}
+                                </div>
+                            `;
+                        }
+                    },
+                    {
+                        // ── Column 3: To Date ──
+                        "data": "ToDate",
+                        "name": "BusCal_To",
+                        "autoWidth": true,
+                        "visible": true,
+                        "render": function (data) {
+                            return data ? moment(data).format("DD-MM-YYYY") : "";
+                        }
+                    },
+                    {
+                        // ── Column 4: Period ──
+                        "data": "Period",
+                        "name": "BusCal_Period",
+                        "autoWidth": true,
+                        "visible": true,
+                        "class": "center"
+                    },
+                    {
+                        // ── Column 5: Active Toggle ──
+                        "data": "IsActive",
+                        "name": "Active",
+                        "autoWidth": true,
+                        "visible": true,
+                        "class": "center",
+                        "render": function (data, type, row, meta) {
+                            return `
+                            <div class="form-switch d-flex justify-content-center">
+                                <input class="form-check-input mt-0" type="checkbox"
+                                       id="icaccount${meta.row}"
+                                       data-id="${row.DocumentId}"
+                                       ${data ? "checked" : ""}>
+                            </div>
+                        `;
+                        }
+                    },
+                    {
+                        // ── Column 6: Tax Input + Actions ──
+                        "data": "TaxName",
+                        "name": "TaxName",
+                        "autoWidth": true,
+                        "visible": true,
+                        "render": function (data, type, row, meta) {
+                            return `
+                            <div class="d-flex align-items-center">
+                                <div class="flex-grow-1 me-2">
+                                    <input type="text"
+                                           class="form-control py-1"
+                                           id="txtbustax${meta.row}"
+                                           value="${data ? data : ""}"
+                                           placeholder="Select a Tax"
+                                           data-row="${meta.row}"
+                                           data-id="${row.DocumentId}">
+                                    <input type="hidden"
+                                           id="hdnbustaxid${meta.row}"
+                                           value="${row.TaxId ? row.TaxId : ""}">
+                                </div>
+                                <span class="action-btn-icon d-inline-block" id="editperiod${meta.row}">
+                                    <a href="javascript:void(0)" class="edit-icon" data-id="${row.DocumentId}" data-row="${meta.row}">
+                                        <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.01348 1.03516H5.58608C2.76733 1.03516 1 3.03074 1 5.85591V13.4771C1 16.3023 2.75908 18.2978 5.58608 18.2978H13.6748C16.5027 18.2978 18.2618 16.3023 18.2618 13.4771V9.78478" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M6.57059 8.48961L13.4209 1.63938C14.2743 0.786875 15.6576 0.786875 16.511 1.63938L17.6266 2.75496C18.48 3.60838 18.48 4.99255 17.6266 5.84505L10.7433 12.7283C10.3702 13.1014 9.86415 13.3113 9.33615 13.3113H5.90234L5.98851 9.84631C6.00134 9.33661 6.20942 8.85081 6.57059 8.48961Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M12.3809 2.69727L16.5664 6.88277" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </a>
+                                    <a href="javascript:void(0)" class="delete-icon ms-1" data-id="${row.DocumentId}" data-row="${meta.row}">
+                                        <svg width="18" height="21" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M5.05799 0.0975361C4.62397 0.25612 4.29011 0.606673 3.8394 1.34951L3.4638 1.98385H1.9197C0.200316 1.98385 0 2.03393 0 2.47629C0 2.77677 0.150237 2.90196 0.575909 2.96039L0.90977 3.00212L0.934809 8.52751L0.959849 14.0446L1.17686 14.5036C1.45229 15.0879 1.83623 15.4718 2.42049 15.7472L2.87955 15.9643L6.75233 15.9893C10.4415 16.0143 10.6501 16.006 11.1843 15.8474C11.8854 15.6304 12.4196 15.1797 12.695 14.5704L12.8954 14.128L12.9204 8.56924L12.9454 3.01047L13.3294 2.96039C13.8802 2.90196 14.0973 2.55976 13.8218 2.18416C13.7133 2.04227 13.5714 2.02558 12.0774 2.00054L10.4498 1.9755L9.89896 1.1492C9.13943 0.00572395 9.19785 0.0307636 7.09453 0.00572395C5.78413 -0.0109692 5.30838 0.00572395 5.05799 0.0975361ZM8.9725 1.44132C9.13108 1.69172 9.26463 1.91708 9.26463 1.94211C9.26463 1.96715 8.22966 1.98385 6.96934 1.98385C5.19153 1.98385 4.67405 1.95881 4.67405 1.87534C4.67405 1.82526 4.80759 1.59991 4.96617 1.37455L5.2583 0.982265H6.96934H8.68037L8.9725 1.44132ZM11.9772 8.45239V13.8776L11.7853 14.2115C11.6768 14.3951 11.4598 14.6455 11.2928 14.754L10.984 14.9627H6.9276H2.86285L2.55403 14.7206C1.903 14.2282 1.9197 14.4702 1.9197 8.38562V2.98543L6.95264 3.00212L11.9772 3.02716V8.45239Z" fill="currentColor"/>
+                                            <path d="M3.75599 5.04717C3.68922 5.07221 3.60575 5.13898 3.57236 5.18906C3.4889 5.30591 3.4889 12.6842 3.57236 12.8094C3.69756 13.0097 4.06481 13.0264 4.24843 12.8428C4.42371 12.6675 4.42371 12.6091 4.42371 8.99507C4.42371 5.43111 4.41536 5.31425 4.25678 5.15567C4.08985 4.98874 3.98134 4.9637 3.75599 5.04717Z" fill="currentColor"/>
+                                            <path d="M6.69339 5.12204L6.50977 5.24723V8.99482V12.7424L6.69339 12.8676C6.94378 13.0429 7.06064 13.0345 7.26095 12.8342C7.41954 12.6756 7.42788 12.5588 7.42788 8.99482C7.42788 5.43086 7.41954 5.31401 7.26095 5.15542C7.06064 4.95511 6.94378 4.94676 6.69339 5.12204Z" fill="currentColor"/>
+                                            <path d="M9.69925 5.12228L9.51562 5.24748V8.97837C9.51562 11.0316 9.54901 12.751 9.5824 12.8094C9.70759 13.0097 10.0748 13.0264 10.2585 12.8428C10.4337 12.6675 10.4337 12.6091 10.4337 8.99507C10.4337 5.43111 10.4254 5.31425 10.2668 5.15567C10.0665 4.95535 9.94964 4.94701 9.69925 5.12228Z" fill="currentColor"/>
+                                        </svg>
+                                    </a>
+                                </span>
+                            </div>
+                        `;
+                        }
+                    }
+                ],
+            "fnInitComplete": function (oSettings) {
+                var j = 0;
+            }
+        });
+    });
+        // ── Delegated click: fires for any row's edit icon ──
+        $(document).on('click', '.edit-icon', function () {
+            var rowIndex = $(this).data('row');
+            var table = $('#busscalendar').DataTable();           // ← replace with your table ID
+            var rowData = table.row($(this).closest('tr')).data();
+
+            // ── Populate modal ──
+            $('#modal_ddlcalendartype').val(rowData.CalendarType);
+            $('#modal_fromdate').val(rowData.Sale_InvoiceDate ? moment(rowData.Sale_InvoiceDate).format('DD-MM-YYYY') : '');
+            $('#modal_todate').val(rowData.EndDate ? moment(rowData.EndDate).format('DD-MM-YYYY') : '');
+            $('#modal_period').val(rowData.Period);
+            $('#modal_icaccount').prop('checked', rowData.IsActive);
+
+            // ── Store DocumentId for save ──
+            $('#addnewperiod').data('documentid', rowData.DocumentId);
+
+            // ── Switch title to Edit ──
+            $('#addnewperiod').find('#exampleModalLabel').text('Edit Period');
+
+            $('#addnewperiod').modal('show');
+        });
+        // ── Save / Update Period ──
+        function SavePeriod() {
+
+                    // ── Step 1: Validate required fields ──
+                    var calendarType = $('#modal_ddlcalendartype').val();
+                    var fromDate     = $('#modal_fromdate').val();
+                    var toDate       = $('#modal_todate').val();
+                    var period       = $('#modal_period').val();
+                    //var isActive     = $('#modal_icaccount').is(':checked') ? 1 : 0;
+                    var documentId   = $('#addnewperiod').data('documentid') || 0;
+
+                    if (!calendarType) {
+                        swalValidationAlert('Please select a Calendar Type.');
+                        return;
+                    }
+                    if (!fromDate) {
+                        swalValidationAlert('Please select a From Date.');
+                        return;
+                    }
+                    if (!toDate) {
+                        swalValidationAlert('Please select a To Date.');
+                        return;
+                    }
+                    if (!period.trim()) {
+                        swalValidationAlert('Please enter a Period.');
+                        return;
+                    }
+
+                    // ── Step 2: Date logic validation ──
+                    var from = moment(fromDate, 'MM/DD/YYYY');  // ✅ matches 04/20/2026
+                    var to = moment(toDate, 'MM/DD/YYYY');
+
+                    if (!from.isValid()) {
+                        swalValidationAlert('From Date is not valid.');
+                        return;
+                    }
+                    if (!to.isValid()) {
+                        swalValidationAlert('To Date is not valid.');
+                        return;
+                    }
+                    if (to.isBefore(from)) {
+                        swalValidationAlert('To Date cannot be before From Date.');
+                        return;
+                    }
+                    if (to.isBefore(moment(), 'day')) {
+                        swalValidationAlert('To Date cannot be in the past.');
+                        return;
+                    }
+
+                    // ── Step 3: Build payload ──
+                    var objPeriod = {
+                        DocumentId   : documentId,
+                        CalendarType : calendarType,
+                        FromDate     : from.format('YYYY-MM-DD'),
+                        ToDate       : to.format('YYYY-MM-DD'),
+                        Period       : $.trim(period),
+                        IsActive     : true
+                    };
+
+                    // ── Step 4: Show loader ──
+                    $("#loader").removeClass("hide");
+
+                    // ── Step 5: AJAX call ──
+                    $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action("SavePeriod")',
+                        data: { objPeriod: objPeriod },
+                        success: function (response) {
+                            $("#loader").addClass("hide");
+
+                            if (response == 'success') {
+                                $('#addnewperiod').modal('hide');
+                                ResetPeriodModal();
+                                $('#busscalendar').DataTable().ajax.reload(null, false);
+
+                                $("#alertPopupModal").find('#exampleModalLabel').text('Success');
+                                $("#alertPopupModal").find('.modal-body').html('<b>Period saved successfully.</b>');
+                                $("#alertPopupModal").find('.modal-footer').html("<button data-dismiss='modal' class='modal-popup-but'>Ok</button>");
+                                $('#alertPopupModal').modal('show');
+
+                            } else if (response == 'duplicate') {
+                                swalValidationAlert('This Period already exists. Please enter a unique Period.');
+
+                            } else {
+                                swalValidationAlert('Failed to save Period. Please try again.');
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            $("#loader").addClass("hide");
+                            swalValidationAlert('An unexpected error occurred. Please try again.');
+                        }
+                    });
+                }
+
+        // ── Helper: show inline warning inside the modal ──
+        function showModalWarning(message) {
+            $("#alertPopupModal").find('#exampleModalLabel').text('Warning');
+            $("#alertPopupModal").find('.modal-body').html('<b>' + message + '</b>');
+            $("#alertPopupModal").find('.modal-footer').html("<button data-dismiss='modal' class='modal-popup-but'>Ok</button>");
+            $('#alertPopupModal').modal('show');
+        }
+
+        // ── Helper: reset modal fields back to Add New state ──
+        function ResetPeriodModal() {
+            $('#modal_ddlcalendartype').val('');
+            $('#modal_fromdate').val('');
+            $('#modal_todate').val('');
+            $('#modal_period').val('');
+            $('#modal_icaccount').prop('checked', false);
+            $('#addnewperiod').data('documentid', null);
+            $('#addnewperiod').find('#exampleModalLabel').text('Add New Period');
+        }
+        $(document).ready(function () {
+            //$('#productservice').DataTable({
+            //    pagingType: 'full_numbers',
+            //});
+
+            $('#framework').multiselect({
+                nonSelectedText: 'Select Framework',
+                enableFiltering: true,
+                enableCaseInsensitiveFiltering: true,
+                buttonWidth: '400px'
+            });
+        });
+    </script>
+</body>
+</html>

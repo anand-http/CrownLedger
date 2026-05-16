@@ -1,0 +1,333 @@
+﻿
+@{
+    ViewBag.Title = "reports";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <link href="../assets/css/home-page.css" rel="stylesheet">
+    <link href="../assets/css/reports.css" rel="stylesheet">
+</head>
+<body class="bg-sky-light">
+
+    @Html.Partial("~/Views/Shared/_PartialHeader.cshtml")
+
+    <div class="container">
+        <div class="row">
+            <main class="main-body">
+                <div class="main-body-wrapper">
+                    <div class="collapsebody bg-f8f8f8 collapse show group-lookuptab" id="">
+                        <div class="collapsewrap card bx-shadow ">
+                            <div class="collapseheader ps-0 pe-0 me-0">
+                                <div class="top_content">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <h1 class="heading mb-0 me-4">Reports</h1>
+                                        <div class="search_container">
+                                            <div class="input-group">
+                                                <span>
+                                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M5.13149 10.263C6.27003 10.2628 7.37576 9.88161 8.27261 9.18024L11.0924 12L11.9994 11.093L9.1796 8.27325C9.88134 7.37631 10.2627 6.27033 10.263 5.13149C10.263 2.30212 7.96087 0 5.13149 0C2.30212 0 0 2.30212 0 5.13149C0 7.96087 2.30212 10.263 5.13149 10.263ZM5.13149 1.28287C7.25401 1.28287 8.98012 3.00898 8.98012 5.13149C8.98012 7.25401 7.25401 8.98012 5.13149 8.98012C3.00898 8.98012 1.28287 7.25401 1.28287 5.13149C1.28287 3.00898 3.00898 1.28287 5.13149 1.28287Z" fill="black"></path>
+                                                    </svg>
+                                                </span>
+                                                <input type="text" class="form-control search-input" placeholder="Search" aria-label="Search" aria-describedby="addon-wrapping">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <span class="sub-heading">Use reports to view your company’s financial information at a glance.</span>
+                                </div>
+                                <div class="box_container reports_container pb-4">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="mb-4">
+                                                <div class="box_container-heading mb-3">Company Details</div>
+                                                <ul class="columns">
+                                                    <li><a href="@Url.Action("TrailBalance", "Reports")">Trail Balance</a></li>
+                                                    <li><a href="@Url.Action("BalanceSheet", "Reports")">Balance Sheet</a></li>
+                                                    <li><a href="@Url.Action("ProfitLoss", "Reports")">Profit & Loss</a></li>
+                                                    <li><a href="@Url.Action("CashFlowStatement", "Reports")">Cash Flow Statement</a></li>
+                                                    <li><a href="@Url.Action("StatementOfChangesInEquity", "Reports")">Statement of Changes in Equity</a></li>
+                                                    <li><a href="@Url.Action("AccountSummary", "Reports")">Accounts Summary</a></li>
+                                                    <li><a href="@Url.Action("chart_of_accounts", "Home")">Chart of Accounts</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="mb-4">
+                                                <div class="box_container-heading mb-3">Sales & Purchase Reports</div>
+                                                <ul>
+                                                    <li><a href="@Url.Action("SalesRegister", "Reports")">Sales Register</a></li>
+                                                    <li><a href="@Url.Action("PurchaseRegister", "Reports")">Purchase Register</a></li>
+                                                    <li><a href="@Url.Action("Expense", "Reports")">Expense Details</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="mb-4">
+                                                <div class="box_container-heading mb-3">Accounts Receivables</div>
+                                                <ul>
+                                                    <li><a href="@Url.Action("AccountRecievableDetails", "Reports")">Account Receivables Details</a></li>
+                                                    <li><a href="@Url.Action("AccountRecievableAgingReport", "Reports")">Account Receivable Aging Report</a></li>
+                                                    <li><a href="@Url.Action("SalesEstimateDetails", "Reports")">Sales Estimates Details</a></li>
+                                                    <li><a href="@Url.Action("SalesOrderDetails", "Reports")">Sales Order Details</a></li>
+                                                    <li><a href="@Url.Action("SalesInvoiceDetails", "Reports")">Invoice Details</a></li>
+                                                    <li><a href="@Url.Action("CreditNotesDetails", "Reports")">Credit Note Details</a></li>
+                                                    <li><a href="@Url.Action("CustomerReceiptDetails", "Reports")">Customers Receipt Report</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="mb-4">
+                                                <div class="box_container-heading mb-3">Accounts Payables</div>
+                                                <ul>
+                                                    <li><a href="@Url.Action("AccountPayableDetails", "Reports")">Account Payables Details</a></li>
+                                                    <li><a href="@Url.Action("AccountPayablAgingReport", "Reports")">Accounts Payables Aging Report</a></li>
+                                                    <li><a href="@Url.Action("PurchaseOrderDetails", "Reports")">Purchase Order Details</a></li>
+                                                    <li><a href="@Url.Action("PurchaseBillDetails", "Reports")">Bills Details</a></li>
+                                                    <li><a href="javascript:void(0);">Vendor Credit Details</a></li>
+                                                    <li><a href="javascript:void(0);">Vendor Payment Report</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="mb-4">
+                                                <div class="box_container-heading mb-3">Tax Reports</div>
+                                                <ul>
+                                                    <li><a href="javascript:void(0);">TDS Report</a></li>
+                                                    <li><a href="javascript:void(0);">GST Report</a></li>
+                                                    <li><a href="javascript:void(0);">Outward Supplies Details</a></li>
+                                                    <li><a href="javascript:void(0);">Inward Supplies Details</a></li>
+                                                    <li><a href="javascript:void(0);">HSN wise summary</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="mb-4">
+                                                <div class="box_container-heading mb-3">Banking Reports</div>
+                                                <ul>
+                                                    <li><a href="javascript:void(0);">Receipt & Payments Daybook</a></li>
+                                                    <li><a href="javascript:void(0);">Unreconciled Bank Transaction</a></li>
+                                                    <li><a href="javascript:void(0);">Unallocated Receipts Payment</a></li>
+                                                    <li><a href="javascript:void(0);">Bank Reconciliation Summary</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="mb-4">
+                                                <div class="box_container-heading mb-3">Accounting Ratios</div>
+                                                <ul>
+                                                    <li><a href="javascript:void(0);">Gross Profit Ratio</a></li>
+                                                    <li><a href="javascript:void(0);">Net Profit Ratio</a></li>
+                                                    <li><a href="javascript:void(0);">Current Ratio</a></li>
+                                                    <li><a href="javascript:void(0);">Acid Test Ratio</a></li>
+                                                    <li><a href="javascript:void(0);">Receivable Turnover Ratio</a></li>
+                                                    <li><a href="javascript:void(0);">Debt to Equity Ratio</a></li>
+                                                    <li><a href="javascript:void(0);">Debt Ratio</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="mb-4">
+                                                <div class="box_container-heading mb-3">Other Reports</div>
+                                                <ul>
+                                                    <li><a href="javascript:void(0);">Journals Reports</a></li>
+                                                    <li><a href="javascript:void(0);">Realized Gain or Loss</a></li>
+                                                    <li><a href="javascript:void(0);">Unrealized Gain or Loss</a></li>
+                                                    <li><a href="javascript:void(0);">Activity Logs</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div class="modal fade" id="schedulereport" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Report Name : Trail Balance</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body " style="background:#fff;">
+                    <div class="row g-3">
+                        <div class="col-md-12">
+                            <div class="form-floating" id="the-basics-agents">
+                                <input class="form-control" type="text" placeholder="Enter Name">
+                                <label for="floatingSelect">To*</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating" id="the-basics-agents">
+                                <input class="form-control" type="text" placeholder="Enter Name">
+                                <label for="floatingSelect">Cc*</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <select class="form-select" id="" aria-label="Floating label select example">
+                                    <option value="" selected="">Select</option>
+                                    <option value="">Frequency 1</option>
+                                    <option value="">Frequency 2</option>
+                                </select>
+                                <label for="floatingSelect">Frequency *</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <input type="text" class="form-control datepicker" name="fiscaldate" placeholder="Fiscal Year Start Date">
+                                <label for="floatingSelect">Start Date *</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <input class="dateandtime form-control" type="text" name="bidule-b" value="">
+                                <label for="floatingSelect">Start Time *</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <select class="form-select" id="" aria-label="Floating label select example">
+                                    <option value="" selected="">Select Format</option>
+                                    <option value="">Attach Report 1</option>
+                                    <option value="">Attach Report 2</option>
+                                </select>
+                                <label for="floatingSelect">Attach Report as</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn action-btn bg-action-light active">Send</button>
+                    <button type="button" class="btn action-btn bg-action-light" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script>
+
+$('.dateandtime').dateAndTime();
+
+        $(document).ready(function () {
+            var substringMatcher = function (strs) {
+                return function findMatches(q, cb) {
+                    var matches, substringRegex;
+                    matches = [];
+                    substrRegex = new RegExp(q, 'i');
+                    $.each(strs, function (i, str) {
+                        if (substrRegex.test(str)) {
+                            matches.push(str);
+                        }
+                    });
+
+                    cb(matches);
+                };
+            };
+
+            var agents = ['Nicole Prejean', 'David', 'Smith', 'WEI MIAO', 'laili',
+                'Onsri', 'Wan Yun', 'Enyu', 'Rio Rica', 'Sanjay', 'Priscilla Jia', 'John Smith',
+                'Redha Nuruinda', 'Mylon Jan', 'Ma Lothel', 'Raufa', 'Areanne Glee', 'Mary Jasmine',
+            ];
+
+            $('#the-basics-agents .typeahead').typeahead({
+                hint: true,
+                highlight: true,
+                minLength: 1
+            },
+                {
+                    name: 'states',
+                    source: substringMatcher(agents)
+                });
+        });
+
+
+
+
+    </script>
+
+    <script>
+        $(function () {
+            $('input[name="fiscaldate"]').daterangepicker({
+                singleDatePicker: true,
+                showDropdowns: true,
+                minYear: 1901,
+                maxYear: parseInt(moment().format('YYYY'), 10)
+            }, function (start, end, label) {
+                var years = moment().diff(start, 'years');
+            });
+        });
+
+
+
+        $('#datatable1').DataTable({
+            "columnDefs": [
+                {
+                    "targets": -1,
+                    "orderable": false
+                }
+            ],
+            language: {
+                search: "_INPUT_",
+                searchPlaceholder: "Search..."
+            },
+            fixedHeader: {
+                header: true,
+            },
+            "dom": '<"top"<"toolbar">tf<"clear">>rt<"bottom"lip<"clear">>'
+        });
+
+        $("#datatable1_wrapper tbody").on("click", ".details-control", function () {
+            var tr = $(this).closest("tr");
+
+            if (tr.next('tr.addnewrow').length) {
+                tr.next('tr.addnewrow').remove();
+            } else {
+                let TrRow = '<tr class="p-0 addnewrow"><td class="p-0" colspan="6"><table class="table mb-0"><tbody><tr class="subtable"><th>GL Code</th><th>GL Name</th><th>Branch</th><th>Department</th><th>Currency</th><th>IC Account</th><th>Control Account</th><th>Bank Account</th><th>Action</th><th></th></tr><tr class="subtable"><td>10001</td><td>Advertisement</td><td>Dubai</td><td>Admin</td><td>USD</td><td>No</td><td>No</td><td>No</td><td><div class="dropdown"><a class="form-select py-1 dropdown-toggle text-decoration-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><span class="">Select</span></a><ul class="dropdown-menu"><li><a class="dropdown-item" href="#">Account History</a></li><li><a class="dropdown-item" href="#">Edit Details</a></li><li><a class="dropdown-item" href="#">Mark as Inactive</a></li></ul></div></td><td><div class="d-flex justify-content-between"><span class="edit cursor" data-bs-toggle="modal" data-bs-target="#glcodemodal"><img src="../assets/images/edit-icon.svg"></span></div></td></tr>';
+                tr.after(TrRow);
+            }
+            //var row = table.row(tr);
+
+            // if (row.child.isShown()) {
+            //       row.child.hide();
+            //       tr.removeClass("shown");
+            //     } else {
+            //       row.child(format(row.data()), "p-0").show();
+            //       tr.addClass("shown");
+            //     }
+        });
+
+
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#datatable1_wrapper').DataTable({
+                pagingType: 'full_numbers',
+            });
+        });
+    </script>
+    <script>
+        $(".form-switch").click(function () {
+            if ($(this).parent().hasClass("yes")) {
+                $(this).parent().removeClass("yes");
+                $(this).parent().addClass("no");
+            } else {
+                $(this).parent().removeClass("no");
+                $(this).parent().addClass("yes");
+            }
+        });
+    </script>
+
+</body>
+

@@ -1,0 +1,341 @@
+﻿
+@{
+    ViewBag.Title = "transaction_approval";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<html lang="en">
+<head>
+    <link href="../assets/css/configuration.css" rel="stylesheet">
+    <link href="../assets/css/component.css" rel="stylesheet">
+</head>
+<body class="bg-sky-light">
+
+    @Html.Partial("~/Views/Shared/_PartialHeader.cshtml")
+
+    <aside class="left-sidebar">
+        <nav class="sidebar-nav">
+            <ul class="sidebarnav">
+                <li class="nav-title-name">
+                    <span class="">General Settings</span>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("company_details","Home")" aria-expanded="false">
+                        <span class="">Business Information</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("opening_balance","Home")" aria-expanded="false">
+                        <span class="">Opening Balance</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("AddBranch","Configuration")" aria-expanded="false">
+                        <span class="">Branch</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("Department","Configuration")" aria-expanded="false">
+                        <span class="">Department</span>
+                    </a>
+                </li>
+                <li class="nav-title-name">
+                    <span class="">Accounting</span>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("chart_of_accounts","Home")" aria-expanded="false">
+                        <span class="">Chart of Accounts</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("maintain_tax_details","Home")" aria-expanded="false">
+                        <span class="">Taxes</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("maintain_currency_details","Home")" aria-expanded="false">
+                        <span class="">Currency</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="javascript:void(0);" aria-expanded="false">
+                        <span class="">Fiscal Position</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("TransactionsSettings","Configuration")" aria-expanded="false">
+                        <span class="">Transaction Settings</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("NumberSeries","Configuration")" aria-expanded="false">
+                        <span class="">Number Series</span>
+                    </a>
+                </li>
+                <li class="nav-title-name">
+                    <span class="">Approval</span>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("UserAccess","Configuration")" aria-expanded="false">
+                        <span class="">User Access</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("TransactionApproval","Configuration")" aria-expanded="false">
+                        <span class="">Transaction Approval</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+
+    <div class="container">
+        <div class="row">
+            <main class="main-body">
+                <div class="main-body-wrapper">
+                    <div class="collapsebody bg-f8f8f8 collapse show group-lookuptab" id="">
+                        <div class="collapsewrap card bx-shadow ">
+                            <div class="collapseheader ps-0 pe-0 me-0">
+                                <div class="top_content d-flex align-item-center">
+                                    <h1 class="heading">Approvals</h1>
+                                </div>
+                                <div class="p-3 bg-white border-radius-6 mt-3">
+                                    <div class="row g-3">
+                                        <div class="col-md-3">
+                                            <div class="form-floating" id="the-basics-agents">
+                                                <input class="form-select typeahead offline-agent" id="Unselected" type="text" value="" placeholder="Select Reference">
+                                                <label for="floatingSelect">Module</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-floating" id="the-basics-agents">
+                                                <input class="form-select typeahead offline-agent" id="Unselected" type="text" value="" placeholder="Select Reference">
+                                                <label for="floatingSelect">Process Name</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-floating" id="the-basics-agents">
+                                                <input class="form-select typeahead offline-agent" id="Unselected" type="text" value="" placeholder="Select Reference">
+                                                <label for="floatingSelect">Level 1</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-floating" id="the-basics-agents">
+                                                <input class="form-select typeahead offline-agent" id="Unselected" type="text" value="" placeholder="Select Reference">
+                                                <label for="floatingSelect">Level 2</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-floating" id="the-basics-agents">
+                                                <input class="form-select typeahead offline-agent" id="Unselected" type="text" value="" placeholder="Select Reference">
+                                                <label for="floatingSelect">Level 3</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3 gx-3">
+                                        <div class="col-md-3">
+                                            <div class="dash-form-group">
+                                                <label class="form-check-label" for="status">Define Limit</label>
+                                                <div class="display-label yes">
+                                                    <span class="dash-check-group">
+                                                        <span class="yes">Active</span>
+                                                        <span class="no">Inactive</span>
+                                                    </span>
+                                                    <div class="form-switch">
+                                                        <input class="form-check-input" type="checkbox" id="status" checked="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="dash-form-group">
+                                                <label class="form-check-label" for="status">Active</label>
+                                                <div class="display-label yes">
+                                                    <span class="dash-check-group">
+                                                        <span class="yes">Active</span>
+                                                        <span class="no">Inactive</span>
+                                                    </span>
+                                                    <div class="form-switch">
+                                                        <input class="form-check-input" type="checkbox" id="status" checked="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="d-flex justify-content-end mt-4">
+                                                <a href="javascript:void(0);" id="" class="action-btn bg-action-light active" data-bs-toggle="modal" data-bs-target="#AddLimit">Add Level</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="box_container table_manage_container">
+                                    <div id="" class="dataTables_wrapper">
+                                        <table class="display customize-table-style dataTable" id="productservice" role="grid" aria-describedby="basic-14_info">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th>Module</th>
+                                                    <th>Process Name</th>
+                                                    <th>Level 1</th>
+                                                    <th>Level 2</th>
+                                                    <th>Level 3</th>
+                                                    <th>Active</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr role="row">
+                                                    <td>Sales</td>
+                                                    <td>Create Bill</td>
+                                                    <td>Approver</td>
+                                                    <td>Authorizer</td>
+                                                    <td>Controller</td>
+                                                    <td>Yes</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div class="modal fade" id="AddLimit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content ps-3 pt-2 pe-3">
+                <div class="modal-header px-0">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Limit</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-0" style="background:#fff;">
+                    <table class="display dataTable">
+                        <thead>
+                            <tr>
+                                <th>Select</th>
+                                <th>Level</th>
+                                <th>Limit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <input class="form-check-input mt-0 me-4" type="checkbox" value="" id="" checked>
+                                </td>
+                                <td>Intender</td>
+                                <td>0.00</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input class="form-check-input mt-0 me-4" type="checkbox" value="" id="" checked>
+                                </td>
+                                <td>Approver</td>
+                                <td>0.00</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input class="form-check-input mt-0 me-4" type="checkbox" value="" id="" checked>
+                                </td>
+                                <td>Authoriser</td>
+                                <td>0.00</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input class="form-check-input mt-0 me-4" type="checkbox" value="" id="" checked>
+                                </td>
+                                <td>Controller</td>
+                                <td>0.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        // function Accesshow(select){
+        //   if(select.value==1){
+        //     $(".FullAccess").show();
+        //   } else{
+        //     $(".FullAccess").hide();
+        //   }
+        // }
+
+
+        $(function () {
+            $('input[name="fiscaldate"]').daterangepicker({
+                singleDatePicker: true,
+                showDropdowns: true,
+                minYear: 1901,
+                maxYear: parseInt(moment().format('YYYY'), 10)
+            }, function (start, end, label) {
+                var years = moment().diff(start, 'years');
+            });
+        });
+
+        $(function () {
+            $('input[name="daterange"]').daterangepicker(
+                {
+                    ssingleDatePicker: 'true',
+                    showShortcuts: 'false',
+                    showTopbar: 'false'
+                }
+            );
+        });
+
+
+        $('#datatable1').DataTable({
+            "columnDefs": [
+                {
+                    "targets": -1,
+                    "orderable": false
+                }
+            ],
+            language: {
+                search: "_INPUT_",
+                searchPlaceholder: "Search..."
+            },
+            fixedHeader: {
+                header: true,
+            },
+            "dom": '<"top"<"toolbar">tf<"clear">>rt<"bottom"lip<"clear">>'
+        });
+
+
+
+
+    </script>
+    <script>
+        $(".form-switch").click(function () {
+            if ($(this).parent().hasClass("yes")) {
+                $(this).parent().removeClass("yes");
+                $(this).parent().addClass("no");
+            } else {
+                $(this).parent().removeClass("no");
+                $(this).parent().addClass("yes");
+            }
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#productservice').DataTable({
+                pagingType: 'full_numbers',
+            });
+
+            $('#framework').multiselect({
+                nonSelectedText: 'Select Framework',
+                enableFiltering: true,
+                enableCaseInsensitiveFiltering: true,
+                buttonWidth: '400px'
+            });
+        });
+    </script>
+</body>
+</html>
+

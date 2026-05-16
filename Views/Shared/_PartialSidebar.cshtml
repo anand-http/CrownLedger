@@ -1,0 +1,75 @@
+﻿<aside class="left-sidebar">
+    <nav class="sidebar-nav">
+        <ul class="sidebarnav">
+            <li class="nav-title-name">
+                <span class="">General Settings</span>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="@Url.Action("company_details","Home",new {id= 1})" aria-expanded="false">
+                    <span class="">Business Information</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="@Url.Action("opening_balance","Home")" aria-expanded="false">
+                    <span class="">Opening Balance</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="@Url.Action("AddBranch","Configuration")" aria-expanded="false">
+                    <span class="">Branch</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="@Url.Action("Department","Configuration")" aria-expanded="false">
+                    <span class="">Department</span>
+                </a>
+            </li>
+            <li class="nav-title-name">
+                <span class="">Accounting</span>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="@Url.Action("chart_of_accounts","Home")" aria-expanded="false">
+                    <span class="">Chart of Accounts</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="@Url.Action("maintain_tax_details","Home")" aria-expanded="false">
+                    <span class="">Taxes</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="@Url.Action("maintain_currency_details","Home")" aria-expanded="false">
+                    <span class="">Currency</span>
+                </a>
+            </li>
+            @*<li class="sidebar-item">
+                <a class="sidebar-link" href="javascript:void(0);" aria-expanded="false">
+                    <span class="">Fiscal Position</span>
+                </a>
+            </li>*@
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="@Url.Action("TransactionsSettings","Configuration")" aria-expanded="false">
+                    <span class="">Transaction Settings</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="@Url.Action("NumberSeries","Configuration")" aria-expanded="false">
+                    <span class="">Number Series</span>
+                </a>
+            </li>
+            <li class="nav-title-name">
+                <span class="">Approval</span>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="@Url.Action("UserAccess","Configuration")" aria-expanded="false">
+                    <span class="">User Access</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="@Url.Action("TransactionApproval","Configuration")" aria-expanded="false">
+                    <span class="">Transaction Approval</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</aside>

@@ -1,0 +1,306 @@
+
+@{
+    ViewBag.Title = "currency-rate-details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html lang="en">
+<head>
+    <link href="./assets/css/maintain-currency.css" rel="stylesheet">
+</head>
+<body class="bg-sky-light">
+
+    @Html.Partial("~/Views/Shared/_PartialHeader.cshtml")
+
+    <div class="container">
+        <div class="row">
+            <main class="main-body">
+                <div class="main-body-wrapper">
+                    <div class="collapsebody bg-f8f8f8 collapse show group-lookuptab" id="">
+                        <div class="collapsewrap card bx-shadow ">
+                            <div class="collapseheader ps-0 pe-0 me-0">
+                                <div class="top_content">
+                                    <h1 class="heading">Add Currency Rate</h1>
+                                </div>
+                                <!--<div class="sort-bar mt-3">
+                                    <div class="left-sort-bar">-->
+                                        @*<div class="search_container">
+                                            <div class="input-group">
+                                                <span>
+                                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M5.13149 10.263C6.27003 10.2628 7.37576 9.88161 8.27261 9.18024L11.0924 12L11.9994 11.093L9.1796 8.27325C9.88134 7.37631 10.2627 6.27033 10.263 5.13149C10.263 2.30212 7.96087 0 5.13149 0C2.30212 0 0 2.30212 0 5.13149C0 7.96087 2.30212 10.263 5.13149 10.263ZM5.13149 1.28287C7.25401 1.28287 8.98012 3.00898 8.98012 5.13149C8.98012 7.25401 7.25401 8.98012 5.13149 8.98012C3.00898 8.98012 1.28287 7.25401 1.28287 5.13149C1.28287 3.00898 3.00898 1.28287 5.13149 1.28287Z" fill="black"></path>
+                                                    </svg>
+                                                </span>
+                                                <div class="label me-2">To Currency</div>
+                                                <input type="text" class="form-control search-input" placeholder="USD" aria-label="Search" aria-describedby="addon-wrapping">
+                                            </div>
+                                        </div>*@
+                                        <!--<div class="form-floating">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control datepicker" name="fiscaldate" placeholder="Fiscal Year End Date">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>-->
+                                <div class="currencyratetable mt-3">
+                                    <div class="card">
+                                        <div class="flex-wrap card-header table-bg-light d-flex justify-content-between">
+                                            <div class="left-sort-bar align-items-center">
+                                                <div class="header-title ">Rate Details</div>
+                                            </div>
+                                        </div>
+                                        <div id="" class="dataTables_wrapper card-body">
+                                            <table class="display customize-table-style dataTable" id="tdstable" role="grid" aria-describedby="basic-14_info">
+                                                <thead>
+                                                    <tr role="row">
+                                                        <th>From Currency</th>
+                                                        <th>To Currency</th>
+                                                        <th>Currency Rate Type</th>
+                                                        <th>Currency Effective From Date</th>
+                                                        <th>Currency Effective To Date</th>
+                                                        <th>Currency Rate</th>
+                                                        <th>Mult./ DIv.</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr role="row">
+                                                        <td>
+                                                            <div class="dropdown">
+                                                                <input type="text" class="form-control py-1" id="txtfromcurr" placeholder="Select Currency" aria-label="Search" aria-describedby="addon-wrapping">
+                                                                <input type="hidden" id="hdnfromcurrid" />
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="dropdown">
+                                                                <input type="text" class="form-control py-1" id="txttocurr" placeholder="Select Currency" aria-label="Search" aria-describedby="addon-wrapping">
+                                                                <input type="hidden" id="hdntocurrid" />
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="dropdown">
+                                                                <input type="text" class="form-control py-1" id="txtratetype" placeholder="" aria-label="Search" aria-describedby="addon-wrapping">
+                                                                <input type="hidden" id="hdnratetypeid" />
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control datepicker" id="txtfromdate" name="fiscalfromdate" placeholder="From Date">
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control datepicker" id="txttodate" name="fiscaltodate" placeholder="To Date">
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control" id="txtcurrencyrate" value="" placeholder="Please Enter Currency Rate">
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="dropdown">
+                                                                <span class="form-select dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" id="multDivLabel">Select</span>
+                                                                <ul class="dropdown-menu">
+                                                                    <li><a class="dropdown-item" href="#" onclick="selectMultDiv('Multiply')">Multiply</a></li>
+                                                                    <li><a class="dropdown-item" href="#" onclick="selectMultDiv('Divide')">Divide</a></li>
+                                                                </ul>
+                                                            </div>
+                                                            <input type="hidden" id="hdnmultdiv" value="" />
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-action-section justify-content-end">
+                                    <a href="javascript:void(0);" onclick="SaveExchangeRate();" class="action-btn bg-action-light active">Save</a>
+                                    <a href="@Url.Action("maintain_currency_details","Home")" class="action-btn bg-action-light">Cancel</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+
+    <script>
+          $(document).ready(function () {
+              $(`#txtfromcurr`).typeheadAutoComplete('[Core].[mst_Currency]', 'Curncy', $(`#hdnfromcurrid`));
+              $(`#txttocurr`).typeheadAutoComplete('[Core].[mst_Currency]', 'Curncy', $(`#hdntocurrid`));
+              $(`#txtratetype`).typeheadAutoComplete('[Core].[mst_ExchangeType]', 'ExType', $(`#hdnratetypeid`));
+
+          });
+
+        function selectMultDiv(value) {
+            $('#hdnmultdiv').val(value);
+            $('#multDivLabel').text(value); // updates the visible label too
+        }
+
+        function SaveExchangeRate() {
+            // Collect values
+            const fromCurrId = $('#hdnfromcurrid').val();
+            const fromCurr = $('#txtfromcurr').val().trim();
+            const toCurrId = $('#hdntocurrid').val();
+            const toCurr = $('#txttocurr').val().trim();
+            const rateTypeId = $('#hdnratetypeid').val();
+            const rateType = $('#txtratetype').val().trim();
+            const efffromDate = $('input[name="fiscalfromdate"]').val().trim();
+            const efftoDate = $('input[name="fiscaltodate"]').val().trim();
+            const rate = $('#txtcurrencyrate').val().trim();
+            const multDiv = $('#hdnmultdiv').val(); // "Multiply" or "Divide"
+
+            // Validation
+            if (!fromCurr || !fromCurrId) {
+                Swal.fire({ icon: "error", text: "Please select a From Currency." });
+                return;
+            }
+            if (!toCurr || !toCurrId) {
+                Swal.fire({ icon: "error", text: "Please select a To Currency." });
+                return;
+            }
+            if (!rateType || !rateTypeId) {
+                Swal.fire({ icon: "error", text: "Please select a Rate Type." });
+                return;
+            }
+            if (!efffromDate) {
+                Swal.fire({ icon: "error", text: "Please select a From Effective Date." });
+                return;
+            }
+            if (!efftoDate) {
+                Swal.fire({ icon: "error", text: "Please select a To Effective Date." });
+                return;
+            }
+            if (!rate || isNaN(rate) || parseFloat(rate) <= 0) {
+                Swal.fire({ icon: "error", text: "Please Enter exchange Rate." });
+                return;
+            }
+            if (!multDiv) {
+                Swal.fire({ icon: "error", text: "Please select Multiply or Divide." });
+                return;
+            }
+
+            const payload = {
+                FromCurrencyId: fromCurrId,
+                ToCurrencyId: toCurrId,
+                CurrencyRateTypeId: rateTypeId,
+                EffectivefromDate: efffromDate,
+                EffectivetoDate: efftoDate,
+                CurrencyRate: parseFloat(rate),
+                MultDiv: multDiv
+            };
+
+            $.ajax({
+                url: "@Url.Action("SaveExchangeRate", "Home")",
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(payload),
+                beforeSend: function () {
+                    $('#btnSave').prop('disabled', true).text('Saving...');
+                },
+                success: function (response) {
+                    if (response.success) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success',
+                            text: response.message,
+                            timer: 1500,
+                            showConfirmButton: false
+                        }).then(function () {
+                            window.location.href = '@Url.Action("maintain_currency_details", "Home")';
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: response.message
+                        });
+                    }
+                },
+                error: function (xhr) {
+                    toastr.error('An error occurred: ' + (xhr.responseJSON?.message || xhr.statusText));
+                },
+                complete: function () {
+                    $('#btnSave').prop('disabled', false).text('Save');
+                }
+            });
+        }
+
+        function ResetExchangeRateForm() {
+            $('#txtfromcurr, #hdnfromcurrid').val('');
+            $('#txttocurr,   #hdntocurrid').val('');
+            $('#txtratetype, #hdnratetypeid').val('');
+            $('input[name="fiscaldate"]').val('');
+            $('#txtcurrencyrate').val('');
+            $('#hdnmultdiv').val('');
+            $('.dropdown-toggle').text('Select');
+        }
+
+        $(function() {
+            $('input[name="fiscalfromdate"]').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            minYear: 1901,
+            maxYear: parseInt(moment().format('YYYY'),10)
+          }, function(start, end, label) {
+            var years = moment().diff(start, 'years');
+          });
+        });
+
+        $(function () {
+            $('input[name="fiscaltodate"]').daterangepicker({
+                singleDatePicker: true,
+                showDropdowns: true,
+                minYear: 1901,
+                maxYear: parseInt(moment().format('YYYY'), 10)
+            }, function (start, end, label) {
+                var years = moment().diff(start, 'years');
+            });
+        });
+
+        $("form").on("change", ".file-upload-field", function(){
+            $(this).parent(".file-upload-wrapper").attr("data-text",         $(this).val().replace(/.*(\/|\\)/, '') );
+        });
+
+
+        $("#datatable1_wrapper tbody").on("click", ".details-control", function() {
+            var tr = $(this).closest("tr");
+
+            if(tr.next('tr.addnewrow').length){
+              tr.next('tr.addnewrow').remove();
+            }else{
+              let TrRow='<tr class="p-0 addnewrow"><td class="p-0" colspan="6"><table class="table mb-0"><tbody><tr class="subtable"><th>Accounts</th><th class="text-center">Available Balance</th><th class="datatable_right debit-table-row">Debit</th><th class="datatable_right credit-table-row">Credit</th></tr><tr class="subtable"><td>Advance Tax</td><td class="text-center">--</td><td><div class="input-group"><input type="text" class="form-control text-end" placeholder="0.00" aria-label="Search" aria-describedby="addon-wrapping"></div></td><td><div class="input-group"><input type="text" class="form-control text-end" placeholder="0.00" aria-label="Search" aria-describedby="addon-wrapping"></div></td></tr><tr class="subtable"><td colspan="4"><a href="#" class="add-vendor ms-0"><span class="icon"><img src="./assets/images/addicon.svg"></span>Add Another Account</a></td></tr></tbody></table></td></tr>';
+            tr.after(TrRow);
+            }
+          });
+          $("#datatable1_wrapper tbody").on("click", ".details-control-customer", function() {
+            var tr = $(this).closest("tr");
+
+            if(tr.next('tr.addnewrow').length){
+              tr.next('tr.addnewrow').remove();
+            }else{
+              let TrRow='<tr class="p-0 addnewrow"><td class="p-0" colspan="6"><table class="display customize-table-style dataTable" id="datatable1_wrapper" role="grid" aria-describedby="basic-14_info"><thead><tr role="row"><th>Type</th><th>Date</th><th>Customer</th><th>Currency</th><th>Reference</th><th>Description</th><th>Sub Total</th><th>Tax</th><th class="datatable_right">Total</th></tr></thead><tbody><tr role="row"><td>Invoice</td><td>05-03-2023</td><td>Aman Sharma</td><td>USD</td><td>INV-02</td><td>Sale of Mobile</td><td>$1,005.00</td><td>$125.00</td><td class="datatable_right">$1,100.00</td></tr><tr role="row"><td>Credit Note</td><td>05-03-2023</td><td>Kapil Sharma</td><td>USD</td><td>INV-03</td><td>Sale of Mobile</td><td>$1,005.00</td><td>$154.00</td><td class="datatable_right">$1,350.00</td></tr><tr role="row"><td>Invoice</td><td>05-03-2023</td><td>Jaya Sharma</td><td>USD</td><td>INV-01</td><td>Sale of Mobile</td><td>$1,005.00</td><td>$100.00</td><td class="datatable_right">$1,100.00</td> </tr></tr></tbody></table></td></tr>';
+            tr.after(TrRow);
+            }
+          });
+          $("#datatable1_wrapper tbody").on("click", ".details-control-vendor", function() {
+            var tr = $(this).closest("tr");
+
+            if(tr.next('tr.addnewrow').length){
+              tr.next('tr.addnewrow').remove();
+            }else{
+              let TrRow='<tr class="p-0 addnewrow"><td class="p-0" colspan="6"><table class="display customize-table-style dataTable" id="datatable1_wrapper" role="grid" aria-describedby="basic-14_info"><thead><tr role="row"><th>Type</th><th>Date</th><th>Vendor</th><th>Currency</th><th>Reference</th><th>Description</th><th>Sub Total</th><th>Tax</th><th class="datatable_right">Total</th></tr></thead><tbody><tr role="row"><td>Bill</td><td>05-03-2023</td><td>Aman Sharma</td><td>USD</td><td>Bill-02</td><td>Sale of Mobile</td><td>$1,005.00</td><td>$125.00</td><td class="datatable_right">$1,100.00</td></tr><tr role="row"><td>Credit Note</td><td>05-03-2023</td><td>Kapil Sharma</td><td>USD</td><td>Bill-03</td><td>Sale of Mobile</td><td>$1,005.00</td><td>$154.00</td><td class="datatable_right">$1,350.00</td></tr><tr role="row"><td>Bill</td><td>05-03-2023</td><td>Jaya Sharma</td><td>USD</td><td>Bill-01</td><td>Sale of Mobile</td><td>$1,005.00</td><td>$100.00</td><td class="datatable_right">$1,100.00</td> </tr></tr></tbody></table></td></tr>';
+            tr.after(TrRow);
+            }
+          });
+
+           $(".importfile").click(function () {
+            $(".Openingupload-sec").toggle();
+            $(".Openingform-sec").toggle();
+          });
+    </script>
+
+
+</body>
+</html>

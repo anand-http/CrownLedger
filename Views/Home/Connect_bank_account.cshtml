@@ -1,0 +1,253 @@
+﻿@model fintech.Models.BankAccountViewModel
+@{
+    ViewBag.Title = "Connect_bank_account";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <link href="~/assets/css/component.css" rel="stylesheet">
+</head>
+<body class="bg-sky-light">
+    @Html.Partial("~/Views/Shared/_PartialHeader.cshtml")
+    <div class="container">
+        <div class="row">
+            <main class="main-body">
+                <div class="main-body-wrapper">
+                    <div class="back_button">
+                        <a href="@Url.Action("DashBoard","Home")" class=" left_arrow">
+                            <span class="arrow-wrapper">
+                                <svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M5.3048 9.75292C5.38285 9.82121 5.47378 9.87319 5.57222 9.90582C5.67066 9.93845 5.77464 9.95106 5.87803 9.94291C5.98142 9.93476 6.08213 9.90601 6.17425 9.85837C6.26637 9.81072 6.34802 9.74513 6.41442 9.66546C6.48081 9.58578 6.5306 9.49364 6.56086 9.39444C6.59111 9.29524 6.60122 9.19099 6.5906 9.08783C6.57997 8.98466 6.54881 8.88467 6.49897 8.79372C6.44912 8.70277 6.38159 8.62271 6.30035 8.55825L2.85479 5.6867L11.7261 5.6867C11.9324 5.6867 12.1302 5.60475 12.2761 5.45889C12.422 5.31303 12.5039 5.1152 12.5039 4.90892C12.5039 4.70264 12.422 4.50481 12.2761 4.35895C12.1302 4.21308 11.9324 4.13114 11.7261 4.13114L2.99635 4.13114L6.30035 1.37781C6.45898 1.24579 6.55867 1.05616 6.57748 0.850643C6.5963 0.645123 6.5327 0.440547 6.40068 0.281918C6.26866 0.123289 6.07904 0.0236021 5.87352 0.00478612C5.668 -0.0140308 5.46342 0.0495659 5.30479 0.181585L0.28035 4.3707C0.192818 4.44369 0.122398 4.53503 0.0740733 4.63825C0.0257488 4.74147 0.000699552 4.85406 0.000699562 4.96803C0.000699572 5.082 0.0257488 5.19458 0.0740734 5.29781C0.122398 5.40103 0.192818 5.49237 0.28035 5.56536L5.3048 9.75292Z" fill="#043376" />
+                                </svg>
+                            </span>
+                            Back
+                        </a>
+                    </div>
+                    <div class="top_content">
+                        <h1 class="heading">Connect your bank or credit card</h1>
+                        <span class="sub-heading">Add your bank accounts, credit cards and loan accounts. Connect to your online bank account to automatically import your transactions.</span>
+                    </div>
+                    @Html.Partial("~/Views/Shared/_PartialBankList.cshtml", Model)
+
+                    <div class="accordion mt-3" id="yourbankaccount">
+
+                        @{
+                            var bankGroups = Model.Accounts
+                                                  .Where(a => a != null)
+                                                  .GroupBy(a => a.BankName)
+                                                  .ToList();
+                            int bankIndex = 0;
+                        }
+
+                        @foreach (var bankGroup in bankGroups)
+                        {
+                            var collapseId = $"collapse-bank-{bankIndex}";
+                            var headerId = $"heading-bank-{bankIndex}";
+                            bankIndex++;
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="@headerId">
+                                    <button class="accordion-button collapsed"
+                                            type="button"
+                                            data-bs-toggle="collapse"
+                                            data-bs-target="#@collapseId"
+                                            aria-expanded="false"
+                                            aria-controls="@collapseId">
+                                        @bankGroup.Key
+                                    </button>
+                                </h2>
+
+                                <div id="@collapseId"
+                                     class="accordion-collapse collapse"
+                                     aria-labelledby="@headerId"
+                                     data-bs-parent="#yourbankaccount">
+
+                                    <div class="accordion-body p-0">
+
+                                        @foreach (var account in bankGroup)
+                                        {
+                                            <div class="items d-flex align-items-center justify-content-between border-bottom px-3 py-2">
+                                                <div class="account-details-sec d-flex">
+                                                    <div class="account-details me-3">
+                                                        <div class="title">@account.AccountType</div>
+                                                        <div class="account-number">
+                                                            ********
+                                                            <span class="last-degit">
+                                                                @(account.AccountNumber != null && account.AccountNumber.Length >= 4
+                                                ? account.AccountNumber.Substring(account.AccountNumber.Length - 4)
+                                                : "XXXX")
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="access d-flex align-items-center">
+                                                        <div class="form-switch">
+                                                            <input class="form-check-input mt-0"
+                                                                   type="checkbox"
+                                                                   id="icaccount-@account.AccountId"
+                                                                   @(account.IsActive ? "checked" : "")>
+                                                        </div>
+                                                        <span class="account-type ms-2">Accounting</span>
+                                                    </div>
+                                                </div>
+
+                                                <a href="#" class="delete" data-accountid="@account.AccountId">
+                                                    <svg width="18" height="21" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M5.05799 0.0975361C4.62397 0.25612 4.29011 0.606673 3.8394 1.34951L3.4638 1.98385H1.9197C0.200316 1.98385 0 2.03393 0 2.47629C0 2.77677 0.150237 2.90196 0.575909 2.96039L0.90977 3.00212L0.934809 8.52751L0.959849 14.0446L1.17686 14.5036C1.45229 15.0879 1.83623 15.4718 2.42049 15.7472L2.87955 15.9643L6.75233 15.9893C10.4415 16.0143 10.6501 16.006 11.1843 15.8474C11.8854 15.6304 12.4196 15.1797 12.695 14.5704L12.8954 14.128L12.9204 8.56924L12.9454 3.01047L13.3294 2.96039C13.8802 2.90196 14.0973 2.55976 13.8218 2.18416C13.7133 2.04227 13.5714 2.02558 12.0774 2.00054L10.4498 1.9755L9.89896 1.1492C9.13943 0.00572395 9.19785 0.0307636 7.09453 0.00572395C5.78413 -0.0109692 5.30838 0.00572395 5.05799 0.0975361ZM8.9725 1.44132C9.13108 1.69172 9.26463 1.91708 9.26463 1.94211C9.26463 1.96715 8.22966 1.98385 6.96934 1.98385C5.19153 1.98385 4.67405 1.95881 4.67405 1.87534C4.67405 1.82526 4.80759 1.59991 4.96617 1.37455L5.2583 0.982265H6.96934H8.68037L8.9725 1.44132ZM11.9772 8.45239V13.8776L11.7853 14.2115C11.6768 14.3951 11.4598 14.6455 11.2928 14.754L10.984 14.9627H6.9276H2.86285L2.55403 14.7206C1.903 14.2282 1.9197 14.4702 1.9197 8.38562V2.98543L6.95264 3.00212L11.9772 3.02716V8.45239Z" fill="#ADBFCD"></path>
+                                                        <path d="M3.75599 5.04717C3.68922 5.07221 3.60575 5.13898 3.57236 5.18906C3.4889 5.30591 3.4889 12.6842 3.57236 12.8094C3.69756 13.0097 4.06481 13.0264 4.24843 12.8428C4.42371 12.6675 4.42371 12.6091 4.42371 8.99507C4.42371 5.43111 4.41536 5.31425 4.25678 5.15567C4.08985 4.98874 3.98134 4.9637 3.75599 5.04717Z" fill="#ADBFCD"></path>
+                                                        <path d="M6.69339 5.12204L6.50977 5.24723V8.99482V12.7424L6.69339 12.8676C6.94378 13.0429 7.06064 13.0345 7.26095 12.8342C7.41954 12.6756 7.42788 12.5588 7.42788 8.99482C7.42788 5.43086 7.41954 5.31401 7.26095 5.15542C7.06064 4.95511 6.94378 4.94676 6.69339 5.12204Z" fill="#ADBFCD"></path>
+                                                        <path d="M9.69925 5.12228L9.51562 5.24748V8.97837C9.51562 11.0316 9.54901 12.751 9.5824 12.8094C9.70759 13.0097 10.0748 13.0264 10.2585 12.8428C10.4337 12.6675 10.4337 12.6091 10.4337 8.99507C10.4337 5.43111 10.4254 5.31425 10.2668 5.15567C10.0665 4.95535 9.94964 4.94701 9.69925 5.12228Z" fill="#ADBFCD"></path>
+                                                    </svg>
+                                                </a>
+                                            </div>
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+
+                </div>
+            </main>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+
+    <div class="modal fade" id="NewAccounts" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Create Account</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body " style="background:#fff;">
+                    <div class="row">
+
+                        <div class="col-md-12">
+                            <div class="form-floating mb-3">
+                                <select class="form-select" id="" aria-label="Floating label select example">
+                                    <option value="" selected="">Select</option>
+                                    <option value="">1</option>
+                                </select>
+                                <label for="floatingSelect">Account Group*</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating mb-3">
+                                <select class="form-select" id="" aria-label="Floating label select example">
+                                    <option value="" selected="">Select</option>
+                                    <option value="">1</option>
+                                </select>
+                                <label for="floatingSelect">Account Type</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-floating mb-3" id="the-basics-agents">
+                                <input class="form-select typeahead offline-agent"
+                                       type="text" placeholder="Enter Name">
+                                <label for="floatingSelect">Account Name</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating mb-3">
+                                <textarea class="form-control" style="height:124px;" value="I would like to take flight from Houston, Texas"></textarea>
+                                <label for="teamName">Description</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn cancel_button_color" data-bs-dismiss="modal">Cencel</button>
+                    <button type="button" class="btn button_save_color">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).on('click', '.delete', function (e) {
+            e.preventDefault();
+            var accountId = $(this).data('accountid');
+            if (confirm('Are you sure you want to delete this account?')) {
+                $.ajax({
+                    url: '/Home/DeleteBankAccount',
+                    type: 'POST',
+                    data: { accountId: accountId },
+                    success: function (response) {
+                        if (response.success) {
+                            alert(response.message);
+                            // Optionally remove the account from the DOM or reload the list
+                            location.reload();
+                        } else {
+                            alert('Delete failed: ' + response.message);
+                        }
+                    },
+                    error: function () {
+                        alert('An error occurred while deleting the account.');
+                    }
+                });
+            }
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            var substringMatcher = function (strs) {
+                return function findMatches(q, cb) {
+                    var matches, substringRegex;
+                    matches = [];
+                    substrRegex = new RegExp(q, 'i');
+                    $.each(strs, function (i, str) {
+                        if (substrRegex.test(str)) {
+                            matches.push(str);
+                        }
+                    });
+
+                    cb(matches);
+                };
+            };
+
+            var agents = ['Nicole Prejean', 'David', 'Smith', 'WEI MIAO', 'laili',
+                'Onsri', 'Wan Yun', 'Enyu', 'Rio Rica', 'Sanjay', 'Priscilla Jia', 'John Smith',
+                'Redha Nuruinda', 'Mylon Jan', 'Ma Lothel', 'Raufa', 'Areanne Glee', 'Mary Jasmine',
+            ];
+
+            $('#the-basics-agents .typeahead').typeahead({
+                hint: true,
+                highlight: true,
+                minLength: 1
+            },
+                {
+                    name: 'states',
+                    source: substringMatcher(agents)
+                });
+        });
+
+
+
+
+    </script>
+
+    <script>
+        $(function () {
+            $('input[name="fiscaldate"]').daterangepicker({
+                singleDatePicker: true,
+                showDropdowns: true,
+                minYear: 1901,
+                maxYear: parseInt(moment().format('YYYY'), 10)
+            }, function (start, end, label) {
+                var years = moment().diff(start, 'years');
+            });
+        });
+
+
+    </script>
+
+
+
+</body>
+

@@ -1,0 +1,94 @@
+.reports_container ul li a{
+    color: #043376;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    margin-bottom:8px;
+    display: inline-block;
+    position: relative;
+    padding-left: 20px;
+}
+.reports_container ul li a:before{
+    height: 10px;
+    width: 10px;
+    background: #E6EBEE;
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    top:5px;
+    left: 0px;
+}
+.balance_shet-container .dataTables_wrapper .dataTable tr th:first-child{
+    width:550px;
+}
+.balance_shet-container .dataTables_wrapper .dataTable .subtable td:first-child{
+    width: 544px;
+}
+.balance_shet-container .dataTables_wrapper .dataTable .subtable td:nth-child(2){
+    width: 321px;
+    overflow: hidden;
+}
+.balance_shet-container .dataTables_wrapper .dataTable .subtable td{
+    background-color: #fff;
+}
+.blnce-shet-td{
+padding-left:10px;
+color:#88A5BC;
+font-weight: 400;
+}
+.blnce-shet-td-parent{ 
+padding-left:20px;
+color:#88A5BC;
+font-weight: 400;
+}
+
+.sales-register-container{
+    overflow-x: auto;
+    min-height: 310px;
+    max-height: 310px;
+}
+
+.sales-register-container .dataTables_wrapper .dataTable tr th{
+    width: 120px;
+    white-space: nowrap;
+}
+.sales-register-container .dataTables_wrapper.no-footer .dataTables_info{
+    font-size: 0px;
+
+}
+.sales-register-container .dataTables_wrapper.no-footer{
+    position: initial;
+}
+
+.sales-register-container .dataTables_wrapper.no-footer .dataTables_length select{
+   position: initial;
+}
+.sales-register-container .dataTables_wrapper.no-footer .dataTables_length label{
+    position: absolute;
+    bottom: -30px;
+    font-size: 14px;
+}
+.sales-register-container .dataTables_wrapper.no-footer .dataTables_paginate{
+    bottom:-30px;
+}
+
+.sales-register-container .dataTables_wrapper.no-footer .dataTables_length{
+    height: 0px;
+}
+
+.sales-register-container .dataTables_wrapper.no-footer .dataTables_paginate .paginate_button.next{
+    border-radius: 3px;
+    padding: 3px 6px;
+    font-weight: 500;
+    background-repeat:no-repeat!important;
+}
+
+.sales-register-container .dataTables_wrapper.no-footer .dataTables_paginate .paginate_button.current{
+    border-radius: 3px;
+    padding-top:3px!important;
+    padding-bottom:3px!important;
+}
+.sales-register-container .dataTables_wrapper .dataTable  {
+    min-width: 1550px!important;
+}
+

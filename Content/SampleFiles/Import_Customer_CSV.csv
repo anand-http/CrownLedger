@@ -1,0 +1,15 @@
+CustomerName,Client_Code,Email,Telephone,AmountOutstanding,UnusedCredit,Website,Client_Status,Country,State,Department,DefaultCurrency,Address1,Address2,CorrespondenceAddress1,CorrespondenceAddress2,City,City2,State2,Country2,ZipCode,ZipCode2,BankCurrency,AccountNumber,Payee,BankName,IBAN_IFSC,SWIFTCode,SORTCode,IsDefaultBank,GST_VAT,PAN,TaxCode,BillPercentage,DueDateBasedOn,CreditDays,Records,CreditLimits,Status
+Acme Corp Pvt Ltd,ACLE001,accounts@acmecorp.com,+91-9876543210,15000.5,2500,www.acmecorp.com,Active,India,Maharashtra,Finance,INR,123 Business Park Andheri East,Near Metro Station,456 Registered House Fort,,Mumbai,Pune,Maharashtra,India,400069,411001,INR,ACC123456789,Acme Corp Pvt Ltd,HDFC Bank,IN89HDFC0001234567890,HDFCINBB,110022,TRUE,27AABCA1234C1Z5,AABCA1234C,TC001,100,AI,30,5,500000,Active
+TechNova Solutions,TEHLI002,info@technovasol.com,+91-9123456789,8200,0,www.technovasol.com,Active,India,Karnataka,IT,USD,78 Tech Hub Whitefield,Block B 2nd Floor,78 Tech Hub Whitefield Block B 2nd Floor,,Bengaluru,,Karnataka,India,560066,343545,USD,ACC987654321,TechNova Solutions,ICICI Bank,IN34ICIC0009876543210,ICICINBB,,TRUE,29AACCT5678D1Z3,AACCT5678D,TC002,100,DD,45,3,300000,Active
+Global Exports Ltd,GLHLB003,billing@globalexports.com,+44-2071234567,32000.75,5000,www.globalexports.co.uk,Active,United Kingdom,England,Operations,GBP,10 Canary Wharf,Floor 12,10 Canary Wharf,Floor 12,London,,England,United Kingdom,E14 5AB,343434,GBP,GB29NWBK60161331926819,Global Exports Ltd,Natwest Bank,GB29NWBK60161331926819,NWBKGB2L,60-16-13,TRUE,GB123456789,,TC003,100,ID,60,8,1000000,Active
+Sunrise Traders,SUNHL04,sun.traders@gmail.com,+91-8765432109,0,1200,,Inactive,India,Gujarat,Sales,INR,22 Sindhi Market Ring Road,,22 Sindhi Market  Ring Road,,Ahmedabad,,Gujarat,India,380001,754536,INR,ACC111222333,Sunrise Traders,SBI,SBIN0001234,SBININBB,,FALSE,24ABBCS9012E1ZP,ABBCS9012E,TC004,100,ID,15,2,100000,Inactive
+Client_ID,Contact_ID,Contact_Source,Contact_SourceID,Contact_ContypID,Contact_Name,Contact_Email,Contact_Fax,Contact_Phone,Contact_Mobile,Designation,Contact_Type_desc
+1001,1,CRM,1001,1,Rajesh Mehta,rajesh.mehta@acmecorp.com,+91-2223334444,+91-9876543210,+91-9876543211,Finance Manager,Primary
+1001,2,CRM,1001,2,Priya Shah,priya.shah@acmecorp.com,,+91-9876543212,+91-9876543213,Accounts Executive,Billing
+1002,3,CRM,1002,1,Arjun Nair,arjun.nair@technovasol.com,+91-8023334444,+91-9123456789,+91-9123456780,IT Head,Primary
+1003,4,CRM,1003,1,James Whitfield,j.whitfield@globalexports.com,+44-2071234568,+44-2071234567,+44-7891234567,Operations Director,Primary
+1003,5,CRM,1003,3,Emma Clarke,e.clarke@globalexports.com,,+44-2071234569,+44-7891234568,Accounts Payable,Billing
+1003,6,CRM,1003,4,Tom Harris,t.harris@globalexports.com,,+44-2071234570,,Logistics Manager,Secondary
+1004,7,CRM,1004,1,Kiran Patel,sun.traders@gmail.com,,+91-8765432109,+91-8765432108,Owner,Primary
+1005,8,CRM,1005,1,Erik Andersen,e.andersen@nordicconsult.no,+47-23456780,+47-23456789,+47-91234567,Managing Director,Primary
+1005,9,CRM,1005,2,Astrid Berg,a.berg@nordicconsult.no,,+47-23456781,+47-91234568,Senior Consultant,Secondary

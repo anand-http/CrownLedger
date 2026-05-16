@@ -1,0 +1,386 @@
+<div id="" class="new-estimate-table bg-white">
+    <table class="display dataTable customize-table-style" id="" role="grid"
+           aria-describedby="basic-14_info">
+        <thead>
+            <tr role="row">
+                <th>Item Details</th>
+                <th>Item Description</th>
+                <th>HSN Code/ SAC</th>
+                <th>Quantity</th>
+                <th>Rate</th>
+                <th>Discount</th>
+                <th>Tax Type</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody id="itemTableBody">
+            <tr role="row" class="item-row row-1" data-row="1">
+                <td>
+                    <div class="input-group">
+                        <input class="form-select offline-agent" type="text" placeholder="Item Details" id="txtItemDetail_1">
+                        <input type="hidden" id="hdnItemDetail_1" value="">
+                        <input type="hidden" id="hdnItemType_1" value="">
+                    </div>
+                </td>
+                <td>
+                    <div class="input-group">
+                        <input type="text" class="form-control py-1" placeholder="" id="txtDescription_1" aria-label="Search" aria-describedby="addon-wrapping">
+                    </div>
+                </td>
+                <td>
+                    <div class="input-group">
+                        <input type="text" class="form-control py-1" placeholder="" id="txtHSNCode_1" aria-label="Search" aria-describedby="addon-wrapping">
+                    </div>
+                </td>
+                <td>
+                    <div class="input-group">
+                        <input type="text" class="form-control py-1 txt-quantity" id="txtQuantity_1" name="txtQuantity_1">
+                    </div>
+                </td>
+                <td>
+                    <div class="input-group">
+                        <input type="text" class="form-control py-1 txt-rate" placeholder="" id="txtRate_1" aria-label="Search" aria-describedby="addon-wrapping">
+                    </div>
+                </td>
+                <td>
+                    <div class="input-group">
+                        <input type="text" class="form-control py-1 txt-discount" placeholder="0" id="txtDiscount_1" name="txtDiscount_1">
+                        <select class="form-select py-1 discount-type" id="ddlDiscountType_1" name="ddlDiscountType_1" style="max-width:93px;">
+                            <option value="P">P (%)</option>
+                            <option value="A">A (Abs)</option>
+                        </select>
+                    </div>
+                </td>
+                <td>
+                    <div class="input-group">
+                        <input class="form-select typehead offline-agent txt-TaxCode" type="text" placeholder="Tax Type" id="txtTaxCode_1">
+                        <input type="hidden" id="hdnTaxID" value="">
+                        <input type="hidden" id="hdnTaxFactor_1" value="">
+                        <input type="hidden" id="hdnTaxValue_1" value="">
+                    </div>
+                </td>
+                <td>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="" id="txtAmount_1" aria-label="Search" aria-describedby="addon-wrapping">
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class=" pb-3" style="width:150px">
+        <a href="javascript:void(0);" class="add-another-payment-terms mt-3 d-block ms-0" id="btnAddNewRow">
+            <span class="icon">
+                <svg width="18" height="16" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <ellipse cx="12.5294" cy="12" rx="12.5294" ry="12" fill="#043376"></ellipse>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7578 6.75C11.7578 6.55109 11.8373 6.36032 11.9789 6.21967C12.1204 6.07902 12.3124 6 12.5126 6C12.7128 6 12.9048 6.07902 13.0463 6.21967C13.1879 6.36032 13.2674 6.55109 13.2674 6.75V17.25C13.2674 17.4489 13.1879 17.6397 13.0463 17.7803C12.9048 17.921 12.7128 18 12.5126 18C12.3124 18 12.1204 17.921 11.9789 17.7803C11.8373 17.6397 11.7578 17.4489 11.7578 17.25V6.75Z" fill="white"></path>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.25781 12.0002C6.25781 11.8085 6.34032 11.6246 6.48717 11.4891C6.63403 11.3535 6.83321 11.2773 7.0409 11.2773H18.0041C18.2118 11.2773 18.411 11.3535 18.5579 11.4891C18.7047 11.6246 18.7872 11.8085 18.7872 12.0002C18.7872 12.192 18.7047 12.3758 18.5579 12.5114C18.411 12.647 18.2118 12.7231 18.0041 12.7231H7.0409C6.83321 12.7231 6.63403 12.647 6.48717 12.5114C6.34032 12.3758 6.25781 12.192 6.25781 12.0002Z" fill="white"></path>
+                </svg>
+            </span>
+            Add New Row
+        </a>
+    </div>
+</div>
+<div class="new-estimate-container">
+    <div class="estimate-comment-box bg-white">
+        <div class="mb-3 h-100">
+            <label for="txtComments" class="form-label">Comments</label>
+            <textarea class="form-control" placeholder="Please Enter Your comments..." id="txtComments"></textarea>
+        </div>
+    </div>
+    <div class="estimate-comment-box bg-white">
+        <div class="mb-3 h-100">
+            <label for="txtTermsConditions" class="form-label">Terms and Conditions</label>
+            <textarea class="form-control" placeholder="Please Enter Terms and Conditions..." id="txtTermsConditions"></textarea>
+        </div>
+    </div>
+    <div class="estimate-comment-box bg-white">
+        <div class="profile-sub-item">
+            <span class="total-sub-label">Sub Total</span>
+            <span class="profile-sub-info" id="lblSubTotal">0.00</span>
+        </div>
+        @*<div class="profile-sub-item">
+                <span class="profile-sub-label">Discount</span>
+                <span class="profile-sub-info">
+                    <div class="input-group">
+                        <input type="text" class="form-control text-end" placeholder="" id="txtDiscount" aria-label="Search" aria-describedby="addon-wrapping">
+                    </div>
+                </span>
+            </div>*@
+        <div class="profile-sub-item">
+            <span class="profile-sub-label">Other Adjustment</span>
+            <span class="profile-sub-info">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="" id="txtOtherAdjustment" aria-label="Search" aria-describedby="addon-wrapping">
+                </div>
+            </span>
+        </div>
+        <div class="profile-sub-item">
+            <span class="profile-sub-label">Tax (if applicable)</span>
+            <span class="profile-sub-info">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="txtTax" placeholder="0" readonly style="background-color:#f5f5f5;" />
+                </div>
+            </span>
+        </div>
+        <div class="total-sub-item">
+            <span class="total-sub-label">Total</span>
+            <span class="total-sub-info" id="lblTotal">0.00</span>
+        </div>
+
+
+    </div>
+</div>
+
+
+<script>
+
+    $(document).on("input", ".txt-quantity, .txt-rate, .txt-discount, .discount-type ,.txt-TaxCode", function () {
+        var row = $(this);
+        var suffix = row.attr("id").split("_")[1];
+        calculateAmount(suffix);
+    });
+
+    $(document).on("change", ".discount-type", function () {
+        var row = $(this);
+        var suffix = row.attr("id").split("_")[1];
+        calculateAmount(suffix);
+    });
+
+    function calculateAmount(suffix) {
+        var quantity = parseFloat($("#txtQuantity_" + suffix).val()) || 0;
+        var rate = parseFloat($("#txtRate_" + suffix).val()) || 0;
+        var discount = parseFloat($("#txtDiscount_" + suffix).val()) || 0;
+        var discountType = $("#ddlDiscountType_" + suffix).val();
+
+        var grossAmount = quantity * rate;
+        var discountAmount = discountType === "P"
+            ? (grossAmount * discount) / 100
+            : discount;
+
+        var afterDiscount = grossAmount - discountAmount;
+        if (afterDiscount < 0) afterDiscount = 0;
+
+        $("#txtAmount_" + suffix).val(afterDiscount.toFixed(2));
+
+        updateTotals();
+    }
+
+    function updateTotals() {
+        var subTotal = 0;
+        var totalTax = 0;
+
+        $(".item-row").each(function () {
+            var suffix = getSuffix(this);
+
+            var amount = parseFloat($("#txtAmount_" + suffix).val()) || 0;
+            var taxCode = $("#hdnTaxFactor_" + suffix).val() || "";
+            var taxRate = parseFloat($("#hdnTaxValue_" + suffix).val()) || 0;
+
+            subTotal += amount;
+
+            var itemTax = 0;
+            if (taxCode === "P") {
+                itemTax = (amount * taxRate) / 100;
+            } else {
+                itemTax = taxRate;
+            }
+
+            totalTax += itemTax;
+        });
+
+        var otherAdjustment = parseFloat($("#txtOtherAdjustment").val()) || 0;
+        var total = subTotal + totalTax + otherAdjustment;
+
+        $("#lblSubTotal").text("$" + subTotal.toFixed(2));
+        $("#txtTax").val(totalTax.toFixed(2));
+        $("#lblTotal").text("$" + total.toFixed(2));
+    }
+
+    // also update totals when Other Adjustment or Tax fields change
+    $(document).on("input", "#txtOtherAdjustment", function () {
+        updateTotals();
+    });
+
+    var rowCount = 1; // already have 1 row by default
+
+    $("#btnAddNewRow").click(function () {
+        rowCount++;
+
+        var newRow = `
+                <tr role="row" class="item-row row-${rowCount}" data-row="${rowCount}">
+                    <td>
+                        <div class="input-group">
+                            <input class="form-select offline-agent" type="text"placeholder="Item Details" id="txtItemDetail_${rowCount}" name="txtItemDetail_${rowCount}">
+                            <input type="hidden" id="hdnItemDetail_${rowCount}" name="hdnItemDetail_${rowCount}" value="">
+                            <input type="hidden" id="hdnItemType_${rowCount}" name="hdnItemType_${rowCount}" value="">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input type="text" class="form-control py-1" placeholder="" id="txtDescription_${rowCount}"name="txtDescription_${rowCount}">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input type="text" class="form-control py-1" placeholder="" id="txtHSNCode_${rowCount}" name="txtHSNCode_${rowCount}">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input type="text" class="form-control py-1 txt-quantity" placeholder="" id="txtQuantity_${rowCount}" name="txtQuantity_${rowCount}">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input type="text" class="form-control py-1 txt-rate" placeholder="" id="txtRate_${rowCount}" name="txtRate_${rowCount}">
+                        </div>
+                    </td>
+                        <td>
+                        <div class="input-group">
+                            <input type="text" class="form-control py-1 txt-discount" placeholder="0" id="txtDiscount_${rowCount}" name="txtDiscount_${rowCount}">
+                            <select class="form-select py-1 discount-type" id="ddlDiscountType_${rowCount}" name="ddlDiscountType_${rowCount}" style="max-width:70px;">
+                                <option value="P">P (%)</option>
+                                <option value="A">A (Abs)</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input class="form-select typehead offline-agent" type="text" placeholder="Tax Type" id="txtTaxCode_${rowCount}" name="txtTaxCode_${rowCount}">
+                            <input type="hidden" id="hdnTaxID_${rowCount}" name="hdnTaxID_${rowCount}" value="">
+                            <input type="hidden" id="hdnTaxValue_${rowCount}" name="hdnTaxID_${rowCount}" value="">
+                            <input type="hidden" id="hdnTaxFactor_${rowCount}" name="hdnTaxID_${rowCount}" value="">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input type="text" class="form-control"
+                                   placeholder=""
+                                   id="txtAmount_${rowCount}"
+                                   name="txtAmount_${rowCount}">
+                        </div>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger btn-sm btnRemoveRow">
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path id="Vector" fill-rule="evenodd" clip-rule="evenodd" d="M0 6.00414C0 5.81242 0.0790176 5.62855 0.21967 5.49298C0.360322 5.35741 0.551088 5.28125 0.75 5.28125H11.25C11.4489 5.28125 11.6397 5.35741 11.7803 5.49298C11.921 5.62855 12 5.81242 12 6.00414C12 6.19586 11.921 6.37973 11.7803 6.5153C11.6397 6.65087 11.4489 6.72703 11.25 6.72703H0.75C0.551088 6.72703 0.360322 6.65087 0.21967 6.5153C0.0790176 6.37973 0 6.19586 0 6.00414Z" fill="white" />
+                             </svg>
+                        </button>
+                    </td>
+                </tr>`;
+
+        // append new row to table body
+        $("#itemTableBody").append(newRow);
+
+        // reinitialize typeaheads for new row
+        $('#txtItemDetail_' + rowCount).typeheadAutoComplete(
+            'Product_Service', 'Service', $('#hdnItemDetail_' + rowCount)
+        );
+
+        $('#txtItemDetail_' + rowCount).on('typeahead:selected', function (evt, item) {
+            // do what you want with the item here
+            setTimeout(function () {
+                $("#txtDescription_" + rowCount).val(item.Product_Desc);
+                $("#txtHSNCode_" + rowCount).val(item.Product_HSNCode);
+                $("#txtRate_" + rowCount).val(item.Selling_Price);
+                $("#hdnItemType_" + rowCount).val(item.Code);
+                $("#hdnItemDetail_" + rowCount).val(item.ID);
+            }, 400);
+
+        })
+
+        $('#txtTaxCode_' + rowCount).typeheadAutoComplete(
+            'CORE.mst_Tax', 'Tax', $('#hdnTaxID_' + rowCount)
+        );
+
+        $('#txtTaxCode_' + rowCount).on('typeahead:selected', function (evt, item) {
+            // do what you want with the item here
+            setTimeout(function () {
+                debugger
+                $("#hdnTaxValue_" + rowCount).val(item.Selling_Price);
+                $("#hdnTaxFactor_" + rowCount).val(item.Code);
+                updateTotals();
+            }, 400);
+
+        })
+    });
+
+    // also update first row IDs on document ready
+    $(document).ready(function () {
+        // rename first row fields to have _1 suffix for consistency
+        $("#itemlist").attr("id", "itemlist_1").addClass("item-row");
+        $("#txtItemDetail").attr({ id: "txtItemDetail_1", name: "txtItemDetail_1" });
+        $("#hdnItemDetail").attr({ id: "hdnItemDetail_1", name: "hdnItemDetail_1" });
+        $("#hdnItemType").attr({ id: "hdnItemType_1", name: "hdnItemType_1" });
+        $("#txtDescription").attr({ id: "txtDescription_1", name: "txtDescription_1" });
+        $("#txtHSNCode").attr({ id: "txtHSNCode_1", name: "txtHSNCode_1" });
+        $("#txtQuantity").attr({ id: "txtQuantity_1", name: "txtQuantity_1" });
+        $("#txtRate").attr({ id: "txtRate_1", name: "txtRate_1" });
+        $("#txtTaxCode").attr({ id: "txtTaxCode_1", name: "txtTaxCode_1" });
+        $("#hdnTaxID").attr({ id: "hdnTaxID_1", name: "hdnTaxID_1" });
+        $("#txtAmount").attr({ id: "txtAmount_1", name: "txtAmount_1" });
+
+        // reinitialize typeaheads for first row with new IDs
+        $('#txtItemDetail_1').typeheadAutoComplete(
+            'Product_Service',
+            'Service',
+            $('#hdnItemDetail_1')
+        );
+
+        $('#txtItemDetail_1').on('typeahead:selected', function (evt, item) {
+            // do what you want with the item here
+            setTimeout(function () {
+                $("#txtDescription_1").val(item.Product_Desc);
+                $("#txtHSNCode_1").val(item.Product_HSNCode);
+                $("#txtRate_1").val(item.Selling_Price);
+                $("#hdnItemType_1").val(item.Code);
+            }, 400);
+
+        })
+        $('#txtTaxCode_1').typeheadAutoComplete(
+            'CORE.mst_Tax',
+            'Tax',
+            $('#hdnTaxID_1')
+        );
+        $('#txtTaxCode_1').on('typeahead:selected', function (evt, item) {
+            // do what you want with the item here
+            setTimeout(function () {
+                $("#hdnTaxValue_1").val(item.Selling_Price);
+                $("#hdnTaxFactor_1").val(item.Code);
+                updateTotals();
+            }, 400);
+
+        })
+    });
+
+    // remove row — delegated event
+    $(document).on("click", ".btnRemoveRow", function () {
+        // keep at least 1 row
+        if ($(".item-row").length > 1) {
+            $(this).closest("tr").remove();
+        } else {
+            alert("At least one item row is required.");
+        }
+    });
+
+    // helper to collect all rows data when saving
+    function getAllItemRows() {
+        var items = [];
+        $(".item-row").each(function () {
+            var suffix = $(this).attr("id").split("_")[1];
+            items.push({
+                ItemId: $("#hdnItemDetail_" + suffix).val(),
+                Description: $("#txtDescription_" + suffix).val(),
+                HSNCode: $("#txtHSNCode_" + suffix).val(),
+                Quantity: $("#txtQuantity_" + suffix).val(),
+                Rate: $("#txtRate_" + suffix).val(),
+                DiscountValue: $("#txtDiscount_" + suffix).val(),
+                DiscountType: $('#ddlDiscountType_' + suffix).val(),   
+                TaxID: $("#hdnTaxID_" + suffix).val(),
+                Amount: $("#txtAmount_" + suffix).val()
+            });
+        });
+        return items;
+    }
+
+</script>

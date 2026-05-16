@@ -1,0 +1,245 @@
+@{
+    ViewBag.Title = "RevalueAccounts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html lang="en">
+<head>
+    <link href="../assets/css/adjustment.css" rel="stylesheet">
+</head>
+<body class="bg-sky-light">
+
+    @Html.Partial("~/Views/Shared/_PartialHeader.cshtml")
+
+    <div class="container">
+        <div class="row">
+            <main class="main-body">
+                <div class="main-body-wrapper">
+                    <div class="collapsebody bg-f8f8f8 collapse show group-lookuptab" id="">
+                        <div class="collapsewrap card bx-shadow ">
+                            <div class="collapseheader ps-0 pe-0 me-0">
+                                <div class="top_content">
+                                    <h1 class="heading">Revalue Accounts</h1>
+                                </div>
+                                <div class="row pt-3 g-3">
+                                    <div class="col">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="" value="05-2013" placeholder="Please enter last name">
+                                            <label for="teamName">Period</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control datepicker" name="fiscaldate" placeholder="Fiscal Year End Date">
+                                            <label for="floatingSelect">Currency Effective Date</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating" id="the-basics-agents">
+                                            <input class="form-select typeahead offline-agent"
+                                                   type="text" placeholder="GBP">
+                                            <label for="floatingSelect">Currency</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating" id="the-basics-agents">
+                                            <input class="form-select typeahead offline-agent"
+                                                   type="text" placeholder="Revaluation 05-2023 GBP">
+                                            <label for="floatingSelect">Description</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-action-section justify-content-end pb-4">
+                                    <a href="@Url.Action("RevalueJournalTransaction","Adjustment")" class="action-btn bg-action-light active">Revalue</a>
+                                </div>
+                                <div id="" class="new-estimate-table revalue_acount_container ps-3 pe-3 bg-white">
+                                    <div id="" class="dataTables_wrapper">
+                                        <table class="display customize-table-style dataTable" id="productservice" role="grid"
+                                               aria-describedby="basic-14_info">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th class="d-flex align-items-center">
+                                                        <div class="inputlabel d-flex align-items-center me-2">
+                                                            <input class="form-check-input mt-0" type="checkbox" value="" id="expense" checked>
+                                                        </div>Account
+                                                    </th>
+                                                    <th>Description</th>
+                                                    <th>Vendor Code</th>
+                                                    <th>Vendor Name</th>
+                                                    <th>Currency Rate Type</th>
+                                                    <th>Currency Rate</th>
+                                                    <th>Foreign Currency Balance</th>
+                                                    <th>Orignal Balance</th>
+                                                    <th>Revalued Balance</th>
+                                                    <th>Difference</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr role="row">
+                                                    <td class="d-flex align-items-center">
+                                                        <div class="inputlabel d-flex align-items-center me-2">
+                                                            <input class="form-check-input mt-0" type="checkbox" value="" id="expensedate1" checked>
+                                                        </div>
+                                                        20000
+                                                    </td>
+                                                    <td>Account Payable</td>
+                                                    <td>VC-01</td>
+                                                    <td>Advertising</td>
+                                                    <td>SPOT</td>
+                                                    <td>1.505800</td>
+                                                    <td>174.00</td>
+                                                    <td>262.48</td>
+                                                    <td>262.01</td>
+                                                    <td>-0.47</td>
+                                                </tr>
+                                                <tr role="row">
+                                                    <td class="d-flex align-items-center">
+                                                        <div class="inputlabel d-flex align-items-center me-2">
+                                                            <input class="form-check-input mt-0" type="checkbox" value="" id="expensedate1" checked>
+                                                        </div>
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control py-1" placeholder="" aria-label="Search" aria-describedby="addon-wrapping">
+                                                        </div>
+                                                    </td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+
+
+
+    <script>
+  $(document).ready(function() {
+   $('.input-edit').click(function (){
+    $(this).parent().find('.customer-name-control, .typeahead').toggleClass('edit-form');
+   });
+  });
+  $(document).ready(function () {
+      var substringMatcher = function (strs) {
+          return function findMatches(q, cb) {
+              var matches, substringRegex;
+              matches = [];
+              substrRegex = new RegExp(q, 'i');
+              $.each(strs, function (i, str) {
+                  if (substrRegex.test(str)) {
+                      matches.push(str);
+                  }
+              });
+
+              cb(matches);
+          };
+      };
+
+      var agents = ['Nicole Prejean', 'David', 'Smith', 'WEI MIAO', 'laili',
+          'Onsri', 'Wan Yun', 'Enyu', 'Rio Rica', 'Sanjay', 'Priscilla Jia', 'John Smith',
+          'Redha Nuruinda', 'Mylon Jan', 'Ma Lothel', 'Raufa', 'Areanne Glee', 'Mary Jasmine',
+
+      ];
+
+      $('#the-basics-agents .typeahead').typeahead({
+          hint: true,
+          highlight: true,
+          minLength: 1
+      },
+          {
+              name: 'states',
+              source: substringMatcher(agents)
+          });
+  });
+
+
+
+
+    </script>
+
+    <script>
+$(function() {
+  $('input[name="fiscaldate"]').daterangepicker({
+    singleDatePicker: true,
+    showDropdowns: true,
+    minYear: 1901,
+    maxYear: parseInt(moment().format('YYYY'),10)
+  }, function(start, end, label) {
+    var years = moment().diff(start, 'years');
+  });
+});
+
+$(function() {
+            $('input[name="daterange"]').daterangepicker(
+                {
+                    ssingleDatePicker: 'true',
+                    showShortcuts: 'false',
+                    showTopbar: 'false'
+                }
+            );
+        });
+
+
+        $('#datatable1').DataTable({
+                "columnDefs": [
+                    {
+                        "targets": -1,
+                        "orderable": false
+                    }
+                ],
+                language: {
+                    search: "_INPUT_",
+                    searchPlaceholder: "Search..."
+                },
+                fixedHeader: {
+                    header: true,
+                },
+                "dom": '<"top"<"toolbar">tf<"clear">>rt<"bottom"lip<"clear">>'
+            });
+
+
+
+
+    </script>
+
+    <script>
+ $(".form-switch").click(function () {
+    if ($(this).parent().hasClass("yes")) {
+      $(this).parent().removeClass("yes");
+      $(this).parent().addClass("no");
+    } else {
+      $(this).parent().removeClass("no");
+      $(this).parent().addClass("yes");
+    }
+  });
+    </script>
+    <script>
+  $(document).ready(function () {
+      $('#productservice').DataTable({
+          pagingType: 'full_numbers',
+      });
+
+      $('#framework').multiselect({
+        nonSelectedText: 'Select Framework',
+        enableFiltering: true,
+        enableCaseInsensitiveFiltering: true,
+        buttonWidth:'400px'
+      });
+  });
+    </script>
+</body>
+</html>

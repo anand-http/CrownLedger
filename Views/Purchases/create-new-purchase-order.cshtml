@@ -1,0 +1,354 @@
+
+@{
+    ViewBag.Title = "create-new-purchase-order";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html lang="en">
+<head>
+    <link href="../assets/css/vendor.css" rel="stylesheet">
+</head>
+<body class="bg-sky-light">
+
+    @Html.Partial("~/Views/Shared/_PartialHeader.cshtml")
+
+    <div class="container">
+        <div class="row">
+            <main class="main-body">
+                <div class="main-body-wrapper">
+                    <div class="collapsebody bg-f8f8f8 collapse show group-lookuptab" id="">
+                        <div class="collapsewrap card bx-shadow ">
+                            <div class="collapseheader ps-0 pe-0 me-0">
+
+                                <div class="top_content">
+                                    <h1 class="heading">Create New Purchase Order</h1>
+                                    <span class="sub-heading">Create Purchase Order for the items to be bought for your business.</span>
+                                </div>
+
+                                <div class="row pt-3 g-3">
+                                    <div class="col">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-select typeahead offline-agent" id="txtVendorName" value="" placeholder="">
+                                            <input type="hidden" id="hdnVendorId" value="">
+                                            <label for="VendorName">Vendor Name*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="purchaseOrderNumber" value="SO-001" placeholder="Please enter last name">
+                                            <label for="PurchaseOrderNumber">Purchase Order Number*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control datepicker" name="fiscaldate" placeholder="Fiscal Year Start Date" id="purchaseOrderDate">
+                                            <label for="PurchaseOrderDate">Purchase Order Date*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="reference" value="14587" placeholder="">
+                                            <label for="reference">Reference</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating">
+                                            <input type="text" class="customer-name-control form-control" id="deliveryAddress" value="746, JMD Megapolis, 122001, Gurugram" placeholder="">
+                                            <label for="DeliveryAddress">Delivery Address</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-3">
+                                    <div class="col">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-select typeahead offline-agent" id="txtCurrency" value="" placeholder="">
+                                            <input type="hidden" id="hdnCurrencyId" value="">
+                                            <label for="Currency">Currency</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating input-edit">
+                                            <input type="text" class="form-control customer-name-control edit-form" id="paymentTerms" value="Pay on delivery" placeholder="">
+                                            <label for="paymentTerms">Payment Terms</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control datepicker" id="expectedDeliveryDate" name="fiscaldate" placeholder="">
+                                            <label for="ExpectedDeliveryDate">Expected Delivery Date</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating">
+                                            <input class="form-select typeahead offline-agent"
+                                                   type="text" placeholder="" id="txtBranch">
+                                            <input type="hidden" id="hdnBranchId" value="">
+                                            <label for="Branch">Branch</label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                @Html.Partial("~/Views/Shared/_PartialPurchaseItemDetail.cshtml")
+                                <div class="form-action-section new-estimate-button pt-4">
+                                    <div class="upload form-floating  d-flex align-items-center">
+                                        <span>Upload</span><input type="file">
+                                    </div>
+                                    <a href="javascript:void(0);" class="action-btn bg-action-light active">Save as Draft</a>
+                                    <a href="javascript:void(0);" class="action-btn bg-action-light">Mark as Issued</a>
+                                    <div class="dropdown">
+                                        <a class="form-select dropdown-toggle text-decoration-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <span class="">Save</span>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="javascript:void(0)">Save and  Approve</a></li>
+                                            <li><a class="dropdown-item" href="javascript:void(0)" onclick="CreateNewPurchaseOrder(this)" data-status="SS">Save and Submit</a></li>
+                                        </ul>
+                                    </div>
+                                    <a href="javascript:void(0);" class="action-btn bg-action-light">Cancel</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modal -->
+
+
+    <script>
+    //Typehead
+
+    $('#txtVendorName').typeheadAutoComplete('Partner.mst_Partner', 'Partner', $('#hdnVendorId'));
+    $('#txtBranch').typeheadAutoComplete('CORE.mst_Branch', 'Branch', $('#hdnBranchId'));
+    $('#txtCurrency').typeheadAutoComplete('[Core].[mst_Currency]', 'Curncy', $('#hdnCurrencyId'));
+
+
+     function CreateNewPurchaseOrder(el) {
+     const vendorId = $('#hdnVendorId').val();
+     if (!vendorId) {
+         Swal.fire({
+             icon: 'error',
+             title: 'Oops..',
+             text: 'Please select a vendor',
+             timer: 5000,
+             confirmButtonColor: '#d33'
+         });
+         return;
+     }
+
+         let orderDate = $('#purchaseOrderDate').val();
+         let expDeliveryDate = $('#expectedDeliveryDate').val();
+
+         // convert to yyyy-MM-dd
+         var formattedOrderDate = orderDate ? new Date(orderDate).toISOString() : null;
+         var formattedExpDate = expDeliveryDate ? new Date(expDeliveryDate).toISOString() : null;
+
+         const headerData = {
+         VendorId: parseInt(vendorId),
+         ReferenceNumber: $('#reference').val(),
+         PurchaseOrderDate: formattedOrderDate,
+         DeliveryAddress: $('#deliveryAddress').val(),
+         CurrencyId: $('#hdnCurrencyId').val(),
+         Payment_Term1: 0,
+         Payment_Term2: $('#paymentTerms').val(),
+         ExpectedDeliveryDate: formattedExpDate,
+         BranchId: $('#hdnBranchId').val(),
+         SubTotal: $("#lblSubTotal").text().replace("$", "").trim(),
+         Tax_Value: parseFloat($('#txtTaxValue').val()) || 0,
+         TotalAmount: parseFloat($('#lblTotal').text().replace(/[^\d.-]/g, '')) || 0,
+         Discount: $('#txtDiscount').val() || 0,
+         OtherAdjustment: parseFloat($('#txtOtherAdjustment').val()) || 0,
+         Status: $(el).data('status'),
+         POStatus: "",
+         BillingStatus: "",
+         Comments: $('#txtComments').val(),
+         TermsAndConditions: $('#txtTermsConditions').val(),
+     };
+
+         const items = getAllItemRowsFn();
+
+     if (items.length === 0) {
+         Swal.fire({
+             icon: 'error',
+             title: 'Oops...',
+             text: 'Please add at least one item',
+             confirmButtonColor: '#d33'
+         });
+         return;
+     }
+
+     for (let i = 0; i < items.length; i++) {
+         if (!items[i].ItemId || parseFloat(items[i].ItemId) <= 0) {
+             Swal.fire({
+                 icon: 'error',
+                 title: 'Oops...',
+                 text: 'ItemId is required',
+                 confirmButtonColor: '#d33'
+             });
+             return;
+         }
+     }
+     const payload = {
+         ...headerData,
+         Items: items
+     };
+
+     $.ajax({
+         type: 'POST',
+         url: '@Url.Action("SavePurchaseOrder", "Purchases")',
+         contentType: 'application/json',
+         data: JSON.stringify(payload),
+         success: function (response) {
+             if (response.status) {
+                 Swal.fire({
+                     icon: 'success',
+                     title: 'Success',
+                     text: 'Purchase Order saved successfully',
+                     timer: 5000,
+                     confirmButtonColor: '#3085d6'
+                 }).then((result) => {
+                     window.location.href = '/Purchases/PurchaseOrderHistory';
+                 });
+             } else {
+                 Swal.fire({
+                     icon: 'error',
+                     title: 'Error',
+                     text: response.message || 'Failed to save',
+                     confirmButtonColor: '#d33'
+                 });
+             }
+         },
+         error: function (error) {
+             console.error('Error:', error);
+             Swal.fire({
+                 icon: 'error',
+                 title: 'Oops...',
+                 text: 'An error occurred while saving the Purchase Order',
+                 confirmButtonColor: '#d33'
+             });
+         }
+     });
+ }
+
+    </script>
+
+
+    <!-- privious code -->
+
+    <script>
+  $(document).ready(function() {
+   $('.input-edit').click(function (){
+    $(this).parent().find('.customer-name-control, .typeahead').toggleClass('edit-form');
+   });
+  });
+  $(document).ready(function () {
+      var substringMatcher = function (strs) {
+          return function findMatches(q, cb) {
+              var matches, substringRegex;
+              matches = [];
+              substrRegex = new RegExp(q, 'i');
+              $.each(strs, function (i, str) {
+                  if (substrRegex.test(str)) {
+                      matches.push(str);
+                  }
+              });
+
+              cb(matches);
+          };
+      };
+
+      var agents = ['Nicole Prejean', 'David', 'Smith', 'WEI MIAO', 'laili',
+          'Onsri', 'Wan Yun', 'Enyu', 'Rio Rica', 'Sanjay', 'Priscilla Jia', 'John Smith',
+          'Redha Nuruinda', 'Mylon Jan', 'Ma Lothel', 'Raufa', 'Areanne Glee', 'Mary Jasmine',
+
+      ];
+
+      $('#the-basics-agents .typeahead').typeahead({
+          hint: true,
+          highlight: true,
+          minLength: 1
+      },
+          {
+              name: 'states',
+              source: substringMatcher(agents)
+          });
+  });
+
+
+
+
+    </script>
+
+    <script>
+$(function() {
+  $('input[name="fiscaldate"]').daterangepicker({
+    singleDatePicker: true,
+    showDropdowns: true,
+    minYear: 1901,
+    maxYear: parseInt(moment().format('YYYY'),10)
+  }, function(start, end, label) {
+    var years = moment().diff(start, 'years');
+  });
+});
+
+$(function() {
+            $('input[name="daterange"]').daterangepicker(
+                {
+                    ssingleDatePicker: 'true',
+                    showShortcuts: 'false',
+                    showTopbar: 'false'
+                }
+            );
+        });
+
+
+        $('#datatable1').DataTable({
+                "columnDefs": [
+                    {
+                        "targets": -1,
+                        "orderable": false
+                    }
+                ],
+                language: {
+                    search: "_INPUT_",
+                    searchPlaceholder: "Search..."
+                },
+                fixedHeader: {
+                    header: true,
+                },
+                "dom": '<"top"<"toolbar">tf<"clear">>rt<"bottom"lip<"clear">>'
+            });
+
+
+
+
+    </script>
+
+    <script>
+ $(".form-switch").click(function () {
+    if ($(this).parent().hasClass("yes")) {
+      $(this).parent().removeClass("yes");
+      $(this).parent().addClass("no");
+    } else {
+      $(this).parent().removeClass("no");
+      $(this).parent().addClass("yes");
+    }
+  });
+    </script>
+    <script>
+  //$(document).ready(function () {
+  //    $('#productservice').DataTable({
+  //        pagingType: 'full_numbers',
+  //    });
+
+  //    $('#framework').multiselect({
+  //      nonSelectedText: 'Select Framework',
+  //      enableFiltering: true,
+  //      enableCaseInsensitiveFiltering: true,
+  //      buttonWidth:'400px'
+  //    });
+  //});
+    </script>
+</body>
+</html>

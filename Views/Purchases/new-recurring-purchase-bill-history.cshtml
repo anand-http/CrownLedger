@@ -1,0 +1,332 @@
+
+@{
+    ViewBag.Title = "new-recurring-purchase-bill-history";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html lang="en">
+<body class="bg-sky-light">
+
+    @Html.Partial("~/Views/Shared/_PartialHeader.cshtml")
+
+    <div class="container">
+        <div class="row">
+            <main class="main-body">
+                <div class="main-body-wrapper">
+                    <div class="collapsebody bg-f8f8f8 collapse show group-lookuptab" id="">
+                        <div class="collapsewrap card bx-shadow ">
+                            <div class="collapseheader ps-0 pe-0 me-0">
+
+
+                                <div class="top_content">
+                                    <h1 class="heading">Create New Recurring  Purchase Bill</h1>
+                                    <span class="sub-heading d-none">Create, view, and manage recurring invoices.</span>
+                                </div>
+
+                                <div class="row pt-3 g-3">
+                                    <div class="col">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-select typeahead offline-agent" id="txtVendorName" value="" placeholder="">
+                                            <input type="hidden" id="hdnVendorId" value="">
+                                            <label for="VendorName">Vendor Name*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" id="" value="SCN-01" placeholder="">
+                                            <label for="teamName">Bill Number</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating">
+                                            <select class="form-select" id="frequency" aria-label="Floating label select example">
+                                                <option value="" selected>Select Frequency</option>
+                                                <option value="D">Daily</option>
+                                                <option value="W">Weekly</option>
+                                                <option value="M">Monthly</option>
+                                                <option value="Q">Quarterly</option>
+                                            </select>
+                                            <label for="frequency">Frequency</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control datepicker" name="fiscaldate" placeholder="Fiscal Year Start Date" id="startDate">
+                                            <label for="StartDate">Start Date </label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control datepicker" name="fiscaldate" placeholder="Fiscal Year Start Date" id="endDate">
+                                            <label for="EndDate">End Date</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-3">
+                                    <div class="col">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-select typeahead offline-agent" id="txtCurrency" value="" placeholder="">
+                                            <input type="hidden" id="hdnCurrencyId" value="">
+                                            <label for="Currency">Currency</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating mb-3 input-edit">
+                                            <input type="text" class="customer-name-control edit-form form-control" id="paymentTerms" value="Due on Receipt" placeholder="">
+                                            <label for="teamName">Payment Terms</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating">
+                                            <input class="form-select typeahead offline-agent"
+                                                   type="text" placeholder="" id="txtBranch">
+                                            <input type="hidden" id="hdnBranchId" value="">
+                                            <label for="Branch">Branch</label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                @Html.Partial("~/Views/Shared/_PartialPurchaseItemDetail.cshtml")
+                                <div class="form-action-section new-estimate-button pt-4">
+                                    <div class="upload form-floating  d-flex align-items-center">
+                                        <span>Upload</span><input type="file">
+                                    </div>
+                                    <a href="javascript:void(0);" class="action-btn bg-action-light active" onclick="CreateNewRecurPurchaseBillHistory(this)" data-status="S">Save</a>
+                                    <a href="javascript:void(0);" class="action-btn bg-action-light active">Save and New</a>
+                                    <a href="javascript:void(0);" class="action-btn bg-action-light">Cancel</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modal -->
+
+
+    <script>
+
+
+
+    //Typehead
+    $('#txtVendorName').typeheadAutoComplete('Partner.mst_Partner', 'Partner', $('#hdnVendorId'));
+    $('#txtBranch').typeheadAutoComplete('CORE.mst_Branch', 'Branch', $('#hdnBranchId'));
+    $('#txtCurrency').typeheadAutoComplete('[Core].[mst_Currency]', 'Curncy', $('#hdnCurrencyId'));
+
+
+
+     //function to save the vendor credit
+     function CreateNewRecurPurchaseBillHistory(el) {
+     debugger;
+     const vendorId = $('#hdnVendorId').val();
+     if (!vendorId) {
+         Swal.fire({
+             icon: 'error',
+             title: 'Oops..',
+             text: 'Please select a vendor',
+             timer: 5000,
+             confirmButtonColor: '#d33'
+         });
+         return;
+    }
+       //format date
+       let sDate = $('#startDate').val();
+       let eDate = $('#endDate').val();
+
+       // convert to yyyy-MM-dd
+         var formattedStartDate = new Date(sDate).toISOString();
+         var formattedEndDate = new Date(eDate).toISOString();
+
+         const headerData = {
+         VendorId: parseInt(vendorId),
+         Frequency: $('#frequency').val(),
+         StartDate: formattedStartDate,
+         EndDate: formattedEndDate,
+         Payment_Term1: 0,
+         Payment_Term2: $('#paymentTerms').val(), 
+         CurrencyId: $('#hdnCurrencyId').val(),
+         BranchId: $('#hdnBranchId').val(),
+         SubTotal: $("#lblSubTotal").text().replace("$", "").trim(),
+         Discount: $('#txtDiscount').val() || 0,
+         OtherAdjustment: parseFloat($('#txtOtherAdjustment').val()) || 0,
+         Tax_Value: parseFloat($('txtTax').val())|| 0,
+         Amount: parseFloat($('#lblTotal').text().replace(/[^\d.-]/g, '')) || 0,
+         Status: $(el).data('status'),
+         Comments: $('#txtComments').val(),
+         TermsAndConditions: $('#txtTermsConditions').val(),
+     };
+
+     const items = getAllItemRowsFn();
+
+     if (items.length === 0) {
+         alert('Please add at least one item');
+         Swal.fire({
+             icon: 'error',
+             title: 'Error',
+             text: 'Please add at least one item',
+             confirmButtonColor: '#d33'
+         });
+         return;
+     }
+
+     for (let i = 0; i < items.length; i++) {
+         if (!items[i].ItemId || parseFloat(items[i].ItemId) <= 0) {
+             Swal.fire({
+                 icon: 'error',
+                 title: 'Error',
+                 text: 'ItemId is required',
+                 confirmButtonColor: '#d33'
+             });
+             return;
+         }
+     }
+     const payload = {
+         ...headerData,
+         Items: items
+     };
+
+    $.ajax({
+    type: 'POST',
+    url: '@Url.Action("SavePurchaseRecurringBills", "Purchases")',
+    contentType: 'application/json',
+    data: JSON.stringify(payload),
+    success: function (response) {
+        if (response.status) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: 'Recurring Bills saved successfully',
+                timer:5000,
+                confirmButtonColor: '#3085d6'
+            }).then((result) => {
+                  window.location.href = '/Purchases/RecurringBillsHistory';
+            });
+
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: response.message || 'Failed to save',
+                confirmButtonColor: '#d33'
+            });
+        }
+    },
+    error: function (error) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'An error occurred while saving the Vendor Credit',
+            confirmButtonColor: '#d33'
+        });
+    }
+   });
+ }
+
+
+
+ //previous code
+
+  $(document).ready(function() {
+   $('.input-edit').click(function (){
+    $(this).parent().find('.customer-name-control').toggleClass('edit-form');
+   });
+  });
+  $(document).ready(function () {
+      var substringMatcher = function (strs) {
+          return function findMatches(q, cb) {
+              var matches, substringRegex;
+              matches = [];
+              substrRegex = new RegExp(q, 'i');
+              $.each(strs, function (i, str) {
+                  if (substrRegex.test(str)) {
+                      matches.push(str);
+                  }
+              });
+
+              cb(matches);
+          };
+      };
+
+      var agents = ['Nicole Prejean', 'David', 'Smith', 'WEI MIAO', 'laili',
+          'Onsri', 'Wan Yun', 'Enyu', 'Rio Rica', 'Sanjay', 'Priscilla Jia', 'John Smith',
+          'Redha Nuruinda', 'Mylon Jan', 'Ma Lothel', 'Raufa', 'Areanne Glee', 'Mary Jasmine',
+      ];
+
+      $('#the-basics-agents .typeahead').typeahead({
+          hint: true,
+          highlight: true,
+          minLength: 1
+      },
+          {
+              name: 'states',
+              source: substringMatcher(agents)
+          });
+  });
+
+
+$(function() {
+  $('input[name="fiscaldate"]').daterangepicker({
+    singleDatePicker: true,
+    showDropdowns: true,
+    minYear: 1901,
+    maxYear: parseInt(moment().format('YYYY'),10)
+  }, function(start, end, label) {
+    var years = moment().diff(start, 'years');
+  });
+});
+
+$(function() {
+            $('input[name="daterange"]').daterangepicker(
+                {
+                    ssingleDatePicker: 'true',
+                    showShortcuts: 'false',
+                    showTopbar: 'false'
+                }
+            );
+        });
+
+
+        $('#datatable1').DataTable({
+                "columnDefs": [
+                    {
+                        "targets": -1,
+                        "orderable": false
+                    }
+                ],
+                language: {
+                    search: "_INPUT_",
+                    searchPlaceholder: "Search..."
+                },
+                fixedHeader: {
+                    header: true,
+                },
+                "dom": '<"top"<"toolbar">tf<"clear">>rt<"bottom"lip<"clear">>'
+            });
+
+
+ $(".form-switch").click(function () {
+    if ($(this).parent().hasClass("yes")) {
+      $(this).parent().removeClass("yes");
+      $(this).parent().addClass("no");
+    } else {
+      $(this).parent().removeClass("no");
+      $(this).parent().addClass("yes");
+    }
+  });
+
+  $(document).ready(function () {
+      $('#productservice').DataTable({
+          pagingType: 'full_numbers',
+      });
+
+      $('#framework').multiselect({
+        nonSelectedText: 'Select Framework',
+        enableFiltering: true,
+        enableCaseInsensitiveFiltering: true,
+        buttonWidth:'400px'
+      });
+  });
+    </script>
+</body>
+</html>

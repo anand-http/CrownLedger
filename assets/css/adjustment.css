@@ -1,0 +1,41 @@
+.sub-ledger-container{
+    position: relative;
+}
+.sub-ledger-content{
+    position: absolute;
+    top: -14px;
+    left: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 1px solid var(--theme-border-light-clr);
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 14px;
+    padding-top:3px;
+    padding-bottom: 3px;
+}
+.revalue_acount_container{
+    overflow-x: auto;
+    min-height: 300px;
+    max-height: 300px;
+} 
+.revalue_acount_container .dataTables_wrapper .dataTable{
+ min-width: 1600px;
+}
+.disabled_div{
+    border-radius: 5px;
+    background: #F7F8F9!important;
+    pointer-events: none;
+}
+.prfit_trnsfer_container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.new_journl_container table tr td{
+    width: 150px;
+}
+.revalue_acount_container table tr td .input-group{
+    width: 150px;
+}

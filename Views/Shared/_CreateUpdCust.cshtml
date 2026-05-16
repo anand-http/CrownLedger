@@ -1,0 +1,496 @@
+﻿@model fintech.CustomerFullResult
+
+<div class="modal fade" id="CreateCustomermodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+                    @using (Html.BeginForm("CreateCustomer", "Sales", FormMethod.Post, new { id = "customerForm" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">@(-1 > 0 ? "Update Customer" : "Create a New Customer")</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body " style="background:#fff;">
+                            <input type="hidden" id="Client_ID" value="">
+                            <input type="hidden" id="Client_Status" value="">
+                            <input type="hidden" id="hdnAmtOutstng" value="">
+                            <input type="hidden" id="hdnUnusedCredit" value="">
+                            <input type="hidden" id="hdnEntityId" value="@Session["Entity_ID"]">
+
+                            @*@Html.HiddenFor(m => m.Client_ID)
+                            @Html.HiddenFor(m => m.Client_Status)
+                            @Html.HiddenFor(m => m.AmountOutstanding)
+                            @Html.HiddenFor(m => m.UnusedCredit)*@
+                            <div class="row g-3">
+                                <div class="form-container">
+                                    <div class="modal-sub-heading mb-3">
+                                        General Details
+                                    </div>
+                                    <div class="row g-3">
+                                        <div class="col-md-3">
+                                            <div class="form-floating">
+                                                <input type="text" class="form-control" id="txtBusinessName" value="Company or Person" placeholder="Company or Person">
+                                                <label for="teamName">Business Name*</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 d-none">
+                                            <div class="form-floating">
+                                                <input type="email" class="form-control" value="BHUT584" id="txtCode">
+                                                <label for="teamName">Code</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-floating">
+                                                <input type="text" class="form-control" value="contact@sriggle.tech" id="txtEmail">
+                                                <label for="text">Email</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-floating">
+                                                <input type="text" class="form-control" value="+91 9874561230" id="txtTelephone">
+                                                <label for="text">Telephone*</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-floating">
+                                                <input type="text" class="form-control" value="www.sriggle.tech" placeholder="website" id="txtWebsite">
+                                                <label for="text">Website</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-floating" id="the-basics-agents">
+                                                <input class="form-select offline-agent" type="text" placeholder="" id="txtCountry">
+                                                <label for="floatingSelect">Country</label>
+                                                <input type="hidden" id="hdnCountryID" value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-floating" id="the-basics-agents">
+                                                <input class="form-select  offline-agent"
+                                                       type="text" placeholder="Unselected" id="txtState">
+                                                <label for="floatingSelect">State</label>
+                                                <input type="hidden" id="hdnStateID" value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-floating" id="the-basics-agents">
+                                                <input class="form-select  offline-agent" type="text" placeholder="Admin" id="txtDepartment">
+                                                <label for="floatingSelect">Department</label>
+                                                <input type="hidden" id="hdnDepartmentID" value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-floating" id="the-basics-agents">
+                                                <input class="form-select  offline-agent" type="text" placeholder="Unselected" id="txtCurrency">
+                                                <label for="floatingSelect">Default Currency</label>
+                                                <input type="hidden" id="hdnCurrencyID" value="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="tabboxcontainer">
+                                        <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link active" id="pills-address-tab" data-bs-toggle="pill" data-bs-target="#pills-address" type="button" role="tab" aria-controls="pills-address" aria-selected="true">Address</button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link" id="pills-contacts-tab" data-bs-toggle="pill" data-bs-target="#pills-contacts" type="button" role="tab" aria-controls="pills-contacts" aria-selected="false">Contacts</button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link" id="pills-other-tab" data-bs-toggle="pill" data-bs-target="#pills-other" type="button" role="tab" aria-controls="pills-other" aria-selected="false">Other Details</button>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content" id="pills-tabContent">
+                                            <div class="tab-pane fade show active" id="pills-address" role="tabpanel" aria-labelledby="pills-address-tab">
+                                                <div class="form-container p-4">
+                                                    <div class="col-md-12">
+                                                        <div class="row g-3">
+                                                            <div class="modal-sub-heading mt-3">
+                                                                Physical  Address
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-floating">
+                                                                    <input type="text" class="form-control" id="txtPAddress1" placeholder="Please enter your address">
+                                                                    <label for="teamName">Address 1 *</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-floating">
+                                                                    <input type="text" class="form-control" id="txtPAddress2" placeholder="Please enter your address">
+                                                                    <label for="teamName">Address 2 </label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div class="form-floating" id="the-basics-agents">
+                                                                    <input class="form-select  offline-agent"
+                                                                           type="text" placeholder="Unselected" id="txtPCity">
+                                                                    <label for="floatingSelect">City / Town</label>
+                                                                    <input type="hidden" id="hdnPCityID" value="">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div class="form-floating" id="the-basics-agents">
+                                                                    <input class="form-select  offline-agent"
+                                                                           type="text" placeholder="Unselected" id="txtPState">
+                                                                    <label for="floatingSelect">State</label>
+                                                                    <input type="hidden" id="hdnPStateID" value="">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div class="form-floating" id="the-basics-agents">
+                                                                    <input class="form-select  offline-agent"
+                                                                           type="text" placeholder="Unselected" id="txtPCountry">
+                                                                    <label for="floatingSelect">Country</label>
+                                                                    <input type="hidden" id="hdnPCountryID" value="">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div class="form-floating">
+                                                                    <input type="text" class="form-control" id="txtPZip" placeholder="Please enter last name">
+                                                                    <label for="teamName">Zip Code</label>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="row g-3">
+                                                            <div class="d-flex justify-content-between pt-3 align-items-center">
+                                                                <span class="modal-sub-heading">Correspondence  Address</span>
+                                                                <div class="form-check" id="sameAddress">
+                                                                    <input class="form-check-input" type="checkbox" value="">
+                                                                    <label class="form-check-label" for="billing-address">Same as Physical Address</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-floating">
+                                                                    <input type="text" class="form-control" id="txtCAddress1" placeholder="Please enter your address">
+                                                                    <label for="teamName">Address 1 *</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-floating">
+                                                                    <input type="text" class="form-control" id="txtCAddress2" placeholder="Please enter your address">
+                                                                    <label for="teamName">Address 2 </label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div class="form-floating" id="the-basics-agents">
+                                                                    <input class="form-select  offline-agent"
+                                                                           type="text" placeholder="Unselected" id="txtCCity">
+                                                                    <label for="floatingSelect">City / Town</label>
+                                                                    <input type="hidden" id="hdnCCityID" value="">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div class="form-floating" id="the-basics-agents">
+                                                                    <input class="form-select  offline-agent"
+                                                                           type="text" placeholder="Unselected" id="txtCState">
+                                                                    <label for="floatingSelect">State</label>
+                                                                    <input type="hidden" id="hdnCStateID" value="">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div class="form-floating" id="the-basics-agents">
+                                                                    <input class="form-select  offline-agent" type="text" placeholder="Unselected" id="txtCCountry">
+                                                                    <label for="floatingSelect">Country</label>
+                                                                    <input type="hidden" id="hdnCCountryID" value="">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div class="form-floating">
+                                                                    <input type="text" class="form-control" id="txtCZip" placeholder="Please enter last name">
+                                                                    <label for="teamName">Zip Code</label>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="pills-contacts" role="tabpanel" aria-labelledby="pills-contacts-tab">
+                                                <div class="form-container p-4">
+                                                    <div class="col-md-12">
+
+                                                        <div class="row">
+                                                            <div class="modal-sub-heading mt-3 mb-2">
+                                                                Contact Details
+                                                            </div>
+                                                            <div id="" class="dataTables_wrapper">
+                                                                <table class="display bg-white customize-table-style dataTable" id="contactdetails" role="grid" aria-describedby="basic-14_info">
+                                                                    <thead>
+                                                                        <tr role="row">
+                                                                            <th>Name</th>
+                                                                            <th>Department</th>
+                                                                            <th>Designation</th>
+                                                                            <th>Phone</th>
+                                                                            <th>Email</th>
+                                                                            <th>Mobile</th>
+                                                                            <th>Fax</th>
+                                                                            <th></th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="contactTableBody">
+                                                                        <tr role="row">
+                                                                            <td>
+                                                                                <div class="input-group">
+                                                                                    <input type="text" class="form-control" placeholder="" aria-label="Search" aria-describedby="addon-wrapping" id="txtClientName">
+                                                                                </div>
+                                                                            </td>
+                                                                            <td>
+                                                                                <div class="input-group">
+                                                                                    <input type="text" class="form-control" placeholder="" aria-label="Search" aria-describedby="addon-wrapping" id="txtDepart">
+                                                                                    <input type="hidden" id="hdnDepartID" value="">
+                                                                                </div>
+                                                                            </td>
+                                                                            <td>
+                                                                                <div class="input-group">
+                                                                                    <input type="text" class="form-control" placeholder="" aria-label="Search" aria-describedby="addon-wrapping" id="txtDesignation">
+                                                                                </div>
+                                                                            </td>
+                                                                            <td>
+                                                                                <div class="input-group">
+                                                                                    <input type="text" class="form-control" placeholder="" aria-label="Search" aria-describedby="addon-wrapping" id="txtTelephone">
+                                                                                </div>
+                                                                            </td>
+                                                                            <td>
+                                                                                <div class="input-group">
+                                                                                    <input type="text" class="form-control" placeholder="" aria-label="Search" aria-describedby="addon-wrapping" id="txtEmail">
+                                                                                </div>
+                                                                            </td>
+                                                                            <td>
+                                                                                <div class="input-group">
+                                                                                    <input type="text" class="form-control" placeholder="" aria-label="Search" aria-describedby="addon-wrapping" id="txtMobile">
+                                                                                </div>
+                                                                            </td>
+                                                                            <td>
+                                                                                <div class="input-group">
+                                                                                    <input type="text" class="form-control" placeholder="" aria-label="Search" aria-describedby="addon-wrapping" id="txtFax">
+                                                                                </div>
+                                                                            </td>
+                                                                            <td>
+                                                                                <div class="input-group ">
+                                                                                    <div class="d-flex align-items-center">
+                                                                                        <span class="minus-icon">
+                                                                                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                <path id="Vector" fill-rule="evenodd" clip-rule="evenodd" d="M0 6.00414C0 5.81242 0.0790176 5.62855 0.21967 5.49298C0.360322 5.35741 0.551088 5.28125 0.75 5.28125H11.25C11.4489 5.28125 11.6397 5.35741 11.7803 5.49298C11.921 5.62855 12 5.81242 12 6.00414C12 6.19586 11.921 6.37973 11.7803 6.5153C11.6397 6.65087 11.4489 6.72703 11.25 6.72703H0.75C0.551088 6.72703 0.360322 6.65087 0.21967 6.5153C0.0790176 6.37973 0 6.19586 0 6.00414Z" fill="white" />
+                                                                                            </svg>
+
+                                                                                        </span>
+                                                                                        <span class="icon cursor-pointer">
+                                                                                            <svg width="26" height="24" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                <ellipse cx="12.5294" cy="12" rx="12.5294" ry="12" fill="#043376"></ellipse>
+                                                                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7578 6.75C11.7578 6.55109 11.8373 6.36032 11.9789 6.21967C12.1204 6.07902 12.3124 6 12.5126 6C12.7128 6 12.9048 6.07902 13.0463 6.21967C13.1879 6.36032 13.2674 6.55109 13.2674 6.75V17.25C13.2674 17.4489 13.1879 17.6397 13.0463 17.7803C12.9048 17.921 12.7128 18 12.5126 18C12.3124 18 12.1204 17.921 11.9789 17.7803C11.8373 17.6397 11.7578 17.4489 11.7578 17.25V6.75Z" fill="white"></path>
+                                                                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M6.25781 12.0002C6.25781 11.8085 6.34032 11.6246 6.48717 11.4891C6.63403 11.3535 6.83321 11.2773 7.0409 11.2773H18.0041C18.2118 11.2773 18.411 11.3535 18.5579 11.4891C18.7047 11.6246 18.7872 11.8085 18.7872 12.0002C18.7872 12.192 18.7047 12.3758 18.5579 12.5114C18.411 12.647 18.2118 12.7231 18.0041 12.7231H7.0409C6.83321 12.7231 6.63403 12.647 6.48717 12.5114C6.34032 12.3758 6.25781 12.192 6.25781 12.0002Z" fill="white"></path>
+                                                                                            </svg>
+                                                                                        </span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+
+                                                                    </tbody>
+                                                                </table>
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="tab-pane fade" id="pills-other" role="tabpanel" aria-labelledby="pills-other-tab">
+                                                <div class="form-container p-4">
+                                                    <div class="col-md-12">
+                                                        <div class="row g-3">
+                                                            <div class="col-md-3">
+                                                                <div class="form-floating multiselect">
+                                                                    <select class="selectpicker form-select" aria-label="Default select example" data-live-search="true">
+                                                                        <option value="1">Select</option>
+                                                                        <option value="2">Select Two</option>
+                                                                        <option value="3">Select Three</option>
+                                                                        <option value="4">Select Four</option>
+                                                                    </select>
+                                                                    <label for="teamName">Default Income  Accounts</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div class="form-floating upload">
+                                                                    <input class="form-control" type="text" placeholder="" value="07BANJU78945621" id="txtGST">
+                                                                    <label for="floatingSelect">GST/ VAT</label>
+                                                                    <input type="file" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div class="form-floating upload">
+                                                                    <input class="form-control" type="text" placeholder="" value="BANJU7894K" id="txtPAN">
+                                                                    <label for="floatingSelect">PAN</label>
+                                                                    <input type="file" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div class="form-floating" id="the-basics-agents">
+                                                                    <input class="form-select offline-agent" type="text" placeholder="" id="txtTaxCode">
+                                                                    <label for="floatingSelect">Tax Code</label>
+                                                                    <input type="hidden" id="hdnTaxID" value="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="modal-sub-heading mt-3 mb-2">
+                                                                    Payment Details
+                                                                </div>
+                                                                <div class="card mb-0 payment-terms billpay">
+                                                                    <div class="flex-wrap card-header d-flex b-0 justify-content-between">
+                                                                        <div class="header-title pt-1">
+                                                                            Payment Term 1
+                                                                        </div>
+                                                                        <div class="card-body pt-0" style="overflow: inherit;">
+                                                                            <div class="table-responsive" style=" overflow: initial;">
+                                                                                <table class="table table-bordered align-middle mb-0">
+                                                                                    <thead class="table-light">
+                                                                                        <tr>
+                                                                                            <th>Bill Percentage (%)</th>
+                                                                                            <th>Due Date Based On</th>
+                                                                                            <th>Credit Days</th>
+                                                                                            <th>Credit Limits</th>
+                                                                                            <th>Default</th>
+                                                                                            <th>Action</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody id="paymentTermsBody">
+                                                                                        <tr>
+                                                                                            <td>
+                                                                                                <input type="text" class="form-control form-control-sm" id="txtBillPerc" value="" placeholder="Bill Percentage">
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <input class="form-control form-control-sm offline-agent" type="text" placeholder="Due Date Based On" id="txtTerm_0">
+                                                                                                <input type="hidden" id="hdnTermId_0" value="">
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <input type="text" class="form-control form-control-sm" id="txtCreditDays" value="" placeholder="Credit Days">
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <input type="text" class="form-control form-control-sm" id="txtCreditLimits" value="" placeholder="Credit Limits">
+                                                                                            </td>
+                                                                                            <td class="text-center">
+                                                                                                <div class="form-switch d-flex justify-content-center">
+                                                                                                    <input class="form-check-input" type="checkbox" id="icaccount" checked="">
+                                                                                                </div>
+                                                                                            </td>
+                                                                                            <td class="text-center">
+                                                                                                <div id="deleteterm" style="cursor:pointer;">
+                                                                                                    <svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                        <path d="M5.05799 0.0975361C4.62397 0.25612 4.29011 0.606673 3.8394 1.34951L3.4638 1.98385H1.9197C0.200316 1.98385 0 2.03393 0 2.47629C0 2.77677 0.150237 2.90196 0.575909 2.96039L0.90977 3.00212L0.934809 8.52751L0.959849 14.0446L1.17686 14.5036C1.45229 15.0879 1.83623 15.4718 2.42049 15.7472L2.87955 15.9643L6.75233 15.9893C10.4415 16.0143 10.6501 16.006 11.1843 15.8474C11.8854 15.6304 12.4196 15.1797 12.695 14.5704L12.8954 14.128L12.9204 8.56924L12.9454 3.01047L13.3294 2.96039C13.8802 2.90196 14.0973 2.55976 13.8218 2.18416C13.7133 2.04227 13.5714 2.02558 12.0774 2.00054L10.4498 1.9755L9.89896 1.1492C9.13943 0.00572395 9.19785 0.0307636 7.09453 0.00572395C5.78413 -0.0109692 5.30838 0.00572395 5.05799 0.0975361ZM8.9725 1.44132C9.13108 1.69172 9.26463 1.91708 9.26463 1.94211C9.26463 1.96715 8.22966 1.98385 6.96934 1.98385C5.19153 1.98385 4.67405 1.95881 4.67405 1.87534C4.67405 1.82526 4.80759 1.59991 4.96617 1.37455L5.2583 0.982265H6.96934H8.68037L8.9725 1.44132ZM11.9772 8.45239V13.8776L11.7853 14.2115C11.6768 14.3951 11.4598 14.6455 11.2928 14.754L10.984 14.9627H6.9276H2.86285L2.55403 14.7206C1.903 14.2282 1.9197 14.4702 1.9197 8.38562V2.98543L6.95264 3.00212L11.9772 3.02716V8.45239Z" fill="#ADBFCD"></path>
+                                                                                                        <path d="M3.75599 5.04717C3.68922 5.07221 3.60575 5.13898 3.57236 5.18906C3.4889 5.30591 3.4889 12.6842 3.57236 12.8094C3.69756 13.0097 4.06481 13.0264 4.24843 12.8428C4.42371 12.6675 4.42371 12.6091 4.42371 8.99507C4.42371 5.43111 4.41536 5.31425 4.25678 5.15567C4.08985 4.98874 3.98134 4.9637 3.75599 5.04717Z" fill="#ADBFCD"></path>
+                                                                                                        <path d="M6.69339 5.12204L6.50977 5.24723V8.99482V12.7424L6.69339 12.8676C6.94378 13.0429 7.06064 13.0345 7.26095 12.8342C7.41954 12.6756 7.42788 12.5588 7.42788 8.99482C7.42788 5.43086 7.41954 5.31401 7.26095 5.15542C7.06064 4.95511 6.94378 4.94676 6.69339 5.12204Z" fill="#ADBFCD"></path>
+                                                                                                        <path d="M9.69925 5.12228L9.51562 5.24748V8.97837C9.51562 11.0316 9.54901 12.751 9.5824 12.8094C9.70759 13.0097 10.0748 13.0264 10.2585 12.8428C10.4337 12.6675 10.4337 12.6091 10.4337 8.99507C10.4337 5.43111 10.4254 5.31425 10.2668 5.15567C10.0665 4.95535 9.94964 4.94701 9.69925 5.12228Z" fill="#ADBFCD"></path>
+                                                                                                    </svg>
+                                                                                                </div>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                </div>
+                                                                @*<a href="javascript:void(0);" class="add-another-payment-terms mt-3 d-block ms-0">
+
+                                                                    <span class="icon">
+                                                                        <svg width="18" height="16" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                            <ellipse cx="12.5294" cy="12" rx="12.5294" ry="12" fill="#043376"></ellipse>
+                                                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7578 6.75C11.7578 6.55109 11.8373 6.36032 11.9789 6.21967C12.1204 6.07902 12.3124 6 12.5126 6C12.7128 6 12.9048 6.07902 13.0463 6.21967C13.1879 6.36032 13.2674 6.55109 13.2674 6.75V17.25C13.2674 17.4489 13.1879 17.6397 13.0463 17.7803C12.9048 17.921 12.7128 18 12.5126 18C12.3124 18 12.1204 17.921 11.9789 17.7803C11.8373 17.6397 11.7578 17.4489 11.7578 17.25V6.75Z" fill="white"></path>
+                                                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M6.25781 12.0002C6.25781 11.8085 6.34032 11.6246 6.48717 11.4891C6.63403 11.3535 6.83321 11.2773 7.0409 11.2773H18.0041C18.2118 11.2773 18.411 11.3535 18.5579 11.4891C18.7047 11.6246 18.7872 11.8085 18.7872 12.0002C18.7872 12.192 18.7047 12.3758 18.5579 12.5114C18.411 12.647 18.2118 12.7231 18.0041 12.7231H7.0409C6.83321 12.7231 6.63403 12.647 6.48717 12.5114C6.34032 12.3758 6.25781 12.192 6.25781 12.0002Z" fill="white"></path>
+                                                                        </svg>
+                                                                    </span>
+                                                                    Add Another Payment Terms
+                                                                </a>*@
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="modal-sub-heading mt-3 mb-2">
+                                                                Bank Details
+                                                            </div>
+                                                            <div id="" class="dataTables_wrapper">
+                                                                <table class="display bg-white customize-table-style dataTable" id="productservice" role="grid" aria-describedby="basic-14_info">
+                                                                    <thead>
+                                                                        <tr role="row">
+                                                                            <th>Currency</th>
+                                                                            <th>Account Number</th>
+                                                                            <th>Payee</th>
+                                                                            <th>Bank Name</th>
+                                                                            <th>IBAN/IFSC</th>
+                                                                            <th>SWIFT Code</th>
+                                                                            <th>SORT Code</th>
+                                                                            <th>Default</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr role="row">
+                                                                            <td>
+                                                                                <div class="input-group">
+                                                                                    <input type="text" class="form-control " placeholder="" aria-label="Search" aria-describedby="addon-wrapping" id="txtCurrencyBD">
+                                                                                    <input type="hidden" id="hdnCurrencyBD" value="">
+                                                                                </div>
+                                                                            </td>
+                                                                            <td>
+                                                                                <div class="input-group">
+                                                                                    <input id="txtAccountNumber" type="text" class="form-control " placeholder="" aria-label="Search" aria-describedby="addon-wrapping">
+                                                                                </div>
+                                                                            </td>
+                                                                            <td>
+                                                                                <div class="input-group">
+                                                                                    <input id="txtPayee" type="text" class="form-control " placeholder="" aria-label="Search" aria-describedby="addon-wrapping">
+                                                                                </div>
+                                                                            </td>
+                                                                            <td>
+                                                                                <div class="input-group">
+                                                                                    <input id="txtBankName" type="text" class="form-control " placeholder="" aria-label="Search" aria-describedby="addon-wrapping">
+                                                                                </div>
+                                                                            </td>
+                                                                            <td>
+                                                                                <div class="input-group">
+                                                                                    <input id="txtIFSC" type="text" class="form-control " placeholder="" aria-label="Search" aria-describedby="addon-wrapping">
+                                                                                </div>
+                                                                            </td>
+                                                                            <td>
+                                                                                <div class="input-group">
+                                                                                    <input id="txtSWIFT" type="text" class="form-control " placeholder="" aria-label="Search" aria-describedby="addon-wrapping">
+                                                                                </div>
+                                                                            </td>
+                                                                            <td>
+                                                                                <div class="input-group">
+                                                                                    <input id="txtSORT" type="text" class="form-control " placeholder="" aria-label="Search" aria-describedby="addon-wrapping">
+                                                                                </div>
+                                                                            </td>
+                                                                            <td>
+                                                                                <div class="form-switch">
+                                                                                    <input id="txtDefaultBank" class="form-check-input" type="checkbox" checked="">
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn action-btn bg-action-light active" onclick="saveClient()">Save</button>
+                            <button type="button" class="btn action-btn bg-action-light" data-bs-dismiss="modal">Cancel</button>
+
+                        </div>
+                     </div>
+                   }
+    </div>
+</div>
+</div>

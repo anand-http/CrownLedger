@@ -1,0 +1,343 @@
+
+@{
+    ViewBag.Title = "trail-balance";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html lang="en">
+<head>
+    <link href="../assets/css/opening-balance.css" rel="stylesheet">
+    <link href="../assets/css/reports.css" rel="stylesheet">
+</head>
+<body class="bg-sky-light">
+
+    @Html.Partial("~/Views/Shared/_PartialHeader.cshtml")
+
+    <div class="container">
+        <div class="row">
+            <main class="main-body">
+                <div class="main-body-wrapper">
+                    <div class="collapsebody bg-f8f8f8 collapse show group-lookuptab" id="">
+                        <div class="collapsewrap card bx-shadow ">
+                            <div class="collapseheader ps-0 pe-0 me-0">
+                                <div class="back_button">
+                                    <a href="@Url.Action("reports","Reports")" class="left_arrow">
+                                        <span class="arrow-wrapper">
+                                            <svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M5.3048 9.75292C5.38285 9.82121 5.47378 9.87319 5.57222 9.90582C5.67066 9.93845 5.77464 9.95106 5.87803 9.94291C5.98142 9.93476 6.08213 9.90601 6.17425 9.85837C6.26637 9.81072 6.34802 9.74513 6.41442 9.66546C6.48081 9.58578 6.5306 9.49364 6.56086 9.39444C6.59111 9.29524 6.60122 9.19099 6.5906 9.08783C6.57997 8.98466 6.54881 8.88467 6.49897 8.79372C6.44912 8.70277 6.38159 8.62271 6.30035 8.55825L2.85479 5.6867L11.7261 5.6867C11.9324 5.6867 12.1302 5.60475 12.2761 5.45889C12.422 5.31303 12.5039 5.1152 12.5039 4.90892C12.5039 4.70264 12.422 4.50481 12.2761 4.35895C12.1302 4.21308 11.9324 4.13114 11.7261 4.13114L2.99635 4.13114L6.30035 1.37781C6.45898 1.24579 6.55867 1.05616 6.57748 0.850643C6.5963 0.645123 6.5327 0.440547 6.40068 0.281918C6.26866 0.123289 6.07904 0.0236021 5.87352 0.00478612C5.668 -0.0140308 5.46342 0.0495659 5.30479 0.181585L0.28035 4.3707C0.192818 4.44369 0.122398 4.53503 0.0740733 4.63825C0.0257488 4.74147 0.000699552 4.85406 0.000699562 4.96803C0.000699572 5.082 0.0257488 5.19458 0.0740734 5.29781C0.122398 5.40103 0.192818 5.49237 0.28035 5.56536L5.3048 9.75292Z" fill="#043376" />
+                                            </svg>
+                                        </span>
+                                        Back
+                                    </a>
+                                </div>
+                                <div class="top_content">
+                                    <h1 class="heading mb-2">Trail Balance</h1>
+                                    <h1 class="heading mb-2">Accounting Method:Accrual</h1>
+                                    <span class="sub-heading">(Amount is reported in Base Currency USD )</span>
+                                </div>
+                                <div class="sort-bar p-3 border-radius-6 mt-3">
+                                    <div class="left-sort-bar">
+                                        <div class="label">Period</div>
+                                        <div class="account_dropdown">
+                                            <div class="dropdown">
+                                                <span class="form-select dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">As of</span>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#">As of 1</a></li>
+                                                    <li><a class="dropdown-item" href="#">As of 2</a></li>
+                                                    <li><a class="dropdown-item" href="#">As of 3</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="form-floating">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control datepicker" name="fiscaldate" placeholder="Fiscal Year End Date">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="right-sort-bar">
+                                        <a href="javascript:void(0);" class="action-btn ps-3 pe-3 active" data-bs-toggle="modal" data-bs-target="#schedulereport">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                                <path d="M9 16.5C13.1421 16.5 16.5 13.1421 16.5 9C16.5 4.85786 13.1421 1.5 9 1.5C4.85786 1.5 1.5 4.85786 1.5 9C1.5 13.1421 4.85786 16.5 9 16.5Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M9 4.5V9L12 10.5" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                            <span class="ms-2">Schedule Report</span>
+                                        </a>
+                                        <div class="emport-dropdown-box">
+                                            <div class="dropdown">
+                                                <span class="form-select dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Export As</span>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#">Export 1</a></li>
+                                                    <li><a class="dropdown-item" href="#">Export 2</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="box_container pb-4 mt-2">
+                                    <div id="" class="dataTables_wrapper">
+                                        <table class="display customize-table-style dataTable" id="datatable1_wrapper" role="grid" aria-describedby="basic-14_info">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th>Account Code</th>
+                                                    <th>Account Group</th>
+                                                    <th>Debit</th>
+                                                    <th>Credit</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr role="row">
+                                                    <td></td>
+                                                    <td class="details-control-customer">
+                                                        <div class="d-flex align-items-center">
+                                                            <a href="#" class="inputlabel">Assets</a>
+                                                            <span class="ms-3 cursor  cursor py-2 px-3">
+                                                                <svg width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M10.5646 0.296875L6.20007 4.58988L1.83552 0.296875L0.397949 1.71087L6.20007 7.41787L12.0022 1.71087L10.5646 0.296875Z" fill="#ADBFCD" />
+                                                                </svg>
+                                                            </span>
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-center"></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr role="row">
+                                                    <td>1000</td>
+                                                    <td>Account Receivable</td>
+                                                    <td></td>
+                                                    <td>50,000.00</td>
+                                                </tr>
+                                                <tr role="row">
+                                                    <td>1010</td>
+                                                    <td>Petty Cash</td>
+                                                    <td>15,000.00</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr role="row">
+                                                    <td></td>
+                                                    <td class="details-control-customer">
+                                                        <div class="d-flex align-items-center">
+                                                            <a href="#" class="inputlabel">Liabilities</a>
+                                                            <span class="ms-3 cursor  cursor py-2 px-3">
+                                                                <svg width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M10.5646 0.296875L6.20007 4.58988L1.83552 0.296875L0.397949 1.71087L6.20007 7.41787L12.0022 1.71087L10.5646 0.296875Z" fill="#ADBFCD" />
+                                                                </svg>
+                                                            </span>
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-center"></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr role="row">
+                                                    <td>2000</td>
+                                                    <td>Account Payable</td>
+                                                    <td></td>
+                                                    <td>85,000.00</td>
+                                                </tr>
+                                                <tr role="row">
+                                                    <td>2010</td>
+                                                    <td>Tax Payable</td>
+                                                    <td></td>
+                                                    <td>5,000.00</td>
+                                                </tr>
+                                                <tr role="row">
+                                                    <td></td>
+                                                    <td class="details-control-customer">
+                                                        <div class="d-flex align-items-center">
+                                                            <a href="#" class="inputlabel">Expense</a>
+                                                            <span class="ms-3 cursor  cursor py-2 px-3">
+                                                                <svg width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M10.5646 0.296875L6.20007 4.58988L1.83552 0.296875L0.397949 1.71087L6.20007 7.41787L12.0022 1.71087L10.5646 0.296875Z" fill="#ADBFCD" />
+                                                                </svg>
+                                                            </span>
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-center"></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr role="row">
+                                                    <td>3000</td>
+                                                    <td>Advertising & Marketng</td>
+                                                    <td>10,000.00</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr role="row">
+                                                    <td>3010</td>
+                                                    <td>Cost of Goods Sold</td>
+                                                    <td>1,35,000.00</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr role="row">
+                                                    <td class="theme-secondary">Total</td>
+                                                    <td class="theme-secondary"></td>
+                                                    <td class="theme-secondary">1,60,000.00</td>
+                                                    <td class="theme-secondary">1,60,000.00</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div class="modal fade" id="schedulereport" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Report Name : Trail Balance</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body " style="background:#fff;">
+                    <div class="row g-3">
+                        <div class="col-md-12">
+                            <div class="form-floating" id="the-basics-agents">
+                                <input class="form-control" type="text" placeholder="Enter Name">
+                                <label for="floatingSelect">To*</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating" id="the-basics-agents">
+                                <input class="form-control" type="text" placeholder="Enter Name">
+                                <label for="floatingSelect">Cc*</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <select class="form-select" id="" aria-label="Floating label select example">
+                                    <option value="" selected="">Select</option>
+                                    <option value="">Frequency 1</option>
+                                    <option value="">Frequency 2</option>
+                                </select>
+                                <label for="floatingSelect">Frequency *</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <input type="text" class="form-control datepicker" name="fiscaldate" placeholder="Fiscal Year Start Date">
+                                <label for="floatingSelect">Start Date *</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <input class="dateandtime form-control" type="text" name="bidule-b" value="">
+                                <label for="floatingSelect">Start Time *</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <select class="form-select" id="" aria-label="Floating label select example">
+                                    <option value="" selected="">Select Format</option>
+                                    <option value="">Attach Report 1</option>
+                                    <option value="">Attach Report 2</option>
+                                </select>
+                                <label for="floatingSelect">Attach Report as</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn action-btn bg-action-light active">Send</button>
+                    <button type="button" class="btn action-btn bg-action-light" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+$(document).ready(function () {
+
+  	$('.dateandtime').dateAndTime();
+
+      var substringMatcher = function (strs) {
+          return function findMatches(q, cb) {
+              var matches, substringRegex;
+              matches = [];
+              substrRegex = new RegExp(q, 'i');
+              $.each(strs, function (i, str) {
+                  if (substrRegex.test(str)) {
+                      matches.push(str);
+                  }
+              });
+              cb(matches);
+          };
+      };
+
+      var agents = ['Nicole Prejean', 'David', 'Smith', 'WEI MIAO', 'laili',
+          'Onsri', 'Wan Yun', 'Enyu', 'Rio Rica', 'Sanjay', 'Priscilla Jia', 'John Smith',
+          'Redha Nuruinda', 'Mylon Jan', 'Ma Lothel', 'Raufa', 'Areanne Glee', 'Mary Jasmine',
+      ];
+
+      $('#the-basics-agents .typeahead').typeahead({
+          hint: true,
+          highlight: true,
+          minLength: 1
+      },
+        {
+            name: 'states',
+            source: substringMatcher(agents)
+        });
+  });</script>
+
+    <script>
+$(function() {
+  $('input[name="fiscaldate"]').daterangepicker({
+    singleDatePicker: true,
+    showDropdowns: true,
+    minYear: 1901,
+    maxYear: parseInt(moment().format('YYYY'),10)
+  }, function(start, end, label) {
+    var years = moment().diff(start, 'years');
+  });
+});
+
+$("form").on("change", ".file-upload-field", function(){
+    $(this).parent(".file-upload-wrapper").attr("data-text",
+      $(this).val().replace(/.*(\/|\\)/, '') );
+});
+
+
+$("#datatable1_wrapper tbody").on("click", ".details-control", function() {
+    var tr = $(this).closest("tr");
+
+    if(tr.next('tr.addnewrow').length){
+      tr.next('tr.addnewrow').remove();
+    }else{
+      let TrRow='<tr class="p-0 addnewrow"><td class="p-0" colspan="6"><table class="table mb-0"><tbody><tr class="subtable"><th>Accounts</th><th class="text-center">Available Balance</th><th class="datatable_right debit-table-row">Debit</th><th class="datatable_right credit-table-row">Credit</th></tr><tr class="subtable"><td>Advance Tax</td><td class="text-center">--</td><td><div class="input-group"><input type="text" class="form-control text-end" placeholder="0.00" aria-label="Search" aria-describedby="addon-wrapping"></div></td><td><div class="input-group"><input type="text" class="form-control text-end" placeholder="0.00" aria-label="Search" aria-describedby="addon-wrapping"></div></td></tr><tr class="subtable"><td colspan="4"><a href="#" class="add-vendor ms-0"><span class="icon"><img src="../assets/images/addicon.svg"></span>Add Another Account</a></td></tr></tbody></table></td></tr>';
+    tr.after(TrRow);
+    }
+  });
+  $("#datatable1_wrapper tbody").on("click", ".details-control-customer", function() {
+    var tr = $(this).closest("tr");
+
+    if(tr.next('tr.addnewrow').length){
+      tr.next('tr.addnewrow').remove();
+    }else{
+      let TrRow='<tr class="p-0 addnewrow"><td class="p-0" colspan="6"><table class="display customize-table-style dataTable" id="datatable1_wrapper" role="grid" aria-describedby="basic-14_info"><thead><tr role="row"><th>Type</th><th>Date</th><th>Customer</th><th>Currency</th><th>Reference</th><th>Description</th><th>Sub Total</th><th>Tax</th><th class="datatable_right">Total</th></tr></thead><tbody><tr role="row"><td>Invoice</td><td>05-03-2023</td><td>Aman Sharma</td><td>USD</td><td>INV-02</td><td>Sale of Mobile</td><td>$1,005.00</td><td>$125.00</td><td class="datatable_right">$1,100.00</td></tr><tr role="row"><td>Credit Note</td><td>05-03-2023</td><td>Kapil Sharma</td><td>USD</td><td>INV-03</td><td>Sale of Mobile</td><td>$1,005.00</td><td>$154.00</td><td class="datatable_right">$1,350.00</td></tr><tr role="row"><td>Invoice</td><td>05-03-2023</td><td>Jaya Sharma</td><td>USD</td><td>INV-01</td><td>Sale of Mobile</td><td>$1,005.00</td><td>$100.00</td><td class="datatable_right">$1,100.00</td> </tr></tr></tbody></table></td></tr>';
+    tr.after(TrRow);
+    }
+  });
+  $("#datatable1_wrapper tbody").on("click", ".details-control-vendor", function() {
+    var tr = $(this).closest("tr");
+
+    if(tr.next('tr.addnewrow').length){
+      tr.next('tr.addnewrow').remove();
+    }else{
+      let TrRow='<tr class="p-0 addnewrow"><td class="p-0" colspan="6"><table class="display customize-table-style dataTable" id="datatable1_wrapper" role="grid" aria-describedby="basic-14_info"><thead><tr role="row"><th>Type</th><th>Date</th><th>Vendor</th><th>Currency</th><th>Reference</th><th>Description</th><th>Sub Total</th><th>Tax</th><th class="datatable_right">Total</th></tr></thead><tbody><tr role="row"><td>Bill</td><td>05-03-2023</td><td>Aman Sharma</td><td>USD</td><td>Bill-02</td><td>Sale of Mobile</td><td>$1,005.00</td><td>$125.00</td><td class="datatable_right">$1,100.00</td></tr><tr role="row"><td>Credit Note</td><td>05-03-2023</td><td>Kapil Sharma</td><td>USD</td><td>Bill-03</td><td>Sale of Mobile</td><td>$1,005.00</td><td>$154.00</td><td class="datatable_right">$1,350.00</td></tr><tr role="row"><td>Bill</td><td>05-03-2023</td><td>Jaya Sharma</td><td>USD</td><td>Bill-01</td><td>Sale of Mobile</td><td>$1,005.00</td><td>$100.00</td><td class="datatable_right">$1,100.00</td> </tr></tr></tbody></table></td></tr>';
+    tr.after(TrRow);
+    }
+  });</script>
+
+    <script>
+$(".importfile").click(function () {
+    $(".Openingupload-sec").toggle();
+    $(".Openingform-sec").toggle();
+  });</script>
+
+
+</body>
+</html>

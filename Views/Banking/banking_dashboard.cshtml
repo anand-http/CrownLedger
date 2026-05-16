@@ -1,0 +1,978 @@
+﻿
+@{
+    ViewBag.Title = "banking_dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<body class="bg-sky-light">
+    @Html.Partial("~/Views/Shared/_PartialHeader.cshtml")
+    <div class="main-container">
+        <div class="container">
+            <div class="row">
+                <main class="main-body">
+                    <div class="main-body-wrapper">
+                        <div class="back_button">
+                            <!-- <a href="@Url.Action("DashBoard","Home")" class=" left_arrow">
+                                <span class="arrow-wrapper">
+                                    <svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M5.3048 9.75292C5.38285 9.82121 5.47378 9.87319 5.57222 9.90582C5.67066 9.93845 5.77464 9.95106 5.87803 9.94291C5.98142 9.93476 6.08213 9.90601 6.17425 9.85837C6.26637 9.81072 6.34802 9.74513 6.41442 9.66546C6.48081 9.58578 6.5306 9.49364 6.56086 9.39444C6.59111 9.29524 6.60122 9.19099 6.5906 9.08783C6.57997 8.98466 6.54881 8.88467 6.49897 8.79372C6.44912 8.70277 6.38159 8.62271 6.30035 8.55825L2.85479 5.6867L11.7261 5.6867C11.9324 5.6867 12.1302 5.60475 12.2761 5.45889C12.422 5.31303 12.5039 5.1152 12.5039 4.90892C12.5039 4.70264 12.422 4.50481 12.2761 4.35895C12.1302 4.21308 11.9324 4.13114 11.7261 4.13114L2.99635 4.13114L6.30035 1.37781C6.45898 1.24579 6.55867 1.05616 6.57748 0.850643C6.5963 0.645123 6.5327 0.440547 6.40068 0.281918C6.26866 0.123289 6.07904 0.0236021 5.87352 0.00478612C5.668 -0.0140308 5.46342 0.0495659 5.30479 0.181585L0.28035 4.3707C0.192818 4.44369 0.122398 4.53503 0.0740733 4.63825C0.0257488 4.74147 0.000699552 4.85406 0.000699562 4.96803C0.000699572 5.082 0.0257488 5.19458 0.0740734 5.29781C0.122398 5.40103 0.192818 5.49237 0.28035 5.56536L5.3048 9.75292Z" fill="#043376"></path>
+                                    </svg>
+                                </span>
+                                Back
+                            </a> -->
+                        </div>
+                        <div class="top_content d-flex align-items-center justify-content-between">
+                            <div class="left-side-content">
+                                <h1 class="heading">Banking Overview</h1>
+                            </div>
+                            <div class="right-side-content d-flex">
+                                <a href="@Url.Action("Connect_bank_account","Home")" class="add-custom-btn border-box me-2 ms-0">
+
+                                    <span class="icon me-2">
+                                        <svg width="26" height="24" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <ellipse cx="12.5294" cy="12" rx="12.5294" ry="12" fill="#043376"></ellipse>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7578 6.75C11.7578 6.55109 11.8373 6.36032 11.9789 6.21967C12.1204 6.07902 12.3124 6 12.5126 6C12.7128 6 12.9048 6.07902 13.0463 6.21967C13.1879 6.36032 13.2674 6.55109 13.2674 6.75V17.25C13.2674 17.4489 13.1879 17.6397 13.0463 17.7803C12.9048 17.921 12.7128 18 12.5126 18C12.3124 18 12.1204 17.921 11.9789 17.7803C11.8373 17.6397 11.7578 17.4489 11.7578 17.25V6.75Z" fill="white"></path>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M6.25781 12.0002C6.25781 11.8085 6.34032 11.6246 6.48717 11.4891C6.63403 11.3535 6.83321 11.2773 7.0409 11.2773H18.0041C18.2118 11.2773 18.411 11.3535 18.5579 11.4891C18.7047 11.6246 18.7872 11.8085 18.7872 12.0002C18.7872 12.192 18.7047 12.3758 18.5579 12.5114C18.411 12.647 18.2118 12.7231 18.0041 12.7231H7.0409C6.83321 12.7231 6.63403 12.647 6.48717 12.5114C6.34032 12.3758 6.25781 12.192 6.25781 12.0002Z" fill="white"></path>
+                                        </svg>
+                                    </span>
+                                    Connect Bank Account
+                                </a>
+                                <div class="account_dropdown">
+                                    <div class="dropdown">
+                                        <span class="form-select dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">New </span>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#bankAccountsmanually">
+                                                    <span>
+                                                        <svg width="18" height="18" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <ellipse cx="12.5294" cy="12" rx="12.5294" ry="12" fill="#E6EBEE"></ellipse>
+                                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7578 6.75C11.7578 6.55109 11.8373 6.36032 11.9789 6.21967C12.1204 6.07902 12.3124 6 12.5126 6C12.7128 6 12.9048 6.07902 13.0463 6.21967C13.1879 6.36032 13.2674 6.55109 13.2674 6.75V17.25C13.2674 17.4489 13.1879 17.6397 13.0463 17.7803C12.9048 17.921 12.7128 18 12.5126 18C12.3124 18 12.1204 17.921 11.9789 17.7803C11.8373 17.6397 11.7578 17.4489 11.7578 17.25V6.75Z" fill="#ADBFCD"></path>
+                                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M6.25781 12.0002C6.25781 11.8085 6.34032 11.6246 6.48717 11.4891C6.63403 11.3535 6.83321 11.2773 7.0409 11.2773H18.0041C18.2118 11.2773 18.411 11.3535 18.5579 11.4891C18.7047 11.6246 18.7872 11.8085 18.7872 12.0002C18.7872 12.192 18.7047 12.3758 18.5579 12.5114C18.411 12.647 18.2118 12.7231 18.0041 12.7231H7.0409C6.83321 12.7231 6.63403 12.647 6.48717 12.5114C6.34032 12.3758 6.25781 12.192 6.25781 12.0002Z" fill="#ADBFCD"></path>
+                                                        </svg>
+                                                    </span>
+                                                    Bank Account Manually
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="@Url.Action("Payment","Banking")">
+                                                    <span>
+                                                        <svg width="18" height="18" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <ellipse cx="12.5294" cy="12" rx="12.5294" ry="12" fill="#E6EBEE"></ellipse>
+                                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7578 6.75C11.7578 6.55109 11.8373 6.36032 11.9789 6.21967C12.1204 6.07902 12.3124 6 12.5126 6C12.7128 6 12.9048 6.07902 13.0463 6.21967C13.1879 6.36032 13.2674 6.55109 13.2674 6.75V17.25C13.2674 17.4489 13.1879 17.6397 13.0463 17.7803C12.9048 17.921 12.7128 18 12.5126 18C12.3124 18 12.1204 17.921 11.9789 17.7803C11.8373 17.6397 11.7578 17.4489 11.7578 17.25V6.75Z" fill="#ADBFCD"></path>
+                                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M6.25781 12.0002C6.25781 11.8085 6.34032 11.6246 6.48717 11.4891C6.63403 11.3535 6.83321 11.2773 7.0409 11.2773H18.0041C18.2118 11.2773 18.411 11.3535 18.5579 11.4891C18.7047 11.6246 18.7872 11.8085 18.7872 12.0002C18.7872 12.192 18.7047 12.3758 18.5579 12.5114C18.411 12.647 18.2118 12.7231 18.0041 12.7231H7.0409C6.83321 12.7231 6.63403 12.647 6.48717 12.5114C6.34032 12.3758 6.25781 12.192 6.25781 12.0002Z" fill="#ADBFCD"></path>
+                                                        </svg>
+                                                    </span>
+                                                    Payment
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="@Url.Action("Receipt","Banking")">
+                                                    <span>
+                                                        <svg width="18" height="18" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <ellipse cx="12.5294" cy="12" rx="12.5294" ry="12" fill="#E6EBEE"></ellipse>
+                                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7578 6.75C11.7578 6.55109 11.8373 6.36032 11.9789 6.21967C12.1204 6.07902 12.3124 6 12.5126 6C12.7128 6 12.9048 6.07902 13.0463 6.21967C13.1879 6.36032 13.2674 6.55109 13.2674 6.75V17.25C13.2674 17.4489 13.1879 17.6397 13.0463 17.7803C12.9048 17.921 12.7128 18 12.5126 18C12.3124 18 12.1204 17.921 11.9789 17.7803C11.8373 17.6397 11.7578 17.4489 11.7578 17.25V6.75Z" fill="#ADBFCD"></path>
+                                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M6.25781 12.0002C6.25781 11.8085 6.34032 11.6246 6.48717 11.4891C6.63403 11.3535 6.83321 11.2773 7.0409 11.2773H18.0041C18.2118 11.2773 18.411 11.3535 18.5579 11.4891C18.7047 11.6246 18.7872 11.8085 18.7872 12.0002C18.7872 12.192 18.7047 12.3758 18.5579 12.5114C18.411 12.647 18.2118 12.7231 18.0041 12.7231H7.0409C6.83321 12.7231 6.63403 12.647 6.48717 12.5114C6.34032 12.3758 6.25781 12.192 6.25781 12.0002Z" fill="#ADBFCD"></path>
+                                                        </svg>
+                                                    </span>
+                                                    Receipt
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#moneytransfer">
+                                                    <span>
+                                                        <svg width="18" height="18" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <ellipse cx="12.5294" cy="12" rx="12.5294" ry="12" fill="#E6EBEE"></ellipse>
+                                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7578 6.75C11.7578 6.55109 11.8373 6.36032 11.9789 6.21967C12.1204 6.07902 12.3124 6 12.5126 6C12.7128 6 12.9048 6.07902 13.0463 6.21967C13.1879 6.36032 13.2674 6.55109 13.2674 6.75V17.25C13.2674 17.4489 13.1879 17.6397 13.0463 17.7803C12.9048 17.921 12.7128 18 12.5126 18C12.3124 18 12.1204 17.921 11.9789 17.7803C11.8373 17.6397 11.7578 17.4489 11.7578 17.25V6.75Z" fill="#ADBFCD"></path>
+                                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M6.25781 12.0002C6.25781 11.8085 6.34032 11.6246 6.48717 11.4891C6.63403 11.3535 6.83321 11.2773 7.0409 11.2773H18.0041C18.2118 11.2773 18.411 11.3535 18.5579 11.4891C18.7047 11.6246 18.7872 11.8085 18.7872 12.0002C18.7872 12.192 18.7047 12.3758 18.5579 12.5114C18.411 12.647 18.2118 12.7231 18.0041 12.7231H7.0409C6.83321 12.7231 6.63403 12.647 6.48717 12.5114C6.34032 12.3758 6.25781 12.192 6.25781 12.0002Z" fill="#ADBFCD"></path>
+                                                        </svg>
+                                                    </span>
+                                                    Money Transfer
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="top-dashboard-sec mt-3 mb-3">
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <div class="card h-100 recentActivities">
+                                        <div class="card-header d-flex justify-content-between">
+                                            <div class="header-title">
+                                                Recent Activities
+                                            </div>
+                                            <a href="javascript:void(0);" class="action-btn dashboard-see_all bg-action-light">See All</a>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="item d-flex justify-content-between align-item-center border-bottom pb-1 mb-2">
+                                                <div class="product d-flex align-items-center">
+                                                    <h4 class="title mb-0">Telephone Bill</h4>
+                                                </div>
+                                                <div class="price text-clr-red">
+                                                    -$30,935
+                                                </div>
+                                            </div>
+                                            <div class="item d-flex justify-content-between align-item-center border-bottom pb-1 mb-2">
+                                                <div class="product d-flex align-items-center">
+                                                    <h4 class="title mb-0">Water Bill</h4>
+                                                </div>
+                                                <div class="price text-clr-red">
+                                                    -$28,930
+                                                </div>
+                                            </div>
+                                            <div class="item d-flex justify-content-between align-item-center border-bottom pb-1 mb-2">
+                                                <div class="product d-flex align-items-center">
+                                                    <h4 class="title mb-0">Bank Deposit</h4>
+                                                </div>
+                                                <div class="price text-clr-green">
+                                                    +$26,426
+                                                </div>
+                                            </div>
+                                            <div class="item d-flex justify-content-between align-item-center border-bottom pb-1 mb-2">
+                                                <div class="product d-flex align-items-center">
+                                                    <h4 class="title mb-0">Bank Deposit</h4>
+                                                </div>
+                                                <div class="price text-clr-green">
+                                                    +$25,426
+                                                </div>
+                                            </div>
+                                            <div class="item d-flex justify-content-between align-item-center">
+                                                <div class="product d-flex align-items-center">
+                                                    <h4 class="title mb-0">Bill BL003</h4>
+                                                </div>
+                                                <div class="price text-clr-red">
+                                                    -$24,935
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card h-100 pending-payments">
+                                        <div class="card-header justify-content-between d-flex">
+                                            <div class="header-title">
+                                                Pending Payments
+                                            </div>
+                                            <a href="javascript:void(0);" class="action-btn dashboard-see_all bg-action-light">See All</a>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="product-sec">
+                                                <div class="item d-flex justify-content-between align-item-center  pb-1 mb-2">
+                                                    <div class="product d-flex align-items-center">
+                                                        <h4 class="title mb-0">Telephone Bill 001 </h4>
+                                                    </div>
+                                                    <div class="price">
+                                                        $5400.00
+                                                    </div>
+                                                </div>
+                                                <div class="item d-flex justify-content-between align-item-center  pb-1 mb-2">
+                                                    <div class="product d-flex align-items-center">
+                                                        <h4 class="title mb-0">Stationary Bill 002</h4>
+                                                    </div>
+                                                    <div class="price">
+                                                        $1650.00
+                                                    </div>
+                                                </div>
+                                                <div class="item d-flex justify-content-between align-item-center pb-1 mb-2">
+                                                    <div class="product d-flex align-items-center">
+                                                        <h4 class="title mb-0">Bill BL002</h4>
+                                                    </div>
+                                                    <div class="price">
+                                                        $1650.00
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="dash-amount-sec d-flex justify-content-between border-top pt-3">
+                                                <div class="item text-center">
+                                                    <div class="product">
+                                                        <h4 class="title mb-1">$12,095</h4>
+                                                    </div>
+                                                    <div class="label text-clr-red">
+                                                        Overdue
+                                                    </div>
+                                                </div>
+                                                <div class="item text-center">
+                                                    <div class="product">
+                                                        <h4 class="title mb-1">$33,367</h4>
+                                                    </div>
+                                                    <div class="label">
+                                                        Total Outstanding
+                                                    </div>
+                                                </div>
+                                                <div class="item text-center">
+                                                    <div class="product">
+                                                        <h4 class="title mb-1">$4,500</h4>
+                                                    </div>
+                                                    <div class="label">
+                                                        In Draft
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card h-100 pending-receipt">
+                                        <div class="card-header d-flex justify-content-between">
+                                            <div class="header-title">
+                                                Pending Receipt
+                                            </div>
+                                            <a href="javascript:void(0);" class="action-btn dashboard-see_all bg-action-light">See All</a>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="product-sec">
+                                                <div class="item d-flex justify-content-between align-item-center  pb-1 mb-2">
+                                                    <div class="product d-flex align-items-center">
+                                                        <h4 class="title mb-0">Sales Invoice INV-001 </h4>
+                                                    </div>
+                                                    <div class="price">
+                                                        $5400.00
+                                                    </div>
+                                                </div>
+                                                <div class="item d-flex justify-content-between align-item-center  pb-1 mb-2">
+                                                    <div class="product d-flex align-items-center">
+                                                        <h4 class="title mb-0">Sales Invoice INV-002</h4>
+                                                    </div>
+                                                    <div class="price">
+                                                        $1650.00
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="dash-amount-sec d-flex justify-content-between border-top pt-3">
+                                                <div class="item text-center">
+                                                    <div class="product">
+                                                        <h4 class="title mb-1">$12,095</h4>
+                                                    </div>
+                                                    <div class="label text-clr-red">
+                                                        Overdue
+                                                    </div>
+                                                </div>
+                                                <div class="item text-center">
+                                                    <div class="product">
+                                                        <h4 class="title mb-1">$33,367</h4>
+                                                    </div>
+                                                    <div class="label">
+                                                        Total Outstanding
+                                                    </div>
+                                                </div>
+                                                <div class="item text-center">
+                                                    <div class="product">
+                                                        <h4 class="title mb-1">$4,500</h4>
+                                                    </div>
+                                                    <div class="label">
+                                                        In Draft
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dash-third-sec">
+                            <div class="row g-3">
+                                <div class="col-md-7">
+                                    <div class="card overview h-100">
+                                        <div class="flex-wrap card-header d-flex justify-content-between">
+                                            <div class="header-title pt-1">
+                                                Overview
+                                            </div>
+                                            <div class="right-side d-flex">
+                                                <div class="two_date_container me-2">
+                                                    <div class="input-group">
+                                                        <input type="text" class="calendar" name="daterange" value="01/01/2021 - 01/15/2021" />
+                                                    </div>
+                                                </div>
+                                                <div class="form-action-section">
+                                                    <a href="javascript:void(0);" class="action-btn bg-action-light ">Weekly</a>
+                                                    <a href="javascript:void(0);" class="action-btn bg-action-light active">Monthly</a>
+                                                    <a href="javascript:void(0);" class="action-btn bg-action-light">Yearly</a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card-body pt-0">
+                                            <canvas id="cash-bank-summary-tab" height="339"></canvas>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="row g-3">
+                                        <div class="col-md-12">
+                                            <div class="upcoming-payment-sec mb-1">
+                                                <div class="card-body rounded">
+                                                    <div class="title mb-2">Upcoming Payments</div>
+                                                    <div class="product-sec border-top pt-2">
+                                                        <div class="item d-flex justify-content-between align-item-center  pb-1 mb-2">
+                                                            <div class="product d-flex align-items-center">
+                                                                <h4 class="title mb-0">Telephone Bill 001 </h4>
+                                                            </div>
+                                                            <div class="price">
+                                                                $5400.00
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="item d-flex justify-content-between align-item-center pb-1 mb-2">
+                                                            <div class="product d-flex align-items-center">
+                                                                <h4 class="title mb-0">Bill BL002</h4>
+                                                            </div>
+                                                            <div class="price">
+                                                                $1650.00
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="card h-100 account-history">
+                                                <div class="card-header d-flex justify-content-between">
+                                                    <div class="header-title">
+                                                        Account History
+                                                    </div>
+                                                    <a href="javascript:void(0);" class="action-btn dashboard-see_all bg-action-light">See All</a>
+                                                </div>
+                                                <div class="p-1 pb-3">
+                                                    <table class="w-100">
+                                                        <tbody>
+                                                            <tr>
+                                                                <th><span class="create_th_heading">Account Name</span></th>
+                                                                <th><span class="create_th_heading  text-end">Amount in Bank</span></th>
+                                                                <th><span class="create_th_heading  text-end">Amount in Books</span></th>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><a class="dropdown-item" href="#">markdoepvtcompany  </a></td>
+                                                                <td class="text-end pe-3">$30,935</td>
+                                                                <td class="text-end pe-3">$30,935</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><a class="dropdown-item" href="#">markdoepvtcompany  </a></td>
+                                                                <td class="text-end pe-3">$30,935</td>
+                                                                <td class="text-end pe-3">$30,935</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><a class="dropdown-item" href="#">markdoepvtcompany  </a></td>
+                                                                <td class="text-end pe-3">$30,935</td>
+                                                                <td class="text-end pe-3">$30,935</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><a class="dropdown-item" href="#">markdoepvtcompany  </a></td>
+                                                                <td class="text-end pe-3">$30,935</td>
+                                                                <td class="text-end pe-3">$30,935</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="top-dashboard-sec mt-3 mb-3">
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <div class="card h-100 recentActivities">
+                                        <div class="card-header d-flex justify-content-between">
+                                            <div class="header-title">
+                                                Recent Activities
+                                            </div>
+                                            <a href="javascript:void(0);" class="action-btn dashboard-see_all bg-action-light">See All</a>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="item d-flex justify-content-between align-item-center border-bottom pb-1 mb-2">
+                                                <div class="product d-flex align-items-center">
+                                                    <h4 class="title mb-0">Telephone Bill</h4>
+                                                </div>
+                                                <div class="price text-clr-red">
+                                                    -$30,935
+                                                </div>
+                                            </div>
+                                            <div class="item d-flex justify-content-between align-item-center border-bottom pb-1 mb-2">
+                                                <div class="product d-flex align-items-center">
+                                                    <h4 class="title mb-0">Water Bill</h4>
+                                                </div>
+                                                <div class="price text-clr-red">
+                                                    -$28,930
+                                                </div>
+                                            </div>
+                                            <div class="item d-flex justify-content-between align-item-center border-bottom pb-1 mb-2">
+                                                <div class="product d-flex align-items-center">
+                                                    <h4 class="title mb-0">Bank Deposit</h4>
+                                                </div>
+                                                <div class="price text-clr-green">
+                                                    +$26,426
+                                                </div>
+                                            </div>
+                                            <div class="item d-flex justify-content-between align-item-center border-bottom pb-1 mb-2">
+                                                <div class="product d-flex align-items-center">
+                                                    <h4 class="title mb-0">Bank Deposit</h4>
+                                                </div>
+                                                <div class="price text-clr-green">
+                                                    +$25,426
+                                                </div>
+                                            </div>
+                                            <div class="item d-flex justify-content-between align-item-center">
+                                                <div class="product d-flex align-items-center">
+                                                    <h4 class="title mb-0">Bill BL003</h4>
+                                                </div>
+                                                <div class="price text-clr-red">
+                                                    -$24,935
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card h-100 pending-payments">
+                                        <div class="card-header justify-content-between d-flex">
+                                            <div class="header-title">
+                                                Pending Payments
+                                            </div>
+                                            <a href="javascript:void(0);" class="action-btn dashboard-see_all bg-action-light">See All</a>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="product-sec">
+                                                <div class="item d-flex justify-content-between align-item-center  pb-1 mb-2">
+                                                    <div class="product d-flex align-items-center">
+                                                        <h4 class="title mb-0">Telephone Bill 001 </h4>
+                                                    </div>
+                                                    <div class="price">
+                                                        $5400.00
+                                                    </div>
+                                                </div>
+                                                <div class="item d-flex justify-content-between align-item-center  pb-1 mb-2">
+                                                    <div class="product d-flex align-items-center">
+                                                        <h4 class="title mb-0">Stationary Bill 002</h4>
+                                                    </div>
+                                                    <div class="price">
+                                                        $1650.00
+                                                    </div>
+                                                </div>
+                                                <div class="item d-flex justify-content-between align-item-center pb-1 mb-2">
+                                                    <div class="product d-flex align-items-center">
+                                                        <h4 class="title mb-0">Bill BL002</h4>
+                                                    </div>
+                                                    <div class="price">
+                                                        $1650.00
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="dash-amount-sec d-flex justify-content-between border-top pt-3">
+                                                <div class="item text-center">
+                                                    <div class="product">
+                                                        <h4 class="title mb-1">$12,095</h4>
+                                                    </div>
+                                                    <div class="label text-clr-red">
+                                                        Overdue
+                                                    </div>
+                                                </div>
+                                                <div class="item text-center">
+                                                    <div class="product">
+                                                        <h4 class="title mb-1">$33,367</h4>
+                                                    </div>
+                                                    <div class="label">
+                                                        Total Outstanding
+                                                    </div>
+                                                </div>
+                                                <div class="item text-center">
+                                                    <div class="product">
+                                                        <h4 class="title mb-1">$4,500</h4>
+                                                    </div>
+                                                    <div class="label">
+                                                        In Draft
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card h-100 pending-receipt">
+                                        <div class="card-header d-flex justify-content-between">
+                                            <div class="header-title">
+                                                Pending Receipt
+                                            </div>
+                                            <a href="javascript:void(0);" class="action-btn dashboard-see_all bg-action-light">See All</a>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="product-sec">
+                                                <div class="item d-flex justify-content-between align-item-center  pb-1 mb-2">
+                                                    <div class="product d-flex align-items-center">
+                                                        <h4 class="title mb-0">Sales Invoice INV-001 </h4>
+                                                    </div>
+                                                    <div class="price">
+                                                        $5400.00
+                                                    </div>
+                                                </div>
+                                                <div class="item d-flex justify-content-between align-item-center  pb-1 mb-2">
+                                                    <div class="product d-flex align-items-center">
+                                                        <h4 class="title mb-0">Sales Invoice INV-002</h4>
+                                                    </div>
+                                                    <div class="price">
+                                                        $1650.00
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="dash-amount-sec d-flex justify-content-between border-top pt-3">
+                                                <div class="item text-center">
+                                                    <div class="product">
+                                                        <h4 class="title mb-1">$12,095</h4>
+                                                    </div>
+                                                    <div class="label text-clr-red">
+                                                        Overdue
+                                                    </div>
+                                                </div>
+                                                <div class="item text-center">
+                                                    <div class="product">
+                                                        <h4 class="title mb-1">$33,367</h4>
+                                                    </div>
+                                                    <div class="label">
+                                                        Total Outstanding
+                                                    </div>
+                                                </div>
+                                                <div class="item text-center">
+                                                    <div class="product">
+                                                        <h4 class="title mb-1">$4,500</h4>
+                                                    </div>
+                                                    <div class="label">
+                                                        In Draft
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            <div class="dash-third-sec">
+                            <div class="row g-3">
+                                <div class="col-md-7">
+                                <div class="card overview h-100">
+                                    <div class="flex-wrap card-header d-flex justify-content-between">
+                                    <div class="header-title pt-1">
+                                        Overview
+                                    </div>
+                                    <div class="right-side d-flex">
+                                    <div class="two_date_container me-2">
+                                        <div class="input-group">
+                                            <input type="text" class="calendar" name="daterange" value="01/01/2021 - 01/15/2021" />
+                                        </div>
+                                    </div>
+                                    <div class="form-action-section">
+                                        <a href="javascript:void(0);" class="action-btn bg-action-light ">Weekly</a>
+                                        <a href="javascript:void(0);" class="action-btn bg-action-light active">Monthly</a>
+                                        <a href="javascript:void(0);" class="action-btn bg-action-light">Yearly</a>
+                                    </div>
+                                    </div>
+                                    </div>
+
+                                    <div class="card-body pt-0">
+                                    <canvas id="cash-bank-summary"></canvas>
+                                    </div>
+
+                                </div>
+                                </div>
+                            <div class="col-md-5">
+                                <div class="row g-3">
+                                    <div class="col-md-12">
+                                        <div class="upcoming-payment-sec mb-1">
+                                            <div class="card-body">
+                                                <div class="title mb-2">Upcoming Payments</div>
+                                                <div class="product-sec border-top pt-2">
+                                                    <div class="item d-flex justify-content-between align-item-center  pb-1 mb-2">
+                                                        <div class="product d-flex align-items-center">
+                                                            <h4 class="title mb-0">Telephone Bill 001 </h4>
+                                                        </div>
+                                                        <div class="price">
+                                                            $5400.00
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="item d-flex justify-content-between align-item-center pb-1 mb-2">
+                                                        <div class="product d-flex align-items-center">
+                                                            <h4 class="title mb-0">Bill BL002</h4>
+                                                        </div>
+                                                        <div class="price">
+                                                            $1650.00
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="card h-100 account-history">
+                                            <div class="card-header d-flex justify-content-between">
+                                                <div class="header-title">
+                                                    Account History
+                                                </div>
+                                                <a href="javascript:void(0);" class="action-btn dashboard-see_all bg-action-light">See All</a>
+                                            </div>
+                                            <div class="p-1 pb-3">
+                                                <table class="w-100">
+                                                    <tbody><tr>
+                                                        <th><span class="create_th_heading">Account Name</span></th>
+                                                        <th><span class="create_th_heading  text-end">Amount in Bank</span></th>
+                                                        <th><span class="create_th_heading  text-end">Amount in Books</span></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><a class="dropdown-item" href="#">markdoepvtcompany  </a></td>
+                                                        <td class="text-end pe-3">$30,935</td>
+                                                        <td class="text-end pe-3">$30,935</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><a class="dropdown-item" href="#">markdoepvtcompany  </a></td>
+                                                        <td class="text-end pe-3">$30,935</td>
+                                                        <td class="text-end pe-3">$30,935</td>
+                                                    </tr>
+                                                        <tr>
+                                                        <td><a class="dropdown-item" href="#">markdoepvtcompany  </a></td>
+                                                        <td class="text-end pe-3">$30,935</td>
+                                                        <td class="text-end pe-3">$30,935</td>
+                                                        </tr>
+                                                        <tr>
+                                                        <td><a class="dropdown-item" href="#">markdoepvtcompany  </a></td>
+                                                        <td class="text-end pe-3">$30,935</td>
+                                                        <td class="text-end pe-3">$30,935</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>     -->
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="bankAccountsmanually" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Bank Account Manually</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body " style="background:#fff;">
+                    <div class="row g-3">
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <select class="form-select" id="accountType" aria-label="Floating label select example">
+                                    <option value="" selected="">Select</option>
+                                    <option value="Saving">Saving Account</option>
+                                    <option value="Current">Current Account</option>
+                                </select>
+                                <label for="floatingSelect">Account Type*</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <input class="form-control" type="text" placeholder="Enter Account Name" id="accountName">
+                                <label for="floatingSelect">Account Name*</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <input class="form-control" type="text" placeholder="Enter Account Number" id="accountNumber">
+                                <label for="floatingSelect">Account Number*</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <input class="form-control" type="text" placeholder="Enter Bank Name" id="bankName">
+                                <label for="floatingSelect">Bank Name*</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating" id="the-basics-agents">
+                                <input class="form-control" type="text" placeholder="Enter IFSC Code/IBAN Code" id="ifscCode">
+                                <label for="floatingSelect">IFSC Code/IBAN</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating" id="the-basics-agents">
+                                <input class="form-control" type="text" placeholder="Enter SWIFT Code" id="swiftCode">
+                                <label for="floatingSelect">SWIFT Code</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating" id="the-basics-agents">
+                                <input class="form-control" type="text" placeholder="Enter Sort Code" id="sortCode">
+                                <label for="floatingSelect">Sort Code</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn action-btn bg-action-light active" onclick="SaveBankAccountManually()">Save</button>
+                    <button type="button" class="btn action-btn bg-action-light" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="moneytransfer" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Money Transfer</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body " style="background:#fff;">
+                    <div class="row g-3">
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <select class="form-select" id="" aria-label="Floating label select example">
+                                    <option value="" selected="">Select</option>
+                                    <option value="">Saving Account</option>
+                                    <option value="">Current Account</option>
+                                </select>
+                                <label for="floatingSelect">From Account*</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <select class="form-select" id="" aria-label="Floating label select example">
+                                    <option value="" selected="">Select</option>
+                                    <option value="">Saving Account</option>
+                                    <option value="">Current Account</option>
+                                </select>
+                                <label for="floatingSelect">To Account*</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <select class="form-select" id="" aria-label="Floating label select example">
+                                    <option value="" selected="">Select</option>
+                                    <option value="">Saving Account</option>
+                                    <option value="">Current Account</option>
+                                </select>
+                                <label for="floatingSelect">Payment Method*</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating" id="the-basics-agents">
+                                <input class="form-control" type="text" placeholder="Enter Bank Name">
+                                <label for="floatingSelect">Amount Transferred*</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <input type="text" class="form-control datepicker" name="fiscaldate" placeholder="Fiscal Year End Date">
+                                <label for="floatingSelect">Date of Transfer*</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating" id="the-basics-agents">
+                                <input class="form-control" type="text" placeholder="Enter SWIFT Code">
+                                <label for="floatingSelect">Reference</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="form-action-section float-end">
+                        <a href="#" class="upload d-flex align-items-center">
+                            Upload
+                            <span class="icon ms-1">
+                                <svg width="16" height="20" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1.8888 0.0830975C1.0552 0.309965 0.443183 0.879772 0.116072 1.73448L0 2.03521V9.97558C0 17.6047 0.00527599 17.9265 0.100244 18.2061C0.321835 18.8551 0.754467 19.3932 1.29262 19.6781C1.91518 20.0105 1.68832 20 7.50773 20C13.343 20 13.1425 20.0105 13.7334 19.6729C14.3401 19.3299 14.8255 18.644 14.9574 17.9476C15.0313 17.5572 15.0313 6.55674 14.9574 6.17159C14.9258 6.01331 14.8308 5.73368 14.7411 5.54375C14.5987 5.23246 14.3665 4.98449 12.1981 2.82134C9.70782 0.336346 9.59175 0.236101 8.99556 0.0830975C8.55766 -0.0276985 2.30561 -0.0276985 1.8888 0.0830975ZM7.52884 3.63384L7.54467 6.05024L7.74515 6.45649C7.97202 6.91551 8.22527 7.14765 8.72121 7.34814C9.01667 7.46421 9.06943 7.46948 11.412 7.48531L13.802 7.50114L13.7862 12.6558C13.7703 17.784 13.7703 17.8104 13.6595 18.0478C13.5276 18.3275 13.2638 18.5807 13.0053 18.6862C12.8523 18.7496 11.9501 18.7601 7.49191 18.7601H2.16316L1.90991 18.6335C1.625 18.4963 1.37176 18.1903 1.29262 17.8843C1.25569 17.7577 1.24513 15.0194 1.25041 9.88589L1.26624 2.08797L1.38231 1.86638C1.53004 1.59203 1.80439 1.37572 2.12622 1.2913C2.31088 1.24381 3.0548 1.22271 4.9436 1.22271L7.51301 1.21744L7.52884 3.63384ZM9.13801 1.52872C9.5812 1.88749 13.6226 5.98693 13.6543 6.10828L13.6806 6.22963H11.4436C9.00084 6.22963 8.98501 6.22963 8.83201 5.92889C8.72121 5.7073 8.68956 1.32296 8.80563 1.32296C8.84783 1.32296 8.99556 1.41792 9.13801 1.52872Z" fill="#ADBFCD"></path>
+                                    <path d="M7.2297 8.86104C7.14528 8.9138 6.32751 9.7052 5.42531 10.6179C3.78975 12.2535 3.77393 12.2746 3.77393 12.4909C3.77393 12.8866 4.19601 13.219 4.53894 13.0871C4.61808 13.0555 5.17206 12.5542 5.76825 11.9686L6.86038 10.9029L6.88676 13.3826C6.91842 16.1683 6.90259 16.0839 7.30356 16.2052C7.56736 16.2844 7.7573 16.2369 7.94724 16.0417L8.10024 15.8939V13.372V10.8501L9.22403 11.9633C10.4375 13.1715 10.5219 13.2243 10.8649 13.0607C11.1867 12.9077 11.3239 12.5701 11.1867 12.2799C11.0812 12.053 7.90503 8.88742 7.71509 8.81883C7.50405 8.7397 7.40908 8.74497 7.2297 8.86104Z" fill="#ADBFCD"></path>
+                                </svg>
+                            </span>
+                        </a>
+                        <a href="javascript:void(0);" class="action-btn bg-action-light active">Save</a>
+                        <a href="javascript:void(0);" class="action-btn bg-action-light">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+
+
+        //function to save the Bank account manually
+        function SaveBankAccountManually() {
+           
+            var model = {
+                AccountType: $('#accountType').val(),
+                AccountName: $('#accountName').val(),
+                AccountNumber: $('#accountNumber').val(),
+                BankName: $('#bankName').val(),
+                IFSCCode: $('#ifscCode').val(),
+                SwiftCode: $('#swiftCode').val(),
+                SortCode: $('#sortCode').val()
+            };
+            if (!model.AccountNumber) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Warning',
+                    text: 'Account number is required',
+                    timer: 5000,
+                    confirmButtonColor: '#d33'
+                })
+                return;
+            }
+            $.ajax({
+                url: '@Url.Action("SaveBankAccount", "Banking")',
+                type: 'POST',
+                data: JSON.stringify(model),
+                contentType: 'application/json',
+                success: function (response) {
+                    if (response.status) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success',
+                            text: 'Bank account saved successfully!',
+                            timer: 5000,
+                            confirmButtonColor: '#3085d6'
+                        })
+                        ResetBankAccountModal();
+
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: `Error: ${response.message}`,
+                            timer: 5000,
+                            confirmButtonColor: '#d33'
+                        })
+                    }
+                },
+                error: function (err) {
+                    console.log(err);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Error while saving bank account!',
+                        timer: 5000,
+                        confirmButtonColor: '#d33'
+                    })
+                }
+            });
+        }
+
+        function ResetBankAccountModal() {
+            var modal = bootstrap.Modal.getInstance(document.getElementById('bankAccountsmanually'));
+            modal.hide();
+            $('#accountType').val('');
+            $('#accountName').val('');
+            $('#accountNumber').val('');
+            $('#bankName').val('');
+            $('#ifscCode').val('');
+            $('#swiftCode').val('');
+            $('#sortCode').val('');
+        }
+
+       $(function () {
+            $('input[name="daterange"]').daterangepicker(
+                {
+                    ssingleDatePicker: 'true',
+                    showShortcuts: 'false',
+                    showTopbar: 'false'
+                }
+            );
+        });
+
+        $(function () {
+            $('input[name="fiscaldate"]').daterangepicker({
+                singleDatePicker: true,
+                showDropdowns: true,
+                minYear: 1901,
+                maxYear: parseInt(moment().format('YYYY'), 10)
+            }, function (start, end, label) {
+                var years = moment().diff(start, 'years');
+            });
+        });
+        var ctx = document.getElementById('cash-bank-summary-tab').getContext('2d');
+
+       var earning = ctx.createLinearGradient(0, 0, 0, 400);
+       earning.addColorStop(0, 'rgba(185, 230, 255, 0.85)');
+       earning.addColorStop(1, 'rgba(231, 246, 255, 0.20)');
+
+       var spent = ctx.createLinearGradient(0, 0, 0, 400);
+       spent.addColorStop(0, 'rgba(217, 246, 245, 1)');
+       spent.addColorStop(1, 'rgba(253, 254, 255, 0.20)');
+
+        var BookingmyChart = new Chart(ctx, {
+       type: 'line',
+       data: {
+           labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar" ],
+           datasets: [{
+               data: [10, 20, 5, 15, 10, 20, 15, 25, 20, 30, 25, 40],
+               label: "Earning",
+               borderRadius: 0,
+               lineTension: 0.5,
+                radius: 0,
+                borderWidth: 2,
+               borderColor: "#696CFF",
+               backgroundColor: earning,
+               fill: true,
+           }, {
+               data: [35, 45, 30, 40, 45, 55, 50, 65, 55, 70, 60, 75],
+               label: "Spent",
+               borderRadius: 0,
+               lineTension: 0.5,
+               radius: 0,
+               borderWidth:2,
+               borderColor: "#3FE0D3",
+               backgroundColor: spent,
+               fill: true,
+           },
+           ],
+       },
+       options: {
+         plugins: {
+       legend: {
+         align:'start',
+         position:'top',
+           display: true,
+
+           labels: {
+             padding: 15,
+               color: 'rgb(42, 53, 58)',
+               usePointStyle: true,
+               font: {
+                     size: 12,
+                     gap: 10,
+                     },
+                 }
+             }
+         },
+           scales: {
+               xAxes: [{
+                   gridLines: {
+                       display: false
+                   }
+               }]
+           }
+       }
+   });
+
+
+
+
+
+    </script>
+
+</body>
+

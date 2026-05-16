@@ -1,0 +1,1760 @@
+
+@{
+    ViewBag.Title = "expense-history";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html lang="en">
+<body class="bg-sky-light">
+
+    @Html.Partial("~/Views/Shared/_PartialHeader.cshtml")
+    <div class="container">
+        <div class="row">
+            <main class="main-body">
+                <div class="main-body-wrapper">
+                    <div class="collapsebody bg-f8f8f8 collapse show group-lookuptab" id="">
+                        <div class="collapsewrap card bx-shadow ">
+                            <div class="collapseheader ps-0 pe-0 me-0">
+                                <div class="top_content">
+                                    <h1 class="heading">Expense History</h1>
+                                </div>
+                                @Html.Partial("~/Views/Shared/_PartialActionToolbar.cshtml")
+                                <div class="sort-bar d-none mt-4">
+                                    <div class="left-sort-bar">
+                                        <div class="search_container">
+                                            <div class="input-group">
+                                                <span>
+                                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M5.13149 10.263C6.27003 10.2628 7.37576 9.88161 8.27261 9.18024L11.0924 12L11.9994 11.093L9.1796 8.27325C9.88134 7.37631 10.2627 6.27033 10.263 5.13149C10.263 2.30212 7.96087 0 5.13149 0C2.30212 0 0 2.30212 0 5.13149C0 7.96087 2.30212 10.263 5.13149 10.263ZM5.13149 1.28287C7.25401 1.28287 8.98012 3.00898 8.98012 5.13149C8.98012 7.25401 7.25401 8.98012 5.13149 8.98012C3.00898 8.98012 1.28287 7.25401 1.28287 5.13149C1.28287 3.00898 3.00898 1.28287 5.13149 1.28287Z" fill="black" />
+                                                    </svg>
+                                                </span>
+                                                <input type="text" class="form-control search-input" placeholder="Search" aria-label="Search" aria-describedby="addon-wrapping">
+                                            </div>
+                                        </div>
+                                        <div class="account_dropdown">
+                                            <div class="dropdown">
+                                                <span class="form-select dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Filter </span>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#">All</a></li>
+                                                    <li><a class="dropdown-item" href="#">Draft</a></li>
+                                                    <li><a class="dropdown-item" href="#">Sent</a></li>
+                                                    <li><a class="dropdown-item" href="#">Approved</a></li>
+                                                    <li><a class="dropdown-item" href="#">Invoiced</a></li>
+                                                    <li><a class="dropdown-item" href="#">Declined</a></li>
+                                                    <li><a class="dropdown-item" href="#">Expired</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="two_date_container">
+                                            <div class="input-group">
+                                                <input type="text" class="calendar" name="daterange" value="01/01/2021 - 01/15/2021" />
+                                            </div>
+                                        </div>
+                                        <div class="account_dropdown">
+                                            <div class="dropdown">
+                                                <span class="form-select dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Sort by </span>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#">Customer Name</a></li>
+                                                    <li><a class="dropdown-item" href="#">Date</a></li>
+                                                    <li><a class="dropdown-item" href="#">Amount</a></li>
+                                                    <li><a class="dropdown-item" href="#">Estimate Number</a></li>
+                                                    <li><a class="dropdown-item" href="#">Created by</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="right-sort-bar">
+                                        <a href="javascript:void(0);" class="add-customer bg-regular f-w-500 ms-0 d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#recording-of-expense">
+                                            <span class="icon me-2">
+                                                <svg width="26" height="24" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <ellipse cx="12.5294" cy="12" rx="12.5294" ry="12" fill="#043376"></ellipse>
+                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7578 6.75C11.7578 6.55109 11.8373 6.36032 11.9789 6.21967C12.1204 6.07902 12.3124 6 12.5126 6C12.7128 6 12.9048 6.07902 13.0463 6.21967C13.1879 6.36032 13.2674 6.55109 13.2674 6.75V17.25C13.2674 17.4489 13.1879 17.6397 13.0463 17.7803C12.9048 17.921 12.7128 18 12.5126 18C12.3124 18 12.1204 17.921 11.9789 17.7803C11.8373 17.6397 11.7578 17.4489 11.7578 17.25V6.75Z" fill="white"></path>
+                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.25781 12.0002C6.25781 11.8085 6.34032 11.6246 6.48717 11.4891C6.63403 11.3535 6.83321 11.2773 7.0409 11.2773H18.0041C18.2118 11.2773 18.411 11.3535 18.5579 11.4891C18.7047 11.6246 18.7872 11.8085 18.7872 12.0002C18.7872 12.192 18.7047 12.3758 18.5579 12.5114C18.411 12.647 18.2118 12.7231 18.0041 12.7231H7.0409C6.83321 12.7231 6.63403 12.647 6.48717 12.5114C6.34032 12.3758 6.25781 12.192 6.25781 12.0002Z" fill="white"></path>
+                                                </svg>
+                                            </span>
+                                            Create New
+                                        </a>
+                                        <div class="emport-dropdown-box">
+                                            <div class="dropdown">
+                                                <a class="dropdown-toggle emport_button" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <svg width="15" height="11" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M10.5646 0.296875L6.20007 4.58988L1.83552 0.296875L0.397949 1.71087L6.20007 7.41787L12.0022 1.71087L10.5646 0.296875Z" fill="#ADBFCD" />
+                                                    </svg>
+                                                </a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#">Import Estimates</a></li>
+                                                    <li><a class="dropdown-item" href="#">Export Estimates</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="box_container table_manage_container estimates-history-container">
+                                    <div id="" class="dataTables_wrapper">
+                                        <table class="display customize-table-style dataTable" id="expenseHistory" role="grid"
+                                               aria-describedby="basic-14_info">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th>
+                                                        <div class="inputlabel">
+                                                            <input class="form-check-input" type="checkbox" value="" id="expense">
+                                                            <label class="form-check-label ms-1" for="expense">Date</label>
+                                                        </div>
+                                                    </th>
+                                                    <th>Vendor Name</th>
+                                                    <th>Ledger Account</th>
+                                                    <th>Expense Amount</th>
+                                                    <th>Paid Through</th>
+                                                    <th>Status</th>
+                                                    <th>Created By</th>
+                                                    <th>Created On</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                         
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <a href="javasript:void(0)" class="setting-icon-box" data-bs-toggle="modal" data-bs-target="#settingpopup">
+                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <g id="Icon">
+                                                <path id="Icon_2" fill-rule="evenodd" clip-rule="evenodd" d="M14.7735 10.6559C14.8002 10.4426 14.8202 10.2293 14.8202 10.0026C14.8202 9.77594 14.8002 9.5626 14.7735 9.34927L16.1802 8.24927C16.3069 8.14927 16.3402 7.96927 16.2602 7.8226L14.9269 5.51594C14.8469 5.36927 14.6669 5.31594 14.5202 5.36927L12.8602 6.03594C12.5135 5.76927 12.1402 5.54927 11.7335 5.3826L11.4802 3.61594C11.4602 3.45594 11.3202 3.33594 11.1535 3.33594H8.48687C8.32021 3.33594 8.18021 3.45594 8.16021 3.61594L7.90687 5.3826C7.50021 5.54927 7.12687 5.77594 6.78021 6.03594L5.12021 5.36927C4.96687 5.30927 4.79354 5.36927 4.71354 5.51594L3.38021 7.8226C3.29354 7.96927 3.33354 8.14927 3.46021 8.24927L4.86687 9.34927C4.84021 9.5626 4.82021 9.7826 4.82021 10.0026C4.82021 10.2226 4.84021 10.4426 4.86687 10.6559L3.46021 11.7559C3.33354 11.8559 3.30021 12.0359 3.38021 12.1826L4.71354 14.4893C4.79354 14.6359 4.97354 14.6893 5.12021 14.6359L6.78021 13.9693C7.12687 14.2359 7.50021 14.4559 7.90687 14.6226L8.16021 16.3893C8.18021 16.5493 8.32021 16.6693 8.48687 16.6693H11.1535C11.3202 16.6693 11.4602 16.5493 11.4802 16.3893L11.7335 14.6226C12.1402 14.4559 12.5135 14.2293 12.8602 13.9693L14.5202 14.6359C14.6735 14.6959 14.8469 14.6359 14.9269 14.4893L16.2602 12.1826C16.3402 12.0359 16.3069 11.8559 16.1802 11.7559L14.7735 10.6559ZM9.8202 12.3359C8.53354 12.3359 7.48687 11.2893 7.48687 10.0026C7.48687 8.71594 8.53354 7.66927 9.8202 7.66927C11.1069 7.66927 12.1535 8.71594 12.1535 10.0026C12.1535 11.2893 11.1069 12.3359 9.8202 12.3359Z" fill="#ADBFCD" />
+                                            </g>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+
+
+
+    <div class="modal fade" id="recording-of-expense" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Recording of Expense</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="ClearExpenseForm()"></button>
+                </div>
+                <div class="modal-body " style="background:#fff;">
+                    <div class="row g-3">
+                        <div class="col-md-12">
+                            <div class="tabboxcontainer">
+                                <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link active" id="pills-address-tab" data-bs-toggle="pill" data-bs-target="#pills-address" type="button" role="tab" aria-controls="pills-address" aria-selected="true">Expense</button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="pills-contacts-tab" data-bs-toggle="pill" data-bs-target="#pills-contacts" type="button" role="tab" aria-controls="pills-contacts" aria-selected="false">Recurring Expense</button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="pills-other-tab" data-bs-toggle="pill" data-bs-target="#pills-other" type="button" role="tab" aria-controls="pills-other" aria-selected="false">Bulk Booking</button>
+                                    </li>
+                                </ul>
+                                <div class="tab-content" id="pills-tabContent">
+                                    
+                                    <div class="tab-pane fade show active" id="pills-address" role="tabpanel" aria-labelledby="pills-address-tab">
+                                        <div class="form-container p-4">
+                                            <div class="col-md-4">
+                                                <div class="d-flex align-items-center justify-content-between pb-2 border-0 p-0">
+                                                    <label class="form-check-label d-block">Expense Type*</label>
+                                                    <div class="form-check form-check-inline me-1">
+                                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="goods" value="option1" checked>
+                                                        <label class="form-check-label" for="goods">Goods</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="service" value="option2">
+                                                        <label class="form-check-label" for="service">Service</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="d-flex align-items-center justify-content-between mb-3">
+                                                    <div class="label">HSN Code</div>
+                                                    <div class="form-floating">
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" id="hsnCode" value="" placeholder="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="row pb-3 g-3">
+
+                                                    <div class="col-md-3">
+                                                        <div class="form-floating">
+                                                            <input class="form-select typeahead offline-agent"
+                                                                   type="text" placeholder="Select Branch" id="txtBranch">
+                                                            <input type="hidden" class="track-value" id="hdnBranchId" value="">
+                                                            <label for="Branch">Branch</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-floating">
+                                                            <input class="form-select typeahead offline-agent"
+                                                                   type="text" placeholder="Select Department" id="txtDepartment">
+                                                            <input type="hidden" class="track-value" id="hdnDepartmentId" value="">
+                                                            <label for="Department">Department</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-floating">
+                                                            <input class="form-select typeahead offline-agent"
+                                                                   type="text" placeholder="Select Ledger" id="txtExpenseLedger">
+                                                            <input type="hidden" class="track-value" id="hdnExpenseLedgerId" value="">
+                                                            <label for="txtExpenseLedger">Expense Ledger</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-floating">
+                                                            <input type="text" class="form-control datepicker" name="fiscaldate" placeholder="Fiscal Year Start Date" id="expenseDate">
+                                                            <label for="Date">Date</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-floating">
+                                                            <input type="text" class="form-control" id="description" placeholder="">
+                                                            <label for="description">Description</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-floating">
+                                                            <input type="text" class="form-control" id="expenseAmount" placeholder="" >
+                                                            <label for="expenseAmount">Expense Amount</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-floating">
+                                                            <input type="text" class="form-select typeahead offline-agent" id="txtVendorName" value="" placeholder="Select Vendor">
+                                                            <input type="hidden" class="track-value" id="hdnVendorId" value="">
+                                                            <label for="VendorName">Vendor Name*</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-floating">
+                                                                <a class="form-select dropdown-toggle text-decoration-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                    <span class="">Select Paid From</span>
+                                                                </a>
+                                                               <input type="hidden" class="track-value" id="expensePaidFrom" value=""/>
+                                                                <ul class="dropdown-menu">
+                                                                    <li><a class="dropdown-item expensePaidFrom" href="#" >Bank</a></li>
+                                                                    <li><a class="dropdown-item expensePaidFrom" href="#" >Cash</a></li>
+                                                                    <li><a class="dropdown-item expensePaidFrom" href="#" >Online</a></li>
+                                                                </ul>
+                                                            <label for="floatingSelect">Paid From</label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="row g-3">
+                                                    <div class="modal-sub-heading border-top pt-3 mt-4">
+                                                        Tax Details
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="dash-form-group">
+                                                            <label class="form-check-label" for="icaccount">GST Applicable</label>
+                                                            <div class="display-label yes">
+                                                                <span class="dash-check-group">
+                                                                    <span class="yes">Yes</span>
+                                                                    <span class="no">No</span>
+                                                                </span>
+                                                                <div class="form-switch">
+                                                                    <input class="form-check-input gst-toggle" type="checkbox" id="icaccount" checked>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-floating" >
+                                                            <input class="form-select typeahead offline-agent gst-tax-code"
+                                                                   type="text" placeholder="Select Tax Code" id="txtTaxCode">
+                                                            <input type="hidden" class="track-value" id="hdnTaxCode" value=""/>
+                                                            <label for="floatingSelect">GST Tax Code</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-floating">
+                                                            <input type="text" class="form-control gst-tax-amount" id="taxAmount" placeholder="">
+                                                            <label for="teamName">Tax Amount</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-floating">
+                                                            <a class="form-select dropdown-toggle text-decoration-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <span class="">Select ITC Availability</span>
+                                                            </a>
+                                                            <input type="hidden" class="track-value" id="itcAvailablityExpense" value="" />
+                                                            <ul class="dropdown-menu">
+                                                                <li><a class="dropdown-item itcAvailablityExpense" href="#">Yes</a></li>
+                                                                <li><a class="dropdown-item itcAvailablityExpense" href="#">No</a></li>
+                                                            </ul>
+                                                            <label for="Itc">ITC Available ?</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="dash-form-group">
+                                                            <label class="form-check-label" for="icaccount">TDS Chargeable</label>
+                                                            <div class="display-label yes">
+                                                                <span class="dash-check-group">
+                                                                    <span class="yes">Yes</span>
+                                                                    <span class="no">No</span>
+                                                                </span>
+                                                                <div class="form-switch">
+                                                                    <input class="form-check-input tds-toggle" type="checkbox" id="icaccount" checked>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-floating">
+                                                            <input class="form-select typeahead offline-agent tds-code"
+                                                                   type="text" placeholder="Select TDS Code" id="txtTdsCode">
+                                                            <input type="hidden" class="track-value" id="hdnTdsCode" value="" />
+                                                            <label for="floatingSelect">TDS Code</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-floating">
+                                                            <input type="text" class="form-control tds-amount" id="tdsAmount" placeholder="" >
+                                                            <label for="teamName">TDS Amount</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <a href="javascript:void(0);" class="add-another-payment-terms d-block ms-0">
+
+                                                            <span class="icon">
+                                                                <svg width="18" height="16" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <ellipse cx="12.5294" cy="12" rx="12.5294" ry="12" fill="#043376"></ellipse>
+                                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7578 6.75C11.7578 6.55109 11.8373 6.36032 11.9789 6.21967C12.1204 6.07902 12.3124 6 12.5126 6C12.7128 6 12.9048 6.07902 13.0463 6.21967C13.1879 6.36032 13.2674 6.55109 13.2674 6.75V17.25C13.2674 17.4489 13.1879 17.6397 13.0463 17.7803C12.9048 17.921 12.7128 18 12.5126 18C12.3124 18 12.1204 17.921 11.9789 17.7803C11.8373 17.6397 11.7578 17.4489 11.7578 17.25V6.75Z" fill="white"></path>
+                                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.25781 12.0002C6.25781 11.8085 6.34032 11.6246 6.48717 11.4891C6.63403 11.3535 6.83321 11.2773 7.0409 11.2773H18.0041C18.2118 11.2773 18.411 11.3535 18.5579 11.4891C18.7047 11.6246 18.7872 11.8085 18.7872 12.0002C18.7872 12.192 18.7047 12.3758 18.5579 12.5114C18.411 12.647 18.2118 12.7231 18.0041 12.7231H7.0409C6.83321 12.7231 6.63403 12.647 6.48717 12.5114C6.34032 12.3758 6.25781 12.192 6.25781 12.0002Z" fill="white"></path>
+                                                                </svg>
+                                                            </span>
+                                                            Add Another Item
+                                                        </a>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="" id="billing-address">
+                                                            <label class="form-check-label" for="billing-address">Save as Draft</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="pills-contacts" role="tabpanel" aria-labelledby="pills-contacts-tab">
+                                        <div class="form-container p-4">
+                                            <div class="col-md-4">
+                                                <div class="d-flex align-items-center justify-content-between pb-2 border-0 p-0">
+                                                    <label class="form-check-label d-block">Expense Type*</label>
+                                                    <div class="form-check form-check-inline me-1">
+                                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="goods" value="option1" checked>
+                                                        <label class="form-check-label" for="goods">Goods</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="service" value="option2">
+                                                        <label class="form-check-label" for="service">Service</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="d-flex align-items-center justify-content-between mb-3">
+                                                    <div class="label">HSN Code</div>
+                                                    <div class="form-floating">
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" id="recHsnCode" value="" placeholder="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="row pb-3 g-3">
+
+                                                    <div class="col-md-3">
+                                                        <div class="form-floating">
+                                                            <input class="form-select typeahead offline-agent"
+                                                                   type="text" placeholder="Select Branch" id="txtRecBranch">
+                                                            <input type="hidden" class="track-value" id="hdnRecBranchId" value="">
+                                                            <label for="Branch">Branch</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-floating">
+                                                            <input class="form-select typeahead offline-agent"
+                                                                   type="text" placeholder="Select Department" id="txtRecDepartment">
+                                                            <input type="hidden" class="track-value" id="hdnRecDepartmentId" value="">
+                                                            <label for="Department">Department</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-floating">
+                                                            <input class="form-select typeahead offline-agent"
+                                                                   type="text" placeholder="Select Ledger" id="txtRecExpenseLedger">
+                                                            <input type="hidden" class="track-value" id="hdnRecExpenseLedgerId" value="">
+                                                            <label for="floatingSelect">Expense Ledger</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-floating">
+                                                            <input type="text" class="form-control" id="recExpenseAmount" placeholder="" >
+                                                            <label for="expenseAmount">Expense Amount</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-floating">
+                                                            <input type="text" class="form-control" id="recDescription" placeholder="">
+                                                            <label for="description">Description</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-floating">
+                                                            <a class="form-select dropdown-toggle text-decoration-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <span class="">Select Frequency</span>
+                                                            </a>
+                                                            <input type="hidden" class="track-value" value="" id="frequency" />
+                                                            <ul class="dropdown-menu">
+                                                                <li><a class="dropdown-item frequency" href="#">Daily</a></li>
+                                                                <li><a class="dropdown-item frequency" href="#">Weekly</a></li>
+                                                                <li><a class="dropdown-item frequency" href="#">Monthly</a></li>
+                                                                <li><a class="dropdown-item frequency" href="#">Yearly</a></li>
+                                                            </ul>
+                                                            <label for="floatingSelect">Frequency</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-floating">
+                                                            <input type="text" class="form-control datepicker" name="fiscaldate" placeholder="Fiscal Year Start Date" id="recStartDate">
+                                                            <label for="floatingSelect">Start Date </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-floating">
+                                                            <input type="text" class="form-control datepicker" name="fiscaldate" placeholder="Fiscal Year Start Date" id="recEndDate">
+                                                            <label for="floatingSelect">End Date</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-floating">
+                                                                <a class="form-select dropdown-toggle text-decoration-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                    <span class="">Select Paid From</span>
+                                                                </a>
+                                                                <input type="hidden" class="track-value" value="" id="recExpensePaidFrom"/>
+                                                                <ul class="dropdown-menu">
+                                                                    <li><a class="dropdown-item recExpensePaidFrom" href="#">Bank</a></li>
+                                                                    <li><a class="dropdown-item recExpensePaidFrom" href="#">Petty cash</a></li>
+                                                                </ul>
+                                                                <label for="floatingSelect">Paid From</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-floating">
+                                                            <input class="form-select typeahead offline-agent"
+                                                                   type="text" placeholder="Select Vendor" id="txtRecVendorName">
+                                                            <input type="hidden" class="track-value" id="hdnRecVendorId" value=""/>
+                                                            <label for="floatingSelect">Vendor Name</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row g-3">
+                                                    <div class="modal-sub-heading border-top pt-3 mt-4">
+                                                        Tax Details
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="dash-form-group">
+                                                            <label class="form-check-label" for="icaccount">GST Applicable</label>
+                                                            <div class="display-label yes">
+                                                                <span class="dash-check-group">
+                                                                    <span class="yes">Yes</span>
+                                                                    <span class="no">No</span>
+                                                                </span>
+                                                                <div class="form-switch">
+                                                                    <input class="form-check-input gst-toggle" type="checkbox" id="icaccount" checked>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-floating" >
+                                                            <input class="form-select typeahead offline-agent gst-tax-code"
+                                                                   type="text" placeholder="Select Tax Code" id="txtRecTaxCode">
+                                                            <input type="hidden" class="track-value" id="hdnRecTaxCode" value=""/>
+                                                            <label for="floatingSelect">GST Tax Code</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-floating">
+                                                            <input type="text" class="form-control gst-tax-amount" id="recTaxAmount" placeholder="">
+                                                            <label for="teamName">Tax Amount</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-floating">
+
+                                                            <a class="form-select dropdown-toggle text-decoration-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <span class="">Select ITC Availability</span>
+                                                            </a>
+                                                            <input type="hidden" class="track-value" id="itcAvailablityRec" value="" />
+                                                            <ul class="dropdown-menu">
+                                                                <li><a class="dropdown-item itcAvailablityRec" href="#">Yes</a></li>
+                                                                <li><a class="dropdown-item itcAvailablityRec" href="#">No</a></li>
+                                                            </ul>
+                                                            <label for="floatingSelect">ITC Available ?</label>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="dash-form-group">
+                                                            <label class="form-check-label" for="icaccount">TDS Chargeable</label>
+                                                            <div class="display-label yes">
+                                                                <span class="dash-check-group">
+                                                                    <span class="yes">Yes</span>
+                                                                    <span class="no">No</span>
+                                                                </span>
+                                                                <div class="form-switch">
+                                                                    <input class="form-check-input tds-toggle" type="checkbox" id="icaccount" checked>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-floating">
+                                                            <input class="form-select typeahead offline-agent tds-code"
+                                                                   type="text" placeholder="Select TDS Code" id="txtRecTds">
+                                                            <input type="hidden" class="track-value" value="" id="hdnRecTDS"/>
+                                                            <label for="floatingSelect">TDS Code</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-floating">
+                                                            <input type="text" class="form-control tds-amount" id="recTDSAmount" placeholder="">
+                                                            <label for="teamName">TDS Amount</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex justify-content-end align-items-center">
+
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="" id="billing-address">
+                                                            <label class="form-check-label" for="billing-address">Save as Draft</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane fade" id="pills-other" role="tabpanel" aria-labelledby="pills-other-tab">
+                                        <div class="form-container pt-0 pb-0 p-4">
+                                            <div class="col-md-12">
+
+                                                <div class="row">
+                                                    <div class="bolkboking">
+                                                        <table class="display customize-table-style " id="" role="grid"
+                                                               aria-describedby="basic-14_info">
+                                                            <thead>
+                                                                <tr role="row">
+                                                                    <th>Date</th>
+                                                                    <th>Expense Ledger</th>
+                                                                    <th>Description</th>
+                                                                    <th>Amount</th>
+                                                                    <th>Tax Amount</th>
+                                                                    <th>Vendor Name</th>
+                                                                    <th>Paid From</th>
+                                                                    <th>Branch</th>
+                                                                    <th>Department</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody id="bulkBookingTBody">
+                                                                <tr role="row" class="item-row row-1" data-row="1">
+                                                                    <td>
+                                                                        <div class="form-floating">
+                                                                            <div class="input-group">
+                                                                                <input type="text" class="form-control datepicker" name="fiscaldate" placeholder="" id="bulkBookingDate_1">
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="input-group">
+                                                                            <input class="form-select offline-agent" type="text" placeholder="Expense Ledger" id="txtExpenseLedger_1">
+                                                                            <input type="hidden" class="track-value" id="hdnExpenseLedger_1" value="">
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="input-group">
+                                                                            <input type="text" class="form-control" placeholder="Description" aria-label="Search" aria-describedby="addon-wrapping" id="bulkDescription_1">
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="input-group">
+                                                                            <div class="expnceslect-div">
+                                                                                <select class="form-select" aria-label="Default select example" id="amountCurrency_1">
+                                                                                    <option selected>USD</option>
+                                                                                    <option value="1">INR</option>
+                                                                                </select>
+                                                                            </div>
+                                                                            <input type="text" class="form-control rounded text-end" placeholder="0.00" aria-label="Search" aria-describedby="addon-wrapping" id="amountValue_1">
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="input-group">
+                                                                        
+                                                                            <input type="text" class="form-control rounded text-end" placeholder="0.00" aria-label="Search" aria-describedby="addon-wrapping" id="taxValue_1">
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="input-group">
+                                                                            <input class="form-select offline-agent" type="text" placeholder="Vendor Name" id="txtVendorName_1">
+                                                                            <input type="hidden" class="track-value" id="hdnVendorId_1" value="">
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="dropdown flex-grow-1">
+                                                                            <a class="form-select dropdown-toggle text-decoration-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                                <span class="">Select Paid From</span>
+                                                                            </a>
+                                                                            <input type="hidden" class="track-value bulkPaidFromInput" value="" />
+                                                                            <ul class="dropdown-menu">
+                                                                                <li><a class="dropdown-item bulkPaidFrom" href="#">Bank</a></li>
+                                                                                <li><a class="dropdown-item bulkPaidFrom" href="#">Cash</a></li>
+                                                                                <li><a class="dropdown-item bulkPaidFrom" href="#">Online</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="input-group">
+                                                                            <input class="form-select offline-agent" type="text" placeholder="Branch" id="txtBranch_1">
+                                                                            <input type="hidden" class="track-value" id="hdnBranchId_1" value="">
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="input-group">
+                                                                            <input class="form-select offline-agent" type="text" placeholder="Department" id="txtDepartment_1">
+                                                                            <input type="hidden" class="track-value" id="hdnDepartment_1" value="">
+                                                                        </div>
+                                                                    </td>
+
+                                                                </tr>  
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-between p-3 align-items-center">
+                                            <a href="javascript:void(0);" class="add-another-payment-terms d-block ms-0" id="btnAddNewRow">
+
+                                                <span class="icon">
+                                                    <svg width="18" height="16" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <ellipse cx="12.5294" cy="12" rx="12.5294" ry="12" fill="#043376"></ellipse>
+                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7578 6.75C11.7578 6.55109 11.8373 6.36032 11.9789 6.21967C12.1204 6.07902 12.3124 6 12.5126 6C12.7128 6 12.9048 6.07902 13.0463 6.21967C13.1879 6.36032 13.2674 6.55109 13.2674 6.75V17.25C13.2674 17.4489 13.1879 17.6397 13.0463 17.7803C12.9048 17.921 12.7128 18 12.5126 18C12.3124 18 12.1204 17.921 11.9789 17.7803C11.8373 17.6397 11.7578 17.4489 11.7578 17.25V6.75Z" fill="white"></path>
+                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M6.25781 12.0002C6.25781 11.8085 6.34032 11.6246 6.48717 11.4891C6.63403 11.3535 6.83321 11.2773 7.0409 11.2773H18.0041C18.2118 11.2773 18.411 11.3535 18.5579 11.4891C18.7047 11.6246 18.7872 11.8085 18.7872 12.0002C18.7872 12.192 18.7047 12.3758 18.5579 12.5114C18.411 12.647 18.2118 12.7231 18.0041 12.7231H7.0409C6.83321 12.7231 6.63403 12.647 6.48717 12.5114C6.34032 12.3758 6.25781 12.192 6.25781 12.0002Z" fill="white"></path>
+                                                    </svg>
+                                                </span>
+                                                Add Another Item
+                                            </a>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="billing-address">
+                                                <label class="form-check-label" for="billing-address">Save as Draft</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn action-btn bg-action-light active">Save and New</button>
+                    <button type="button" class="btn action-btn bg-action-light" data-bs-dismiss="modal">Save and make Recurring</button>
+                    <button type="button" class="btn action-btn bg-action-light active" onclick="SaveRecordingExpense()">Save</button>
+                    <button type="button" class="btn action-btn bg-action-light" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal fade" id="settingpopup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Customize Columns</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body pb-0" style="background:#fff;">
+                    <div class="row g-3">
+                        <div class="d-flex align-items-center m-0 py-2 border-bottom">
+                            <input class="form-check-input mt-0 me-4 toggle-column" type="checkbox" data-column="0" checked>
+                            <label class="form-check-label ms-0">Date</label>
+                        </div>
+                        <div class="d-flex align-items-center m-0 py-2 border-bottom">
+                            <input class="form-check-input mt-0 me-4 toggle-column" type="checkbox" data-column="1" checked >
+                            <label class="form-check-label ms-0">Vendor Name</label>
+                        </div>
+                        <div class="d-flex align-items-center m-0 py-2 border-bottom">
+                            <input class="form-check-input mt-0 me-4 toggle-column" type="checkbox" data-column="2" checked>
+                            <label class="form-check-label ms-0">Ledger Account</label>
+                        </div>
+                        <div class="d-flex align-items-center m-0 py-2 border-bottom">
+                            <input class="form-check-input mt-0 me-4 toggle-column" type="checkbox" data-column="3" checked>
+                            <label class="form-check-label ms-0">Expense Amount</label>
+                        </div>
+
+                        <div class="d-flex align-items-center m-0 py-2 border-bottom">
+                            <input class="form-check-input mt-0 me-4 toggle-column" type="checkbox" data-column="4" checked>
+                            <label class="form-check-label ms-0">Paid Through</label>
+                        </div>
+                        <div class="d-flex align-items-center m-0 py-2 border-bottom">
+                            <input class="form-check-input mt-0 me-4 toggle-column" type="checkbox" data-column="5" checked>
+                            <label class="form-check-label ms-0">Status</label>
+                        </div>
+                        <div class="d-flex align-items-center m-0 py-2 border-bottom">
+                            <input class="form-check-input mt-0 me-4 toggle-column" type="checkbox" data-column="6" checked>
+                            <label class="form-check-label ms-0">Created By</label>
+                        </div>
+                        <div class="d-flex align-items-center m-0 py-2 border-bottom">
+                            <input class="form-check-input mt-0 me-4 toggle-column" type="checkbox" data-column="7" checked>
+                            <label class="form-check-label ms-0">Created On</label>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn action-btn bg-action-light" id="resetColumns" data-bs-dismiss="modal">Reset</button>
+                    <div class="d-flex align-items-center">
+                        <button type="button" class="btn action-btn me-2 bg-action-light active" data-bs-dismiss="modal">save</button>
+                        <button type="button" class="btn action-btn bg-action-light" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="emailpopup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Email Sales Estimates</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body " style="background:#fff;">
+                    <div class="row g-3">
+                        <div class="col-md-12">
+                            <div class="form-floating" id="the-basics-agents">
+                                <input class="form-control" type="text" placeholder="Enter Name">
+                                <label for="floatingSelect">To*</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating" id="the-basics-agents">
+                                <input class="form-control" type="text" placeholder="Enter Name">
+                                <label for="floatingSelect">Cc*</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating" id="the-basics-agents">
+                                <input class="form-control" type="text" placeholder="Enter Name">
+                                <label for="floatingSelect">Subject*</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating upload">
+                                <input class="form-control" type="text" placeholder="" value="Sales document">
+                                <label for="floatingSelect">Attachment</label>
+                                <input type="file" />
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <textarea class="form-control" style="height:124px;" value="I would like to take flight from Houston, Texas"></textarea>
+                                <label for="teamName">Message </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn action-btn bg-action-light active">Send</button>
+                    <button type="button" class="btn action-btn bg-action-light" data-bs-dismiss="modal">Cancel</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @section Scripts {
+        <script>
+            $(function () {
+                GridActions.init({
+                    moduleType: 'ExpenseHistory',
+                    checkboxSelector: '.row-check',
+                    selectAllSelector: '#chkSelectAll',
+                    emailModalId: '#emailpopup'
+                });
+            });
+           $(function () {
+             ImportExport.init({
+             moduleType: 'ExpenseHistory',
+             entityId      :"@Session["EntityID"]",
+             createdBy     : "@Session["LoginID"]",
+             dropdownTarget: '#btnCreateNewDropdown'
+             });
+           });
+        </script>
+    }
+
+<script>
+
+
+
+        var ExpenseHistory;
+        var selectedStatus = "";
+        var startDate;
+        var endDate;
+
+        $(document).ready(function () {
+            ExpenseHistory = $("#expenseHistory").DataTable({
+           "serverSide": true,
+           select: {
+               style: 'multi'
+           },
+           buttons: [
+               {
+                   extend: 'copy',
+                   text: 'Copy',
+                   exportOptions: {
+                       modifier: {
+                           selected: true
+                       }
+                   }
+               },
+               {
+                   extend: 'excel',
+                   text: 'Excel',
+                   exportOptions: {
+                       modifier: {
+                           selected: true
+                       }
+                   }
+               },
+               {
+                   extend: 'csv',
+                   text: 'CSV',
+                   exportOptions: {
+                       modifier: {
+                           selected: true
+                       }
+                   }
+               },
+               {
+                   extend: 'pdf',
+                   text: 'PDF',
+                   exportOptions: {
+                       modifier: {
+                           selected: true
+                       }
+                   }
+               },
+               {
+                   extend: 'print',
+                   text: 'Print',
+                   exportOptions: {
+                       modifier: {
+                           selected: true
+                       },
+
+                   }
+               }
+           ],
+           "ajax": {
+               "url": "@Url.Action("GetExpenseHistory")",
+               "type": "POST",
+               "datatype": "json",
+               "data": function (d) {
+                   d.icolelngth = 8;
+                   d.statusFilter = selectedStatus;
+                   d.startDate = startDate;
+                   d.endDate = endDate;
+               },
+               "beforeSend": function () {
+
+               },
+               "complete": function () {
+               }
+           },
+           createdRow: function (row, data, dataIndex) {
+               $(row).attr('data-id', data.ExpenseId);
+           },
+           "columns": [
+               {
+                   "data": "ExpenseDate",
+                   "name": "ExpenseDate",
+                   "autoWidth": true,
+                   "visible": true,
+                   "class": "d-flex align-items-center",
+                   "render": function (data, type, row, meta) {
+                       return `
+                <div class="d-flex align-items-center">
+                  <div class="inputlabel d-flex align-items-center me-2">
+                      <input class="form-check-input mt-0 row-check" type="checkbox" value="" id="expenseDate_${meta.row}">
+                  </div>
+                  ${data ? moment(data).format("DD-MM-YYYY") : ""}
+               </div>`;
+                   }
+               },
+               { "data": "VendorName", "name": "VendorName", "autoWidth": true, "visible": true, "class": "center" },
+               { "data": "LedgerAccount", "name": "LedgerAccount", "autoWidth": true, "visible": true, "class": "center" },
+               { "data": "ExpenseAmount", "name": "ExpenseAmount", "autoWidth": true, "visible": true, "class": "center" },
+               { "data": "PaidFrom", "name": "PaidFrom", "autoWidth": true, "visible": true, "class": "center" },
+               { "data": "Status", "name": "Status", "autoWidth": true, "visible": true, "class": "center" },
+               { "data": "CreatedBy", "name": "CreatedBy", "autoWidth": true, "visible": true, "class": "center" },
+               {
+                   "data": "CreatedOn", "name": "CreatedOn", "autoWidth": true, "visible": true, "class": "center",
+                   render: function (data) {
+                       return data ? moment(data).format("DD-MM-YYYY") : "";
+                   }
+               },
+           ],
+           "fnInitComplete": function (oSettings) {
+               var j = 0;
+           }
+          });
+
+        });
+
+
+       //Sync the row checkbox with datatable
+      $('#expenseHistory').on('change', '.row-check', function () {
+           var row = $(this).closest('tr');
+
+           if (this.checked) {
+               ExpenseHistory.row(row).select();
+           } else {
+               ExpenseHistory.row(row).deselect();
+           }
+       });
+
+
+       //Toggle the column
+       let resetClicked = false;
+
+       $('#resetColumns').click(function () {
+           resetClicked = true;
+           $('.toggle-column').each(function () {
+               $(this).prop('checked', true);
+           });
+
+           ExpenseHistory.columns().every(function () {
+               this.visible(true, false);
+           });
+
+           ExpenseHistory.columns.adjust().draw(false);
+       });
+
+       // On modal close
+       $('#settingpopup').on('hidden.bs.modal', function () {
+           if (resetClicked) {
+               resetClicked = false;
+           } else {
+               $('.toggle-column').each(function () {
+                   var columnIndex = $(this).data('column');
+                   var isVisible = $(this).is(':checked');
+                   ExpenseHistory.column(columnIndex).visible(isVisible, false);
+               });
+
+               ExpenseHistory.columns.adjust().draw(false);
+           }
+       });
+
+     // Select the value
+
+    $(document).on('click', '.expensePaidFrom', function (e) {
+        e.preventDefault();
+
+        var text = $(this).text();
+
+        var dropdown = $(this).closest('.form-floating');
+
+        dropdown.find('.dropdown-toggle span').text(text);
+
+        dropdown.find('#expensePaidFrom').val(text);
+    });
+
+    $(document).on('click', '.recExpensePaidFrom', function (e) {
+        e.preventDefault();
+
+        var text = $(this).text();
+
+        var dropdown = $(this).closest('.form-floating');
+
+        dropdown.find('.dropdown-toggle span').text(text);
+
+        dropdown.find('#recExpensePaidFrom').val(text);
+    });
+
+    $(document).on('click', '.bulkPaidFrom', function (e) {
+        e.preventDefault();
+
+        var text = $(this).text();
+
+        var dropdown = $(this).closest('.dropdown');
+
+        dropdown.find('.dropdown-toggle span').text(text);
+
+        dropdown.find('.bulkPaidFromInput').val(text);
+    });
+
+
+    $(document).on('click', '.itcAvailablityExpense', function (e) {
+        e.preventDefault();
+
+        var text = $(this).text();
+
+        var dropdown = $(this).closest('.form-floating');
+
+        dropdown.find('.dropdown-toggle span').text(text);
+
+        dropdown.find('#itcAvailablityExpense').val(text);
+    });
+
+
+    $(document).on('click', '.itcAvailablityRec', function (e) {
+        e.preventDefault();
+
+        var text = $(this).text();
+
+        var dropdown = $(this).closest('.form-floating');
+
+        dropdown.find('.dropdown-toggle span').text(text);
+
+        dropdown.find('#itcAvailablityRec').val(text);
+    });
+
+    $(document).on('click', '.frequency', function (e) {
+        e.preventDefault();
+
+        var text = $(this).text();
+
+        var dropdown = $(this).closest('.form-floating');
+
+        dropdown.find('.dropdown-toggle span').text(text);
+
+        dropdown.find('#frequency').val(text);
+    });
+
+ //Typehead for expense
+  $('#txtVendorName').typeheadAutoComplete('Partner.mst_Partner', 'Partner', $('#hdnVendorId'));
+  $('#txtBranch').typeheadAutoComplete('Core.mst_Branch', 'Branch', $('#hdnBranchId'));
+  $('#txtDepartment').typeheadAutoComplete('Core.mst_Department', 'Deptmt', $('#hdnDepartmentId'));
+  $('#txtExpenseLedger').typeheadAutoComplete('ACCT.mst_GLMaster', 'GL', $('#hdnExpenseLedgerId'));
+  $('#txtTaxCode').typeheadAutoComplete('Core.mst_Tax', 'Tax', $('#hdnTaxCode'));
+  $('#txtTdsCode').typeheadAutoComplete('Core.mst_Tax', 'Tax', $('#hdnTdsCode'));
+
+
+ //Typehead for Recurring expense
+ $('#txtRecVendorName').typeheadAutoComplete('Partner.mst_Partner', 'Partner', $('#hdnRecVendorId'));
+ $('#txtRecBranch').typeheadAutoComplete('Core.mst_Branch', 'Branch', $('#hdnRecBranchId'));
+ $('#txtRecDepartment').typeheadAutoComplete('Core.mst_Department', 'Deptmt', $('#hdnRecDepartmentId'));
+ $('#txtRecExpenseLedger').typeheadAutoComplete('ACCT.mst_GLMaster', 'GL', $('#hdnRecExpenseLedgerId'));
+ $('#txtRecTaxCode').typeheadAutoComplete('Core.mst_Tax', 'Tax', $('#hdnRecTaxCode'));
+ $('#txtRecTds').typeheadAutoComplete('Core.mst_Tax', 'Tax', $('#hdnRecTDS'));
+
+
+function SaveRecordingExpense() {
+    var activeTab = $('.tab-pane.show.active');
+    var tabId = activeTab.attr('id');
+
+    // Validate required fields
+    //if (!ValidateExpenseForm(activeTab, tabId)) {
+    //    return false;
+    //}
+
+    var expenseData = {};
+
+    if (tabId === 'pills-address') {
+        // Main Expense Tab
+
+        let expenseDate = activeTab.find('#expenseDate').val();
+        let formatedExpenseDate = expenseDate ? new Date(expenseDate).toISOString() : "";
+        expenseData = {
+            RecordType:"Expense",
+            ExpenseType: $('input[name="inlineRadioOptions"]:checked').val() === "option1" ? "Goods" : "Service",
+            HsnCode: activeTab.find('#hsnCode').val(),
+            BranchId: activeTab.find('#hdnBranchId').val(),
+            DepartmentId: activeTab.find('#hdnDepartmentId').val(),
+            ExpenseLedgerId: activeTab.find('#hdnExpenseLedgerId').val(),
+            ExpenseDate: formatedExpenseDate,
+            Description: activeTab.find('#description').val(),
+            ExpenseAmount: activeTab.find('#expenseAmount').val(),
+            VendorId: activeTab.find('#hdnVendorId').val(),
+            PaidFrom: activeTab.find('#expensePaidFrom').val(),
+            GstApplicable: activeTab.find('#icaccount').eq(0).is(':checked'),
+            GstTaxCode: activeTab.find('#hdnTaxCode').val(),
+            TaxAmount: activeTab.find('#taxAmount').val(),
+            ItcAvailable: activeTab.find('#itcAvailablityExpense').val(),
+            TdsChargeable: activeTab.find('#icaccount').eq(1).is(':checked'),
+            TdsCode: activeTab.find('#hdnTdsCode').val(),
+            TdsAmount: activeTab.find('#tdsAmount').val(),
+            SaveAsDraft: activeTab.find('#billing-address').is(':checked')
+        };
+    }
+    else if (tabId === 'pills-contacts') {
+        // Recurring Expense Tab
+        let starDate = activeTab.find('#recStartDate').val();
+        let endDate = activeTab.find('#recEndDate').val();
+
+        let formatedStarDate = starDate ? new Date(starDate).toISOString() : "";
+        let formatedEndDate = endDate ? new Date(endDate).toISOString() : "";
+        expenseData = {
+            RecordType: "RecurringExpense",
+            ExpenseType: $('input[name="inlineRadioOptions"]:checked').val() === "option1" ? "Goods" : "Service",
+            HsnCode: activeTab.find('#recHsnCode').val(),
+            BranchId: activeTab.find('#hdnRecBranchId').val(),
+            DepartmentId: activeTab.find('#hdnRecDepartmentId').val(),
+            ExpenseLedgerId: activeTab.find('#hdnRecExpenseLedgerId').val(),
+            ExpenseAmount: activeTab.find('#recExpenseAmount').val(),
+            Description: activeTab.find('#recDescription').val(),
+            Frequency: activeTab.find('#frequency').val(),
+            StartDate: formatedStarDate,
+            EndDate: formatedEndDate,
+            PaidFrom: activeTab.find('#recExpensePaidFrom').val(),
+            VendorId: activeTab.find('#hdnRecVendorId').val(),
+            GstApplicable: activeTab.find('#icaccount').eq(0).is(':checked'),
+            GstTaxCode: activeTab.find('#hdnRecTaxCode').val(),
+            TaxAmount: activeTab.find('#recTaxAmount').val(),
+            ItcAvailable: activeTab.find('#itcAvailablityRec').val(),
+            TdsChargeable: activeTab.find('#icaccount').eq(1).is(':checked'),
+            TdsCode: activeTab.find('#hdnRecTDS').val(),
+            TdsAmount: activeTab.find('#recTDSAmount').val(),
+            SaveAsDraft: activeTab.find('#billing-address').is(':checked')
+        };
+    }
+    else if (tabId === 'pills-other') {
+        // Bulk Booking Tab
+        var bulkItems = [];
+        var tableRows = activeTab.find('table tbody tr');
+        tableRows.each(function (index) {
+            var row = $(this);
+            let suffix = index + 1;
+            let bulkbookDate = row.find(`#bulkBookingDate_${suffix}`).val();
+            let formatedBulkbookDate = bulkbookDate ? new Date(bulkbookDate).toISOString() : "";
+            var rowData = {
+                Date: formatedBulkbookDate,
+                ExpenseLedgerId: row.find('#hdnExpenseLedger_' + suffix).val(),
+                Description: row.find('#bulkDescription_' + suffix).val(),
+                Amount: row.find('#amountValue_' + suffix).val(),
+                AmountCurrency: row.find('#amountCurrency_' + suffix).val(),
+                TaxAmount: row.find('#taxValue_' + suffix).val(),
+                TaxCurrency: row.find('#taxCurrency_' + suffix).val(),
+                VendorId: row.find('#hdnVendorId_' + suffix).val(),
+                PaidFrom: row.find('.bulkPaidFromInput').val(),
+                BranchId: row.find('#hdnBranchId_' + suffix).val(),
+                DepartmentId: row.find('#hdnDepartment_' + suffix).val()
+            };
+            bulkItems.push(rowData);
+        });
+
+        expenseData = {
+            bulkBookingItems: bulkItems,
+            RecordType:"BulkBooking",
+            saveAsDraft: activeTab.find('#billing-address').is(':checked')
+        };
+    }
+
+    $.ajax({
+        url: "@Url.Action("SaveExpense", "Purchases")",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify(expenseData),
+        dataType: "json",
+        success: function (response) {
+            if (response.Success) {
+                var modalEl = document.getElementById('recording-of-expense');
+                var modal = bootstrap.Modal.getInstance(modalEl);
+                modal.hide();
+                ClearExpenseForm();
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: 'Expense saved successfully',
+                    timer: 5000,
+                    confirmButtonColor: '#3085d6'
+                })
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Error occured while saving Expense!',
+                    timer: 5000,
+                    confirmButtonColor: '#d33'
+                })
+            }
+        },
+        error: function (xhr, status, error) {
+            console.error("Error:", error);
+            alert("error occured");
+            var errorMsg = "An error occurred while saving the expense.";
+            if (xhr.responseJSON && xhr.responseJSON.message) {
+                errorMsg = xhr.responseJSON.message;
+            }
+        }
+    });
+}
+
+function ValidateExpenseForm(tabElement, tabId) {
+    var isValid = true;
+    var errorMessages = [];
+
+    if (tabId === 'pills-address' || tabId === 'pills-contacts') {
+        // Validate Expense Type
+        var expenseType = $('input[name="inlineRadioOptions"]:checked').val();
+        if (!expenseType) {
+            errorMessages.push("Please select an expense type (Goods or Service)");
+            isValid = false;
+        }
+
+        // Validate Vendor Name
+        var vendorName = tabElement.find('#txtVendorName').val();
+        if (!vendorName || vendorName.trim() === '') {
+            errorMessages.push("Vendor Name is required");
+            isValid = false;
+        }
+
+        // Validate Expense Amount
+        var expenseAmount = tabId === 'pills-address'
+            ? tabElement.find('input.form-control').eq(5).val()
+            : tabElement.find('input.form-control').eq(3).val();
+        if (!expenseAmount || isNaN(expenseAmount) || parseFloat(expenseAmount) <= 0) {
+            errorMessages.push("Please enter a valid Expense Amount");
+            isValid = false;
+        }
+
+        // Validate Date
+        var dateField = tabId === 'pills-address'
+            ? tabElement.find('input[name="fiscaldate"]').val()
+            : tabElement.find('input[name="fiscaldate"]').eq(0).val();
+        if (!dateField) {
+            errorMessages.push("Date is required");
+            isValid = false;
+        }
+
+        // Validate Branch/Department/Ledger
+        if (tabId === 'pills-address') {
+            var branch = tabElement.find('#txtBranch').val();
+            if (!branch || branch.trim() === '') {
+                errorMessages.push("Branch is required");
+                isValid = false;
+            }
+        }
+    }
+    else if (tabId === 'pills-other') {
+        // Validate Bulk Booking
+        var tableRows = tabElement.find('table tbody tr');
+        if (tableRows.length === 0) {
+            errorMessages.push("Please add at least one item for Bulk Booking");
+            isValid = false;
+        } else {
+            var hasValidRow = false;
+            tableRows.each(function (index) {
+                var row = $(this);
+                var amount = row.find('input.text-end').eq(0).val();
+                var date = row.find('input[name="fiscaldate"]').val();
+
+                if (amount && date && !isNaN(amount) && parseFloat(amount) > 0) {
+                    hasValidRow = true;
+                }
+            });
+
+            if (!hasValidRow) {
+                errorMessages.push("Please ensure all items have valid Date and Amount");
+                isValid = false;
+            }
+        }
+    }
+
+    if (!isValid) {
+        ShowNotification(errorMessages.join('<br>'), "error");
+    }
+
+    return isValid;
+}
+
+
+ (function () {
+     function isActiveTabDirty() {
+         var $active = $('.tab-pane.active');
+         if (!$active.length) return false;
+
+         // 1. Check visible inputs (text, textarea, select)
+         var hasValue = $active.find('input[type="text"], textarea')
+             .filter(function () {
+
+                 // skip hidden elements
+                 if ($(this).is(':hidden')) return false;
+
+                 // skip fiscal date fields
+                 if ($(this).attr('name') === 'fiscaldate') return false;
+
+                 var v = $(this).val();
+                 return v !== null && v.toString().trim() !== '';
+             }).length > 0;
+
+         // 2. Check hidden inputs (ONLY those used for dropdowns)
+         var hasHiddenValue = $active.find('input.track-value')
+             .filter(function () {
+                 var v = $(this).val();
+                 return v && v.toString().trim() !== '';
+             }).length > 0;
+
+         // 3. Check radio / checkbox (if needed)
+         //var hasChecked = $active.find('input[type="radio"], input[type="checkbox"]')
+         //    .filter(':checked').length > 0;
+         var rowIncrease = rowCount>1
+         return hasValue || hasHiddenValue || rowIncrease;
+     }
+
+    // Intercept pill tab clicks and show Swal if active tab is dirty
+     $('#pills-tab').on('show.bs.tab', '.nav-link', function (e) {
+        if (isActiveTabDirty()) {
+            e.preventDefault();
+            Swal.fire({
+                icon: 'warning',
+                title: 'Cannot switch tab',
+                text: 'You have unsaved changes. Please save or discard them before switching tabs.',
+                confirmButtonColor: '#3085d6'
+            });
+        }
+    });
+})();
+
+
+
+
+function ClearExpenseForm() {
+
+        // Remove any inline alerts
+        $('#recording-of-expense .alert').remove();
+
+        // Clear fields in each tab
+        $('#recording-of-expense .tab-pane').each(function () {
+            var $tab = $(this);
+
+            // Clear visible inputs and textareas
+            $tab.find('input[type="text"], input[type="email"], textarea').val('');
+
+            // Reset selects to first option
+            $tab.find('select').each(function () {
+                $(this).prop('selectedIndex', 0);
+            });
+
+            // Clear hidden inputs (IDs etc.)
+            $tab.find('input[type="hidden"]').val('');
+            $tab.find('input[type="Search"]').val('');
+
+            // Uncheck all checkboxes and radios, then set default radio for expense type
+            $tab.find('input[type="checkbox"]').prop('checked', false);
+            $tab.find('input[type="radio"]').prop('checked', false);
+            $tab.find('input[name="inlineRadioOptions"]').first().prop('checked', true);
+
+            // Destroy any daterangepicker instance and clear value
+            $tab.find('input.datepicker, input[name="fiscaldate"]').each(function () {
+                var $inp = $(this);
+                var dr = $inp.data('daterangepicker');
+                if (dr && typeof dr.remove === 'function') {
+                    dr.remove();
+                }
+                $inp.val('');
+            });
+        });
+
+        // Reset GST/TDS toggles and re-enable dependent fields (set to default enabled)
+        $('.gst-toggle').each(function () {
+            $(this).prop('checked', true);
+        });
+        $('.tds-toggle').each(function () {
+            $(this).prop('checked', true);
+        });
+
+        // Re-enable GST/TDS fields put the classes used by toggle logic
+        $('.gst-tax-code, .gst-tax-amount, .tds-code, .tds-amount').prop('disabled', false);
+
+        // Bulk booking: remove dynamically added rows and reset the first row
+        var $tbody = $('#bulkBookingTBody');
+        // Keep only the first row (assumes initial row has .row-1). Remove others.
+        $tbody.find('tr.item-row').not('.row-1').remove();
+
+        // Reset the first row inputs and hidden ids
+        var suffix = 1;
+        $(`#bulkBookingDate_${suffix}`).val('');
+        var dr1 = $(`#bulkBookingDate_${suffix}`).data('daterangepicker');
+        if (dr1 && typeof dr1.remove === 'function') dr1.remove();
+
+        $(`#txtExpenseLedger_${suffix}`).val('');
+        $(`#hdnExpenseLedger_${suffix}`).val('');
+        $(`#bulkDescription_${suffix}`).val('');
+        $(`#amountCurrency_${suffix}`).prop('selectedIndex', 0);
+        $(`#amountValue_${suffix}`).val('');
+        $(`#taxCurrency_${suffix}`).prop('selectedIndex', 0);
+        $(`#taxValue_${suffix}`).val('');
+        $(`#txtVendorName_${suffix}`).val('');
+        $(`#hdnVendorId_${suffix}`).val('');
+        $(`#txtBranch_${suffix}`).val('');
+        $(`#hdnBranchId_${suffix}`).val('');
+        $(`#txtDepartment_${suffix}`).val('');
+        $(`#hdnDepartment_${suffix}`).val('');
+
+        // Reset global row counter used by add-row logic
+        if (typeof rowCount !== 'undefined') {
+            rowCount = 1;
+        }
+    $(function () {
+        $('input[name="fiscaldate"]').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            minYear: 1901,
+            maxYear: parseInt(moment().format('YYYY'), 10)
+        }, function (start, end, label) {
+            var years = moment().diff(start, 'years');
+        });
+    });
+
+        $('#pills-address-tab').tab('show');
+    }
+
+function ShowNotification(message, type) {
+    var alertClass = type === 'success' ? 'alert-success' : 'alert-danger';
+    var alertHtml = '<div class="alert ' + alertClass + ' alert-dismissible fade show" role="alert" style="margin: 10px 0;">' +
+        message +
+        '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>' +
+        '</div>';
+
+    // Insert at top of modal body
+    var modalBody = $('#recording-of-expense .modal-body');
+
+    // Remove existing alerts
+    modalBody.find('.alert').remove();
+
+    // Add new alert
+    modalBody.prepend(alertHtml);
+
+    // Auto-dismiss after 5 seconds
+    setTimeout(function () {
+        modalBody.find('.alert').fadeOut('slow', function () {
+            $(this).remove();
+        });
+    }, 5000);
+}
+
+
+    // Add dynamic row in Bulk Booking
+    var rowCount = 1;
+    $("#btnAddNewRow").click(function () {
+        rowCount++;
+        var newRow = `
+           <tr role="row" class="item-row row-${rowCount}" data-row="${rowCount}">
+        <td>
+            <div class="form-floating">
+                <div class="input-group">
+                    <input type="text" class="form-control datepicker" name="fiscaldate" placeholder="" id="bulkBookingDate_${rowCount}">
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="input-group">
+                <input class="form-select offline-agent" type="text" placeholder="Expense Ledger" id="txtExpenseLedger_${rowCount}">
+                <input type="hidden" class="track-value" id="hdnExpenseLedger_${rowCount}" value="">
+            </div>
+        </td>
+        <td>
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Description" aria-label="Search" aria-describedby="addon-wrapping" id="bulkDescription_${rowCount}">
+            </div>
+        </td>
+        <td>
+            <div class="input-group">
+                <div class="expnceslect-div">
+                    <select class="form-select" aria-label="Default select example" id="amountCurrency_${rowCount}">
+                        <option selected>USD</option>
+                        <option value="1">INR</option>
+                    </select>
+                </div>
+                <input type="text" class="form-control rounded text-end" placeholder="0.00" aria-label="Search" aria-describedby="addon-wrapping" id="amountValue_${rowCount}">
+            </div>
+        </td>
+        <td>
+            <div class="input-group">
+                <input type="text" class="form-control rounded text-end" placeholder="0.00" aria-label="Search" aria-describedby="addon-wrapping" id="taxValue_${rowCount}">
+            </div>
+        </td>
+        <td>
+            <div class="input-group">
+                <input class="form-select offline-agent" type="text" placeholder="Vendor Name" id="txtVendorName_${rowCount}">
+                <input type="hidden" class="track-value" id="hdnVendorId_${rowCount}" value="">
+            </div>
+        </td>
+            <td>
+               <div class="dropdown flex-grow-1">
+         <a class="form-select dropdown-toggle text-decoration-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             <span class="">Select Paid From</span>
+         </a>
+         <input type="hidden" class="track-value bulkPaidFromInput" value="" />
+         <ul class="dropdown-menu">
+             <li><a class="dropdown-item bulkPaidFrom" href="#">Bank</a></li>
+             <li><a class="dropdown-item bulkPaidFrom" href="#">Cash</a></li>
+             <li><a class="dropdown-item bulkPaidFrom" href="#">Online</a></li>
+         </ul>
+       </div>
+        </td>
+        <td>
+            <div class="input-group">
+                <input class="form-select offline-agent" type="text" placeholder="Branch" id="txtBranch_${rowCount}">
+                <input type="hidden" class="track-value" id="hdnBranchId_${rowCount}" value="">
+            </div>
+        </td>
+        <td>
+            <div class="input-group">
+                <input class="form-select offline-agent" type="text" placeholder="Department" id="txtDepartment_${rowCount}">
+                <input type="hidden" class="track-value" id="hdnDepartment_${rowCount}" value="">
+            </div>
+        </td>
+        <td>
+    <button type="button" class="btn btn-danger btn-sm btnRemoveRow">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path id="Vector" fill-rule="evenodd" clip-rule="evenodd" d="M0 6.00414C0 5.81242 0.0790176 5.62855 0.21967 5.49298C0.360322 5.35741 0.551088 5.28125 0.75 5.28125H11.25C11.4489 5.28125 11.6397 5.35741 11.7803 5.49298C11.921 5.62855 12 5.81242 12 6.00414C12 6.19586 11.921 6.37973 11.7803 6.5153C11.6397 6.65087 11.4489 6.72703 11.25 6.72703H0.75C0.551088 6.72703 0.360322 6.65087 0.21967 6.5153C0.0790176 6.37973 0 6.19586 0 6.00414Z" fill="white" />
+         </svg>
+    </button>
+   </td>
+
+     </tr>
+        `;
+
+        $("#bulkBookingTBody").append(newRow);
+
+
+        // Initialize datepicker for the new row
+        $(`#bulkBookingDate_${rowCount}`).daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            minYear: 1901,
+            maxYear: parseInt(moment().format('YYYY'), 10)
+        });
+
+        //Typehead for bulk booking
+
+        $(`#txtVendorName_${rowCount}`).typeheadAutoComplete('Partner.mst_Partner', 'Partner', $(`#hdnVendorId_${rowCount}`));
+        $(`#txtExpenseLedger_${rowCount}`).typeheadAutoComplete('ACCT.mst_GLMaster', 'GL', $(`#hdnExpenseLedger_${rowCount}`));
+        $(`#txtDepartment_${rowCount}`).typeheadAutoComplete('Core.mst_Department', 'Deptmt', $(`#hdnDepartment_${rowCount}`));
+        $(`#txtBranch_${rowCount}`).typeheadAutoComplete('Core.mst_Branch', 'Branch', $(`#hdnBranchId_${rowCount}`));
+
+        // bulk booking paid from 
+        $(document).on('click', `.bulkPaidFrom`, function (e) {
+            e.preventDefault();
+
+            var text = $(this).text();
+
+            var dropdown = $(this).closest('.dropdown');
+
+            dropdown.find('.dropdown-toggle span').text(text);
+
+            dropdown.find(`.bulkPaidFromInput`).val(text);
+        });
+    });
+
+   
+
+    //initDatePicker(`#bulkBookingDate_${rowCount}`);
+
+    //$(document).ready(function () {
+    //    initDatePicker($('input[name="fiscaldate"]'));
+    //});
+
+    //Typehead for bulk booking
+
+    $('#txtVendorName_1').typeheadAutoComplete('Partner.mst_Partner', 'Partner', $('#hdnVendorId_1'));
+    $(`#txtExpenseLedger_1`).typeheadAutoComplete('ACCT.mst_GLMaster', 'GL', $(`#hdnExpenseLedger_1`));
+    $(`#txtDepartment_1`).typeheadAutoComplete('Core.mst_Department', 'Deptmt', $(`#hdnDepartment_1`));
+    $(`#txtBranch_1`).typeheadAutoComplete('Core.mst_Branch', 'Branch', $(`#hdnBranchId_1`));
+
+
+    $(document).on("click", ".btnRemoveRow", function () {
+        if ($(".item-row").length > 1) {
+            $(this).closest("tr").remove();
+            rowCount--;
+        }
+    });
+
+
+
+        $(document).ready(function () {
+
+            // Function to toggle GST fields for a specific tab
+            function toggleGSTFields(tabSelector) {
+                let gstCheckbox = $(tabSelector).find('.gst-toggle');
+                let taxCodeField = $(tabSelector).find('.gst-tax-code');
+                let taxAmountField = $(tabSelector).find('.gst-tax-amount');
+
+                function updateGSTState() {
+                    let isChecked = gstCheckbox.is(':checked');
+                    if (!isChecked) {
+                        taxCodeField.prop('disabled', true);
+                        taxAmountField.prop('disabled', true);
+                        taxCodeField.val('');
+                        taxCodeField.siblings('input[type="hidden"]').val('');
+                        taxAmountField.val('');
+                    } else {
+                        taxCodeField.prop('disabled', false);
+                        taxAmountField.prop('disabled', false);
+                    }
+                }
+
+                updateGSTState();
+                gstCheckbox.on('change', updateGSTState);
+            }
+
+            // Function to toggle TDS fields for a specific tab
+            function toggleTDSFields(tabSelector) {
+                let tdsCheckbox = $(tabSelector).find('.tds-toggle');
+                let tdsCodeField = $(tabSelector).find('.tds-code');
+                let tdsAmountField = $(tabSelector).find('.tds-amount');
+
+                function updateTDSState() {
+                    let isChecked = tdsCheckbox.is(':checked');
+                    if (!isChecked) {
+                        tdsCodeField.prop('disabled', true);
+                        tdsAmountField.prop('disabled', true);
+                        tdsCodeField.val('');
+                        tdsCodeField.siblings('input[type="hidden"]').val('');
+                        tdsAmountField.val('');
+                    } else {
+                        tdsCodeField.prop('disabled', false);
+                        tdsAmountField.prop('disabled', false);
+                    }
+                }
+
+                updateTDSState();
+                tdsCheckbox.on('change', updateTDSState);
+            }
+
+            // Initialize toggles for Expense tab (pills-address)
+            toggleGSTFields('#pills-address');
+            toggleTDSFields('#pills-address');
+
+            // Initialize toggles for Recurring Expense tab (pills-contacts)
+            toggleGSTFields('#pills-contacts');
+            toggleTDSFields('#pills-contacts');
+
+
+        });
+
+
+    // Previous Code
+    $(document).ready(function () {
+            var substringMatcher = function (strs) {
+                return function findMatches(q, cb) {
+                    var matches, substringRegex;
+                    matches = [];
+                    substrRegex = new RegExp(q, 'i');
+                    $.each(strs, function (i, str) {
+                        if (substrRegex.test(str)) {
+                            matches.push(str);
+                        }
+                    });
+
+                    cb(matches);
+                };
+            };
+
+            var agents = ['Nicole Prejean', 'David', 'Smith', 'WEI MIAO', 'laili',
+                'Onsri', 'Wan Yun', 'Enyu', 'Rio Rica', 'Sanjay', 'Priscilla Jia', 'John Smith',
+                'Redha Nuruinda', 'Mylon Jan', 'Ma Lothel', 'Raufa', 'Areanne Glee', 'Mary Jasmine',
+            ];
+
+            $('#the-basics-agents .typeahead').typeahead({
+                hint: true,
+                highlight: true,
+                minLength: 1
+            },
+                {
+                    name: 'states',
+                    source: substringMatcher(agents)
+                });
+        });
+
+    </script>
+
+    <script>
+$(function() {
+  $('input[name="fiscaldate"]').daterangepicker({
+    singleDatePicker: true,
+    showDropdowns: true,
+    minYear: 1901,
+    maxYear: parseInt(moment().format('YYYY'),10)
+  }, function(start, end, label) {
+    var years = moment().diff(start, 'years');
+  });
+});
+
+$(function() {
+    $('input[name="daterange"]').daterangepicker(
+        {
+            ssingleDatePicker: 'true',
+            showShortcuts: 'false',
+            showTopbar: 'false'
+        }
+    );
+});
+
+
+  $('#datatable1').DataTable({
+          "columnDefs": [
+              {
+                  "targets": -1,
+                  "orderable": false
+              }
+          ],
+          language: {
+              search: "_INPUT_",
+              searchPlaceholder: "Search..."
+          },
+          fixedHeader: {
+              header: true,
+          },
+          "dom": '<"top"<"toolbar">tf<"clear">>rt<"bottom"lip<"clear">>'
+      });
+    </script>
+
+    <script>
+ $(".form-switch").click(function () {
+    if ($(this).parent().hasClass("yes")) {
+      $(this).parent().removeClass("yes");
+      $(this).parent().addClass("no");
+    } else {
+      $(this).parent().removeClass("no");
+      $(this).parent().addClass("yes");
+    }
+  });
+    </script>
+    <script>
+  $(document).ready(function () {
+      $('#datatable1_wrapper').DataTable({
+          pagingType: 'full_numbers',
+      });
+
+      $('#framework').multiselect({
+        nonSelectedText: 'Select Framework',
+        enableFiltering: true,
+        enableCaseInsensitiveFiltering: true,
+        buttonWidth:'400px'
+      });
+  });
+    </script>
+</body>
+</html>

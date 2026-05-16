@@ -1,0 +1,319 @@
+
+@{
+    ViewBag.Title = "new-sales-order";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html lang="en">
+<head>
+    <link href="../assets/css/vendor.css" rel="stylesheet">
+</head>
+<body class="bg-sky-light">
+
+    @Html.Partial("~/Views/Shared/_PartialHeader.cshtml")
+
+    <div class="container">
+        <div class="row">
+            <main class="main-body">
+                <div class="main-body-wrapper">
+                    <div class="collapsebody bg-f8f8f8 collapse show group-lookuptab" id="">
+                        <div class="collapsewrap card bx-shadow ">
+                            <div class="collapseheader ps-0 pe-0 me-0">
+
+                                <div class="top_content">
+                                    <h1 class="heading">Create New Sales Order</h1>
+                                    <span class="sub-heading">Create Sales Order for the accepted Sales Estimates.</span>
+                                </div>
+
+                                <div class="row pt-3 g-3">
+                                    <div class="col">
+                                        <div class="form-floating">
+                                            <input class="form-select typeahead offline-agent"
+                                                   type="text" placeholder="" id="customerName">
+                                            <label for="CustomerName">Customer Name*</label>
+                                            <input type="hidden" id="hdnClientID" value="">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="" value="As per Number Series" placeholder="Please enter last name" disabled>
+                                            <label for="teamName">Sales Order Number*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control datepicker" name="fiscaldate" placeholder="">
+                                            <label for="floatingSelect">Sales Order Date*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="" value="14587" placeholder="">
+                                            <label for="teamName">Reference</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating input-edit">
+                                            <input type="text" class="customer-name-control edit-form form-control" id="" value="Due on Receipt" placeholder="">
+                                            <label for="teamName">Payment Terms</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-3">
+                                    <div class="col">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-select typeahead offline-agent" id="txtCurrencyy" value="USD" placeholder="">
+                                            <input type="hidden" id="hdnCurrencyy" value="">
+                                            <label for="teamName">Currency</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="" value="" placeholder="">
+                                            <label for="teamName">Delivery Method</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control datepicker" name="fiscaldate" placeholder="">
+                                            <label for="floatingSelect">Shipment Date</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating">
+                                            <input id="txtSalesPerson" class="form-select typeahead offline-agent"
+                                                   type="text" placeholder="">
+                                            <input type="hidden" id="hdnSalesPerson" value="">
+                                            <label for="floatingSelect">Sales Person</label>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                @Html.Partial("~/Views/Shared/_PartialEstimate.cshtml")
+                                <div class="form-action-section new-estimate-button pt-4">
+                                    <div class="upload form-floating  d-flex align-items-center">
+                                        <span>Upload</span><input type="file">
+                                    </div>
+                                    @*<a href="javascript:void(0);" class="action-btn bg-action-light active">Save as Draft</a>*@
+                                    <div class="dropdown">
+                                        <a class="form-select dropdown-toggle text-decoration-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <span class="">Save</span>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="#" onclick="saveSalesOrder()">Save and  New</a></li>
+                                            <li><a class="dropdown-item" href="@Url.Action("SalesOrderHistory04", "Sales")">Save and  Approve</a></li>
+                                            <li><a class="dropdown-item" href="@Url.Action("SaleOrder04", "Sales")">Save and Submit</a></li>
+                                        </ul>
+                                    </div>
+                                    <a href="@Url.Action("ViewCustomer","Sales")" class="action-btn bg-action-light">Cancel</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- popup Modal -->
+
+
+    <script>
+
+     //save sales order
+
+     function saveSalesOrder() {
+         // Validate required fields
+         const customerId = $('#hdnClientID').val();
+         //if (!customerId) {
+         //    alert('Please select a customer');
+         //    return;
+         //}
+
+         // Collect header data
+         const headerData = {
+             Sale_OrderDate: $('input[name="fiscaldate"]').first().val(),
+             CustomerId: parseInt(customerId),
+             ReferenceNumber: $('input[class*="reference"]').val() || '',
+             Payment_Term1: 0, // Adjust if you have a field for this
+             Payment_Term2: $('input[placeholder*="Due on Receipt"]').val() || 'Due on Receipt',
+             CurrencyId: 1, // Default or extract from form
+             DeliveryMethod: $('input[placeholder*="Delivery Method"]').val() || '',
+             ShipmentDate: $('input[name="fiscaldate"]').last().val(),
+             UserId: 1, // Get from session or pass from server
+             Status: 'Draft',
+             Comments: $('#txtComments').val(),
+             TermsAndConditions: $('#txtTermsConditions').val(),
+             LoginId: 1, // Get from session
+             Entity_ID: 10,
+             SubTotal: parseFloat($('#lblSubTotal').text().replace(/[^\d.-]/g, '')) || 0,
+             Discount: 0,
+             OtherAdjustment: parseFloat($('#txtOtherAdjustment').val()) || 0,
+             Tax_Value: parseFloat($('#txtTaxValue').val()) || 0,
+             TotalAmount: parseFloat($('#lblTotal').text().replace(/[^\d.-]/g, '')) || 0,
+             Sale_EstimateId: -1
+         };
+
+         // Collect item details using the existing helper function
+         const items = getAllItemRows();
+
+         //if (items.length === 0) {
+         //    alert('Please add at least one item');
+         //    return;
+         //}
+
+         // Validate each item
+         //for (let i = 0; i < items.length; i++) {
+         //    if (!items[i].Quantity || parseFloat(items[i].Quantity) <= 0) {
+         //        alert(`Item ${i + 1}: Quantity is required and must be greater than 0`);
+         //        return;
+         //    }
+         //    if (!items[i].Rate || parseFloat(items[i].Rate) <= 0) {
+         //        alert(`Item ${i + 1}: Rate is required and must be greater than 0`);
+         //        return;
+         //    }
+         //}
+
+         const payload = {
+             ...headerData,
+             Items: items
+         };
+
+         $.ajax({
+             type: 'POST',
+             url: '@Url.Action("SaveSalesOrder", "Sales")',
+             contentType: 'application/json',
+             data: JSON.stringify(payload),
+             success: function (response) {
+                 if (response.status) {
+                     alert('Sales Order saved successfully');
+                     // Redirect or refresh as needed
+                     // window.location.href = '@Url.Action("SalesOrderHistory04", "Sales")';
+                 } else {
+                     alert('Error: ' + (response.message || 'Failed to save'));
+                 }
+             },
+             error: function (error) {
+                 console.error('Error:', error);
+                 alert('An error occurred while saving the sales order');
+             }
+         });
+     }
+
+        $(document).ready(function () {
+            $('#customerName').typeheadAutoComplete('Client.mst_Client', 'Client', $('#hdnClientID'));
+            $('#txtSalesPerson').typeheadAutoComplete('UMS.mst_User', 'User', $('#hdnSalesPerson'));
+            $('#txtCurrencyy').typeheadAutoComplete('[Core].[mst_Currency]', 'Curncy', $('#hdnCurrencyy'));
+            $('.input-edit').click(function () {
+                $(this).parent().find('.customer-name-control').toggleClass('edit-form');
+            });
+        });
+        $(document).ready(function () {
+            var substringMatcher = function (strs) {
+                return function findMatches(q, cb) {
+                    var matches, substringRegex;
+                    matches = [];
+                    substrRegex = new RegExp(q, 'i');
+                    $.each(strs, function (i, str) {
+                        if (substrRegex.test(str)) {
+                            matches.push(str);
+                        }
+                    });
+
+                    cb(matches);
+                };
+            };
+
+            var agents = ['Nicole Prejean', 'David', 'Smith', 'WEI MIAO', 'laili',
+                'Onsri', 'Wan Yun', 'Enyu', 'Rio Rica', 'Sanjay', 'Priscilla Jia', 'John Smith',
+                'Redha Nuruinda', 'Mylon Jan', 'Ma Lothel', 'Raufa', 'Areanne Glee', 'Mary Jasmine',
+            ];
+
+            $('#the-basics-agents .typeahead').typeahead({
+                hint: true,
+                highlight: true,
+                minLength: 1
+            },
+                {
+                    name: 'states',
+                    source: substringMatcher(agents)
+                });
+        });
+
+
+
+
+    </script>
+
+    <script>
+        $(function () {
+            $('input[name="fiscaldate"]').daterangepicker({
+                singleDatePicker: true,
+                showDropdowns: true,
+                minYear: 1901,
+                maxYear: parseInt(moment().format('YYYY'), 10)
+            }, function (start, end, label) {
+                var years = moment().diff(start, 'years');
+            });
+        });
+
+        $(function () {
+            $('input[name="daterange"]').daterangepicker(
+                {
+                    ssingleDatePicker: 'true',
+                    showShortcuts: 'false',
+                    showTopbar: 'false'
+                }
+            );
+        });
+
+
+        $('#datatable1').DataTable({
+            "columnDefs": [
+                {
+                    "targets": -1,
+                    "orderable": false
+                }
+            ],
+            language: {
+                search: "_INPUT_",
+                searchPlaceholder: "Search..."
+            },
+            fixedHeader: {
+                header: true,
+            },
+            "dom": '<"top"<"toolbar">tf<"clear">>rt<"bottom"lip<"clear">>'
+        });
+
+
+
+
+    </script>
+
+    <script>
+        $(".form-switch").click(function () {
+            if ($(this).parent().hasClass("yes")) {
+                $(this).parent().removeClass("yes");
+                $(this).parent().addClass("no");
+            } else {
+                $(this).parent().removeClass("no");
+                $(this).parent().addClass("yes");
+            }
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#productservice').DataTable({
+                pagingType: 'full_numbers',
+            });
+
+            $('#framework').multiselect({
+                nonSelectedText: 'Select Framework',
+                enableFiltering: true,
+                enableCaseInsensitiveFiltering: true,
+                buttonWidth: '400px'
+            });
+        });
+    </script>
+</body>
+</html>

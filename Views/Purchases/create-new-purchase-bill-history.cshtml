@@ -1,0 +1,354 @@
+
+@{
+    ViewBag.Title = "create-new-purchase-bill-history";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html lang="en">
+<head>
+    <link href="../assets/css/vendor.css" rel="stylesheet">
+</head>
+<body class="bg-sky-light">
+
+    @Html.Partial("~/Views/Shared/_PartialHeader.cshtml")
+
+    <div class="container">
+        <div class="row">
+            <main class="main-body">
+                <div class="main-body-wrapper">
+                    <div class="collapsebody bg-f8f8f8 collapse show group-lookuptab" id="">
+                        <div class="collapsewrap card bx-shadow ">
+                            <div class="collapseheader ps-0 pe-0 me-0">
+
+
+                                <div class="top_content">
+                                    <h1 class="heading">Create New Purchase Bill</h1>
+                                    <span class="sub-heading d-none">Create, view, and manage the invoices you send to your customers.</span>
+                                </div>
+
+                                <div class="row pt-3 g-3">
+                                    <div class="col">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-select typeahead offline-agent" id="txtVendorName" value="" placeholder="">
+                                            <input type="hidden" id="hdnVendorId" value="">
+                                            <label for="VendorName">Vendor Name*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="billNumber" value="INV-01" placeholder="Enter bill number">
+                                            <label for="teamName">Bill Number*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="purchaseOrderNumber" value="SO-01" placeholder="Enter purchase order number">
+                                            <label for="teamName">Purchase Order Number</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control datepicker" name="fiscaldate" placeholder="Fiscal Year Start Date">
+                                            <label for="floatingSelect">Bill Date*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control datepicker" name="fiscaldate" id="accountingDate" placeholder="Fiscal Year Start Date">
+                                            <label for="floatingSelect">Accounting Date*</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-3">
+                                    <div class="col">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-select typeahead offline-agent" id="txtCurrency" value="" placeholder="">
+                                            <input type="hidden" id="hdnCurrencyId" value="">
+                                            <label for="Currency">Currency</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating input-edit">
+                                            <input type="text" class="customer-name-control edit-form form-control" id="paymentTerm" value="Due on Receipt" placeholder="Please enter last name">
+                                            <label for="teamName">Payment Terms</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control datepicker" name="fiscaldate" id="dueDate" placeholder="Fiscal Year End Date">
+                                            <label for="floatingSelect">Due Date*</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col">
+                                        <div class="form-floating">
+                                            <input class="form-select typeahead offline-agent"
+                                                   type="text" placeholder="" id="txtBranch">
+                                            <input type="hidden" id="hdnBranchId" value="">
+                                            <label for="Branch">Branch</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @Html.Partial("~/Views/Shared/_PartialPurchaseItemDetail.cshtml")
+                                <div class="form-action-section new-estimate-button pt-4">
+                                    <div class="upload form-floating  d-flex align-items-center">
+                                        <span>Upload</span><input type="file">
+                                    </div>
+                                    <a href="javascript:void(0);" class="action-btn bg-action-light active">Save as Draft</a>
+                                    <div class="dropdown">
+                                        <a class="form-select dropdown-toggle text-decoration-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <span class="">Save</span>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="#" data-status="SN">Save and  New</a></li>
+                                            <li><a class="dropdown-item" href="#" data-status="SA">Save and  Approve</a></li>
+                                            @*<li><a class="dropdown-item" href="@Url.Action("PurchaseBill01PaymentAwaited","Purchases")">Save and Submit</a></li>*@
+                                            <li><a class="dropdown-item" href="#" onclick="CreateNewPurchaseBill(this)" data-status="SS">Save and Submit</a></li>
+                                        </ul>
+                                    </div>
+                                    <a href="@Url.Action("ViewVendor","Purchases")" class="action-btn bg-action-light">Cancel</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modal -->
+
+    <script>
+
+   //Typehead
+
+   $('#txtVendorName').typeheadAutoComplete('Partner.mst_Partner', 'Partner', $('#hdnVendorId'));
+   $('#txtBranch').typeheadAutoComplete('CORE.mst_Branch', 'Branch', $('#hdnBranchId'));
+   $('#txtCurrency').typeheadAutoComplete('[Core].[mst_Currency]', 'Curncy', $('#hdnCurrencyId'));
+
+
+//function to save the new purchase bill
+function CreateNewPurchaseBill(el) {
+     const vendorId = $('#hdnVendorId').val();
+     if (!vendorId) {
+         Swal.fire({
+             icon: 'error',
+             title: 'Oops..',
+             text: 'Please select a vendor',
+             timer: 5000,
+             confirmButtonColor: '#d33'
+         });
+         return;
+    }
+       //format date
+       let billDate = $('input[name="fiscaldate"]').first().val();
+       let accDate = $('#accountingDate').val();
+       let duDate = $('#dueDate').val();
+
+       // convert to yyyy-MM-dd
+       var formattedBillDate = new Date(billDate).toISOString();
+       var formattedAccDate = new Date(accDate).toISOString();
+       var formattedDueDate = new Date(duDate).toISOString();
+
+
+         const headerData = {
+         PurchaseBillDate: formattedBillDate,
+         VendorId: parseInt(vendorId),
+         PurchaseOrderId: 0,
+         Payment_Term1:0,
+         Payment_Term2:$('#paymentTerm').val(),
+         CurrencyId: $('#hdnCurrencyId').val(),
+         AccountingDate: formattedAccDate,
+         DueDate: formattedDueDate,
+         BranchId: $('#hdnBranchId').val(),
+         SubTotal: $("#lblSubTotal").text().replace("$", "").trim(),
+         Discount: $('#txtDiscount').val() || 0,
+         OtherAdjustment: parseFloat($('#txtOtherAdjustment').val()) || 0,
+         Tds_Value: parseFloat($('.tdsCode').closest('.dropdown').attr('data-value')) || 0,
+         Amount: parseFloat($('#lblTotal').text().replace(/[^\d.-]/g, '')) || 0,
+         Status: $(el).data('status'),
+         Comments: $('#txtComments').val(),
+         TermsAndConditions: $('#txtTermsConditions').val(),
+     };
+
+     const items = getAllItemRowsFn();
+
+     if (items.length === 0) {
+         Swal.fire({
+             icon: 'error',
+             title: 'Oops...',
+             text: 'Please add at least one item',
+             confirmButtonColor: '#d33'
+         });
+         return;
+     }
+
+     for (let i = 0; i < items.length; i++) {
+         if (!items[i].ItemId || parseFloat(items[i].ItemId) <= 0) {
+             Swal.fire({
+                 icon: 'error',
+                 title: 'Oops...',
+                 text: 'ItemId is required',
+                 confirmButtonColor: '#d33'
+             });
+             return;
+         }
+     }
+     const payload = {
+         ...headerData,
+         Items: items
+     };
+
+    $.ajax({
+    type: 'POST',
+    url: '@Url.Action("SavePurchaseBills", "Purchases")',
+    contentType: 'application/json',
+    data: JSON.stringify(payload),
+    success: function (response) {
+        if (response.status) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: 'Purchase Bill saved successfully',
+                timer:5000,
+                confirmButtonColor: '#3085d6'
+            }).then((result) => {
+                window.location.href = '/Purchases/BillHistory';
+            });
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: response.message || 'Failed to save',
+                confirmButtonColor: '#d33'
+            });
+        }
+    },
+    error: function (error) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'An error occurred while saving the Purchase Bill',
+            confirmButtonColor: '#d33'
+        });
+    }
+   });
+ }
+
+
+
+// privious code
+  $(document).ready(function() {
+   $('.input-edit').click(function (){
+    $(this).parent().find('.customer-name-control').toggleClass('edit-form');
+   });
+  });
+  $(document).ready(function () {
+      var substringMatcher = function (strs) {
+          return function findMatches(q, cb) {
+              var matches, substringRegex;
+              matches = [];
+              substrRegex = new RegExp(q, 'i');
+              $.each(strs, function (i, str) {
+                  if (substrRegex.test(str)) {
+                      matches.push(str);
+                  }
+              });
+
+              cb(matches);
+          };
+      };
+
+      var agents = ['Nicole Prejean', 'David', 'Smith', 'WEI MIAO', 'laili',
+          'Onsri', 'Wan Yun', 'Enyu', 'Rio Rica', 'Sanjay', 'Priscilla Jia', 'John Smith',
+          'Redha Nuruinda', 'Mylon Jan', 'Ma Lothel', 'Raufa', 'Areanne Glee', 'Mary Jasmine',
+      ];
+
+      $('#the-basics-agents .typeahead').typeahead({
+          hint: true,
+          highlight: true,
+          minLength: 1
+      },
+          {
+              name: 'states',
+              source: substringMatcher(agents)
+          });
+  });
+
+
+
+
+    </script>
+
+    <script>
+$(function() {
+  $('input[name="fiscaldate"]').daterangepicker({
+    singleDatePicker: true,
+    showDropdowns: true,
+    minYear: 1901,
+    maxYear: parseInt(moment().format('YYYY'),10)
+  }, function(start, end, label) {
+    var years = moment().diff(start, 'years');
+  });
+});
+
+$(function() {
+            $('input[name="daterange"]').daterangepicker(
+                {
+                    ssingleDatePicker: 'true',
+                    showShortcuts: 'false',
+                    showTopbar: 'false'
+                }
+            );
+        });
+
+
+        $('#datatable1').DataTable({
+                "columnDefs": [
+                    {
+                        "targets": -1,
+                        "orderable": false
+                    }
+                ],
+                language: {
+                    search: "_INPUT_",
+                    searchPlaceholder: "Search..."
+                },
+                fixedHeader: {
+                    header: true,
+                },
+                "dom": '<"top"<"toolbar">tf<"clear">>rt<"bottom"lip<"clear">>'
+            });
+
+
+
+
+    </script>
+
+    <script>
+ $(".form-switch").click(function () {
+    if ($(this).parent().hasClass("yes")) {
+      $(".form-switch").parent().removeClass("yes");
+      $(".form-switch").parent().addClass("no");
+    } else {
+      $(".form-switch").parent().removeClass("no");
+      $(".form-switch").parent().addClass("yes");
+    }
+  });
+    </script>
+    <script>
+  $(document).ready(function () {
+      $('#productservice').DataTable({
+          pagingType: 'full_numbers',
+      });
+
+      $('#framework').multiselect({
+        nonSelectedText: 'Select Framework',
+        enableFiltering: true,
+        enableCaseInsensitiveFiltering: true,
+        buttonWidth:'400px'
+      });
+  });
+    </script>
+</body>
+</html>

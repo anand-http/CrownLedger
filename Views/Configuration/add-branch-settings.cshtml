@@ -1,0 +1,369 @@
+@model fintech.Models.BranchDetailList
+@{
+    ViewBag.Title = "add-branch-settings";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html lang="en">
+<head>
+    <link href="../assets/css/configuration.css" rel="stylesheet">
+    <link href="../assets/css/component.css" rel="stylesheet">
+</head>
+<body class="bg-sky-light">
+
+    @Html.Partial("~/Views/Shared/_PartialHeader.cshtml")
+    <aside class="left-sidebar">
+        <nav class="sidebar-nav">
+            <ul class="sidebarnav">
+                <li class="nav-title-name">
+                    <span class="">General Settings</span>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("company_details","Home")" aria-expanded="false">
+                        <span class="">Business Information</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("opening_balance","Home")" aria-expanded="false">
+                        <span class="">Opening Balance</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("AddBranch","Configuration")" aria-expanded="false">
+                        <span class="">Branch</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("Department","Configuration")" aria-expanded="false">
+                        <span class="">Department</span>
+                    </a>
+                </li>
+                <li class="nav-title-name">
+                    <span class="">Accounting</span>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("chart_of_accounts","Home")" aria-expanded="false">
+                        <span class="">Chart of Accounts</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("maintain_tax_details","Home")" aria-expanded="false">
+                        <span class="">Taxes</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("maintain_currency_details","Home")" aria-expanded="false">
+                        <span class="">Currency</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="javascript:void(0);" aria-expanded="false">
+                        <span class="">Fiscal Position</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("TransactionsSettings","Configuration")" aria-expanded="false">
+                        <span class="">Transaction Settings</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("NumberSeries","Configuration")" aria-expanded="false">
+                        <span class="">Number Series</span>
+                    </a>
+                </li>
+                <li class="nav-title-name">
+                    <span class="">Approval</span>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("UserAccess","Configuration")" aria-expanded="false">
+                        <span class="">User Access</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("TransactionApproval","Configuration")" aria-expanded="false">
+                        <span class="">Transaction Approval</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+
+    <div class="container">
+        <div class="row">
+            <main class="main-body">
+                <div class="main-body-wrapper">
+                    <div class="collapsebody bg-f8f8f8 collapse show group-lookuptab" id="">
+                        <div class="collapsewrap card bx-shadow ">
+                            <div class="collapseheader ps-0 pe-0 me-0">
+                                <div class="top_content d-flex align-items-center">
+                                    <h1 class="heading">Add Branch</h1>
+                                </div>
+                                <div class="box_container pb-4">
+                                    <div class="box_container-heading mb-3">Basic Details</div>
+                                    <div class="form-container">
+                                        @using (Html.BeginForm("BranchAction", "Configuration", FormMethod.Post, new { @class = "row g-3" }))
+                                        {
+                                            @*@Html.HiddenFor(m => m.Branch_Code)*@
+                                            <input type="hidden" name="ActionType" id="ActionType" />
+                                            <div class="row g-3">
+                                                <div class="col-md-3">
+                                                    <div class="form-floating">
+                                                        @Html.TextBoxFor(m => m.Branch_Code, new { @class = "form-control",
+                                                       placeholder = string.IsNullOrEmpty(Model.Branch_Code)? "Enter new branch code": "Branch code already exists",@disabled = "disabled"})
+                                                        <label for="BranchCode">Branch Code</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-floating">
+                                                        @Html.TextBoxFor(m => m.Branch_Desc, new { @class = "form-control", placeholder = "Please enter branch name" })
+                                                        <label for="BranchName">Branch Name</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-floating">
+                                                        @Html.TextBoxFor(m => m.GSTNO, new { @class = "form-control", placeholder = "GST Number" })
+                                                        <label for="GST">GST</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-floating">
+                                                        @Html.TextBoxFor(m => m.Branch_Div, new { @class = "form-select", id = "txtDivision" })
+                                                        <label for="Division">Division</label>
+                                                        <input type="hidden" id="hdnDivision" name="Branch_DivID" value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="box_container-heading mt-4 mb-3">Address Details</div>
+                                            <div class="row g-3">
+                                                <div class="col-md-6">
+                                                    <div class="form-floating">
+                                                        @Html.TextBoxFor(m => m.Branch_Address1, new { @class = "form-control", placeholder = "Address 1" })
+                                                        <label for="BranchAddress">Address 1 *</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-floating">
+                                                        @Html.TextBoxFor(m => m.Branch_Address2, new { @class = "form-control", placeholder = "Address 2" })
+                                                        <label for="BranchAddress">Address 2 *</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-floating">
+                                                        @Html.TextBoxFor(m => m.Country, new { @class = "form-select", placeholder = "Country" })
+                                                        <label for="Country">Country</label>
+                                                        <input type="hidden" id="hdnCountry" name="CountryId" value="">
+                                                    </div>
+                                                </div>
+                                                @*<div class="col-md-3">
+                                                    <div class="form-floating">
+                                                        @Html.TextBoxFor(m => m.State, new { @class = "form-select typeahead offline-agent", placeholder = "State" })
+                                                        <label for="State">State</label>
+                                                    </div>
+                                                </div>*@
+                                                <div class="col-md-3">
+                                                    <div class="form-floating">
+                                                        @Html.TextBoxFor(m => m.City, new { @class = "form-select typeahead offline-agent", placeholder = "City / Town", id = "txtCity" })
+                                                        <label for="City">City / Town</label>
+                                                        <input type="hidden" id="hdnCity" name="CityId" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-floating">
+                                                        @Html.TextBoxFor(m => m.ZipCode, new { @class = "form-control", placeholder = "ZipCode" })
+                                                        <label for="ZipCode">Zip Code</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @*<div class="box_container-heading mt-4 mb-3">Active areas for analysis</div>
+                                            <div class="row g-3">
+                                                <div class="row g-3">
+                                                    <div class="d-flex align-items-center m-0 py-2">
+                                                        <input class="form-check-input mt-0 me-2" type="checkbox" value="" id="">
+                                                        <label class="form-check-label ms-0">Sales (invoices / credit notes)</label>
+                                                    </div>
+                                                    <div class="d-flex align-items-center m-0 py-2">
+                                                        <input class="form-check-input mt-0 me-2" type="checkbox" value="" id="">
+                                                        <label class="form-check-label ms-0">Expenses (bills / debit notes)</label>
+                                                    </div>
+                                                    <div class="d-flex align-items-center m-0 py-2">
+                                                        <input class="form-check-input mt-0 me-2" type="checkbox" value="" id="">
+                                                        <label class="form-check-label ms-0">Bank (payments / receipts)</label>
+                                                    </div>
+                                                    <div class="d-flex align-items-center m-0 py-2">
+                                                        <input class="form-check-input mt-0 me-2" type="checkbox" value="" id="">
+                                                        <label class="form-check-label ms-0">Journals</label>
+                                                    </div>
+                                                </div>*@
+                                                @*<div class="d-flex align-items-center m-0 py-2">
+                                                        @Html.CheckBoxFor(m => m.Active, new { @class = "form-check-input mt-0 me-2", id = "Active" })
+                                                        <label class="form-check-label ms-0" for="Active">Active</label>
+                                                    </div>*@
+                                            @*</div>*@
+                                            <!--<div class="form-action-section justify-content-end pt-4">
+                                                <button type="submit" class="action-btn bg-action-light active" onclick="$('#ActionType').val('Save')">Save</button>
+                                                <button type="submit" class="action-btn bg-action-light" onclick="$('#ActionType').val('Update')">Update</button>-->
+                                            @*<button type="submit" class="action-btn bg-action-light" onclick="$('#ActionType').val('Delete')">Delete</button>*@
+                                            <!--</div>-->
+                                        }
+                                    </div>
+                                </div>
+                                <div class="form-action-section justify-content-end pt-4">
+                                    <a href="javascript:void(0);" class="action-btn bg-action-light active" onclick="$('#ActionType').val('Save')">Save</a>
+                                    <a href="javascript:void(0);" class="action-btn bg-action-light">Cancel</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('#txtDivision').typeheadAutoComplete('UMS.mst_Division', 'Div', $('#hdnDivision'));
+            $('#txtCity').typeheadAutoComplete('CORE.mst_city', 'City', $('#hdnCity'));
+            $('#Country').typeheadAutoComplete('core.mst_Country', 'contry', $('#hdnCountry'));
+    });
+        $(function () {
+            $('input[name="fiscaldate"]').daterangepicker({
+                singleDatePicker: true,
+                showDropdowns: true,
+                minYear: 1901,
+                maxYear: parseInt(moment().format('YYYY'), 10)
+            }, function (start, end, label) {
+                var years = moment().diff(start, 'years');
+            });
+        });
+
+        $(function () {
+            $('input[name="daterange"]').daterangepicker(
+                {
+                    ssingleDatePicker: 'true',
+                    showShortcuts: 'false',
+                    showTopbar: 'false'
+                }
+            );
+        });
+
+
+        $('#datatable1').DataTable({
+            "columnDefs": [
+                {
+                    "targets": -1,
+                    "orderable": false
+                }
+            ],
+            language: {
+                search: "_INPUT_",
+                searchPlaceholder: "Search..."
+            },
+            fixedHeader: {
+                header: true,
+            },
+            "dom": '<"top"<"toolbar">tf<"clear">>rt<"bottom"lip<"clear">>'
+        });
+
+        $(document).ready(function () {
+            // Attach to the Save button
+            $('.action-btn.active').on('click', function (e) {
+                e.preventDefault();
+
+                // Set ActionType value before submit
+                $('#ActionType').val('Save');
+
+                // Serialize the form data
+                var form = $('form');
+                var formData = form.serialize();
+
+                // Validate required fields
+                if (!validateField('Branch_Desc', 'Please enter Branch Name')) return;
+                if (!validateField('GSTNO', 'Please enter GST Number')) return;
+                if (!validateField('hdnDivision', 'Please enter Branch Division')) return;
+                if (!validateField('Branch_Address1', 'Please enter Address Line 1')) return;
+                if (!validateField('hdnCountry', 'Please select Country')) return;
+                if (!validateField('hdnCity', 'Please select City')) return;
+                if (!validateField('ZipCode', 'Please enter Zip Code')) return;
+
+                $.ajax({
+                    url: form.attr('action'),
+                    type: 'POST',
+                    data: formData,
+                    success: function (result) {
+                        if (result.status) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success',
+                                text: 'Branch saved successfully',
+                                timer: 5000,
+                                confirmButtonColor: '#3085d6'
+                            }).then((result) => {
+                                window.location.href = "@Url.Action("AddBranch", "Configuration")"
+                            });
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops',
+                                text: 'Error occured while saving Branch',
+                                timer: 5000,
+                                confirmButtonColor: '#d33'
+                            })
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops',
+                            text: 'Internal Server Error',
+                            timer: 5000,
+                            confirmButtonColor: '#d33'
+                        })
+                    }
+                });
+            });
+        });
+
+
+        function validateField(fieldId, message) {
+            if ($('#' + fieldId).val().trim() === '') {  
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Oops!',
+                    text: message,
+                    timer: 2000,
+                    showConfirmButton: false
+                });
+                return false;
+            }
+            return true;
+        }
+
+    </script>
+    <script>
+        $(".form-switch").click(function () {
+            if ($(this).parent().hasClass("yes")) {
+                $(this).parent().removeClass("yes");
+                $(this).parent().addClass("no");
+            } else {
+                $(this).parent().removeClass("no");
+                $(this).parent().addClass("yes");
+            }
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#productservice').DataTable({
+                pagingType: 'full_numbers',
+            });
+
+            //$('#framework').multiselect({
+            //    nonSelectedText: 'Select Framework',
+            //    enableFiltering: true,
+            //    enableCaseInsensitiveFiltering: true,
+            //    buttonWidth: '400px'
+            //});
+        });
+    </script>
+</body>
+</html>

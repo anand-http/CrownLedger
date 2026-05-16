@@ -1,0 +1,12 @@
+.select-box-w-154{
+    width: 154px;
+}
+.customize-table-style .form-control,
+ .customize-table-style .form-select {
+    max-width: 160px;
+    min-width: 160px;
+}
+.upload{
+    font-weight: 500;
+    color:var(--theme-reg-color);
+}

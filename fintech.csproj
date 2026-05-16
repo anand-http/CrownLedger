@@ -1,0 +1,713 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{48C0D541-B05C-4DD9-AEA7-E062D29F4B33}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>fintech</RootNamespace>
+    <AssemblyName>fintech</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="ClosedXML, Version=0.105.0.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
+      <HintPath>packages\ClosedXML.0.105.0\lib\netstandard2.0\ClosedXML.dll</HintPath>
+    </Reference>
+    <Reference Include="ClosedXML.Parser, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1d5f7376574c51ec, processorArchitecture=MSIL">
+      <HintPath>packages\ClosedXML.Parser.2.0.0\lib\netstandard2.0\ClosedXML.Parser.dll</HintPath>
+    </Reference>
+    <Reference Include="CsvHelper, Version=33.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>packages\CsvHelper.33.1.0\lib\net48\CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=3.1.1.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>packages\DocumentFormat.OpenXml.3.1.1\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml.Framework, Version=3.1.1.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>packages\DocumentFormat.OpenXml.Framework.3.1.1\lib\net46\DocumentFormat.OpenXml.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelNumberFormat, Version=1.1.0.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
+      <HintPath>packages\ExcelNumberFormat.1.1.0\lib\net20\ExcelNumberFormat.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=10.0.0.5, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.10.0.5\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.HashCode, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Bcl.HashCode.1.1.1\lib\net461\Microsoft.Bcl.HashCode.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=10.0.0.5, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.DependencyInjection.Abstractions.10.0.5\lib\net462\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=10.0.0.5, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Logging.Abstractions.10.0.5\lib\net462\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Web.Infrastructure.2.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RBush, Version=4.0.0.0, Culture=neutral, PublicKeyToken=c77e27b81f4d0187, processorArchitecture=MSIL">
+      <HintPath>packages\RBush.Signed.4.0.0\lib\net47\RBush.dll</HintPath>
+    </Reference>
+    <Reference Include="Select.HtmlToPdf, Version=26.1.0.0, Culture=neutral, PublicKeyToken=e0ae9f6e27a97018, processorArchitecture=MSIL">
+      <HintPath>packages\Select.HtmlToPdf.26.1.0\lib\net40\Select.HtmlToPdf.dll</HintPath>
+    </Reference>
+    <Reference Include="SixLabors.Fonts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d998eea7b14cab13, processorArchitecture=MSIL">
+      <HintPath>packages\SixLabors.Fonts.1.0.0\lib\netstandard2.0\SixLabors.Fonts.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Buffers.4.6.1\lib\net462\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.SqlClient, Version=4.6.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Data.SqlClient.4.9.0\lib\net462\System.Data.SqlClient.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=10.0.0.5, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Diagnostics.DiagnosticSource.10.0.5\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Memory, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Memory.4.6.3\lib\net462\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Numerics.Vectors.4.6.1\lib\net462\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.6.1.2\lib\net462\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.4.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Threading.Tasks.Extensions.4.6.3\lib\net462\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.Mvc.5.2.9\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.Razor.3.2.9\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Data\SessionObjects.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\EFConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BAL\balEncrytion.cs" />
+    <Compile Include="BAL\balGetSuggestedValueController.cs" />
+    <Compile Include="BAL\ballogin.cs" />
+    <Compile Include="BAL\balPasswordComplexity.cs" />
+    <Compile Include="BAL\ConfigurationBAL.cs" />
+    <Compile Include="BAL\GridActionBAL.cs" />
+    <Compile Include="BAL\HomeBAL.cs" />
+    <Compile Include="BAL\ImportExportBAL.cs" />
+    <Compile Include="BAL\PurchasesBAL.cs" />
+    <Compile Include="BAL\BankingBAL.cs" />
+    <Compile Include="BAL\SalesBAL.cs" />
+    <Compile Include="Controllers\AdjustmentController.cs" />
+    <Compile Include="Controllers\AppServiceController.cs" />
+    <Compile Include="Controllers\BankingController.cs" />
+    <Compile Include="Controllers\CompanyController.cs" />
+    <Compile Include="Controllers\ConfigurationController.cs" />
+    <Compile Include="Controllers\GridActionController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImportExportController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PurchasesController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
+    <Compile Include="Controllers\SalesController.cs" />
+    <Compile Include="DAL\CompanyRepository.cs" />
+    <Compile Include="DAL\ConfigurationDAL.cs" />
+    <Compile Include="DAL\dalGetSuggestedValue.cs" />
+    <Compile Include="DAL\dalLogin.cs" />
+    <Compile Include="DAL\dalPasswordComplexity.cs" />
+    <Compile Include="DAL\GridActionDAL.cs" />
+    <Compile Include="DAL\HomeDAL.cs" />
+    <Compile Include="DAL\ImportExportDAL.cs" />
+    <Compile Include="DAL\PurchasesDAL.cs" />
+    <Compile Include="DAL\BankingDAL.cs" />
+    <Compile Include="DAL\SalesDAL.cs" />
+    <Compile Include="Data\FintechDbContext.cs" />
+    <Compile Include="Data\GenericHelper.cs" />
+    <Compile Include="Data\WSHelper.cs" />
+    <Compile Include="Data\XMLHelper.cs" />
+    <Compile Include="Filters\FinFilter.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BankAccount.cs" />
+    <Compile Include="Models\BankAccountCreate.cs" />
+    <Compile Include="Models\BankAccountViewModel.cs" />
+    <Compile Include="Models\BankMaster.cs" />
+    <Compile Include="Models\BranchDetailCreate.cs" />
+    <Compile Include="Models\BranchViewModel.cs" />
+    <Compile Include="Models\ChartOfAccount.cs" />
+    <Compile Include="Models\CommonModel.cs" />
+    <Compile Include="Models\Company.cs" />
+    <Compile Include="Models\ConfigurationModel.cs" />
+    <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\Core_Currency.cs" />
+    <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\CustomerStatu.cs" />
+    <Compile Include="Models\ExpenseCreate.cs" />
+    <Compile Include="Models\GetAllChartOfAccounts_Result.cs" />
+    <Compile Include="Models\GetBankAccounts_Result.cs" />
+    <Compile Include="Models\TransactionSettingsResponse.cs" />
+    <Compile Include="Models\GetUserAccess_Result.cs" />
+    <Compile Include="Models\GetBranchDetails_Result.cs" />
+    <Compile Include="Models\GetCompanyDetails_Result.cs" />
+    <Compile Include="Models\GetCustomerList_Result.cs" />
+    <Compile Include="Models\GetDepartmentResult.cs" />
+    <Compile Include="Models\GetPurchasesBillHistory.cs" />
+    <Compile Include="Models\GetPurchasesRecExpenseHistory.cs" />
+    <Compile Include="Models\GetPurchasesExpenseHistory.cs" />
+    <Compile Include="Models\GetPurchasesRecurringBillHistory.cs" />
+    <Compile Include="Models\GetSalesRecInvList.cs" />
+    <Compile Include="Models\GetPurchasesCreditNoteList.cs" />
+    <Compile Include="Models\GetSalesOrderList.cs" />
+    <Compile Include="Models\GetSales.cs" />
+    <Compile Include="Models\GetSalesCreditNoteList.cs" />
+    <Compile Include="Models\GetSalesEstimateList.cs" />
+    <Compile Include="Models\GetSalesInvoiceList.cs" />
+    <Compile Include="Models\GetSalesOrderList.cs" />
+    <Compile Include="Models\GetVendorList_Result.cs" />
+    <Compile Include="Models\GridActionModels.cs" />
+    <Compile Include="Models\ImportExportModels.cs" />
+    <Compile Include="Models\Language.cs" />
+    <Compile Include="Models\LedgerAccount.cs" />
+    <Compile Include="Models\LicenseModel.cs" />
+    <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\mst_BedType.cs" />
+    <Compile Include="Models\mst_Branch.cs" />
+    <Compile Include="Models\mst_City.cs" />
+    <Compile Include="Models\mst_Country.cs" />
+    <Compile Include="Models\mst_Currency.cs" />
+    <Compile Include="Models\mst_Department.cs" />
+    <Compile Include="Models\mst_Division.cs" />
+    <Compile Include="Models\mst_Entity.cs" />
+    <Compile Include="Models\mst_Exception.cs" />
+    <Compile Include="Models\mst_ExchangeRate.cs" />
+    <Compile Include="Models\mst_ExchangeType.cs" />
+    <Compile Include="Models\mst_GLGroup.cs" />
+    <Compile Include="Models\mst_GLMaster.cs" />
+    <Compile Include="Models\mst_Landmarks.cs" />
+    <Compile Include="Models\mst_Market.cs" />
+    <Compile Include="Models\mst_Partner.cs" />
+    <Compile Include="Models\mst_Rate.cs" />
+    <Compile Include="Models\mst_Region.cs" />
+    <Compile Include="Models\mst_Services.cs" />
+    <Compile Include="Models\mst_ServiceType.cs" />
+    <Compile Include="Models\mst_State.cs" />
+    <Compile Include="Models\mst_Tax.cs" />
+    <Compile Include="Models\mst_TaxMapping.cs" />
+    <Compile Include="Models\OpeningBalance.cs" />
+    <Compile Include="Models\OpeningBalanceDetail.cs" />
+    <Compile Include="Models\PasswordComplexity.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductAndService.cs" />
+    <Compile Include="Models\GetPurchasesOrderHistory.cs" />
+    <Compile Include="Models\PurchaseBillsCreate.cs" />
+    <Compile Include="Models\PurchaseCreditNoteCreate.cs" />
+    <Compile Include="Models\PurchaseOrderCreate.cs" />
+    <Compile Include="Models\SaveUserAccessRequest.cs" />
+    <Compile Include="Models\PurchaseRecurringBillsCreate.cs" />
+    <Compile Include="Models\SaleEstimate.cs" />
+    <Compile Include="Models\SalesOrderItemModel.cs" />
+    <Compile Include="Models\SaveBranch_Result.cs" />
+    <Compile Include="Models\SaveOrUpdateCompany_Result.cs" />
+    <Compile Include="Models\Sp_GetCurrencyList_Result.cs" />
+    <Compile Include="Models\sp_GetOpeningBalanceGridData_Result.cs" />
+    <Compile Include="Models\sp_GetProductAndService_Result.cs" />
+    <Compile Include="Models\TaxDetailsViewModel.cs" />
+    <Compile Include="Models\Transaction.cs" />
+    <Compile Include="Models\TransactionSettingsRequest.cs" />
+    <Compile Include="Models\trn_Configuration.cs" />
+    <Compile Include="Models\trn_GLCurrency.cs" />
+    <Compile Include="Models\trn_Rate.cs" />
+    <Compile Include="Models\trn_ServiceConfig.cs" />
+    <Compile Include="Models\trn_Tax.cs" />
+    <Compile Include="Models\UpdInsChartOfAccount_Result.cs" />
+    <Compile Include="Models\UpsertCustomer_Result.cs" />
+    <Compile Include="Models\usp_GetBankList_Result.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\bestBottomLine.svg" />
+    <Content Include="assets\css\adjustment.css" />
+    <Content Include="assets\css\bank.css" />
+    <Content Include="assets\css\bootstrap-select.min.css" />
+    <Content Include="assets\css\bootstrap.min.css" />
+    <Content Include="assets\css\component.css" />
+    <Content Include="assets\css\configuration.css" />
+    <Content Include="assets\css\datatables.min.css" />
+    <Content Include="assets\css\daterangepicker.css" />
+    <Content Include="assets\css\header.css" />
+    <Content Include="assets\css\home-page.css" />
+    <Content Include="assets\css\jquery.timepicker.css" />
+    <Content Include="assets\css\login.css" />
+    <Content Include="assets\css\maintain-currency.css" />
+    <Content Include="assets\css\opening-balance.css" />
+    <Content Include="assets\css\payment.css" />
+    <Content Include="assets\css\product-service.css" />
+    <Content Include="assets\css\reports.css" />
+    <Content Include="assets\css\style.css" />
+    <Content Include="assets\css\vendor.css" />
+    <Content Include="assets\images\addicon.svg" />
+    <Content Include="assets\images\adjustment-icon.svg" />
+    <Content Include="assets\images\Avatar %281%29.svg" />
+    <Content Include="assets\images\Avatar %282%29.svg" />
+    <Content Include="assets\images\Avatar %283%29.svg" />
+    <Content Include="assets\images\Avatar %284%29.svg" />
+    <Content Include="assets\images\Avatar.svg" />
+    <Content Include="assets\images\banking-icon.svg" />
+    <Content Include="assets\images\bank\axis.svg" />
+    <Content Include="assets\images\bank\bank-of-america.svg" />
+    <Content Include="assets\images\bank\hdfc.svg" />
+    <Content Include="assets\images\bank\hsbc.svg" />
+    <Content Include="assets\images\bank\icici.svg" />
+    <Content Include="assets\images\bank\paypal.svg" />
+    <Content Include="assets\images\bank\state-bank-of-india.svg" />
+    <Content Include="assets\images\bg-round-shape.svg" />
+    <Content Include="assets\images\bill-file.svg" />
+    <Content Include="assets\images\calendar.svg" />
+    <Content Include="assets\images\caleneder.svg" />
+    <Content Include="assets\images\cfo-icon.svg" />
+    <Content Include="assets\images\check-circle.svg" />
+    <Content Include="assets\images\check.svg" />
+    <Content Include="assets\images\close.png" />
+    <Content Include="assets\images\close.svg" />
+    <Content Include="assets\images\configuration-icon.svg" />
+    <Content Include="assets\images\copy.svg" />
+    <Content Include="assets\images\csv-file.svg" />
+    <Content Include="assets\images\dashboard-purchase-icon.svg" />
+    <Content Include="assets\images\dashboard-sales-icon.svg" />
+    <Content Include="assets\images\delete-icon.svg" />
+    <Content Include="assets\images\delete.svg" />
+    <Content Include="assets\images\dollar.svg" />
+    <Content Include="assets\images\down-arrow.svg" />
+    <Content Include="assets\images\down-growth.svg" />
+    <Content Include="assets\images\download.svg" />
+    <Content Include="assets\images\downloadpdf.svg" />
+    <Content Include="assets\images\edit-icon.svg" />
+    <Content Include="assets\images\email.svg" />
+    <Content Include="assets\images\excel-file.svg" />
+    <Content Include="assets\images\expenses-dashboard-icon.svg" />
+    <Content Include="assets\images\export.svg" />
+    <Content Include="assets\images\favicon-icon.png" />
+    <Content Include="assets\images\file.svg" />
+    <Content Include="assets\images\home-icon.svg" />
+    <Content Include="assets\images\info.svg" />
+    <Content Include="assets\images\left-arrow.svg" />
+    <Content Include="assets\images\logo 1.svg" />
+    <Content Include="assets\images\logo_dark.png" />
+    <Content Include="assets\images\new-logo-red.png" />
+    <Content Include="assets\images\next-arrow.svg" />
+    <Content Include="assets\images\outstanding-dashboard-icon.svg" />
+    <Content Include="assets\images\plus.svg" />
+    <Content Include="assets\images\prev-arrow.svg" />
+    <Content Include="assets\images\print.svg" />
+    <Content Include="assets\images\produc-service-icon.svg" />
+    <Content Include="assets\images\purchase-icon.svg" />
+    <Content Include="assets\images\reports-icon.svg" />
+    <Content Include="assets\images\right-arrow.svg" />
+    <Content Include="assets\images\sales-icon.svg" />
+    <Content Include="assets\images\search.svg" />
+    <Content Include="assets\images\setting-icon.svg" />
+    <Content Include="assets\images\signature-logo-new.png" />
+    <Content Include="assets\images\small-white-logo.png" />
+    <Content Include="assets\images\sort_asc.png" />
+    <Content Include="assets\images\sort_asc_disabled.png" />
+    <Content Include="assets\images\sort_both.png" />
+    <Content Include="assets\images\sort_desc.png" />
+    <Content Include="assets\images\sort_desc_disabled.png" />
+    <Content Include="assets\images\travel-4.png" />
+    <Content Include="assets\images\up-arrow.svg" />
+    <Content Include="assets\images\up-growth.svg" />
+    <Content Include="assets\images\upload-file.svg" />
+    <Content Include="assets\images\upload-icon.svg" />
+    <Content Include="assets\images\upload-icon2.svg" />
+    <Content Include="assets\images\user-profile-pic.png" />
+    <Content Include="assets\images\user\Avatar-1.svg" />
+    <Content Include="assets\images\user\Avatar-2.svg" />
+    <Content Include="assets\images\user\Avatar-3.svg" />
+    <Content Include="assets\images\user\Avatar-4.svg" />
+    <Content Include="assets\images\user\Avatar.svg" />
+    <Content Include="assets\js\bootstrap-select.min.js" />
+    <Content Include="assets\js\bootstrap.bundle.min.js" />
+    <Content Include="assets\js\common.js" />
+    <Content Include="assets\js\customCookie.js" />
+    <Content Include="assets\js\customtypehead.js" />
+    <Content Include="assets\js\datatables.min.js" />
+    <Content Include="assets\js\daterangepicker.js" />
+    <Content Include="assets\js\gridActions.js" />
+    <Content Include="assets\js\importExport.js" />
+    <Content Include="assets\js\jquery-3.6.0.min.js" />
+    <Content Include="assets\js\jquery.dateandtime.js" />
+    <Content Include="assets\js\jquery.timepicker.js" />
+    <Content Include="assets\js\moment.min.js" />
+    <Content Include="assets\js\typeahead.bundle.js" />
+    <Content Include="assets\js\typeahead.js" />
+    <Content Include="assets\qualityService.svg" />
+    <Content Include="assets\smoothSailing.svg" />
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-grid.rtl.css" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css" />
+    <Content Include="Content\bootstrap-utilities.css" />
+    <Content Include="Content\bootstrap-utilities.min.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap.rtl.css" />
+    <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="assets\css\bootstrap.min.css.map" />
+    <Content Include="assets\js\bootstrap.bundle.min.js.map" />
+    <Content Include="Content\bootstrap.rtl.min.css.map" />
+    <Content Include="Content\bootstrap.rtl.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.css.map" />
+    <Content Include="Content\bootstrap-utilities.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Content\SampleFiles\Import_Customer_CSV.csv" />
+    <Content Include="Content\SampleFiles\Import_Customer_Template.xlsx" />
+    <Content Include="Content\SampleFiles\CreditNote_Sample.csv" />
+    <Content Include="Content\SampleFiles\CreditNote_Sample.xlsx" />
+    <Content Include="Content\SampleFiles\Estimate_Sample.csv" />
+    <Content Include="Content\SampleFiles\Estimate_Sample.xlsx" />
+    <Content Include="Content\SampleFiles\Invoice_Sample.csv" />
+    <Content Include="Content\SampleFiles\Invoice_Sample.xlsx" />
+    <Content Include="Content\SampleFiles\SalesOrder_Sample.csv" />
+    <Content Include="Content\SampleFiles\SalesOrder_Sample.xlsx" />
+    <Content Include="Content\SampleFiles\Import_Vendor_CSV.csv" />
+    <Content Include="Content\SampleFiles\Import_Vendor_Template.xlsx" />
+    <Content Include="Content\SampleFiles\RecInvoice_Sample.csv" />
+    <Content Include="Content\SampleFiles\RecInvoice_Sample.xlsx" />
+    <Content Include="Content\SampleFiles\ExpenseBulkBooking_Sample.csv" />
+    <Content Include="Content\SampleFiles\ExpenseBulkBooking_Sample.xlsx" />
+    <Content Include="Content\SampleFiles\ExpenseHistory_Sample.csv" />
+    <Content Include="Content\SampleFiles\ExpenseHistory_Sample.xlsx" />
+    <Content Include="Content\SampleFiles\PurchaseBills_Sample.csv" />
+    <Content Include="Content\SampleFiles\PurchaseBills_Sample.xlsx" />
+    <Content Include="Content\SampleFiles\PurchaseCreditNote_Sample.csv" />
+    <Content Include="Content\SampleFiles\PurchaseCreditNote_Sample.xlsx" />
+    <Content Include="Content\SampleFiles\PurchaseOrder_Sample.csv" />
+    <Content Include="Content\SampleFiles\PurchaseOrder_Sample.xlsx" />
+    <Content Include="Content\SampleFiles\PurchaseRecurringBills_Sample.csv" />
+    <Content Include="Content\SampleFiles\PurchaseRecurringBills_Sample.xlsx" />
+    <Content Include="Content\SampleFiles\RecurringExpense_Sample.csv" />
+    <Content Include="Content\SampleFiles\RecurringExpense_Sample.xlsx" />
+    <None Include="packages.config" />
+    <Content Include="Models\xmlFiles\xmlConfig.xml" />
+    <Content Include="SaveOrUpdateCompany.sql" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.esm.js" />
+    <Content Include="Scripts\bootstrap.esm.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.esm.min.js.map" />
+    <Content Include="Scripts\bootstrap.esm.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <None Include="Scripts\jquery-3.7.0.intellisense.js" />
+    <Content Include="Scripts\jquery-3.7.0.js" />
+    <Content Include="Scripts\jquery-3.7.0.min.js" />
+    <Content Include="Scripts\jquery-3.7.0.slim.js" />
+    <Content Include="Scripts\jquery-3.7.0.slim.min.js" />
+    <Content Include="Scripts\jquery-3.7.0.slim.min.map" />
+    <Content Include="Scripts\jquery-3.7.0.min.map" />
+    <None Include="Views\Adjustment\ContraEntry.cshtml" />
+    <None Include="Views\Adjustment\CurrencyAdjustment.cshtml" />
+    <None Include="Views\Adjustment\JournalsHistory.cshtml" />
+    <None Include="Views\Adjustment\NewEntry.cshtml" />
+    <None Include="Views\Adjustment\NewJournal.cshtml" />
+    <None Include="Views\Adjustment\NewSubLedgerTransfer.cshtml" />
+    <None Include="Views\Adjustment\ProfitTransfer.cshtml" />
+    <None Include="Views\Adjustment\RevalueAccounts.cshtml" />
+    <None Include="Views\Adjustment\RevalueJournalTransaction.cshtml" />
+    <None Include="Views\Adjustment\RollbackTransaction.cshtml" />
+    <None Include="Views\Adjustment\SubLedgerTransfer.cshtml" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="UploadedLogos\f2322e68-049b-4662-9f88-afca6fe92e9e.jpg" />
+    <Content Include="Views\Company\Index.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Purchases\bill-history.cshtml" />
+    <Content Include="Views\Configuration\add-branch-settings.cshtml" />
+    <Content Include="Views\Configuration\businessCalender.cshtml" />
+    <Content Include="Views\Configuration\number-series.cshtml" />
+    <Content Include="Views\Configuration\user-access.cshtml" />
+    <Content Include="Views\Home\currency-rate-details.cshtml" />
+    <Content Include="Views\Home\currency-rate-type.cshtml" />
+    <Content Include="Views\Purchases\create-new-purchase-bill-history.cshtml" />
+    <Content Include="Views\Purchases\create-new-purchase-bill.cshtml" />
+    <Content Include="Views\Purchases\create-new-purchase-credit-notes.cshtml" />
+    <Content Include="Views\Purchases\create-new-purchase-order.cshtml" />
+    <Content Include="Views\Purchases\create-new-recurring-purchase-bill.cshtml" />
+    <Content Include="Views\Purchases\expense-history.cshtml" />
+    <Content Include="Views\Purchases\new-recurring-purchase-bill-history.cshtml" />
+    <Content Include="Views\Purchases\purchase-bill%28paid%29.cshtml" />
+    <Content Include="Views\Purchases\purchase-bill%28Payment-awaited%29.cshtml" />
+    <Content Include="Views\Purchases\purchase-bill-01%28paid%29.cshtml" />
+    <Content Include="Views\Purchases\purchase-bill-01%28Payment-awaited%29.cshtml" />
+    <Content Include="Views\Purchases\purchase-credit-notes-history.cshtml" />
+    <Content Include="Views\Purchases\purchase-order-04.cshtml" />
+    <Content Include="Views\Purchases\purchase-order-history.cshtml" />
+    <Content Include="Views\Purchases\recurring-bills-history.cshtml" />
+    <Content Include="Views\Purchases\vendor-credit-note-4%28Payment-awaited%29.cshtml" />
+    <Content Include="Views\Purchases\view-vendor.cshtml" />
+    <Content Include="Views\Reports\account-payable-aging-report.cshtml" />
+    <Content Include="Views\Reports\account-payable-details.cshtml" />
+    <Content Include="Views\Reports\account-payable-details2.cshtml" />
+    <Content Include="Views\Reports\account-receivable-aging-report.cshtml" />
+    <Content Include="Views\Reports\account-receivable-details.cshtml" />
+    <Content Include="Views\Reports\account-receivable-details2.cshtml" />
+    <Content Include="Views\Reports\account-summary.cshtml" />
+    <Content Include="Views\Reports\account-summary2.cshtml" />
+    <Content Include="Views\Reports\balance-sheet.cshtml" />
+    <Content Include="Views\Reports\cash-flow-statement.cshtml" />
+    <Content Include="Views\Reports\credit-notes-details.cshtml" />
+    <Content Include="Views\Reports\customer-receipt-details.cshtml" />
+    <Content Include="Views\Reports\expense.cshtml" />
+    <Content Include="Views\Reports\profit-loss.cshtml" />
+    <Content Include="Views\Reports\purchase-bill-details.cshtml" />
+    <Content Include="Views\Reports\purchase-order-details.cshtml" />
+    <Content Include="Views\Reports\purchase-register.cshtml" />
+    <Content Include="Views\Reports\purchase-register2.cshtml" />
+    <Content Include="Views\Reports\sales-estimate-details.cshtml" />
+    <Content Include="Views\Reports\sales-invoice-details.cshtml" />
+    <Content Include="Views\Reports\sales-order-details.cshtml" />
+    <Content Include="Views\Reports\sales-register.cshtml" />
+    <Content Include="Views\Reports\statement-of-changes-in-equity.cshtml" />
+    <Content Include="Views\Reports\trail-balance.cshtml" />
+    <Content Include="Views\sales\create-credit-notes-history%28Payment-awaited%29.cshtml" />
+    <Content Include="Views\sales\create-credit-notes-history.cshtml" />
+    <Content Include="Views\sales\create-new-estimate.cshtml" />
+    <Content Include="Views\sales\new-credit-notes.cshtml" />
+    <Content Include="Views\sales\new-credit-notes04.cshtml" />
+    <Content Include="Views\sales\new-recurring-sales-invoice.cshtml" />
+    <Content Include="Views\sales\new-sales-invoice-history.cshtml" />
+    <Content Include="Views\sales\new-sales-invoice.cshtml" />
+    <Content Include="Views\sales\new-sales-invoice04.cshtml" />
+    <Content Include="Views\sales\new-sales-order.cshtml" />
+    <Content Include="Views\sales\recurring-invoice-history.cshtml" />
+    <Content Include="Views\sales\sale-order-04.cshtml" />
+    <Content Include="Views\sales\sale-order-history04.cshtml" />
+    <Content Include="Views\sales\sales-credit-notes-history.cshtml" />
+    <Content Include="Views\sales\sales-estimate-04.cshtml" />
+    <Content Include="Views\sales\sales-estimates-history.cshtml" />
+    <Content Include="Views\sales\sales-invoice-history-04%28Payment-awaited%29.cshtml" />
+    <Content Include="Views\sales\sales-invoice-history.cshtml" />
+    <Content Include="Views\sales\sales-invoice-order-04%28paid%29.cshtml" />
+    <Content Include="Views\sales\sales-invoice-order-04%28Payment-awaited%29.cshtml" />
+    <Content Include="Views\sales\sales-order-history.cshtml" />
+    <Content Include="Views\sales\view-customer.cshtml" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Dashboard.cshtml" />
+    <Content Include="Views\Home\add_currency.cshtml" />
+    <Content Include="Views\Home\company_details.cshtml" />
+    <Content Include="Views\Home\opening_balance.cshtml" />
+    <Content Include="Views\Home\Connect_bank_account.cshtml" />
+    <Content Include="Views\Home\Product_and_Service.cshtml" />
+    <Content Include="Views\sales\SetUpCustomer.cshtml" />
+    <Content Include="Views\Purchases\set_up_vendor.cshtml" />
+    <Content Include="Views\Home\maintain_tax_details.cshtml" />
+    <Content Include="Views\Home\maintain_currency_details.cshtml" />
+    <Content Include="Views\Home\chart_of_accounts.cshtml" />
+    <Content Include="Views\Banking\banking_dashboard.cshtml" />
+    <Content Include="Views\Banking\Payment.cshtml" />
+    <Content Include="Views\Banking\Receipt.cshtml" />
+    <Content Include="Views\Reports\reports.cshtml" />
+    <Content Include="Views\Shared\_PartialHeader.cshtml" />
+    <Content Include="Views\Configuration\add_branch.cshtml" />
+    <Content Include="Views\Configuration\department.cshtml" />
+    <Content Include="Views\Configuration\transaction_approval.cshtml" />
+    <Content Include="Views\Configuration\transaction_settings.cshtml" />
+    <Content Include="Views\Adjustment\audit.cshtml" />
+    <Content Include="Views\Shared\_CreateUpdCust.cshtml" />
+    <Content Include="Views\Shared\_PartialGlCode.cshtml" />
+    <Content Include="Views\Shared\_PartialBankList.cshtml" />
+    <Content Include="Views\Shared\_PartialCreateGoods.cshtml" />
+    <Content Include="Views\Shared\_PartialEstimate.cshtml" />
+    <Content Include="Views\Shared\_PartialItemWithGL.cshtml" />
+    <Content Include="Views\Shared\_PartialGridActions.cshtml" />
+    <Content Include="Views\Shared\_PartialActionToolbar.cshtml" />
+    <Content Include="Views\Shared\_PartialPurchaseItemDetail.cshtml" />
+    <Content Include="Views\Shared\_CreateUpdVendor.cshtml" />
+    <Content Include="Views\Shared\_PartialSidebar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\SessionObjects\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>50421</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:50421/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+</Project>

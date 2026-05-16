@@ -1,0 +1,482 @@
+﻿@{
+    ViewBag.Title = "add_branch";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="generator" content="Hugo 0.88.1">
+    <link rel="icon" href="../assets/images/favicon-icon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/images/favicon-icon.png" type="image/x-icon">
+    <title>Fintech</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/css/datatables.min.css" rel="stylesheet">
+    <link href="../assets/css/daterangepicker.css" rel="stylesheet">
+    <link href="../assets/css/bootstrap-select.min.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="../assets/css/configuration.css" rel="stylesheet">
+    <link href="../assets/css/header.css" rel="stylesheet">
+    <link href="../assets/css/component.css" rel="stylesheet">
+</head>
+<body class="bg-sky-light">
+    @Html.Partial("~/Views/Shared/_PartialHeader.cshtml")
+    <aside class="left-sidebar">
+        <nav class="sidebar-nav">
+            <ul class="sidebarnav">
+                <li class="nav-title-name">
+                    <span class="">General Settings</span>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("company_Details","Home")" aria-expanded="false">
+                        <span class="">Business Information</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("opening_balance","Home")" aria-expanded="false">
+                        <span class="">Opening Balance</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link active" href="@Url.Action("AddBranch","Configuration")" aria-expanded="false">
+                        <span class="">Branch</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("Department","Configuration")" aria-expanded="false">
+                        <span class="">Department</span>
+                    </a>
+                </li>
+                <li class="nav-title-name">
+                    <span class="">Accounting</span>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("chart_of_accounts","Home")" aria-expanded="false">
+                        <span class="">Chart of Accounts</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("maintain_tax_details","Home")" aria-expanded="false">
+                        <span class="">Taxes</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("maintain_currency_details","Home")" aria-expanded="false">
+                        <span class="">Currency</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="javascript:void(0);" aria-expanded="false">
+                        <span class="">Fiscal Position</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("transaction_settings","Configuration")" aria-expanded="false">
+                        <span class="">Transaction Settings</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("number-series","Configuration")" aria-expanded="false">
+                        <span class="">Number Series</span>
+                    </a>
+                </li>
+                <li class="nav-title-name">
+                    <span class="">Approval</span>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("user-access","Configuration")" aria-expanded="false">
+                        <span class="">User Access</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("transaction_approval","Configuration")" aria-expanded="false">
+                        <span class="">Transaction Approval</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+
+    <div class="container">
+        <div class="row">
+            <main class="main-body">
+                <div class="main-body-wrapper">
+                    <div class="collapsebody bg-f8f8f8 collapse show group-lookuptab" id="">
+                        <div class="collapsewrap card bx-shadow ">
+                            <div class="collapseheader ps-0 pe-0 me-0">
+                                <div class="top_content d-flex align-item-center justify-content-end">
+                                    <div class="right-sort-bar">
+                                        <a href="@Url.Action("AddBranchSettings","Configuration")" class="add-customer f-w-500 bg-regular ms-0 d-flex align-items-center">
+                                            <span class="icon me-2">
+                                                <svg width="22" height="22" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <ellipse cx="12.5294" cy="12" rx="12.5294" ry="12" fill="#043376"></ellipse>
+                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7578 6.75C11.7578 6.55109 11.8373 6.36032 11.9789 6.21967C12.1204 6.07902 12.3124 6 12.5126 6C12.7128 6 12.9048 6.07902 13.0463 6.21967C13.1879 6.36032 13.2674 6.55109 13.2674 6.75V17.25C13.2674 17.4489 13.1879 17.6397 13.0463 17.7803C12.9048 17.921 12.7128 18 12.5126 18C12.3124 18 12.1204 17.921 11.9789 17.7803C11.8373 17.6397 11.7578 17.4489 11.7578 17.25V6.75Z" fill="white"></path>
+                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.25781 12.0002C6.25781 11.8085 6.34032 11.6246 6.48717 11.4891C6.63403 11.3535 6.83321 11.2773 7.0409 11.2773H18.0041C18.2118 11.2773 18.411 11.3535 18.5579 11.4891C18.7047 11.6246 18.7872 11.8085 18.7872 12.0002C18.7872 12.192 18.7047 12.3758 18.5579 12.5114C18.411 12.647 18.2118 12.7231 18.0041 12.7231H7.0409C6.83321 12.7231 6.63403 12.647 6.48717 12.5114C6.34032 12.3758 6.25781 12.192 6.25781 12.0002Z" fill="white"></path>
+                                                </svg>
+                                            </span>
+                                            Add Branch
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="box_container table_manage_container">
+                                    <div id="" class="dataTables_wrapper">
+                                        <table class="display customize-table-style dataTable" id="productservice" role="grid" aria-describedby="basic-14_info">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th>Branch Code</th>
+                                                    <th>Branch Name</th>
+                                                    <th>Branch Address</th>
+                                                    <th>City</th>
+                                                    <th>Division</th>
+                                                    <th>GST</th>
+                                                    <th>Active</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @*@if (Model != null)
+                                                {
+                                                    foreach (var branch in Model)
+                                                    {
+                                                        <tr role="row">
+                                                            <td>@branch.Branch_Code</td>
+                                                            <td>@branch.Branch_Desc</td>
+                                                            <td>@branch.Branch_Address1</td>
+                                                            <td>@branch.City</td>
+                                                            <td>@branch.Branch_Div</td>
+                                                            <td>@branch.GSTNO</td>
+                                                            <td>
+                                                                <div class="d-flex align-items-center justify-content-between pe-2">
+                                                                    <div class="form-switch">
+                                                                        <input class="form-check-input mt-0" type="checkbox" id="icaccount" @(branch.Active ? "checked" : "") />
+                                                                    </div>
+                                                                    <span class="action-btn-icon d-inline-block">
+                                                                        <a href="@Url.Action("AddBranchSettings","Configuration", new { id = branch.Branch_ID })" class="edit-icon" data-id="@branch.Branch_ID" data-active="@branch.Active">
+                                                                            <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                              <path d="M9.01348 1.03516H5.58608C2.76733 1.03516 1 3.03074 1 5.85591V13.4771C1 16.3023 2.75908 18.2978 5.58608 18.2978H13.6748C16.5027 18.2978 18.2618 16.3023 18.2618 13.4771V9.78478" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                                              <path fill-rule="evenodd" clip-rule="evenodd" d="M6.57059 8.48961L13.4209 1.63938C14.2743 0.786875 15.6576 0.786875 16.511 1.63938L17.6266 2.75496C18.48 3.60838 18.48 4.99255 17.6266 5.84505L10.7433 12.7283C10.3702 13.1014 9.86415 13.3113 9.33615 13.3113H5.90234L5.98851 9.84631C6.00134 9.33661 6.20942 8.85081 6.57059 8.48961Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                                               <path d="M12.3809 2.69727L16.5664 6.88277" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                                            </svg>
+                                                                        </a>
+                                                                        <a href="javascript:void(0)" class="delete-icon ms-1"  data-id="@branch.Branch_ID" data-active="@branch.Active">
+                                                                          <svg width="18" height="21" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                              <path d="M5.05799 0.0975361C4.62397 0.25612 4.29011 0.606673 3.8394 1.34951L3.4638 1.98385H1.9197C0.200316 1.98385 0 2.03393 0 2.47629C0 2.77677 0.150237 2.90196 0.575909 2.96039L0.90977 3.00212L0.934809 8.52751L0.959849 14.0446L1.17686 14.5036C1.45229 15.0879 1.83623 15.4718 2.42049 15.7472L2.87955 15.9643L6.75233 15.9893C10.4415 16.0143 10.6501 16.006 11.1843 15.8474C11.8854 15.6304 12.4196 15.1797 12.695 14.5704L12.8954 14.128L12.9204 8.56924L12.9454 3.01047L13.3294 2.96039C13.8802 2.90196 14.0973 2.55976 13.8218 2.18416C13.7133 2.04227 13.5714 2.02558 12.0774 2.00054L10.4498 1.9755L9.89896 1.1492C9.13943 0.00572395 9.19785 0.0307636 7.09453 0.00572395C5.78413 -0.0109692 5.30838 0.00572395 5.05799 0.0975361ZM8.9725 1.44132C9.13108 1.69172 9.26463 1.91708 9.26463 1.94211C9.26463 1.96715 8.22966 1.98385 6.96934 1.98385C5.19153 1.98385 4.67405 1.95881 4.67405 1.87534C4.67405 1.82526 4.80759 1.59991 4.96617 1.37455L5.2583 0.982265H6.96934H8.68037L8.9725 1.44132ZM11.9772 8.45239V13.8776L11.7853 14.2115C11.6768 14.3951 11.4598 14.6455 11.2928 14.754L10.984 14.9627H6.9276H2.86285L2.55403 14.7206C1.903 14.2282 1.9197 14.4702 1.9197 8.38562V2.98543L6.95264 3.00212L11.9772 3.02716V8.45239Z" fill="currentColor"></path>
+                                                                              <path d="M3.75599 5.04717C3.68922 5.07221 3.60575 5.13898 3.57236 5.18906C3.4889 5.30591 3.4889 12.6842 3.57236 12.8094C3.69756 13.0097 4.06481 13.0264 4.24843 12.8428C4.42371 12.6675 4.42371 12.6091 4.42371 8.99507C4.42371 5.43111 4.41536 5.31425 4.25678 5.15567C4.08985 4.98874 3.98134 4.9637 3.75599 5.04717Z" fill="currentColor"></path>
+                                                                              <path d="M6.69339 5.12204L6.50977 5.24723V8.99482V12.7424L6.69339 12.8676C6.94378 13.0429 7.06064 13.0345 7.26095 12.8342C7.41954 12.6756 7.42788 12.5588 7.42788 8.99482C7.42788 5.43086 7.41954 5.31401 7.26095 5.15542C7.06064 4.95511 6.94378 4.94676 6.69339 5.12204Z" fill="currentColor"></path>
+                                                                              <path d="M9.69925 5.12228L9.51562 5.24748V8.97837C9.51562 11.0316 9.54901 12.751 9.5824 12.8094C9.70759 13.0097 10.0748 13.0264 10.2585 12.8428C10.4337 12.6675 10.4337 12.6091 10.4337 8.99507C10.4337 5.43111 10.4254 5.31425 10.2668 5.15567C10.0665 4.95535 9.94964 4.94701 9.69925 5.12228Z" fill="currentColor"></path>
+                                                                          </svg>
+                                                                        </a>
+                                                                    </span>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                }*@
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div class="modal fade" id="inviteuser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Invite User</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body " style="background:#fff;">
+                    <div class="row g-3">
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <input class="form-control" type="text" placeholder="Enter Name">
+                                <label for="floatingSelect">User Name*</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <input class="form-control" type="text" placeholder="Enter Name">
+                                <label for="floatingSelect">Email*</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <select class="form-select" id="" onchange="Accesshow(this)" aria-label="Floating label select example">
+                                    <option value="1" selected="">Full Access</option>
+                                    <option value="2">Read Only</option>
+                                    <option value="3">Custom Access</option>
+                                </select>
+                                <label for="teamName">Role*</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="border rounded invite_access_container">
+                                <div class="p-3">
+                                    <div class="row g-3">
+                                        <div class="col-md-6 FullAccess">
+                                            <div class="access border p-2 rounded d-flex justify-content-between">
+                                                <span class="account-type me-2">Sales</span>
+                                                <div class="form-switch d-flex">
+                                                    <input class="form-check-input mt-0" type="checkbox" id="icaccount" checked="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 FullAccess">
+                                            <div class="access border p-2 rounded d-flex justify-content-between">
+                                                <span class="account-type me-2">Purchase</span>
+                                                <div class="form-switch d-flex">
+                                                    <input class="form-check-input mt-0" type="checkbox" id="icaccount" checked="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 FullAccess">
+                                            <div class="access border p-2 rounded d-flex justify-content-between">
+                                                <span class="account-type me-2">Customer</span>
+                                                <div class="form-switch d-flex align-items-center">
+                                                    <input class="form-check-input mt-0" type="checkbox" id="icaccount" checked="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 FullAccess">
+                                            <div class="access border p-2 rounded d-flex justify-content-between">
+                                                <span class="account-type me-2">Vendor</span>
+                                                <div class="form-switch d-flex align-items-center">
+                                                    <input class="form-check-input mt-0" type="checkbox" id="icaccount" checked="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 FullAccess">
+                                            <div class="access border p-2 rounded d-flex justify-content-between">
+                                                <span class="account-type me-2">Bank</span>
+                                                <div class="form-switch d-flex align-items-center">
+                                                    <input class="form-check-input mt-0" type="checkbox" id="icaccount" checked="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 FullAccess">
+                                            <div class="access border p-2 rounded d-flex justify-content-between">
+                                                <span class="account-type me-2">Adjustments</span>
+                                                <div class="form-switch d-flex align-items-center">
+                                                    <input class="form-check-input mt-0" type="checkbox" id="icaccount" checked="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 FullAccess">
+                                            <div class="access border p-2 rounded d-flex justify-content-between">
+                                                <span class="account-type me-2">Settings</span>
+                                                <div class="form-switch d-flex align-items-center">
+                                                    <input class="form-check-input mt-0" type="checkbox" id="icaccount" checked="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 FullAccess">
+                                            <div class="access border p-2 rounded d-flex justify-content-between">
+                                                <span class="account-type me-2">Reporting</span>
+                                                <div class="form-switch d-flex align-items-center">
+                                                    <input class="form-check-input mt-0" type="checkbox" id="icaccount" checked="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 FullAccess">
+                                            <div class="access border p-2 rounded d-flex justify-content-between">
+                                                <span class="account-type me-2">Financial Statements</span>
+                                                <div class="form-switch d-flex align-items-center">
+                                                    <input class="form-check-input mt-0" type="checkbox" id="icaccount" checked="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn action-btn bg-action-light active">Save</button>
+                    <button type="button" class="btn action-btn bg-action-light" data-bs-dismiss="modal">Cancel</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/jquery-3.6.0.min.js"></script>
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/bootstrap-select.min.js"></script>
+    <script src="../assets/js/datatables.min.js"></script>
+    <script src="../assets/js/moment.min.js"></script>
+    <script src="../assets/js/daterangepicker.js"></script>
+    <script src="../assets/js/typeahead.bundle.js"></script>
+    <script src="../assets/js/jquery.timepicker.js"></script>
+    <script src="../assets/js/common.js"></script>
+    <script>
+
+
+   // Get the Branch Data
+
+      var BranchData;
+      $(document).ready(function () {
+      BranchData = $("#productservice").DataTable({
+         "serverSide": true,
+         "ajax": {
+            "url": '@Url.Action("GetBranchesPaged", "Configuration")',
+            "type": "POST",
+            "datatype": "json",
+             "data": function (d) {
+                 d.icolelngth = 7;
+             },
+            "complete": function () {
+            }
+          },
+          createdRow: function (row, data, dataIndex) {
+              $(row).attr('data-id', data.Branch_ID);
+          },
+        "columns": [
+            { "data": "Branch_Code", "name": "Branch_Code", "autoWidth": true ,"visible": true, "class":"text-capitalize" },
+            { "data": "Branch_Desc", "name": "Branch_Desc", "autoWidth": true,"visible": true, "class": "center"},
+            { "data": "Branch_Address1", "name": "Branch_Address1", "autoWidth": true, "visible": true, "class": "center" },
+            { "data": "City", "name": "City", "autoWidth": true, "visible": true, "class": "center" },
+            { "data": "Branch_Div", "name": "Branch_Div", "autoWidth": true, "visible": true, "class": "center" },
+            { "data": "GSTNO", "name": "GSTNO", "autoWidth": true, "visible": true, "class": "center" },
+            {
+                "data": "Active", "name": "Active", "autoWidth": true, "visible": true, "class": "text-capitalize", render: function (data, index, row) {
+
+                    return `<div class="d-flex align-items-center justify-content-between pe-2">
+                                <div class="form-switch">
+                                    <input class="form-check-input mt-0 isActive" type="checkbox" ${data ? 'checked' : ''} />
+                                </div>
+                                <span class="action-btn-icon d-inline-block">
+                                    <a href="@Url.Action("AddBranchSettings","Configuration")?id=${row.Branch_ID}" class="edit-icon" data-id="${row.Branch_ID}" data-active="${data}">
+                                        <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                          <path d="M9.01348 1.03516H5.58608C2.76733 1.03516 1 3.03074 1 5.85591V13.4771C1 16.3023 2.75908 18.2978 5.58608 18.2978H13.6748C16.5027 18.2978 18.2618 16.3023 18.2618 13.4771V9.78478" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                                          <path fill-rule="evenodd" clip-rule="evenodd" d="M6.57059 8.48961L13.4209 1.63938C14.2743 0.786875 15.6576 0.786875 16.511 1.63938L17.6266 2.75496C18.48 3.60838 18.48 4.99255 17.6266 5.84505L10.7433 12.7283C10.3702 13.1014 9.86415 13.3113 9.33615 13.3113H5.90234L5.98851 9.84631C6.00134 9.33661 6.20942 8.85081 6.57059 8.48961Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                                           <path d="M12.3809 2.69727L16.5664 6.88277" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        </svg>
+                                    </a>
+                                    <a href="javascript:void(0)" class="delete-icon ms-1"  data-id="${row.Branch_ID}" data-active="${data}">
+                                      <svg width="18" height="21" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                          <path d="M5.05799 0.0975361C4.62397 0.25612 4.29011 0.606673 3.8394 1.34951L3.4638 1.98385H1.9197C0.200316 1.98385 0 2.03393 0 2.47629C0 2.77677 0.150237 2.90196 0.575909 2.96039L0.90977 3.00212L0.934809 8.52751L0.959849 14.0446L1.17686 14.5036C1.45229 15.0879 1.83623 15.4718 2.42049 15.7472L2.87955 15.9643L6.75233 15.9893C10.4415 16.0143 10.6501 16.006 11.1843 15.8474C11.8854 15.6304 12.4196 15.1797 12.695 14.5704L12.8954 14.128L12.9204 8.56924L12.9454 3.01047L13.3294 2.96039C13.8802 2.90196 14.0973 2.55976 13.8218 2.18416C13.7133 2.04227 13.5714 2.02558 12.0774 2.00054L10.4498 1.9755L9.89896 1.1492C9.13943 0.00572395 9.19785 0.0307636 7.09453 0.00572395C5.78413 -0.0109692 5.30838 0.00572395 5.05799 0.0975361ZM8.9725 1.44132C9.13108 1.69172 9.26463 1.91708 9.26463 1.94211C9.26463 1.96715 8.22966 1.98385 6.96934 1.98385C5.19153 1.98385 4.67405 1.95881 4.67405 1.87534C4.67405 1.82526 4.80759 1.59991 4.96617 1.37455L5.2583 0.982265H6.96934H8.68037L8.9725 1.44132ZM11.9772 8.45239V13.8776L11.7853 14.2115C11.6768 14.3951 11.4598 14.6455 11.2928 14.754L10.984 14.9627H6.9276H2.86285L2.55403 14.7206C1.903 14.2282 1.9197 14.4702 1.9197 8.38562V2.98543L6.95264 3.00212L11.9772 3.02716V8.45239Z" fill="currentColor"></path>
+                                          <path d="M3.75599 5.04717C3.68922 5.07221 3.60575 5.13898 3.57236 5.18906C3.4889 5.30591 3.4889 12.6842 3.57236 12.8094C3.69756 13.0097 4.06481 13.0264 4.24843 12.8428C4.42371 12.6675 4.42371 12.6091 4.42371 8.99507C4.42371 5.43111 4.41536 5.31425 4.25678 5.15567C4.08985 4.98874 3.98134 4.9637 3.75599 5.04717Z" fill="currentColor"></path>
+                                          <path d="M6.69339 5.12204L6.50977 5.24723V8.99482V12.7424L6.69339 12.8676C6.94378 13.0429 7.06064 13.0345 7.26095 12.8342C7.41954 12.6756 7.42788 12.5588 7.42788 8.99482C7.42788 5.43086 7.41954 5.31401 7.26095 5.15542C7.06064 4.95511 6.94378 4.94676 6.69339 5.12204Z" fill="currentColor"></path>
+                                          <path d="M9.69925 5.12228L9.51562 5.24748V8.97837C9.51562 11.0316 9.54901 12.751 9.5824 12.8094C9.70759 13.0097 10.0748 13.0264 10.2585 12.8428C10.4337 12.6675 10.4337 12.6091 10.4337 8.99507C10.4337 5.43111 10.4254 5.31425 10.2668 5.15567C10.0665 4.95535 9.94964 4.94701 9.69925 5.12228Z" fill="currentColor"></path>
+                                      </svg>
+                                    </a>
+                           </span>
+                    </div>`
+                }
+            }
+        ],
+
+        "fnInitComplete": function (oSettings) {
+            var j = 0;
+        },
+    });
+
+});
+
+
+        $(document).on('change', '.isActive', function () {
+
+            var isChecked = $(this).is(':checked');
+            var row = $(this).closest('tr');
+            var id = row.data('id');
+
+         $.ajax({
+             url: '@Url.Action("UpdateBranch", "Configuration")',
+             type: 'POST',
+             data: { isChecked: isChecked, branchId: id },
+             success: function (res) {
+             },
+             error: function () {
+                 alert('An error occurred while updating the status.');
+             }
+         });
+       })
+
+
+        $(document).on("click", ".delete-icon", function () {
+            var row = $(this).closest('tr');
+            var id = row.data('id');
+            Swal.fire({
+                icon: 'warning',
+                title: 'Delete',
+                text: "Are you sure you want to delete?",
+                confirmButtonColor: '#d33'
+            }).then(() => {
+                 $.ajax({
+               url: '@Url.Action("UpdateBranch", "Configuration")',
+               type: 'POST',
+               data: { isChecked: true, branchId: id, isDelete:true },
+                     success: function (res) {
+                         BranchData.draw();
+               },
+               error: function () {
+                   alert('An error occurred while updating the status.');
+               }
+
+              });
+            })
+        });
+
+      $(function() {
+        $('input[name="fiscaldate"]').daterangepicker({
+          singleDatePicker: true,
+          showDropdowns: true,
+          minYear: 1901,
+          maxYear: parseInt(moment().format('YYYY'),10)
+        }, function(start, end, label) {
+          var years = moment().diff(start, 'years');
+        });
+      });
+
+      $(function() {
+       $('input[name="daterange"]').daterangepicker(
+           {
+               ssingleDatePicker: 'true',
+               showShortcuts: 'false',
+               showTopbar: 'false'
+           }
+      );
+      });
+
+
+      $('#datatable1').DataTable({
+      "columnDefs": [
+          {
+              "targets": -1,
+              "orderable": false
+          }
+      ],
+      language: {
+          search: "_INPUT_",
+          searchPlaceholder: "Search..."
+      },
+      fixedHeader: {
+          header: true,
+      },
+      "dom": '<"top"<"toolbar">tf<"clear">>rt<"bottom"lip<"clear">>'
+      });
+
+        $(".form-switch").click(function () {
+           if ($(this).parent().hasClass("yes")) {
+             $(this).parent().removeClass("yes");
+             $(this).parent().addClass("no");
+           } else {
+             $(this).parent().removeClass("no");
+             $(this).parent().addClass("yes");
+           }
+         });
+    </script>
+</body>
+

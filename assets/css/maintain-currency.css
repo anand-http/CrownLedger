@@ -1,0 +1,27 @@
+.add-custom-btn{
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+    color: var(--theme-reg--light-color);
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+    gap: 6px;
+}
+.add-custom-btn:hover{
+    color: var(--theme-deafult);
+}
+.card .card-header{
+    padding-bottom: 10px !important;
+}
+.dropdown-toggle::after{
+    display: none;
+}
+.header-title  {
+    font-weight: 500;
+}
+.customize-table-style .form-control,
+.customize-table-style .form-select{
+    max-width: 200px;
+    min-width: 160px;
+}

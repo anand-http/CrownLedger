@@ -1,0 +1,19 @@
+@model IEnumerable<fintech.Models.Company>
+@{
+    ViewBag.Title = "Companies";
+}
+<h2>Companies</h2>
+<table class="table">
+    <thead>
+        <tr><th>ID</th><th>Name</th><th>Address</th></tr>
+    </thead>
+    <tbody>
+    @foreach(var c in Model) {
+        <tr>
+            <td>@c.Id</td>
+            <td>@c.Name</td>
+            <td>@c.Address</td>
+        </tr>
+    }
+    </tbody>
+</table>

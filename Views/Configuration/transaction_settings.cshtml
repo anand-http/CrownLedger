@@ -1,0 +1,1102 @@
+﻿
+@model fintech.Models.TransactionSettingsResponse
+@{
+    ViewBag.Title = "transaction_settings";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Newtonsoft.Json
+
+<html lang="en">
+<head>
+    <link href="../assets/css/configuration.css" rel="stylesheet">
+    <link href="../assets/css/component.css" rel="stylesheet">
+    <style>
+        /* Chrome, Safari, Edge */
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }   
+
+        /* Firefox */
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+    </style>
+</head>
+<body class="bg-sky-light">
+    @Html.Partial("~/Views/Shared/_PartialHeader.cshtml")
+
+    <aside class="left-sidebar">
+        <nav class="sidebar-nav">
+            <ul class="sidebarnav">
+                <li class="nav-title-name">
+                    <span class="">General Settings</span>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("company_details","Home")" aria-expanded="false">
+                        <span class="">Business Information</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("opening_balance","Home")" aria-expanded="false">
+                        <span class="">Opening Balance</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("AddBranch","Configuration")" aria-expanded="false">
+                        <span class="">Branch</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("Department","Configuration")" aria-expanded="false">
+                        <span class="">Department</span>
+                    </a>
+                </li>
+                <li class="nav-title-name">
+                    <span class="">Accounting</span>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("chart_of_accounts","Home")" aria-expanded="false">
+                        <span class="">Chart of Accounts</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("maintain_tax_details","Home")" aria-expanded="false">
+                        <span class="">Taxes</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("maintain_currency_details","Home")" aria-expanded="false">
+                        <span class="">Currency</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="javascript:void(0);" aria-expanded="false">
+                        <span class="">Fiscal Position</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("TransactionsSettings","Configuration")" aria-expanded="false">
+                        <span class="">Transaction Settings</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("NumberSeries","Configuration")" aria-expanded="false">
+                        <span class="">Number Series</span>
+                    </a>
+                </li>
+                <li class="nav-title-name">
+                    <span class="">Approval</span>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("UserAccess","Configuration")" aria-expanded="false">
+                        <span class="">User Access</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("TransactionApproval","Configuration")" aria-expanded="false">
+                        <span class="">Transaction Approval</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <div class="container">
+        <div class="row">
+            <main class="main-body">
+                <div class="main-body-wrapper">
+                    <div class="collapsebody bg-f8f8f8 collapse show group-lookuptab" id="">
+                        <div class="collapsewrap card bx-shadow ">
+                            <div class="collapseheader ps-0 pe-0 me-0">
+                                <div class="top_content d-flex align-item-center justify-content-between">
+                                    <h1 class="heading">Transactions Settings</h1>
+                                </div>
+                                <div class="box_container transaction_setting_container table_manage_container">
+                                    <div class="profile-card bg-white  border-radius-6">
+                                        <div class="profile-info-box mt-3">
+                                            <h3 class="estimates-heading">Customers</h3>
+                                            <div class="profile-item">
+                                                <div class="row align-items-center g-0">
+                                                    <div class="col-md-4">
+                                                        <span class="profile-label">Invoice Due*</span>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <div class="porfile-info-input-group">
+                                                            <div class="form-check form-check-inline d-flex align-items-center">
+                                                                <input class="form-check-input me-2" type="radio" name="customerInvoiceDueType" id="payableinvoice2" value="days after invoice date" 
+                                                                 @(Model.TransactionSettings[0].CustomerInvoiceDueType == "days after invoice date" ? "checked" : "")>
+                                                                <div class="transaction_input me-2">
+                                                                    <input type="number" class="form-control text-center py-1" placeholder="" aria-label="Search" aria-describedby="addon-wrapping" id="customerInvoiceDueDays" value="@(Model.TransactionSettings[0].CustomerInvoiceDueDays > 0 ? Model.TransactionSettings[0].CustomerInvoiceDueDays.ToString() :"")" />
+                                                                </div>
+                                                                <label class="form-check-label" for="payableinvoice2">days after invoice date</label>
+                                                            </div>
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="radio" name="customerInvoiceDueType" id="payableinvoice3" value="End of next month"
+                                                                @(Model.TransactionSettings[0].CustomerInvoiceDueType == "End of next month" ? "checked" : "")>
+                                                                <label class="form-check-label" for="payableinvoice3">End of next month </label>
+                                                            </div>
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="radio" name="customerInvoiceDueType" id="payableinvoice4" value="Immediately"
+                                                                @(Model.TransactionSettings[0].CustomerInvoiceDueType == "Immediately" ? "checked" : "")>
+                                                                <label class="form-check-label" for="payableinvoice4">Immediately</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="profile-item">
+                                                <div class="row align-items-center g-0">
+                                                    <div class="col-md-4">
+                                                        <span class="profile-label">Aging for reporting</span>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <div class="porfile-info-input-group me-3 customerFrom">
+                                                            <span class="font-14 text-muted reporting_subheading">From</span>
+                                                            <div class="transaction_input me-2" id="customerFromRow1">
+                                                                <input type="number" class="form-control text-center py-1" placeholder="" aria-label="Search" aria-describedby="addon-wrapping" id="customerAgingFrom1" value="@Model.TransactionSettings[0].Aging[0].CustomerAgingFrom[0]">
+                                                            </div>
+                                                        </div>
+                                                        <div class="porfile-info-input-group mt-2 customerTo">
+                                                            <span class="font-14 text-muted reporting_subheading">To</span>
+                                                            <div class="transaction_input me-2" id="customerToRow1">
+                                                                <input type="text" class="form-control text-center aging_for_input py-1" placeholder="" aria-label="Search" aria-describedby="addon-wrapping" id="customerAgingTo1" value="@Model.TransactionSettings[0].Aging[0].CustomerAgingTo[0]">
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex mt-1">
+                                                            <a href="javascript:void(0);" class="add-another-payment-terms me-2" id="btnAddCustomerRow">
+                                                                <span class="icon">
+                                                                    <svg width="18" height="16" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                        <ellipse cx="12.5294" cy="12" rx="12.5294" ry="12" fill="#043376"></ellipse>
+                                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7578 6.75C11.7578 6.55109 11.8373 6.36032 11.9789 6.21967C12.1204 6.07902 12.3124 6 12.5126 6C12.7128 6 12.9048 6.07902 13.0463 6.21967C13.1879 6.36032 13.2674 6.55109 13.2674 6.75V17.25C13.2674 17.4489 13.1879 17.6397 13.0463 17.7803C12.9048 17.921 12.7128 18 12.5126 18C12.3124 18 12.1204 17.921 11.9789 17.7803C11.8373 17.6397 11.7578 17.4489 11.7578 17.25V6.75Z" fill="white"></path>
+                                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M6.25781 12.0002C6.25781 11.8085 6.34032 11.6246 6.48717 11.4891C6.63403 11.3535 6.83321 11.2773 7.0409 11.2773H18.0041C18.2118 11.2773 18.411 11.3535 18.5579 11.4891C18.7047 11.6246 18.7872 11.8085 18.7872 12.0002C18.7872 12.192 18.7047 12.3758 18.5579 12.5114C18.411 12.647 18.2118 12.7231 18.0041 12.7231H7.0409C6.83321 12.7231 6.63403 12.647 6.48717 12.5114C6.34032 12.3758 6.25781 12.192 6.25781 12.0002Z" fill="white"></path>
+                                                                    </svg>
+                                                                </span>
+                                                                add more
+                                                            </a>
+                                                            <a href="javascript:void(0);" class="add-another-payment-terms ms-0 d-none" id="btnDeleteCustomerRow">
+                                                                <span class="icon">
+                                                                    <svg width="18" height="16" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                        <ellipse cx="12.5294" cy="12" rx="12.5294" ry="12" fill="#043376"></ellipse>
+                                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7578 6.75C11.7578 6.55109 11.8373 6.36032 11.9789 6.21967C12.1204 6.07902 12.3124 6 12.5126 6C12.7128 6 12.9048 6.07902 13.0463 6.21967C13.1879 6.36032 13.2674 6.55109 13.2674 6.75V17.25C13.2674 17.4489 13.1879 17.6397 13.0463 17.7803C12.9048 17.921 12.7128 18 12.5126 18C12.3124 18 12.1204 17.921 11.9789 17.7803C11.8373 17.6397 11.7578 17.4489 11.7578 17.25V6.75Z" fill="white"></path>
+                                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M6.25781 12.0002C6.25781 11.8085 6.34032 11.6246 6.48717 11.4891C6.63403 11.3535 6.83321 11.2773 7.0409 11.2773H18.0041C18.2118 11.2773 18.411 11.3535 18.5579 11.4891C18.7047 11.6246 18.7872 11.8085 18.7872 12.0002C18.7872 12.192 18.7047 12.3758 18.5579 12.5114C18.411 12.647 18.2118 12.7231 18.0041 12.7231H7.0409C6.83321 12.7231 6.63403 12.647 6.48717 12.5114C6.34032 12.3758 6.25781 12.192 6.25781 12.0002Z" fill="white"></path>
+                                                                    </svg>
+                                                                </span>
+                                                                delete row
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="profile-item">
+                                                <div class="row align-items-center g-0">
+                                                    <div class="col-md-4">
+                                                        <span class="profile-label">Sales Ledger Account</span>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="dropdown flex-grow-1">
+                                                            <input class="form-select typehead offline-agent" type="text" placeholder="GL Account" value="@Model.TransactionSettings[0].SalesLedger" id="cstmrSalesLedger">
+                                                            <input type="hidden" id="hdncstmrSalesLedger" value="@Model.TransactionSettings[0].SalesLedgerId">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="profile-item">
+                                                <div class="row align-items-center g-0">
+                                                    <div class="col-md-4">
+                                                        <span class="profile-label">Sales Discount Ledger Account</span>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="dropdown flex-grow-1">
+                                                            <input class="form-select typehead offline-agent" type="text" placeholder="GL Account" value="@Model.TransactionSettings[0].DiscountLedger" id="cstmrDiscountLedger">
+                                                            <input type="hidden" id="hdncstmrDiscountLedger" value="@Model.TransactionSettings[0].DiscountLedgerId">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="box_container transaction_setting_container table_manage_container">
+                                    <div class="profile-card bg-white  border-radius-6">
+                                        <div class="profile-info-box mt-3">
+                                            <h3 class="estimates-heading">Vendors</h3>
+                                            <div class="profile-item">
+                                                <div class="row align-items-center g-0">
+                                                    <div class="col-md-4">
+                                                        <span class="profile-label">Invoice Due*</span>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <div class="porfile-info-input-group">
+                                                            <div class="form-check form-check-inline d-flex align-items-center">
+                                                                <input class="form-check-input me-2" type="radio" name="vendorInvoiceDueType" id="payableinvoice1" value="days after invoice date"
+                                                                  @(Model.TransactionSettings[0].VendorInvoiceDueType == "days after invoice date" ? "checked" : "")>
+                                                                <div class="transaction_input me-2">
+                                                                    <input type="number" class="form-control text-center py-1" placeholder="" aria-label="Search" aria-describedby="addon-wrapping" id="vendorInvoiceDueDays"  value="@(Model.TransactionSettings[0].VendorInvoiceDueDays > 0 ? Model.TransactionSettings[0].VendorInvoiceDueDays.ToString()  : "" )" />
+                                                                </div>
+                                                                <label class="form-check-label" for="payableinvoice2">days after invoice date</label>
+                                                            </div>
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="radio" name="vendorInvoiceDueType" id="payableinvoice2" value="End of next month"
+                                                                @(Model.TransactionSettings[0].VendorInvoiceDueType == "End of next month" ? "checked" : "")>
+                                                                <label class="form-check-label" for="payableinvoice3">End of next month </label>
+                                                            </div>
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="radio" name="vendorInvoiceDueType" id="payableinvoice3" value="Immediately"
+                                                                 @(Model.TransactionSettings[0].VendorInvoiceDueType == "Immediately" ? "checked" : "") >
+                                                                <label class="form-check-label" for="payableinvoice4">Immediately</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="profile-item">
+                                                <div class="row align-items-center g-0">
+                                                    <div class="col-md-4">
+                                                        <span class="profile-label">Aging for reporting</span>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <div class="porfile-info-input-group me-3 vendorFrom">
+                                                            <span class="font-14 text-muted reporting_subheading">From</span>
+                                                            <div class="transaction_input me-2" id="vendorFromRow1">
+                                                                <input type="text" class="form-control text-center py-1" placeholder="" aria-label="Search" aria-describedby="addon-wrapping" id="vendorAgingFrom1" value="@Model.TransactionSettings[0].Aging[0].VendorAgingFrom[0]">
+                                                            </div>
+                                                        </div>
+                                                        <div class="porfile-info-input-group mt-2 vendorTo">
+                                                            <span class="font-14 text-muted reporting_subheading">To</span>
+                                                            <div class="transaction_input me-2" id="vendorToRow1">
+                                                                <input type="text" class="form-control aging_for_input text-center py-1" placeholder="" aria-label="Search" aria-describedby="addon-wrapping" id="vendorAgingTo1" value="@Model.TransactionSettings[0].Aging[0].VendorAgingTo[0]">
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="d-flex mt-1">
+                                                            <a href="javascript:void(0);" class="add-another-payment-terms d-block me-2" id="btnAddVendorRow">
+                                                                <span class="icon">
+                                                                    <svg width="18" height="16" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                        <ellipse cx="12.5294" cy="12" rx="12.5294" ry="12" fill="#043376"></ellipse>
+                                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7578 6.75C11.7578 6.55109 11.8373 6.36032 11.9789 6.21967C12.1204 6.07902 12.3124 6 12.5126 6C12.7128 6 12.9048 6.07902 13.0463 6.21967C13.1879 6.36032 13.2674 6.55109 13.2674 6.75V17.25C13.2674 17.4489 13.1879 17.6397 13.0463 17.7803C12.9048 17.921 12.7128 18 12.5126 18C12.3124 18 12.1204 17.921 11.9789 17.7803C11.8373 17.6397 11.7578 17.4489 11.7578 17.25V6.75Z" fill="white"></path>
+                                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M6.25781 12.0002C6.25781 11.8085 6.34032 11.6246 6.48717 11.4891C6.63403 11.3535 6.83321 11.2773 7.0409 11.2773H18.0041C18.2118 11.2773 18.411 11.3535 18.5579 11.4891C18.7047 11.6246 18.7872 11.8085 18.7872 12.0002C18.7872 12.192 18.7047 12.3758 18.5579 12.5114C18.411 12.647 18.2118 12.7231 18.0041 12.7231H7.0409C6.83321 12.7231 6.63403 12.647 6.48717 12.5114C6.34032 12.3758 6.25781 12.192 6.25781 12.0002Z" fill="white"></path>
+                                                                    </svg>
+                                                                </span>
+                                                                add more
+                                                            </a>
+                                                            <a href="javascript:void(0);" class="add-another-payment-terms ms-0 d-none" id="btnDeleteVendorRow">
+                                                                <span class="icon">
+                                                                    <svg width="18" height="16" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                        <ellipse cx="12.5294" cy="12" rx="12.5294" ry="12" fill="#043376"></ellipse>
+                                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7578 6.75C11.7578 6.55109 11.8373 6.36032 11.9789 6.21967C12.1204 6.07902 12.3124 6 12.5126 6C12.7128 6 12.9048 6.07902 13.0463 6.21967C13.1879 6.36032 13.2674 6.55109 13.2674 6.75V17.25C13.2674 17.4489 13.1879 17.6397 13.0463 17.7803C12.9048 17.921 12.7128 18 12.5126 18C12.3124 18 12.1204 17.921 11.9789 17.7803C11.8373 17.6397 11.7578 17.4489 11.7578 17.25V6.75Z" fill="white"></path>
+                                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M6.25781 12.0002C6.25781 11.8085 6.34032 11.6246 6.48717 11.4891C6.63403 11.3535 6.83321 11.2773 7.0409 11.2773H18.0041C18.2118 11.2773 18.411 11.3535 18.5579 11.4891C18.7047 11.6246 18.7872 11.8085 18.7872 12.0002C18.7872 12.192 18.7047 12.3758 18.5579 12.5114C18.411 12.647 18.2118 12.7231 18.0041 12.7231H7.0409C6.83321 12.7231 6.63403 12.647 6.48717 12.5114C6.34032 12.3758 6.25781 12.192 6.25781 12.0002Z" fill="white"></path>
+                                                                    </svg>
+                                                                </span>
+                                                                delete row
+                                                            </a>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="profile-item">
+                                                <div class="row align-items-center g-0">
+                                                    <div class="col-md-4">
+                                                        <span class="profile-label">Sales Ledger Account</span>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="dropdown flex-grow-1">
+                                                            <input class="form-select typehead offline-agent" type="text" placeholder="GL Account" value="@Model.TransactionSettings[0].VendorExpenseLedger" id="vendorSalesLedger">
+                                                            <input type="hidden" id="hdnvendorSalesLedger" value="@Model.TransactionSettings[0].VendorExpenseLedgerId">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="profile-item">
+                                                <div class="row align-items-center g-0">
+                                                    <div class="col-md-4">
+                                                        <span class="profile-label">Sales Discount Ledger Account</span>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="dropdown flex-grow-1">
+                                                            <input class="form-select typehead offline-agent" type="text" placeholder="GL Account" value="@Model.TransactionSettings[0].VendorDiscountLedger" id="vendorDiscountLedger">
+                                                            <input type="hidden" id="hdnvendorDiscountLedger" value="@Model.TransactionSettings[0].VendorDiscountLedgerId">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="box_container transaction_setting_container table_manage_container">
+                                    <div class="profile-card bg-white  border-radius-6">
+                                        <div class="profile-info-box mt-3">
+                                            <h3 class="estimates-heading">Payment & Receipts</h3>
+                                            <div class="profile-item">
+                                                <div class="row align-items-center g-0">
+                                                    <div class="col-md-4">
+                                                        <span class="profile-label">Other Receipt Ledger Account*</span>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="dropdown flex-grow-1">
+                                                            <input class="form-select typehead offline-agent" type="text" placeholder="GL Account" value="@Model.TransactionSettings[0].OtherReceiptLedger" id="otherReceiptLedger">
+                                                            <input type="hidden" id="hdnotherReceiptLedger" value="@Model.TransactionSettings[0].OtherReceiptLedgerId">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="profile-item">
+                                                <div class="row align-items-center g-0">
+                                                    <div class="col-md-4">
+                                                        <span class="profile-label">Other Payment Ledger Account*</span>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="dropdown flex-grow-1">
+                                                            <input class="form-select typehead offline-agent" type="text" placeholder="GL Account" value="@Model.TransactionSettings[0].OtherPaymentLedger" id="otherPaymentLedger">
+                                                            <input type="hidden" id="hdnotherPaymentLedger" value="@Model.TransactionSettings[0].OtherPaymentLedgerId">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="profile-item">
+                                                <div class="row align-items-center g-0">
+                                                    <div class="col-md-4">
+                                                        <span class="profile-label">Customer Receipt - Discount Ledger Account</span>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="dropdown flex-grow-1">
+                                                            <input class="form-select typehead offline-agent" type="text" placeholder="GL Account" value="@Model.TransactionSettings[0].CustomerReceiptDiscountLedger" id="cstmrReceiptDiscountLedger">
+                                                            <input type="hidden" id="hdncstmrReceiptDiscountLedger" value="@Model.TransactionSettings[0].CustomerReceiptDiscountLedgerId">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="profile-item">
+                                                    <div class="row align-items-center g-0">
+                                                        <div class="col-md-4">
+                                                            <span class="profile-label">Vendor Payment - Discount Ledger Account</span>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="dropdown flex-grow-1">
+                                                                <input class="form-select typehead offline-agent" type="text" placeholder="GL Account" value="@Model.TransactionSettings[0].VendorPaymentDiscountLedger" id="vendorPaymentDiscountLedger">
+                                                                <input type="hidden" id="hdnvendorPaymentDiscountLedger" value="@Model.TransactionSettings[0].VendorPaymentDiscountLedgerId">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="profile-item">
+                                                    <div class="row align-items-center g-0">
+                                                        <div class="col-md-4">
+                                                            <span class="profile-label">Bank Interest Received Ledger Account</span>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="dropdown flex-grow-1">
+                                                                <input class="form-select typehead offline-agent" type="text" placeholder="GL Account" value="@Model.TransactionSettings[0].BankInterestReceivedLedger" id="BIReceivedLedger">
+                                                                <input type="hidden" id="hdnBIReceivedLedger" value="@Model.TransactionSettings[0].BankInterestReceivedLedgerId">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="profile-item">
+                                                    <div class="row align-items-center g-0">
+                                                        <div class="col-md-4">
+                                                            <span class="profile-label">Bank Interest & Charges Paid Ledger Account</span>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="dropdown flex-grow-1">
+                                                                <input class="form-select typehead offline-agent" type="text" placeholder="GL Account" value="@Model.TransactionSettings[0].BankInterestChargesLedger" id="BIChargesLedger">
+                                                                <input type="hidden" id="hdnBIChargesLedger" value="@Model.TransactionSettings[0].BankInterestChargesLedgerId">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box_container transaction_setting_container table_manage_container">
+                                        <div class="profile-card bg-white  border-radius-6">
+                                            <div class="profile-info-box mt-3">
+                                                <h3 class="estimates-heading">Product & Service</h3>
+                                                <div class="mt-3">
+                                                    <span class="font-14 bg-regular f-w-600">Non stock Ledger Accounts</span>
+                                                    <div class="profile-item">
+                                                        <div class="row align-items-center g-0">
+                                                            <div class="col-md-4">
+                                                                <span class="profile-label">Sales Account</span>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="porfile-info-input-group">
+                                                                    <div class="dropdown flex-grow-1">
+                                                                        <input class="form-select typehead offline-agent" type="text" placeholder="GL Account" value="@Model.TransactionSettings[0].NonStockSalesAccount" id="NSSalesLedger">
+                                                                        <input type="hidden" id="hdnNSSalesLedger" value="@Model.TransactionSettings[0].NonStockSalesAccountId">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="profile-item">
+                                                        <div class="row align-items-center g-0">
+                                                            <div class="col-md-4">
+                                                                <span class="profile-label">Expense Account</span>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="dropdown flex-grow-1">
+                                                                    <input class="form-select typehead offline-agent" type="text" placeholder="GL Account" value="@Model.TransactionSettings[0].NonStockExpenseAccount" id="NSExpenseLedger">
+                                                                    <input type="hidden" id="hdnNSExpenseLedger" value="@Model.TransactionSettings[0].NonStockExpenseAccountId">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-3">
+                                                    <span class="font-14 bg-regular f-w-600">Stock Ledger Accounts</span>
+                                                    <div class="profile-item">
+                                                        <div class="row align-items-center g-0">
+                                                            <div class="col-md-4">
+                                                                <span class="profile-label">Expense Account</span>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="dropdown flex-grow-1">
+                                                                    <input class="form-select typehead offline-agent" type="text" placeholder="GL Account" value="@Model.TransactionSettings[0].StockExpenseAccount" id="StExpenseLedger">
+                                                                    <input type="hidden" id="hdnStExpenseLedger" value="@Model.TransactionSettings[0].StockExpenseAccountId">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-3">
+                                                    <span class="font-14 bg-regular f-w-600">Service Ledger Account</span>
+                                                    <div class="profile-item">
+                                                        <div class="row align-items-center g-0">
+                                                            <div class="col-md-4">
+                                                                <span class="profile-label">Sales Account</span>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="dropdown flex-grow-1">
+                                                                    <input class="form-select typehead offline-agent" type="text" placeholder="GL Account" value="@Model.TransactionSettings[0].ServiceSalesAccount" id="SSalesLedger">
+                                                                    <input type="hidden" id="hdnSSalesLedger" value="@Model.TransactionSettings[0].ServiceSalesAccountId">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="profile-item">
+                                                        <div class="row align-items-center g-0">
+                                                            <div class="col-md-4">
+                                                                <span class="profile-label">Expense Account</span>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="dropdown flex-grow-1">
+                                                                    <input class="form-select typehead offline-agent" type="text" placeholder="GL Account" value="@Model.TransactionSettings[0].ServiceExpenseAccount" id="SExpenseLedger">
+                                                                    <input type="hidden" id="hdnSExpenseLedger" value="@Model.TransactionSettings[0].ServiceExpenseAccountId">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="profile-item">
+                                                        <div class="row align-items-center g-0">
+                                                            <div class="col-md-4">
+                                                                <span class="profile-label">Allow Duplicate Item names</span>
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <div class="form-switch d-flex">
+                                                                    <input class="form-check-input mt-0" type="checkbox" id="allowDuplicateItemNames" checked="@Model.TransactionSettings[0].AllowDuplicateItemNames">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box_container transaction_setting_container table_manage_container">
+                                        <div class="profile-card bg-white  border-radius-6">
+                                            <div class="profile-info-box mt-3">
+                                                <h3 class="estimates-heading">Accounting Settings</h3>
+                                                <div class="profile-item">
+                                                    <div class="row align-items-center g-0">
+                                                        <div class="col-md-4">
+                                                            <span class="profile-label">Show Negative Assets on Balance Sheet</span>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="dropdown flex-grow-1">
+                                                                <input class="form-select typehead offline-agent" type="text" placeholder="GL Account" value="@Model.TransactionSettings[0].ShowNegativeAssets" id="NegativeAssetsLedger">
+                                                                <input type="hidden" id="hdnNegativeAssetsLedger" value="@Model.TransactionSettings[0].ShowNegativeAssetsId">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box_container transaction_setting_container table_manage_container">
+                                        <div class="profile-card bg-white  border-radius-6">
+                                            <div class="profile-info-box mt-3">
+                                                <h3 class="estimates-heading">Currency Management</h3>
+                                                <div class="profile-item">
+                                                    <div class="row align-items-center g-0">
+                                                        <div class="col-md-4">
+                                                            <span class="profile-label">Enable  Multi Currency Accounting</span>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <div class="form-switch d-flex">
+                                                                <input class="form-check-input mt-0" type="checkbox" id="enableMultiCurrency" checked="@Model.TransactionSettings[0].EnableMultiCurrency">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-action-section justify-content-end pt-4">
+                                        <a href="javascript:void(0);" class="action-btn bg-action-light active" onclick="SaveTransactionSettings()">Save</a>
+                                        @*<a href="javascript:void(0);" class="action-btn bg-action-light">Edit</a>
+                                            <a href="javascript:void(0);" class="action-btn bg-action-light">Cancel</a>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </main>
+        </div>
+    </div>
+
+    <div class="modal fade" id="addnewperiod" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add New Period</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body " style="background:#fff;">
+                    <div class="row gx-3">
+                        <div class="col-md-12">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control datepicker" name="fiscaldate" placeholder="Fiscal Year Start Date">
+                                <label for="floatingSelect">From</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control datepicker" name="fiscaldate" placeholder="Fiscal Year Start Date">
+                                <label for="floatingSelect">To</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating" id="the-basics-agents">
+                                <input class="form-control" type="text" placeholder="Enter Name">
+                                <label for="floatingSelect">Period</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn action-btn bg-action-light active">Save</button>
+                    <button type="button" class="btn action-btn bg-action-light" data-bs-dismiss="modal">Cancel</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+//Typehead
+$('#cstmrSalesLedger').typeheadAutoComplete('ACCT.mst_GLMaster', 'GL', $('#hdncstmrSalesLedger'));
+$('#cstmrDiscountLedger').typeheadAutoComplete('ACCT.mst_GLMaster', 'GL', $('#hdncstmrDiscountLedger'));
+$('#vendorSalesLedger').typeheadAutoComplete('ACCT.mst_GLMaster', 'GL', $('#hdnvendorSalesLedger'));
+$('#vendorDiscountLedger').typeheadAutoComplete('ACCT.mst_GLMaster', 'GL', $('#hdnvendorDiscountLedger'));
+$('#otherReceiptLedger').typeheadAutoComplete('ACCT.mst_GLMaster', 'GL', $('#hdnotherReceiptLedger'));
+$('#otherPaymentLedger').typeheadAutoComplete('ACCT.mst_GLMaster', 'GL', $('#hdnotherPaymentLedger'));
+$('#cstmrReceiptDiscountLedger').typeheadAutoComplete('ACCT.mst_GLMaster', 'GL', $('#hdncstmrReceiptDiscountLedger'));
+$('#vendorPaymentDiscountLedger').typeheadAutoComplete('ACCT.mst_GLMaster', 'GL', $('#hdnvendorPaymentDiscountLedger'));
+$('#BIReceivedLedger').typeheadAutoComplete('ACCT.mst_GLMaster', 'GL', $('#hdnBIReceivedLedger'));
+$('#BIChargesLedger').typeheadAutoComplete('ACCT.mst_GLMaster', 'GL', $('#hdnBIChargesLedger'));
+$('#NSSalesLedger').typeheadAutoComplete('ACCT.mst_GLMaster', 'GL', $('#hdnNSSalesLedger'));
+$('#NSExpenseLedger').typeheadAutoComplete('ACCT.mst_GLMaster', 'GL', $('#hdnNSExpenseLedger'));
+$('#StExpenseLedger').typeheadAutoComplete('ACCT.mst_GLMaster', 'GL', $('#hdnStExpenseLedger'));
+$('#SSalesLedger').typeheadAutoComplete('ACCT.mst_GLMaster', 'GL', $('#hdnSSalesLedger'));
+$('#SExpenseLedger').typeheadAutoComplete('ACCT.mst_GLMaster', 'GL', $('#hdnSExpenseLedger'));
+$('#NegativeAssetsLedger').typeheadAutoComplete('ACCT.mst_GLMaster', 'GL', $('#hdnNegativeAssetsLedger'));
+
+
+   // Save Transaction Settings
+ function SaveTransactionSettings() {
+     try {
+         // Collect all customer aging rows dynamically
+         var customerAgingFromArray = [];
+         var customerAgingToArray = [];
+
+         for (var i = 1; i <= customerRowCount; i++) {
+             var fromVal = $('#customerAgingFrom' + i).val();
+             var toVal = $('#customerAgingTo' + i).val();
+
+             customerAgingFromArray.push(fromVal || '');
+             customerAgingToArray.push(toVal || '');
+         }
+
+         // Collect all vendor aging rows dynamically
+         var vendorAgingFromArray = [];
+         var vendorAgingToArray = [];
+
+         for (var i = 1; i <= vendorRowCount; i++) {
+             var fromVal = $('#vendorAgingFrom' + i).val();
+             var toVal = $('#vendorAgingTo' + i).val();
+
+             vendorAgingFromArray.push(fromVal || '');
+             vendorAgingToArray.push(toVal || '');
+         }
+
+         // Ensure we have at least 4 aging buckets for compatibility
+         //while (customerAgingFromArray.length < 4) {
+         //    customerAgingFromArray.push('');
+         //}
+         //while (customerAgingToArray.length < 4) {
+         //    customerAgingToArray.push('');
+         //}
+         //while (vendorAgingFromArray.length < 4) {
+         //    vendorAgingFromArray.push('');
+         //}
+         //while (vendorAgingToArray.length < 4) {
+         //    vendorAgingToArray.push('');
+         //}
+
+         var customerSettings = {
+             invoiceDueType: $('input[name="customerInvoiceDueType"]:checked').val(),
+             invoiceDueDays: $('#customerInvoiceDueDays').val(),
+             agingFrom: customerAgingFromArray || [],
+             agingTo: customerAgingToArray || [],
+             salesLedger: $('#hdncstmrSalesLedger').val(),
+             discountLedger: $('#hdncstmrDiscountLedger').val()
+         };
+
+         var vendorSettings = {
+             invoiceDueType: $('input[name="vendorInvoiceDueType"]:checked').val(),
+             invoiceDueDays: $('#vendorInvoiceDueDays').val(),
+             agingFrom: vendorAgingFromArray || [],
+             agingTo: vendorAgingToArray || [],
+             expenseLedger: $('#hdnvendorSalesLedger').val(),
+             discountLedger: $('#hdnvendorDiscountLedger').val()
+         };
+
+         var paymentReceiptSettings = {
+             otherReceiptLedger: $('#hdnotherReceiptLedger').val(),
+             otherPaymentLedger: $('#hdnotherPaymentLedger').val(),
+             customerReceiptDiscountLedger: $('#hdncstmrReceiptDiscountLedger').val(),
+             vendorPaymentDiscountLedger: $('#hdnvendorPaymentDiscountLedger').val(),
+             bankInterestReceivedLedger: $('#hdnBIReceivedLedger').val(),
+             bankInterestChargesLedger: $('#hdnBIChargesLedger').val()
+         };
+
+         var productServiceSettings = {
+             nonStockSalesAccount: $('#hdnNSSalesLedger').val(),
+             nonStockExpenseAccount: $('#hdnNSExpenseLedger').val(),
+             stockExpenseAccount: $('#hdnStExpenseLedger').val(),
+             serviceSalesAccount: $('#hdnSSalesLedger').val(),
+             serviceExpenseAccount: $('#hdnSExpenseLedger').val(),
+             allowDuplicateItemNames: $('#allowDuplicateItemNames').is(':checked')
+         };
+
+         var accountingSettings = {
+             showNegativeAssets: $('#hdnNegativeAssetsLedger').val()
+         };
+
+         var currencySettings = {
+             enableMultiCurrency: $('#enableMultiCurrency').is(':checked')
+         };
+
+         // Validation
+         if (!customerSettings.invoiceDueType) {
+             Swal.fire({
+                 icon: 'error',
+                 title: 'Validation Error',
+                 text: 'Please select Customer Invoice Due option'
+             });
+             return false;
+         }
+
+         if (customerSettings.invoiceDueType.includes('days') && !customerSettings.invoiceDueDays) {
+             Swal.fire({
+                 icon: 'error',
+                 title: 'Validation Error',
+                 text: 'Please enter number of days for Customer Invoice Due'
+             });
+             return false;
+         }
+
+         if (!vendorSettings.invoiceDueType) {
+             Swal.fire({
+                 icon: 'error',
+                 title: 'Validation Error',
+                 text: 'Please select Vendor Invoice Due option'
+             });
+             return false;
+         }
+
+         // Prepare request object
+         var request = {
+             customerSettings: customerSettings,
+             vendorSettings: vendorSettings,
+             paymentReceiptSettings: paymentReceiptSettings,
+             productServiceSettings: productServiceSettings,
+             accountingSettings: accountingSettings,
+             currencySettings: currencySettings
+         };
+
+         // Show loading message
+         Swal.fire({
+             title: 'Saving...',
+             text: 'Please wait while we save your settings',
+             icon: 'info',
+             allowOutsideClick: false,
+             allowEscapeKey: false,
+             didOpen: function () {
+                 Swal.showLoading();
+             }
+         });
+
+         // Make AJAX call
+         $.ajax({
+             url: '@Url.Action("SaveTransactionSettings", "Configuration")',
+             type: 'POST',
+             contentType: 'application/json',
+             data: JSON.stringify(request),
+             success: function (response) {
+                 Swal.close();
+
+                 if (response.Success) {
+                     Swal.fire({
+                         icon: 'success',
+                         title: 'Success',
+                         text: response.Message || 'Transaction settings saved successfully',
+                         timer: 2000
+                     }).then(function () {
+                         location.reload();
+                     });
+                 } else {
+                     Swal.fire({
+                         icon: 'error',
+                         title: 'Error',
+                         text: response.message || 'Failed to save transaction settings'
+                     });
+                 }
+             },
+             error: function (xhr, status, error) {
+                 Swal.close();
+
+                 // Check for session expiration
+                 if (xhr.status === 401) {
+                     Swal.fire({
+                         icon: 'warning',
+                         title: 'Session Expired',
+                         text: 'Your session has expired. Please login again.'
+                     }).then(function () {
+                         window.location.href = '@Url.Action("Index", "Login")';
+                     });
+                     return;
+                 }
+
+                 Swal.fire({
+                     icon: 'error',
+                     title: 'Error',
+                     text: 'An error occurred while saving settings: ' + error
+                 });
+             }
+         });
+
+         return false;
+     } catch (ex) {
+         Swal.fire({
+             icon: 'error',
+             title: 'Error',
+             text: 'An unexpected error occurred: ' + ex.message
+         });
+         return false;
+     }
+ }
+
+var customerRowCount = 1;
+var vendorRowCount = 1;
+function setupAutoFillCustomer(rowNumber) {
+    var fromId = 'customerAgingFrom' + rowNumber;
+    var toId = 'customerAgingTo' + rowNumber;
+
+    $('#' + fromId).on('input', function () {
+        let value = parseInt($(this).val());
+        if (value < 0) {
+            return;
+        }
+        if (value === 0) {
+            $('#' + toId).val(value + 30);
+        } else if (!isNaN(value)) {
+            $('#' + toId).val(value + 30 - 1);
+        } else {
+            $('#' + toId).val('');
+        }
+    });
+}
+
+function setupAutoFillVendor(rowNumber) {
+            var fromId = 'vendorAgingFrom' + rowNumber;
+            var toId = 'vendorAgingTo' + rowNumber;
+
+            $('#' + fromId).off('input').on('input', function () {
+                let value = parseInt($(this).val());
+
+                if (!isNaN(value) && value === 0) {
+                    $('#' + toId).val(value + 30);
+                } else if (!isNaN(value)) {
+                    $('#' + toId).val(value + 30 - 1);
+                } else {
+                    $('#' + toId).val('');
+                }
+            });
+        }
+
+if (customerRowCount === 1) {
+    $("#btnDeleteCustomerRow").hide();
+}
+if (vendorRowCount === 1) {
+    $("#btnDeleteVendorRow").hide();
+        }
+
+$('#customerAgingFrom1').on('input', function () {
+            setupAutoFillCustomer(1);
+        });
+
+$('#vendorAgingFrom1').on('input', function () {
+            setupAutoFillVendor(1);
+});
+
+        SavedCustRowCount = @(Model?.TransactionSettings?[0]?.Aging?[0]?.CustomerAgingFrom?.Count ?? 0);
+        SavedVendRowCount = @(Model?.TransactionSettings?[0]?.Aging?[0]?.VendorAgingFrom?.Count ?? 0);
+
+        //customer aging array
+        var customerFromList = @Html.Raw(JsonConvert.SerializeObject(Model?.TransactionSettings?[0]?.Aging?[0]?.CustomerAgingFrom));
+        var customerToList = @Html.Raw(JsonConvert.SerializeObject(Model?.TransactionSettings?[0]?.Aging?[0]?.CustomerAgingTo));
+        // vendor aging array
+        var vendorFromList = @Html.Raw(JsonConvert.SerializeObject(Model?.TransactionSettings?[0]?.Aging?[0]?.VendorAgingFrom));
+        var vendorToList = @Html.Raw(JsonConvert.SerializeObject(Model?.TransactionSettings?[0]?.Aging?[0]?.VendorAgingTo));
+
+        for (let i = 1; i < SavedCustRowCount; i++) {
+            customerRowCount++;
+         var newFromRow = `
+        <div class="transaction_input me-2" id="customerFromRow${customerRowCount}">
+            <input type="text" class="form-control text-center py-1" placeholder=""
+                   aria-label="Search" aria-describedby="addon-wrapping"
+                   id="customerAgingFrom${customerRowCount}" value="${customerFromList[i]}">
+        </div>`;
+
+            var newToRow = `
+        <div class="transaction_input me-2" id="customerToRow${customerRowCount}">
+            <input type="text" class="form-control aging_for_input text-center py-1"
+                   placeholder="" aria-label="Search" aria-describedby="addon-wrapping"
+                   id="customerAgingTo${customerRowCount}" value="${customerToList[i]}">
+        </div>`;
+
+            $(".customerFrom").append(newFromRow);
+            $(".customerTo").append(newToRow);
+            setupAutoFillCustomer(customerRowCount);
+        }
+
+        for (let i = 1; i < SavedVendRowCount; i++) {
+            vendorRowCount++;
+            var newFromRow = `
+   <div class="transaction_input me-2" id="vendorFromRow${vendorRowCount}">
+       <input type="text" class="form-control text-center py-1" placeholder=""
+              aria-label="Search" aria-describedby="addon-wrapping"
+              id="vendorAgingFrom${vendorRowCount}" value="${vendorFromList[i]}">
+   </div>`;
+
+            var newToRow = `
+   <div class="transaction_input me-2" id="vendorToRow${vendorRowCount}">
+       <input type="text" class="form-control aging_for_input text-center py-1"
+              placeholder="" aria-label="Search" aria-describedby="addon-wrapping"
+              id="vendorAgingTo${vendorRowCount}" value="${vendorToList[i]}">
+   </div>`;
+
+   // Append new rows
+   $(".vendorFrom").append(newFromRow);
+   $(".vendorTo").append(newToRow);
+setupAutoFillVendor(vendorRowCount);
+        }
+
+// add customer
+$("#btnAddCustomerRow").click(function () {
+            customerRowCount++;
+
+            var newFromRow = `
+        <div class="transaction_input me-2" id="customerFromRow${customerRowCount}">
+            <input type="text" class="form-control text-center py-1" placeholder=""
+                   aria-label="Search" aria-describedby="addon-wrapping"
+                   id="customerAgingFrom${customerRowCount}">
+        </div>`;
+
+            var newToRow = `
+        <div class="transaction_input me-2" id="customerToRow${customerRowCount}">
+            <input type="text" class="form-control aging_for_input text-center py-1"
+                   placeholder="" aria-label="Search" aria-describedby="addon-wrapping"
+                   id="customerAgingTo${customerRowCount}">
+        </div>`;
+
+            $(".customerFrom").append(newFromRow);
+            $(".customerTo").append(newToRow);
+
+            // Setup auto-fill for the new row
+            setupAutoFillCustomer(customerRowCount);
+
+    if (customerRowCount > 1) {
+        $('#btnDeleteCustomerRow')
+            .removeClass('d-none')
+            .css('display', 'inline-block');
+    } else {
+        $('#btnDeleteCustomerRow')
+            .css('display', 'none');
+    }
+});
+
+// delete customer
+$("#btnDeleteCustomerRow").click(function () {
+            // Keep at least 3 rows
+            if (customerRowCount > 1) {
+                var fromRowId = 'customerFromRow' + customerRowCount;
+                var toRowId = 'customerToRow' + customerRowCount;
+
+                $('#' + fromRowId).remove();
+                $('#' + toRowId).remove();
+
+                customerRowCount--;
+
+                if (customerRowCount === 1) {
+                    $("#btnDeleteCustomerRow").hide();
+                }
+            }
+});
+
+// add new vendor row
+$("#btnAddVendorRow").click(function () {
+            vendorRowCount++;
+
+            var newFromRow = `
+          <div class="transaction_input me-2" id="vendorFromRow${vendorRowCount}">
+              <input type="text" class="form-control text-center py-1" placeholder=""
+                     aria-label="Search" aria-describedby="addon-wrapping"
+                     id="vendorAgingFrom${vendorRowCount}">
+          </div>`;
+
+            var newToRow = `
+          <div class="transaction_input me-2" id="vendorToRow${vendorRowCount}">
+              <input type="text" class="form-control aging_for_input text-center py-1"
+                     placeholder="" aria-label="Search" aria-describedby="addon-wrapping"
+                     id="vendorAgingTo${vendorRowCount}">
+          </div>`;
+
+            // Append new rows
+            $(".vendorFrom").append(newFromRow);
+            $(".vendorTo").append(newToRow);
+
+            // Setup auto-fill for the new row
+            setupAutoFillVendor(vendorRowCount);
+
+            // Show delete button if more than 1 row
+    if (vendorRowCount > 1) {
+        $('#btnDeleteVendorRow')
+            .removeClass('d-none')
+            .css('display', 'inline-block');
+    } else {
+        $('#btnDeleteVendorRow')
+            .css('display', 'none');
+    }
+
+});
+
+// Delete vendor row
+$("#btnDeleteVendorRow").click(function () {
+            if (vendorRowCount > 1) {
+                var fromRowId = 'vendorFromRow' + vendorRowCount;
+                var toRowId = 'vendorToRow' + vendorRowCount;
+
+                $('#' + fromRowId).remove();
+                $('#' + toRowId).remove();
+
+                vendorRowCount--;
+
+                if (vendorRowCount === 1) {
+                    $("#btnDeleteVendorRow").hide();
+                }
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // previous code
+$(function () {
+            $('input[name="fiscaldate"]').daterangepicker({
+                singleDatePicker: true,
+                showDropdowns: true,
+                minYear: 1901,
+                maxYear: parseInt(moment().format('YYYY'), 10)
+            }, function (start, end, label) {
+                var years = moment().diff(start, 'years');
+            });
+        });
+
+$(function () {
+            $('input[name="daterange"]').daterangepicker(
+                {
+                    ssingleDatePicker: 'true',
+                    showShortcuts: 'false',
+                    showTopbar: 'false'
+                }
+            );
+        });
+
+$('#datatable1').DataTable({
+        "columnDefs": [
+            {
+                "targets": -1,
+                "orderable": false
+            }
+        ],
+        language: {
+            search: "_INPUT_",
+            searchPlaceholder: "Search..."
+        },
+        fixedHeader: {
+            header: true,
+        },
+        "dom": '<"top"<"toolbar">tf<"clear">>rt<"bottom"lip<"clear">>'
+    });
+
+$(".form-switch").click(function () {
+            if ($(this).parent().hasClass("yes")) {
+                $(this).parent().removeClass("yes");
+                $(this).parent().addClass("no");
+            } else {
+                $(this).parent().removeClass("no");
+                $(this).parent().addClass("yes");
+            }
+        });
+
+    </script>
+</body>
+</html>
+

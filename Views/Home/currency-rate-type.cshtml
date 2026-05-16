@@ -1,0 +1,198 @@
+
+@{
+    ViewBag.Title = "currency-rate-type";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html lang="en">
+<head>
+    <link href="./assets/css/maintain-currency.css" rel="stylesheet">
+</head>
+<body class="bg-sky-light">
+
+    @Html.Partial("~/Views/Shared/_PartialHeader.cshtml")
+
+    <div class="container">
+        <div class="row">
+            <main class="main-body">
+                <div class="main-body-wrapper">
+                    <div class="collapsebody bg-f8f8f8 collapse show group-lookuptab" id="">
+                        <div class="collapsewrap card bx-shadow ">
+                            <div class="collapseheader ps-0 pe-0 me-0">
+                                <div class="top_content">
+                                    <h1 class="heading">Currency Rate Type</h1>
+                                </div>
+                                <div class="currencyratetable mt-3">
+                                    <div class="card">
+                                        <div class="flex-wrap card-header table-bg-light d-flex justify-content-between">
+                                            <div class="left-sort-bar align-items-center">
+                                                <div class="header-title ">Rate Details</div>
+                                            </div>
+                                        </div>
+                                        <div id="" class="dataTables_wrapper card-body">
+                                            <table class="display customize-table-style dataTable" id="tdstable" role="grid" aria-describedby="basic-14_info">
+                                                <thead>
+                                                    <tr role="row">
+                                                        <th>Rate Type Code</th>
+                                                        <th>Description</th>
+                                                        <th>Refresh Online</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr role="row">
+                                                        <td>
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control" id="txtratetype" value="" placeholder="Please Enter Rate Type">
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control" id="txtratetypedesc" value="" placeholder="Please Enter Description">
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="display-label yes">
+                                                                <div class="form-switch">
+                                                                    <input class="form-check-input" type="checkbox" id="icaccount" checked="">
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-action-section justify-content-end">
+                                    <a href="javascript:void(0);" id="btnSave" class="action-btn bg-action-light active">Save</a>
+                                    <a href="@Url.Action("maintain_currency_details","Home")" class="action-btn bg-action-light">Cancel</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+
+    <script>
+        $(document).ready(function () {
+      var substringMatcher = function (strs) {
+          return function findMatches(q, cb) {
+              var matches, substringRegex;
+              matches = [];
+              substrRegex = new RegExp(q, 'i');
+              $.each(strs, function (i, str) {
+                  if (substrRegex.test(str)) {
+                      matches.push(str);
+                  }
+              });
+
+              cb(matches);
+          };
+      };
+
+      var agents = ['Nicole Prejean', 'David', 'Smith', 'WEI MIAO', 'laili',
+          'Onsri', 'Wan Yun', 'Enyu', 'Rio Rica', 'Sanjay', 'Priscilla Jia', 'John Smith',
+          'Redha Nuruinda', 'Mylon Jan', 'Ma Lothel', 'Raufa', 'Areanne Glee', 'Mary Jasmine',
+      ];
+
+      $('#the-basics-agents .typeahead').typeahead({
+          hint: true,
+          highlight: true,
+          minLength: 1
+      },
+          {
+              name: 'states',
+              source: substringMatcher(agents)
+          });
+  });
+
+
+        $("#btnSave").click(function () {
+            $.ajax({
+                url: '/Home/Save',
+                type: 'POST',
+                data: {
+                    RateTypeCode: $('#txtratetype').val(),
+                    Description: $('#txtratetypedesc').val(),
+                    RefreshOnline: $('#icaccount').is(':checked')
+                },
+                success: function (res) {
+                    if (res.success) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success',
+                            text: res.message,
+                            timer: 1500,
+                            showConfirmButton: false
+                        }).then(function () {
+                            window.location.href = '@Url.Action("maintain_currency_details", "Home")';
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: res.message
+                        });
+                    }
+                }
+            });
+        });
+
+        $(function() {
+          $('input[name="fiscaldate"]').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            minYear: 1901,
+            maxYear: parseInt(moment().format('YYYY'),10)
+          }, function(start, end, label) {
+            var years = moment().diff(start, 'years');
+          });
+        });
+
+        $("form").on("change", ".file-upload-field", function(){
+            $(this).parent(".file-upload-wrapper").attr("data-text",         $(this).val().replace(/.*(\/|\\)/, '') );
+        });
+
+
+        $("#datatable1_wrapper tbody").on("click", ".details-control", function() {
+            var tr = $(this).closest("tr");
+
+            if(tr.next('tr.addnewrow').length){
+              tr.next('tr.addnewrow').remove();
+            }else{
+              let TrRow='<tr class="p-0 addnewrow"><td class="p-0" colspan="6"><table class="table mb-0"><tbody><tr class="subtable"><th>Accounts</th><th class="text-center">Available Balance</th><th class="datatable_right debit-table-row">Debit</th><th class="datatable_right credit-table-row">Credit</th></tr><tr class="subtable"><td>Advance Tax</td><td class="text-center">--</td><td><div class="input-group"><input type="text" class="form-control text-end" placeholder="0.00" aria-label="Search" aria-describedby="addon-wrapping"></div></td><td><div class="input-group"><input type="text" class="form-control text-end" placeholder="0.00" aria-label="Search" aria-describedby="addon-wrapping"></div></td></tr><tr class="subtable"><td colspan="4"><a href="#" class="add-vendor ms-0"><span class="icon"><img src="./assets/images/addicon.svg"></span>Add Another Account</a></td></tr></tbody></table></td></tr>';
+            tr.after(TrRow);
+            }
+          });
+          $("#datatable1_wrapper tbody").on("click", ".details-control-customer", function() {
+            var tr = $(this).closest("tr");
+
+            if(tr.next('tr.addnewrow').length){
+              tr.next('tr.addnewrow').remove();
+            }else{
+              let TrRow='<tr class="p-0 addnewrow"><td class="p-0" colspan="6"><table class="display customize-table-style dataTable" id="datatable1_wrapper" role="grid" aria-describedby="basic-14_info"><thead><tr role="row"><th>Type</th><th>Date</th><th>Customer</th><th>Currency</th><th>Reference</th><th>Description</th><th>Sub Total</th><th>Tax</th><th class="datatable_right">Total</th></tr></thead><tbody><tr role="row"><td>Invoice</td><td>05-03-2023</td><td>Aman Sharma</td><td>USD</td><td>INV-02</td><td>Sale of Mobile</td><td>$1,005.00</td><td>$125.00</td><td class="datatable_right">$1,100.00</td></tr><tr role="row"><td>Credit Note</td><td>05-03-2023</td><td>Kapil Sharma</td><td>USD</td><td>INV-03</td><td>Sale of Mobile</td><td>$1,005.00</td><td>$154.00</td><td class="datatable_right">$1,350.00</td></tr><tr role="row"><td>Invoice</td><td>05-03-2023</td><td>Jaya Sharma</td><td>USD</td><td>INV-01</td><td>Sale of Mobile</td><td>$1,005.00</td><td>$100.00</td><td class="datatable_right">$1,100.00</td> </tr></tr></tbody></table></td></tr>';
+            tr.after(TrRow);
+            }
+          });
+          $("#datatable1_wrapper tbody").on("click", ".details-control-vendor", function() {
+            var tr = $(this).closest("tr");
+
+            if(tr.next('tr.addnewrow').length){
+              tr.next('tr.addnewrow').remove();
+            }else{
+              let TrRow='<tr class="p-0 addnewrow"><td class="p-0" colspan="6"><table class="display customize-table-style dataTable" id="datatable1_wrapper" role="grid" aria-describedby="basic-14_info"><thead><tr role="row"><th>Type</th><th>Date</th><th>Vendor</th><th>Currency</th><th>Reference</th><th>Description</th><th>Sub Total</th><th>Tax</th><th class="datatable_right">Total</th></tr></thead><tbody><tr role="row"><td>Bill</td><td>05-03-2023</td><td>Aman Sharma</td><td>USD</td><td>Bill-02</td><td>Sale of Mobile</td><td>$1,005.00</td><td>$125.00</td><td class="datatable_right">$1,100.00</td></tr><tr role="row"><td>Credit Note</td><td>05-03-2023</td><td>Kapil Sharma</td><td>USD</td><td>Bill-03</td><td>Sale of Mobile</td><td>$1,005.00</td><td>$154.00</td><td class="datatable_right">$1,350.00</td></tr><tr role="row"><td>Bill</td><td>05-03-2023</td><td>Jaya Sharma</td><td>USD</td><td>Bill-01</td><td>Sale of Mobile</td><td>$1,005.00</td><td>$100.00</td><td class="datatable_right">$1,100.00</td> </tr></tr></tbody></table></td></tr>';
+            tr.after(TrRow);
+            }
+          });
+
+           $(".importfile").click(function () {
+            $(".Openingupload-sec").toggle();
+            $(".Openingform-sec").toggle();
+          });
+    </script>
+
+
+</body>
+</html>

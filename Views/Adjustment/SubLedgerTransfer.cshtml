@@ -1,0 +1,901 @@
+@{
+    ViewBag.Title = "SubLedgerTransfer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html lang="en">
+<body class="bg-sky-light">
+
+    @Html.Partial("~/Views/Shared/_PartialHeader.cshtml")
+
+    <div class="container">
+        <div class="row">
+            <main class="main-body">
+                <div class="main-body-wrapper">
+                    <div class="collapsebody bg-f8f8f8 collapse show group-lookuptab" id="">
+                        <div class="collapsewrap card bx-shadow ">
+                            <div class="collapseheader ps-0 pe-0 me-0">
+                                <div class="top_content">
+                                    <h1 class="heading">Sub Ledger Transfer</h1>
+                                </div>
+                                <div class="sort-bar mt-4">
+                                    <div class="left-sort-bar">
+                                        <div class="table-action-box">
+                                            <span class="table-action-text">Print</span>
+                                            <a href="#" class="table-action-label">
+                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <g id="Group 10603">
+                                                        <path id="Vector" d="M3.46824 0.0844421C3.00136 0.192825 2.46779 0.626352 2.19266 1.11824L1.95922 1.5351V3.76111V5.98712L1.65075 6.03715C1.484 6.07049 1.15052 6.21224 0.908744 6.35393C0.566924 6.5624 0.408519 6.7291 0.233439 7.07095L0 7.51283V9.61379C0 10.7643 0.0333484 11.7481 0.0666971 11.8064C0.191754 12.0065 0.558587 12.0232 0.742006 11.8398C0.908744 11.673 0.917085 11.5813 0.917085 9.70545C0.917085 8.11311 0.942096 7.68791 1.04214 7.49614C1.30893 6.97922 1.04214 6.99591 7.98694 6.99591H14.3148L14.5483 7.17931C14.9651 7.50446 15.0068 7.73794 15.0068 9.82219V11.7481L15.2152 11.8814C15.482 12.0565 15.8072 11.9398 15.8822 11.6397C15.9155 11.5313 15.9239 10.5475 15.9072 9.44702C15.8822 7.69623 15.8655 7.4211 15.7238 7.16268C15.3987 6.55402 14.8818 6.1622 14.2398 6.04548L13.923 5.98712V4.0279C13.923 2.53556 13.898 2.01032 13.8063 1.80189C13.6645 1.4684 12.3806 0.201162 12.0638 0.0844421C11.7637 -0.0322774 3.93512 -0.0239403 3.46824 0.0844421ZM12.3389 1.57678L13.0059 2.23542V4.11961V5.99546H7.96193H2.91799V3.86949C2.91799 1.57678 2.95134 1.36836 3.35986 1.15159C3.73503 0.943165 4.1102 0.926489 7.85356 0.918154L11.6636 0.909819L12.3389 1.57678Z" fill="#ADBFCD" />
+                                                        <path id="Vector_2" d="M13.2561 7.80253C12.956 7.91089 12.7559 8.19439 12.7559 8.48615C12.7642 8.84469 12.8976 9.0364 13.2061 9.16146C13.6646 9.33653 14.1732 8.97806 14.1732 8.48615C14.1732 8.06096 13.6313 7.66077 13.2561 7.80253Z" fill="#ADBFCD" />
+                                                        <path id="Vector_3" d="M2.59261 10.1039C2.4342 10.1623 2.22577 10.3124 2.13406 10.4374C1.96733 10.6626 1.95898 10.7709 1.95898 12.9886C1.95898 15.0812 1.97566 15.3147 2.10905 15.5314C2.41753 15.9983 2.37584 15.9983 7.97002 15.9983C13.6976 15.9983 13.5726 16.0066 13.806 15.448C13.9811 15.0312 13.9727 10.921 13.7977 10.5458C13.5476 10.0123 13.8144 10.0373 8.08677 10.0206C4.18499 10.0039 2.80104 10.0289 2.59261 10.1039ZM13.0057 12.9969V14.9978H7.96171H2.91776V12.9969V10.996H7.96171H13.0057V12.9969Z" fill="#ADBFCD" />
+                                                    </g>
+                                                </svg>
+                                            </a>
+                                        </div>
+                                        <div class="table-action-box">
+                                            <span class="table-action-text">Mail</span>
+                                            <a href="javascript:void(0)" class="table-action-label" data-bs-toggle="modal" data-bs-target="#emailpopup">
+                                                <svg width="19" height="14" viewBox="0 0 19 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path id="Vector" d="M1.88088 0.0684357C1.31384 0.185754 1.06943 0.322626 0.668589 0.733243C-0.0353223 1.46648 -0.0353223 1.4176 0.0233369 7.26396L0.0722194 12.4553L0.365515 12.9246C0.570823 13.2472 0.825011 13.4818 1.19652 13.697L1.73423 14H9.35991H16.9856L17.3767 13.7849C17.8362 13.5405 18.2077 13.1592 18.4619 12.6802C18.6379 12.3575 18.6476 12.0252 18.6476 7.00978C18.6476 1.74022 18.6476 1.68156 18.4326 1.29051C18.1686 0.791903 17.7775 0.420391 17.2789 0.19553C16.9172 0.0293296 16.3893 0.019553 9.55547 0C5.52753 0 2.06664 0.019553 1.88088 0.0684357ZM17.0834 1.35894C17.2301 1.47626 17.4158 1.71089 17.4842 1.88687C17.6602 2.29749 17.6602 3.59776 17.5038 3.80307C17.3571 3.97905 10.67 8.86732 10.1421 9.18019C9.65321 9.46366 9.06662 9.45391 8.51918 9.15086C8.14765 8.93573 4.79429 6.52095 2.00798 4.44832L1.09876 3.78352V2.89385C1.09876 1.93576 1.17697 1.70112 1.56803 1.36871L1.832 1.14386H9.32083H16.8096L17.0834 1.35894ZM2.17417 5.99302C2.63367 6.31564 4.15881 7.43017 5.56663 8.44695C7.64904 9.96227 8.21606 10.3338 8.62667 10.4315C9.26217 10.588 10.0443 10.5098 10.5429 10.2556C10.758 10.1382 12.4004 8.97488 14.1993 7.65505C16.3697 6.07123 17.494 5.30866 17.5429 5.3771C17.582 5.44553 17.6211 6.91201 17.6211 8.65226C17.6211 12.074 17.6015 12.2598 17.0834 12.6606L16.8096 12.8757H9.38924C1.24541 12.8757 1.55825 12.8952 1.24541 12.2891C1.11831 12.0545 1.09876 11.4581 1.09876 8.62293C1.09876 5.94413 1.12809 5.25 1.21608 5.31844C1.28451 5.35754 1.71468 5.66062 2.17417 5.99302Z" fill="#ADBFCD" />
+                                                </svg>
+                                            </a>
+                                        </div>
+                                        <div class="table-action-box">
+                                            <span class="table-action-text">Copy</span>
+                                            <a href="#" class="table-action-label">
+                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M6.48786 0.0680949C5.96176 0.193357 5.46906 0.585844 5.22689 1.07854L5.00977 1.51279V5.49613V9.47945L5.24359 9.91374C5.52752 10.4649 5.99516 10.8072 6.61312 10.9158C6.92208 10.9743 8.43362 10.9993 10.7468 10.9826C14.062 10.9575 14.4378 10.9409 14.7385 10.8072C15.1643 10.6152 15.4984 10.2979 15.7239 9.87196C15.9076 9.54628 15.9076 9.47945 15.9076 5.48778C15.9076 1.69651 15.8993 1.42093 15.7489 1.14535C15.5318 0.736159 15.2145 0.410479 14.822 0.201708C14.4963 0.01799 14.4128 0.01799 10.6466 0.00128822C8.53383 -0.00706264 6.66323 0.0263406 6.48786 0.0680949Z" fill="#ADBFCD" />
+                                                    <path d="M1.3946 5.10129C0.818389 5.31006 0.450952 5.61904 0.217129 6.07833L7.66839e-06 6.52093V10.4709C7.66839e-06 14.83 -0.00834317 14.7715 0.526109 15.3227C0.676423 15.4814 0.943651 15.6818 1.12737 15.782C1.45305 15.9657 1.54491 15.9657 5.25268 15.9908C9.4615 16.0158 9.66192 15.9991 10.2465 15.4814C10.4135 15.3394 10.639 15.0304 10.7392 14.7966C10.9145 14.4208 10.9396 14.2621 10.9396 13.1849V11.9991H10.2381H9.53666L9.50322 13.1348C9.47816 14.1369 9.4615 14.2789 9.31952 14.3874C9.18593 14.4876 8.50951 14.5043 5.42804 14.5043C1.9207 14.5043 1.68688 14.4959 1.56161 14.354C1.43635 14.212 1.41965 13.8195 1.41965 10.4792C1.41965 6.9886 1.428 6.75473 1.56996 6.62947C1.69523 6.5126 1.9207 6.48755 2.82259 6.48755H3.9249V5.73595V4.98438H2.82259C2.10441 4.99273 1.59502 5.03448 1.3946 5.10129Z" fill="#ADBFCD" />
+                                                </svg>
+                                            </a>
+                                        </div>
+                                        <div class="table-action-box">
+                                            <span class="table-action-text">Download</span>
+                                            <a href="#" class="table-action-label">
+                                                <svg width="13" height="16" viewBox="0 0 13 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <g id="Group 120">
+                                                        <path id="Vector" d="M1.51104 0.0664782C0.844158 0.247972 0.354547 0.703818 0.0928574 1.38759L0 1.62817V7.98046C0 14.0837 0.00422079 14.3412 0.080195 14.5649C0.257468 15.0841 0.603573 15.5146 1.03409 15.7425C1.53215 16.0084 1.35065 16 6.00619 16C10.6744 16 10.514 16.0084 10.9867 15.7383C11.4721 15.4639 11.8604 14.9152 11.9659 14.3581C12.025 14.0457 12.025 5.24539 11.9659 4.93727C11.9406 4.81065 11.8646 4.58695 11.7929 4.435C11.6789 4.18597 11.4932 3.98759 9.75847 2.25707C7.76626 0.269076 7.6734 0.188881 7.19645 0.0664782C6.84612 -0.0221584 1.84449 -0.0221584 1.51104 0.0664782ZM6.02307 2.90707L6.03573 4.84019L6.19612 5.1652C6.37762 5.5324 6.58021 5.71812 6.97697 5.87851C7.21333 5.97137 7.25554 5.97559 9.12957 5.98825L11.0416 6.00091L11.0289 10.1246C11.0163 14.2272 11.0163 14.2483 10.9276 14.4383C10.8221 14.662 10.6111 14.8646 10.4043 14.949C10.2818 14.9996 9.56009 15.0081 5.99352 15.0081H1.73052L1.52793 14.9068C1.3 14.797 1.09741 14.5522 1.03409 14.3074C1.00455 14.2061 0.996107 12.0155 1.00033 7.90871L1.01299 1.67038L1.10585 1.49311C1.22403 1.27362 1.44351 1.10057 1.70098 1.03304C1.84871 0.995053 2.44384 0.978169 3.95488 0.978169L6.01041 0.973949L6.02307 2.90707ZM7.31041 1.22298C7.66496 1.50999 10.8981 4.78955 10.9234 4.88662L10.9445 4.9837H9.1549C7.20067 4.9837 7.18801 4.9837 7.06561 4.74312C6.97697 4.56584 6.95164 1.05836 7.0445 1.05836C7.07827 1.05836 7.19645 1.13434 7.31041 1.22298Z" fill="#ADBFCD" />
+                                                        <path id="Vector_2" d="M6.22757 12.9202C6.2951 12.8779 6.94932 12.2448 7.67108 11.5146C8.97953 10.2062 8.99219 10.1893 8.99219 10.0162C8.99219 9.69969 8.65452 9.43378 8.38017 9.5393C8.31686 9.56462 7.87368 9.9656 7.39673 10.4341L6.52302 11.2867L6.50192 9.30293C6.47659 7.07435 6.48926 7.14188 6.16848 7.04481C5.95744 6.98149 5.80549 7.01948 5.65354 7.17565L5.53114 7.29383L5.53114 9.31137L5.53114 11.3289L4.63211 10.4383C3.66133 9.47176 3.59379 9.42955 3.31944 9.5604C3.06197 9.6828 2.95223 9.95293 3.06197 10.1851C3.14639 10.3666 5.68731 12.899 5.83926 12.9539C6.00809 13.0172 6.08406 13.013 6.22757 12.9202Z" fill="#ADBFCD" />
+                                                    </g>
+                                                </svg>
+                                            </a>
+                                        </div>
+                                        <div class="table-action-box">
+                                            <span class="table-action-text">Delete</span>
+                                            <a href="#" class="table-action-label">
+                                                <svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <g id="Group 10606">
+                                                        <path id="Vector" d="M5.0594 0.0975651C4.62526 0.256193 4.29131 0.606845 3.84047 1.34989L3.46477 1.9844H1.92024C0.200372 1.9844 0 2.0345 0 2.47699C0 2.78589 0.166977 2.91113 0.626164 2.96957C0.926722 3.00296 1.01021 3.04471 1.04361 3.18664C1.0603 3.27848 1.16049 4.5475 1.25233 5.99185C1.35251 7.4362 1.46105 9.07258 1.51114 9.6236C1.55289 10.1746 1.64472 11.3936 1.71151 12.337C1.7783 13.2804 1.85344 14.2071 1.87849 14.3908C1.95363 14.9418 2.35438 15.4678 2.9054 15.735L3.38128 15.9687L6.71247 15.9938C10.4027 16.0188 10.7366 15.9854 11.2876 15.568C11.9722 15.042 12.0223 14.8583 12.2394 11.7693C12.6652 5.71634 12.8572 3.18664 12.8906 3.10315C12.9073 3.05306 13.1077 2.98627 13.3248 2.96122C13.8841 2.90278 14.1012 2.56882 13.8257 2.18478C13.7172 2.04285 13.5752 2.02615 12.0808 2.0011L10.4528 1.97606L9.90173 1.14952C9.14199 0.00572781 9.20043 0.0307744 7.09652 0.00572781C5.78575 -0.0109699 5.30987 0.00572781 5.0594 0.0975651ZM8.97501 1.44173C9.13364 1.6922 9.26722 1.91761 9.26722 1.94266C9.26722 1.96771 8.23196 1.9844 6.97129 1.9844C5.19298 1.9844 4.67536 1.95936 4.67536 1.87587C4.67536 1.82578 4.80894 1.60036 4.96756 1.37494L5.25977 0.982543H6.97129H8.6828L8.97501 1.44173ZM11.8721 3.61243C11.8554 3.92969 11.7886 4.85641 11.7301 5.6579C11.6633 6.45939 11.5298 8.22934 11.4379 9.58186C11.3461 10.9344 11.2542 12.2117 11.2376 12.4205C11.2125 12.6292 11.1708 13.1301 11.1374 13.5476C11.104 13.9567 11.0288 14.3991 10.962 14.5244C10.7283 15.0003 10.6782 15.0086 6.89615 15.0086H3.43973L3.18091 14.7915C3.03898 14.6747 2.8887 14.4409 2.84696 14.2739C2.80521 14.1069 2.70503 13.0466 2.62989 11.9195C2.5631 10.7924 2.44621 9.19781 2.37942 8.37127C2.21244 6.33415 2.00372 3.42876 2.00372 3.18664V2.98627L6.95459 3.00296L11.8971 3.02801L11.8721 3.61243Z" fill="#ADBFCD" />
+                                                    </g>
+                                                </svg>
+                                            </a>
+                                        </div>
+                                        <div class="account_dropdown">
+                                            <div class="dropdown">
+                                                <span class="form-select dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Action </span>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#">Select 1</a></li>
+                                                    <li><a class="dropdown-item" href="#">Select 2</a></li>
+                                                    <li><a class="dropdown-item" href="#">select 3</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="account_dropdown">
+                                            <div class="dropdown">
+                                                <span class="form-select dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Filter </span>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#">Select 1</a></li>
+                                                    <li><a class="dropdown-item" href="#">Select 2</a></li>
+                                                    <li><a class="dropdown-item" href="#">Select 3</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="two_date_container">
+                                            <div class="input-group">
+                                                <input type="text" class="calendar" name="daterange" value="01/01/2021 - 01/15/2021" />
+                                            </div>
+                                        </div>
+                                        <div class="account_dropdown">
+                                            <div class="dropdown">
+                                                <span class="form-select dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Sort by </span>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#">Select 1</a></li>
+                                                    <li><a class="dropdown-item" href="#">Select 2</a></li>
+                                                    <li><a class="dropdown-item" href="#">Select 3</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="right-sort-bar">
+                                        <a href="@Url.Action("NewSubLedgerTransfer","Adjustment")" class="add-customer bg-regular f-w-500 ms-0 d-flex align-items-center">
+                                            <span class="icon me-2">
+                                                <svg width="26" height="24" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <ellipse cx="12.5294" cy="12" rx="12.5294" ry="12" fill="#043376"></ellipse>
+                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7578 6.75C11.7578 6.55109 11.8373 6.36032 11.9789 6.21967C12.1204 6.07902 12.3124 6 12.5126 6C12.7128 6 12.9048 6.07902 13.0463 6.21967C13.1879 6.36032 13.2674 6.55109 13.2674 6.75V17.25C13.2674 17.4489 13.1879 17.6397 13.0463 17.7803C12.9048 17.921 12.7128 18 12.5126 18C12.3124 18 12.1204 17.921 11.9789 17.7803C11.8373 17.6397 11.7578 17.4489 11.7578 17.25V6.75Z" fill="white"></path>
+                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.25781 12.0002C6.25781 11.8085 6.34032 11.6246 6.48717 11.4891C6.63403 11.3535 6.83321 11.2773 7.0409 11.2773H18.0041C18.2118 11.2773 18.411 11.3535 18.5579 11.4891C18.7047 11.6246 18.7872 11.8085 18.7872 12.0002C18.7872 12.192 18.7047 12.3758 18.5579 12.5114C18.411 12.647 18.2118 12.7231 18.0041 12.7231H7.0409C6.83321 12.7231 6.63403 12.647 6.48717 12.5114C6.34032 12.3758 6.25781 12.192 6.25781 12.0002Z" fill="white"></path>
+                                                </svg>
+                                            </span>
+                                            New Entry
+                                        </a>
+                                        <div class="emport-dropdown-box">
+                                            <div class="dropdown">
+                                                <a class="dropdown-toggle emport_button" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <svg width="15" height="11" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M10.5646 0.296875L6.20007 4.58988L1.83552 0.296875L0.397949 1.71087L6.20007 7.41787L12.0022 1.71087L10.5646 0.296875Z" fill="#ADBFCD" />
+                                                    </svg>
+                                                </a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#">Import Estimates</a></li>
+                                                    <li><a class="dropdown-item" href="#">Export Estimates</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="sort-bar d-none mt-4">
+                                    <div class="left-sort-bar">
+                                        <div class="search_container">
+                                            <div class="input-group">
+                                                <span>
+                                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M5.13149 10.263C6.27003 10.2628 7.37576 9.88161 8.27261 9.18024L11.0924 12L11.9994 11.093L9.1796 8.27325C9.88134 7.37631 10.2627 6.27033 10.263 5.13149C10.263 2.30212 7.96087 0 5.13149 0C2.30212 0 0 2.30212 0 5.13149C0 7.96087 2.30212 10.263 5.13149 10.263ZM5.13149 1.28287C7.25401 1.28287 8.98012 3.00898 8.98012 5.13149C8.98012 7.25401 7.25401 8.98012 5.13149 8.98012C3.00898 8.98012 1.28287 7.25401 1.28287 5.13149C1.28287 3.00898 3.00898 1.28287 5.13149 1.28287Z" fill="black" />
+                                                    </svg>
+                                                </span>
+                                                <input type="text" class="form-control search-input" placeholder="Search" aria-label="Search" aria-describedby="addon-wrapping">
+                                            </div>
+                                        </div>
+                                        <div class="account_dropdown">
+                                            <div class="dropdown">
+                                                <span class="form-select dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Filter </span>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#">All</a></li>
+                                                    <li><a class="dropdown-item" href="#">Draft</a></li>
+                                                    <li><a class="dropdown-item" href="#">Sent</a></li>
+                                                    <li><a class="dropdown-item" href="#">Approved</a></li>
+                                                    <li><a class="dropdown-item" href="#">Invoiced</a></li>
+                                                    <li><a class="dropdown-item" href="#">Declined</a></li>
+                                                    <li><a class="dropdown-item" href="#">Expired</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="two_date_container">
+                                            <div class="input-group">
+                                                <input type="text" class="calendar" name="daterange" value="01/01/2021 - 01/15/2021" />
+                                            </div>
+                                        </div>
+                                        <div class="account_dropdown">
+                                            <div class="dropdown">
+                                                <span class="form-select dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Sort by </span>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#">Customer Name</a></li>
+                                                    <li><a class="dropdown-item" href="#">Date</a></li>
+                                                    <li><a class="dropdown-item" href="#">Amount</a></li>
+                                                    <li><a class="dropdown-item" href="#">Estimate Number</a></li>
+                                                    <li><a class="dropdown-item" href="#">Created by</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="right-sort-bar">
+                                        <a href="@Url.Action("CreateNewEstimate","Sales")" class="add-customer bg-regular f-w-500 ms-0 d-flex align-items-center">
+                                            <span class="icon me-2">
+                                                <svg width="26" height="24" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <ellipse cx="12.5294" cy="12" rx="12.5294" ry="12" fill="#043376"></ellipse>
+                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7578 6.75C11.7578 6.55109 11.8373 6.36032 11.9789 6.21967C12.1204 6.07902 12.3124 6 12.5126 6C12.7128 6 12.9048 6.07902 13.0463 6.21967C13.1879 6.36032 13.2674 6.55109 13.2674 6.75V17.25C13.2674 17.4489 13.1879 17.6397 13.0463 17.7803C12.9048 17.921 12.7128 18 12.5126 18C12.3124 18 12.1204 17.921 11.9789 17.7803C11.8373 17.6397 11.7578 17.4489 11.7578 17.25V6.75Z" fill="white"></path>
+                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.25781 12.0002C6.25781 11.8085 6.34032 11.6246 6.48717 11.4891C6.63403 11.3535 6.83321 11.2773 7.0409 11.2773H18.0041C18.2118 11.2773 18.411 11.3535 18.5579 11.4891C18.7047 11.6246 18.7872 11.8085 18.7872 12.0002C18.7872 12.192 18.7047 12.3758 18.5579 12.5114C18.411 12.647 18.2118 12.7231 18.0041 12.7231H7.0409C6.83321 12.7231 6.63403 12.647 6.48717 12.5114C6.34032 12.3758 6.25781 12.192 6.25781 12.0002Z" fill="white"></path>
+                                                </svg>
+                                            </span>
+                                            Create New
+                                        </a>
+                                        <div class="emport-dropdown-box">
+                                            <div class="dropdown">
+                                                <a class="dropdown-toggle emport_button" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <svg width="15" height="11" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M10.5646 0.296875L6.20007 4.58988L1.83552 0.296875L0.397949 1.71087L6.20007 7.41787L12.0022 1.71087L10.5646 0.296875Z" fill="#ADBFCD" />
+                                                    </svg>
+                                                </a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#">Import Estimates</a></li>
+                                                    <li><a class="dropdown-item" href="#">Export Estimates</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="box_container table_manage_container estimates-history-container">
+                                    <div id="" class="dataTables_wrapper">
+                                        <table class="display customize-table-style dataTable" id="productservice" role="grid" aria-describedby="basic-14_info">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th class="d-flex align-items-center">
+                                                        <div class="inputlabel d-flex align-items-center me-2">
+                                                            <input class="form-check-input mt-0" type="checkbox" value="" id="expense" checked>
+                                                        </div>Transaction Date
+                                                    </th>
+                                                    <th>Transaction Number</th>
+                                                    <th>From</th>
+                                                    <th>To</th>
+                                                    <th>Amount</th>
+                                                    <th>Status</th>
+                                                    <th>Created By</th>
+                                                    <th>Created On</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr role="row">
+                                                    <td class="d-flex align-items-center">
+                                                        <div class="inputlabel d-flex align-items-center me-2">
+                                                            <input class="form-check-input mt-0" type="checkbox" value="" id="expensedate1" checked>
+                                                        </div>
+                                                        28-02-2023
+                                                    </td>
+                                                    <td>Invoice-01</td>
+                                                    <td>ABC & Company</td>
+                                                    <td>XYZ & Company</td>
+                                                    <td>$544.00</td>
+                                                    <td>Approved</td>
+                                                    <td>Mukul</td>
+                                                    <td>20-02-2023</td>
+                                                </tr>
+                                                <tr role="row">
+                                                    <td class="d-flex align-items-center">
+                                                        <div class="inputlabel d-flex align-items-center me-2">
+                                                            <input class="form-check-input mt-0" type="checkbox" value="" id="expensedate2">
+                                                        </div>
+                                                        28-02-2023
+                                                    </td>
+                                                    <td>Invoice-02</td>
+                                                    <td>ABC & Company</td>
+                                                    <td>XYZ & Company</td>
+                                                    <td>$625.00</td>
+                                                    <td>Cancelled</td>
+                                                    <td>Vishal</td>
+                                                    <td>01-03-2023</td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+
+
+
+    <div class="modal fade" id="emailpopup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Email Sales Estimates</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body " style="background:#fff;">
+                    <div class="row g-3">
+                        <div class="col-md-12">
+                            <div class="form-floating" id="the-basics-agents">
+                                <input class="form-control" type="text" placeholder="Enter Name">
+                                <label for="floatingSelect">To*</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating" id="the-basics-agents">
+                                <input class="form-control" type="text" placeholder="Enter Name">
+                                <label for="floatingSelect">Cc*</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating" id="the-basics-agents">
+                                <input class="form-control" type="text" placeholder="Enter Name">
+                                <label for="floatingSelect">Subject*</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating upload">
+                                <input class="form-control" type="text" placeholder="" value="Sales document">
+                                <label for="floatingSelect">Attachment</label>
+                                <input type="file" />
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <textarea class="form-control" style="height:124px;" value="I would like to take flight from Houston, Texas"></textarea>
+                                <label for="teamName">Message </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn action-btn bg-action-light active">Send</button>
+                    <button type="button" class="btn action-btn bg-action-light" data-bs-dismiss="modal">Cancel</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="CreateCustomermodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Create a New Customer</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body " style="background:#fff;">
+                    <div class="row g-3">
+                        <div class="form-container">
+                            <div class="modal-sub-heading mb-3">
+                                General Details
+                            </div>
+                            <div class="row g-3">
+                                <div class="col-md-3">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="" value="Company or Person" placeholder="Company or Person">
+                                        <label for="teamName">Business Name*</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-floating">
+                                        <input type="email" class="form-control" value="BHUT584" id="">
+                                        <label for="teamName">Code</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" value="contact@sriggle.tech">
+                                        <label for="text">Email</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" value="+91 9874561230">
+                                        <label for="text">Telephone*</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" value="www.sriggle.tech" placeholder="website">
+                                        <label for="text">Website</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-floating" id="the-basics-agents">
+                                        <input class="form-select typeahead offline-agent"
+                                               type="text" placeholder="Unselected">
+                                        <label for="floatingSelect">Country</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-floating" id="the-basics-agents">
+                                        <input class="form-select typeahead offline-agent"
+                                               type="text" placeholder="Unselected">
+                                        <label for="floatingSelect">State</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-floating" id="the-basics-agents">
+                                        <input class="form-select typeahead offline-agent"
+                                               type="text" placeholder="Admin">
+                                        <label for="floatingSelect">Department</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-floating" id="the-basics-agents">
+                                        <input class="form-select typeahead offline-agent"
+                                               type="text" placeholder="Unselected">
+                                        <label for="floatingSelect">Default Currency</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="tabboxcontainer">
+                                <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link active" id="pills-address-tab" data-bs-toggle="pill" data-bs-target="#pills-address" type="button" role="tab" aria-controls="pills-address" aria-selected="true">Address</button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="pills-contacts-tab" data-bs-toggle="pill" data-bs-target="#pills-contacts" type="button" role="tab" aria-controls="pills-contacts" aria-selected="false">Contacts</button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="pills-other-tab" data-bs-toggle="pill" data-bs-target="#pills-other" type="button" role="tab" aria-controls="pills-other" aria-selected="false">Other Details</button>
+                                    </li>
+                                </ul>
+                                <div class="tab-content" id="pills-tabContent">
+                                    <div class="tab-pane fade show active" id="pills-address" role="tabpanel" aria-labelledby="pills-address-tab">
+                                        <div class="form-container p-4">
+                                            <div class="col-md-12">
+                                                <div class="row g-3">
+                                                    <div class="modal-sub-heading mt-3">
+                                                        Physical  Address
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-floating">
+                                                            <input type="text" class="form-control" id="" placeholder="Please enter your address">
+                                                            <label for="teamName">Address 1 *</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-floating">
+                                                            <input type="text" class="form-control" id="" placeholder="Please enter your address">
+                                                            <label for="teamName">Address 2 </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-floating" id="the-basics-agents">
+                                                            <input class="form-select typeahead offline-agent"
+                                                                   type="text" placeholder="Unselected">
+                                                            <label for="floatingSelect">City / Town</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-floating" id="the-basics-agents">
+                                                            <input class="form-select typeahead offline-agent"
+                                                                   type="text" placeholder="Unselected">
+                                                            <label for="floatingSelect">State</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-floating" id="the-basics-agents">
+                                                            <input class="form-select typeahead offline-agent"
+                                                                   type="text" placeholder="Unselected">
+                                                            <label for="floatingSelect">Country</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-floating">
+                                                            <input type="text" class="form-control" id="" placeholder="Please enter last name">
+                                                            <label for="teamName">Zip Code</label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row g-3">
+                                                    <div class="d-flex justify-content-between pt-3 align-items-center">
+                                                        <span class="modal-sub-heading">Correspondence  Address</span>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="" id="billing-address">
+                                                            <label class="form-check-label" for="billing-address">Same as Physical Address</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-floating">
+                                                            <input type="text" class="form-control" id="" placeholder="Please enter your address">
+                                                            <label for="teamName">Address 1 *</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-floating">
+                                                            <input type="text" class="form-control" id="" placeholder="Please enter your address">
+                                                            <label for="teamName">Address 2 </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-floating" id="the-basics-agents">
+                                                            <input class="form-select typeahead offline-agent"
+                                                                   type="text" placeholder="Unselected">
+                                                            <label for="floatingSelect">City / Town</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-floating" id="the-basics-agents">
+                                                            <input class="form-select typeahead offline-agent"
+                                                                   type="text" placeholder="Unselected">
+                                                            <label for="floatingSelect">State</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-floating" id="the-basics-agents">
+                                                            <input class="form-select typeahead offline-agent"
+                                                                   type="text" placeholder="Unselected">
+                                                            <label for="floatingSelect">Country</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-floating">
+                                                            <input type="text" class="form-control" id="" placeholder="Please enter last name">
+                                                            <label for="teamName">Zip Code</label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="pills-contacts" role="tabpanel" aria-labelledby="pills-contacts-tab">
+                                        <div class="form-container p-4">
+                                            <div class="col-md-12">
+
+                                                <div class="row">
+                                                    <div class="modal-sub-heading mt-3 mb-2">
+                                                        Bank Details
+                                                    </div>
+                                                    <div id="" class="dataTables_wrapper">
+                                                        <table class="display bg-white customize-table-style dataTable" id="productservice" role="grid"
+                                                               aria-describedby="basic-14_info">
+                                                            <thead>
+                                                                <tr role="row">
+                                                                    <th>Name</th>
+                                                                    <th>Type</th>
+                                                                    <th>Phone</th>
+                                                                    <th>Email</th>
+                                                                    <th>Mobile</th>
+                                                                    <th>Fax</th>
+                                                                    <th></th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr role="row">
+                                                                    <td>
+                                                                        <div class="input-group">
+                                                                            <input type="text" class="form-control text-end" placeholder="" aria-label="Search" aria-describedby="addon-wrapping">
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="input-group">
+                                                                            <input type="text" class="form-control text-end" placeholder="" aria-label="Search" aria-describedby="addon-wrapping">
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="input-group">
+                                                                            <input type="text" class="form-control text-end" placeholder="" aria-label="Search" aria-describedby="addon-wrapping">
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="input-group">
+                                                                            <input type="text" class="form-control text-end" placeholder="" aria-label="Search" aria-describedby="addon-wrapping">
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="input-group">
+                                                                            <input type="text" class="form-control text-end" placeholder="" aria-label="Search" aria-describedby="addon-wrapping">
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="input-group">
+                                                                            <input type="text" class="form-control text-end" placeholder="" aria-label="Search" aria-describedby="addon-wrapping">
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="input-group ">
+                                                                            <div class="d-flex align-items-center">
+                                                                                <span class="minus-icon">
+                                                                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                        <path id="Vector" fill-rule="evenodd" clip-rule="evenodd" d="M0 6.00414C0 5.81242 0.0790176 5.62855 0.21967 5.49298C0.360322 5.35741 0.551088 5.28125 0.75 5.28125H11.25C11.4489 5.28125 11.6397 5.35741 11.7803 5.49298C11.921 5.62855 12 5.81242 12 6.00414C12 6.19586 11.921 6.37973 11.7803 6.5153C11.6397 6.65087 11.4489 6.72703 11.25 6.72703H0.75C0.551088 6.72703 0.360322 6.65087 0.21967 6.5153C0.0790176 6.37973 0 6.19586 0 6.00414Z" fill="white" />
+                                                                                    </svg>
+
+                                                                                </span>
+                                                                                <span class="icon cursor-pointer">
+                                                                                    <svg width="26" height="24" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                        <ellipse cx="12.5294" cy="12" rx="12.5294" ry="12" fill="#043376"></ellipse>
+                                                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7578 6.75C11.7578 6.55109 11.8373 6.36032 11.9789 6.21967C12.1204 6.07902 12.3124 6 12.5126 6C12.7128 6 12.9048 6.07902 13.0463 6.21967C13.1879 6.36032 13.2674 6.55109 13.2674 6.75V17.25C13.2674 17.4489 13.1879 17.6397 13.0463 17.7803C12.9048 17.921 12.7128 18 12.5126 18C12.3124 18 12.1204 17.921 11.9789 17.7803C11.8373 17.6397 11.7578 17.4489 11.7578 17.25V6.75Z" fill="white"></path>
+                                                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M6.25781 12.0002C6.25781 11.8085 6.34032 11.6246 6.48717 11.4891C6.63403 11.3535 6.83321 11.2773 7.0409 11.2773H18.0041C18.2118 11.2773 18.411 11.3535 18.5579 11.4891C18.7047 11.6246 18.7872 11.8085 18.7872 12.0002C18.7872 12.192 18.7047 12.3758 18.5579 12.5114C18.411 12.647 18.2118 12.7231 18.0041 12.7231H7.0409C6.83321 12.7231 6.63403 12.647 6.48717 12.5114C6.34032 12.3758 6.25781 12.192 6.25781 12.0002Z" fill="white"></path>
+                                                                                    </svg>
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+
+                                                            </tbody>
+                                                        </table>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane fade" id="pills-other" role="tabpanel" aria-labelledby="pills-other-tab">
+                                        <div class="form-container p-4">
+                                            <div class="col-md-12">
+                                                <div class="row g-3">
+                                                    <div class="col-md-3">
+                                                        <div class="form-floating multiselect">
+                                                            <select class="selectpicker form-select" multiple aria-label="Default select example" data-live-search="true">
+                                                                <option value="1">Select</option>
+                                                                <option value="2">Select Two</option>
+                                                                <option value="3">Select Three</option>
+                                                                <option value="4">Select Four</option>
+                                                            </select>
+                                                            <label for="teamName">Default Income  Accounts</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-floating upload">
+                                                            <input class="form-control" type="text" placeholder="" value="07BANJU78945621">
+                                                            <label for="floatingSelect">GST/ VAT</label>
+                                                            <input type="file" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-floating upload">
+                                                            <input class="form-control" type="text" placeholder="" value="BANJU7894K">
+                                                            <label for="floatingSelect">PAN</label>
+                                                            <input type="file" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-floating" id="the-basics-agents">
+                                                            <input class="form-select typeahead offline-agent"
+                                                                   type="text" placeholder="Unselected">
+                                                            <label for="floatingSelect">Tax Code</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="modal-sub-heading mt-3 mb-2">
+                                                            Payment Details
+                                                        </div>
+                                                        <div class="card mb-0 payment-terms">
+                                                            <div class="flex-wrap card-header d-flex b-0 justify-content-between">
+                                                                <div class="header-title pt-1">
+                                                                    Payment Term 1
+                                                                </div>
+
+                                                                <div class="display-label d-flex align-items-center">
+                                                                    <label class="me-2">Default</label>
+                                                                    <div class="form-switch">
+                                                                        <input class="form-check-input" type="checkbox" id="icaccount" checked="">
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="card-body pt-0">
+                                                                <div class="row g-3">
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-floating">
+                                                                            <input type="text" class="form-control" id="" value="100%" placeholder="Please enter first name">
+                                                                            <label for="teamName">Bill Percentage (%)</label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-floating">
+                                                                            <select class="form-select" id="" aria-label="Floating label select example">
+                                                                                <option value="" selected="">Day (s) after Bill Date</option>
+                                                                                <option value="">Day (s) before Bill Date</option>
+                                                                            </select>
+                                                                            <label for="teamName">Due Date Based On</label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-floating">
+                                                                            <input type="text" class="form-control" id="" value="11" placeholder="Please enter first name">
+                                                                            <label for="teamName">Credit Days</label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-floating">
+                                                                            <input type="text" class="form-control" id="" value="$50,000.00" placeholder="Please enter first name">
+                                                                            <label for="teamName">Credit  Limits</label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="add-row d-flex align-items-center">
+                                                                        <svg class="me-2" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="display: block; fill: none; height: 12px; width: 12px; stroke: currentcolor; stroke-width: 5.33333; overflow: visible;"><path d="m2 16h28m-14-14v28"></path></svg>
+                                                                        Add Row
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <a href="javascript:void(0);" class="add-another-payment-terms mt-3 d-block ms-0">
+
+                                                            <span class="icon">
+                                                                <svg width="18" height="16" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <ellipse cx="12.5294" cy="12" rx="12.5294" ry="12" fill="#043376"></ellipse>
+                                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7578 6.75C11.7578 6.55109 11.8373 6.36032 11.9789 6.21967C12.1204 6.07902 12.3124 6 12.5126 6C12.7128 6 12.9048 6.07902 13.0463 6.21967C13.1879 6.36032 13.2674 6.55109 13.2674 6.75V17.25C13.2674 17.4489 13.1879 17.6397 13.0463 17.7803C12.9048 17.921 12.7128 18 12.5126 18C12.3124 18 12.1204 17.921 11.9789 17.7803C11.8373 17.6397 11.7578 17.4489 11.7578 17.25V6.75Z" fill="white"></path>
+                                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.25781 12.0002C6.25781 11.8085 6.34032 11.6246 6.48717 11.4891C6.63403 11.3535 6.83321 11.2773 7.0409 11.2773H18.0041C18.2118 11.2773 18.411 11.3535 18.5579 11.4891C18.7047 11.6246 18.7872 11.8085 18.7872 12.0002C18.7872 12.192 18.7047 12.3758 18.5579 12.5114C18.411 12.647 18.2118 12.7231 18.0041 12.7231H7.0409C6.83321 12.7231 6.63403 12.647 6.48717 12.5114C6.34032 12.3758 6.25781 12.192 6.25781 12.0002Z" fill="white"></path>
+                                                                </svg>
+                                                            </span>
+                                                            Add Another Payment Terms
+                                                        </a>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="modal-sub-heading mt-3 mb-2">
+                                                        Bank Details
+                                                    </div>
+                                                    <div id="" class="dataTables_wrapper">
+                                                        <table class="display bg-white customize-table-style dataTable" id="productservice" role="grid"
+                                                               aria-describedby="basic-14_info">
+                                                            <thead>
+                                                                <tr role="row">
+                                                                    <th>Currency</th>
+                                                                    <th>Account Number</th>
+                                                                    <th>Payee</th>
+                                                                    <th>Bank Name</th>
+                                                                    <th>IBAN/IFSC</th>
+                                                                    <th>SWIFT Code</th>
+                                                                    <th>SORT Code</th>
+                                                                    <th>Default</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr role="row">
+                                                                    <td>
+                                                                        <div class="input-group">
+                                                                            <input type="text" class="form-control text-end" placeholder="0.00" aria-label="Search" aria-describedby="addon-wrapping">
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="input-group">
+                                                                            <input type="text" class="form-control text-end" placeholder="0.00" aria-label="Search" aria-describedby="addon-wrapping">
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="input-group">
+                                                                            <input type="text" class="form-control text-end" placeholder="0.00" aria-label="Search" aria-describedby="addon-wrapping">
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="input-group">
+                                                                            <input type="text" class="form-control text-end" placeholder="0.00" aria-label="Search" aria-describedby="addon-wrapping">
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="input-group">
+                                                                            <input type="text" class="form-control text-end" placeholder="0.00" aria-label="Search" aria-describedby="addon-wrapping">
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="input-group">
+                                                                            <input type="text" class="form-control text-end" placeholder="0.00" aria-label="Search" aria-describedby="addon-wrapping">
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="input-group">
+                                                                            <input type="text" class="form-control text-end" placeholder="0.00" aria-label="Search" aria-describedby="addon-wrapping">
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="form-switch">
+                                                                            <input class="form-check-input" type="checkbox" id="icaccount" checked="">
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn action-btn bg-action-light active">Save</button>
+                <button type="button" class="btn action-btn bg-action-light" data-bs-dismiss="modal">Cancel</button>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+  $(document).ready(function () {
+      var substringMatcher = function (strs) {
+          return function findMatches(q, cb) {
+              var matches, substringRegex;
+              matches = [];
+              substrRegex = new RegExp(q, 'i');
+              $.each(strs, function (i, str) {
+                  if (substrRegex.test(str)) {
+                      matches.push(str);
+                  }
+              });
+
+              cb(matches);
+          };
+      };
+
+      var agents = ['Nicole Prejean', 'David', 'Smith', 'WEI MIAO', 'laili',
+          'Onsri', 'Wan Yun', 'Enyu', 'Rio Rica', 'Sanjay', 'Priscilla Jia', 'John Smith',
+          'Redha Nuruinda', 'Mylon Jan', 'Ma Lothel', 'Raufa', 'Areanne Glee', 'Mary Jasmine',
+      ];
+
+      $('#the-basics-agents .typeahead').typeahead({
+          hint: true,
+          highlight: true,
+          minLength: 1
+      },
+          {
+              name: 'states',
+              source: substringMatcher(agents)
+          });
+  });
+
+
+
+
+    </script>
+
+    <script>
+$(function() {
+  $('input[name="fiscaldate"]').daterangepicker({
+    singleDatePicker: true,
+    showDropdowns: true,
+    minYear: 1901,
+    maxYear: parseInt(moment().format('YYYY'),10)
+  }, function(start, end, label) {
+    var years = moment().diff(start, 'years');
+  });
+});
+
+$(function() {
+            $('input[name="daterange"]').daterangepicker(
+                {
+                    ssingleDatePicker: 'true',
+                    showShortcuts: 'false',
+                    showTopbar: 'false'
+                }
+            );
+        });
+
+
+        $('#datatable1').DataTable({
+                "columnDefs": [
+                    {
+                        "targets": -1,
+                        "orderable": false
+                    }
+                ],
+                language: {
+                    search: "_INPUT_",
+                    searchPlaceholder: "Search..."
+                },
+                fixedHeader: {
+                    header: true,
+                },
+                "dom": '<"top"<"toolbar">tf<"clear">>rt<"bottom"lip<"clear">>'
+            });
+
+
+
+
+    </script>
+
+    <script>
+ $(".form-switch").click(function () {
+    if ($(this).parent().hasClass("yes")) {
+      $(this).parent().removeClass("yes");
+      $(this).parent().addClass("no");
+    } else {
+      $(this).parent().removeClass("no");
+      $(this).parent().addClass("yes");
+    }
+  });
+    </script>
+    <script>
+  $(document).ready(function () {
+      $('#productservice').DataTable({
+          pagingType: 'full_numbers',
+      });
+
+      $('#framework').multiselect({
+        nonSelectedText: 'Select Framework',
+        enableFiltering: true,
+        enableCaseInsensitiveFiltering: true,
+        buttonWidth:'400px'
+      });
+  });
+    </script>
+</body>
+</html>

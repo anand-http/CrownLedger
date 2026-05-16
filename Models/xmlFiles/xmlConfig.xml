@@ -1,0 +1,511 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Categories>
+	<Category>
+		<Entity>TUI</Entity>
+		<EntityName>TUI India Pvt. Ltd.</EntityName>
+		<EntityID>10</EntityID>
+		<DbConnectionString>Data Source=SRIDB07;Initial Catalog=Fintech_1;Persist Security Info=True;User ID=Sign_PRV;Password=(5.vXha@C;</DbConnectionString>
+		<ReportFooter>&#169; Copyright 2015 – 2026 Sriggle Tech Private Limited All rights reserved.746,JMD Megapolis Sohna Road, Sector 48, Gurugram 122018 India</ReportFooter>
+		<ReportConnectionString>Data Source=SRIDB07;Initial Catalog=Fintech_1</ReportConnectionString>
+		<SMTPHOST>email-smtp.eu-west-1.amazonaws.com</SMTPHOST>
+		<PORT>587</PORT>
+		<SSL>true</SSL>
+		<SMTPUSER>AKIAVZIRIAI2BGV6NMMG</SMTPUSER>
+		<SMTPPWD>BEFd+jp4TWKcjc0eBXoJ2o8gxiVZVm/cV8XUA6efpX8D</SMTPPWD>
+		<SMTPTYPE>SMTP</SMTPTYPE>
+		<MAILTYPE>amit.jaiswal@sriggle.tech</MAILTYPE>
+		<SERVICEURL>https://tuitestapi.trateq.com/SIGNIX/</SERVICEURL>
+		<PAYMENTURL>https://paymenttest.trateq.com/PaymentGateway/PaymentToCapture?Pay=</PAYMENTURL>
+		<QuoteDocumentId>10078</QuoteDocumentId>
+		<ReservationDocumentId>10082</ReservationDocumentId>
+		<DecimalDigits>2</DecimalDigits>
+	</Category>
+	<Category>
+		<Entity>ABT</Entity>
+		<EntityName>TUI India Pvt. Ltd.</EntityName>
+		<EntityID>10</EntityID>
+		<DbConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_Stage_ABT;Persist Security Info=True;User ID=Sign_PRV;Password=(5.vXha@C;</DbConnectionString>
+		<ReportFooter>&#169; Copyright 2015 – 2026 Sriggle Tech Private Limited All rights reserved.746,JMD Megapolis Sohna Road, Sector 48, Gurugram 122018 India</ReportFooter>
+		<ReportConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_Stage_ABT</ReportConnectionString>
+		<SMTPHOST>email-smtp.eu-west-1.amazonaws.com</SMTPHOST>
+		<PORT>587</PORT>
+		<SSL>true</SSL>
+		<SMTPUSER>AKIAVZIRIAI2BGV6NMMG</SMTPUSER>
+		<SMTPPWD>BEFd+jp4TWKcjc0eBXoJ2o8gxiVZVm/cV8XUA6efpX8D</SMTPPWD>
+		<SMTPTYPE>SMTP</SMTPTYPE>
+		<MAILTYPE>amit.jaiswal@sriggle.tech</MAILTYPE>
+		<SERVICEURL>https://tuitestapi.trateq.com/SIGNIX/</SERVICEURL>
+		<PAYMENTURL>https://paymenttest.trateq.com/PaymentGateway/PaymentToCapture?Pay=</PAYMENTURL>
+		<QuoteDocumentId>10078</QuoteDocumentId>
+		<ReservationDocumentId>10082</ReservationDocumentId>
+		<DecimalDigits>2</DecimalDigits>
+	</Category>
+	<Category>
+		<Entity>TTT</Entity>
+		<EntityName>TUI India Pvt. Ltd.</EntityName>
+		<EntityID>10</EntityID>
+		<DbConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_Stage_TTT;Persist Security Info=True;User ID=Sign_PRV;Password=(5.vXha@C;</DbConnectionString>
+		<ReportFooter>&#169; Copyright 2015 – 2026 Sriggle Tech Private Limited All rights reserved.746,JMD Megapolis Sohna Road, Sector 48, Gurugram 122018 India</ReportFooter>
+		<ReportConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_Stage_TTT</ReportConnectionString>
+		<SMTPHOST>email-smtp.eu-west-1.amazonaws.com</SMTPHOST>
+		<PORT>587</PORT>
+		<SSL>true</SSL>
+		<SMTPUSER>AKIAVZIRIAI2BGV6NMMG</SMTPUSER>
+		<SMTPPWD>BEFd+jp4TWKcjc0eBXoJ2o8gxiVZVm/cV8XUA6efpX8D</SMTPPWD>
+		<SMTPTYPE>SMTP</SMTPTYPE>
+		<MAILTYPE>amit.jaiswal@sriggle.tech</MAILTYPE>
+		<SERVICEURL>https://tuitestapi.trateq.com/SIGNIX/</SERVICEURL>
+		<PAYMENTURL>https://paymenttest.trateq.com/PaymentGateway/PaymentToCapture?Pay=</PAYMENTURL>
+		<QuoteDocumentId>10078</QuoteDocumentId>
+		<ReservationDocumentId>10082</ReservationDocumentId>
+		<DecimalDigits>2</DecimalDigits>
+	</Category>
+	<Category>
+		<Entity>CMS</Entity>
+		<EntityName>CMS India Pvt. Ltd.</EntityName>
+		<EntityID>10</EntityID>
+		<DbConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_Stage_CMS;Persist Security Info=True;User ID=Sign_PRV;Password=(5.vXha@C;</DbConnectionString>
+		<ReportFooter>&#169; Copyright 2015 – 2026 Sriggle Tech Private Limited All rights reserved.746,JMD Megapolis Sohna Road, Sector 48, Gurugram 122018 India</ReportFooter>
+		<ReportConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_Stage_CMS</ReportConnectionString>
+		<SMTPHOST>email-smtp.eu-west-1.amazonaws.com</SMTPHOST>
+		<PORT>587</PORT>
+		<SSL>true</SSL>
+		<SMTPUSER>AKIAVZIRIAI2BGV6NMMG</SMTPUSER>
+		<SMTPPWD>BEFd+jp4TWKcjc0eBXoJ2o8gxiVZVm/cV8XUA6efpX8D</SMTPPWD>
+		<SMTPTYPE>SMTP</SMTPTYPE>
+		<MAILTYPE>amit.jaiswal@sriggle.tech</MAILTYPE>
+		<SERVICEURL>https://tuitestapi.trateq.com/SIGNIX/</SERVICEURL>
+		<PAYMENTURL>https://paymenttest.trateq.com/PaymentGateway/PaymentToCapture?Pay=</PAYMENTURL>
+		<QuoteDocumentId>10078</QuoteDocumentId>
+		<ReservationDocumentId>10082</ReservationDocumentId>
+		<DecimalDigits>2</DecimalDigits>
+	</Category>
+	<Category>
+		<Entity>ANT</Entity>
+		<EntityName>TUI India Pvt. Ltd.</EntityName>
+		<EntityID>10</EntityID>
+		<DbConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_Stage_ANT;Persist Security Info=True;User ID=Sign_PRV;Password=(5.vXha@C;</DbConnectionString>
+		<ReportFooter>&#169; Copyright 2015 – 2026 Sriggle Tech Private Limited All rights reserved.746,JMD Megapolis Sohna Road, Sector 48, Gurugram 122018 India</ReportFooter>
+		<ReportConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_Stage_ANT</ReportConnectionString>
+		<SMTPHOST>smtp.zoho.com</SMTPHOST>
+		<PORT>587</PORT>
+		<SSL>true</SSL>
+		<SMTPUSER>signature@hi.tours</SMTPUSER>
+		<SMTPPWD>#n5ZAFdS1</SMTPPWD>
+		<SMTPTYPE>SMTP</SMTPTYPE>
+		<MAILTYPE>USEREMAIL</MAILTYPE>
+		<SERVICEURL>https://tuitestapi.trateq.com/SIGNIX/</SERVICEURL>
+		<QuoteDocumentId>10078</QuoteDocumentId>
+		<ReservationDocumentId>10082</ReservationDocumentId>
+		<DecimalDigits>2</DecimalDigits>
+	</Category>
+	<Category>
+		<Entity>CCC</Entity>
+		<EntityName>TUI India Pvt. Ltd.</EntityName>
+		<EntityID>10</EntityID>
+		<DbConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_Stage_CCC;Persist Security Info=True;User ID=Sign_PRV;Password=(5.vXha@C;</DbConnectionString>
+		<ReportFooter>&#169; Copyright 2015 – 2026 Sriggle Tech Private Limited All rights reserved.746,JMD Megapolis Sohna Road, Sector 48, Gurugram 122018 India</ReportFooter>
+		<ReportConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_Stage_CCC</ReportConnectionString>
+		<SMTPHOST>smtp.zoho.com</SMTPHOST>
+		<PORT>587</PORT>
+		<SSL>true</SSL>
+		<SMTPUSER>signature@hi.tours</SMTPUSER>
+		<SMTPPWD>#n5ZAFdS1</SMTPPWD>
+		<SMTPTYPE>SMTP</SMTPTYPE>
+		<MAILTYPE>USEREMAIL</MAILTYPE>
+		<SERVICEURL>https://tuitestapi.trateq.com/SIGNIX/</SERVICEURL>
+		<QuoteDocumentId>10078</QuoteDocumentId>
+		<ReservationDocumentId>10082</ReservationDocumentId>
+		<DecimalDigits>2</DecimalDigits>
+	</Category>
+	<Category>
+		<Entity>CCC</Entity>
+		<EntityName>TUI India Pvt. Ltd.</EntityName>
+		<EntityID>62</EntityID>
+		<DbConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_Stage_CCC;Persist Security Info=True;User ID=Sign_PRV;Password=(5.vXha@C;</DbConnectionString>
+		<ReportFooter>&#169; Copyright 2015 – 2026 Sriggle Tech Private Limited All rights reserved.746,JMD Megapolis Sohna Road, Sector 48, Gurugram 122018 India</ReportFooter>
+		<ReportConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_Stage_CCC</ReportConnectionString>
+		<SMTPHOST>smtp.zoho.com</SMTPHOST>
+		<PORT>587</PORT>
+		<SSL>true</SSL>
+		<SMTPUSER>signature@hi.tours</SMTPUSER>
+		<SMTPPWD>#n5ZAFdS1</SMTPPWD>
+		<SMTPTYPE>SMTP</SMTPTYPE>
+		<MAILTYPE>USEREMAIL</MAILTYPE>
+		<SERVICEURL>https://tuitestapi.trateq.com/SIGNIX/</SERVICEURL>
+		<QuoteDocumentId>10078</QuoteDocumentId>
+		<ReservationDocumentId>10082</ReservationDocumentId>
+		<DecimalDigits>2</DecimalDigits>
+	</Category>
+	<Category>
+		<Entity>TNM</Entity>
+		<EntityName>TUI India Pvt. Ltd.</EntityName>
+		<EntityID>10</EntityID>
+		<DbConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_Stage_TNMv3;Persist Security Info=True;User ID=Sign_PRV;Password=(5.vXha@C;</DbConnectionString>
+		<ReportFooter>&#169; Copyright 2015 – 2026 Sriggle Tech Private Limited All rights reserved.746,JMD Megapolis Sohna Road, Sector 48, Gurugram 122018 India</ReportFooter>
+		<ReportConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_Stage_TNMv3</ReportConnectionString>
+		<SMTPHOST>mail.signature.online</SMTPHOST>
+		<PORT>587</PORT>
+		<SSL>false</SSL>s
+		<SMTPUSER>signature@signature.online</SMTPUSER>
+		<SMTPPWD>Test@#321</SMTPPWD>
+		<SMTPTYPE>SMTP</SMTPTYPE>
+		<MAILTYPE>USEREMAIL</MAILTYPE>
+		<SERVICEURL>https://test.signix.online/SIGNIX/</SERVICEURL>
+		<QuoteDocumentId>10078</QuoteDocumentId>
+		<ReservationDocumentId>10082</ReservationDocumentId>
+		<DecimalDigits>2</DecimalDigits>
+	</Category>
+	<Category>
+		<Entity>AAV</Entity>
+		<EntityName>AAV India Pvt. Ltd.</EntityName>
+		<EntityID>10</EntityID>
+		<DbConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_Stage_AAV;Persist Security Info=True;User ID=Sign_PRV;Password=(5.vXha@C;</DbConnectionString>
+		<ReportFooter>&#169; Copyright 2015 – 2026 Sriggle Tech Private Limited All rights reserved.746,JMD Megapolis Sohna Road, Sector 48, Gurugram 122018 India</ReportFooter>
+		<ReportConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_Stage_AAV</ReportConnectionString>
+		<SMTPHOST>mail.signature.online</SMTPHOST>
+		<PORT>587</PORT>
+		<SSL>false</SSL>
+		<SMTPUSER>signature@signature.online</SMTPUSER>
+		<SMTPPWD>Test@#321</SMTPPWD>
+		<SMTPTYPE>SMTP</SMTPTYPE>
+		<MAILTYPE>USEREMAIL</MAILTYPE>
+		<SERVICEURL>https://test.signix.online/SIGNIX/</SERVICEURL>
+		<QuoteDocumentId>10078</QuoteDocumentId>
+		<ReservationDocumentId>10082</ReservationDocumentId>
+		<DecimalDigits>2</DecimalDigits>
+	</Category>
+	<!--<Category>
+    <Entity>SLT</Entity>
+    <EntityName>TUI India Pvt. Ltd.</EntityName>
+    <EntityID>10</EntityID>
+    <DbConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_Stage_SLT_PreLive;Persist Security Info=True;User ID=Sign_PRV;Password=(5.vXha@C;</DbConnectionString>
+    <ReportFooter>&#169; Copyright 2015 – 2026 Sriggle Tech Private Limited All rights reserved.746,JMD Megapolis Sohna Road, Sector 48, Gurugram 122018 India</ReportFooter>
+    <ReportConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_Stage_SLT_PreLive</ReportConnectionString>
+    <SMTPHOST>mail.signature.online</SMTPHOST>
+    <PORT>587</PORT>
+    <SSL>false</SSL>
+    <SMTPUSER>signature@signature.online</SMTPUSER>
+    <SMTPPWD>Test@#321</SMTPPWD>
+    <SMTPTYPE>SMTP</SMTPTYPE>
+    <MAILTYPE>USEREMAIL</MAILTYPE>
+    <SERVICEURL>https://test.signix.online/SIGNIX/</SERVICEURL>
+    <DecimalDigits>2</DecimalDigits>
+    <QuoteDocumentId>10078</QuoteDocumentId>
+    <ReservationDocumentId>10082</ReservationDocumentId>
+  </Category>-->
+
+	<Category>
+		<Entity>SLT</Entity>
+		<EntityName>TUI India Pvt. Ltd.</EntityName>
+		<EntityID>10</EntityID>
+		<DbConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_Stage_SLT;Persist Security Info=True;User ID=Sign_PRV;Password=(5.vXha@C;</DbConnectionString>
+		<ReportFooter>&#169; Copyright 2015 – 2026 Sriggle Tech Private Limited All rights reserved.746,JMD Megapolis Sohna Road, Sector 48, Gurugram 122018 India</ReportFooter>
+		<ReportConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_Stage_SLT</ReportConnectionString>
+		<SMTPHOST>mail.signature.online</SMTPHOST>
+		<PORT>587</PORT>
+		<SSL>false</SSL>
+		<SMTPUSER>signature@signature.online</SMTPUSER>
+		<SMTPPWD>Test@#321</SMTPPWD>
+		<SMTPTYPE>SMTP</SMTPTYPE>
+		<MAILTYPE>USEREMAIL</MAILTYPE>
+		<SERVICEURL>https://test.signix.online/SIGNIX/</SERVICEURL>
+		<DecimalDigits>2</DecimalDigits>
+		<QuoteDocumentId>10078</QuoteDocumentId>
+		<ReservationDocumentId>10082</ReservationDocumentId>
+	</Category>
+
+	<Category>
+		<Entity>VOT</Entity>
+		<EntityName>VOT India Pvt. Ltd.</EntityName>
+		<EntityID>10</EntityID>
+		<DbConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_Stage_VOT;Persist Security Info=True;User ID=Sign_PRV;Password=(5.vXha@C;</DbConnectionString>
+		<ReportFooter>&#169; Copyright 2015 – 2026 Sriggle Tech Private Limited All rights reserved.746,JMD Megapolis Sohna Road, Sector 48, Gurugram 122018 India</ReportFooter>
+		<ReportConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_Stage_VOT</ReportConnectionString>
+		<SMTPHOST>mail.signature.online</SMTPHOST>
+		<PORT>587</PORT>
+		<SSL>false</SSL>
+		<SMTPUSER>signature@signature.online</SMTPUSER>
+		<SMTPPWD>Test@#321</SMTPPWD>
+		<SMTPTYPE>SMTP</SMTPTYPE>
+		<MAILTYPE>USEREMAIL</MAILTYPE>
+		<SERVICEURL>https://test.signix.online/SIGNIX/</SERVICEURL>
+		<DecimalDigits>2</DecimalDigits>
+		<QuoteDocumentId>10078</QuoteDocumentId>
+		<ReservationDocumentId>10082</ReservationDocumentId>
+	</Category>
+	<Category>
+		<Entity>HTO</Entity>
+		<EntityName>TUI India Pvt. Ltd.</EntityName>
+		<EntityID>10</EntityID>
+		<DbConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_Stage_HTO;Persist Security Info=True;User ID=Sign_PRV;Password=(5.vXha@C;</DbConnectionString>
+		<ReportFooter>&#169; Copyright 2015 – 2026 Sriggle Tech Private Limited All rights reserved.746,JMD Megapolis Sohna Road, Sector 48, Gurugram 122018 India</ReportFooter>
+		<ReportConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_Stage_HTO</ReportConnectionString>
+		<SMTPHOST>smtp.zoho.com</SMTPHOST>
+		<PORT>587</PORT>
+		<SSL>true</SSL>
+		<SMTPUSER>signature@hi.tours</SMTPUSER>
+		<SMTPPWD>#n5ZAFdS1</SMTPPWD>
+		<SMTPTYPE>SMTP</SMTPTYPE>
+		<MAILTYPE>USEREMAIL</MAILTYPE>
+		<SERVICEURL>https://hitourprelivesignix.trateq.com/SIGNIX/</SERVICEURL>
+		<DecimalDigits>2</DecimalDigits>
+		<QuoteDocumentId>10078</QuoteDocumentId>
+		<ReservationDocumentId>10082</ReservationDocumentId>
+		<QuoteUrl>https://hitoursb2cpayment.trateq.com/</QuoteUrl>
+		<AllowDiscount>false</AllowDiscount>
+		<GSTVisible>false</GSTVisible>
+		<PANVisible>false</PANVisible>
+		<MobileNoRestriction>false</MobileNoRestriction>
+		<ShowHold>false</ShowHold>
+	</Category>
+	<Category>
+		<Entity>TAM</Entity>
+		<EntityName>TUI India Pvt. Ltd.</EntityName>
+		<EntityID>10</EntityID>
+		<DbConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_Stage_TNMV2;Persist Security Info=True;User ID=Sign_PRV;Password=(5.vXha@C;</DbConnectionString>
+		<ReportFooter>&#169; Copyright 2015 – 2026 Sriggle Tech Private Limited All rights reserved.746,JMD Megapolis Sohna Road, Sector 48, Gurugram 122018 India</ReportFooter>
+		<ReportConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_Stage_TNMV2</ReportConnectionString>
+		<SMTPHOST>mail.signature.online</SMTPHOST>
+		<PORT>587</PORT>
+		<SSL>false</SSL>
+		<SMTPUSER>signature@signature.online</SMTPUSER>
+		<SMTPPWD>Test@#321</SMTPPWD>
+		<SMTPTYPE>SMTP</SMTPTYPE>
+		<MAILTYPE>USEREMAIL</MAILTYPE>
+		<SERVICEURL>https://test.signix.online/SIGNIX/</SERVICEURL>
+		<DecimalDigits>2</DecimalDigits>
+		<QuoteDocumentId>10078</QuoteDocumentId>
+		<ReservationDocumentId>10082</ReservationDocumentId>
+	</Category>
+	<Category>
+		<Entity>ERM</Entity>
+		<EntityName>TUI India Pvt. Ltd.</EntityName>
+		<EntityID>10</EntityID>
+		<DbConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_Stage_ERM_Package;Persist Security Info=True;User ID=Sign_PRV;Password=(5.vXha@C;</DbConnectionString>
+		<ReportFooter>&#169; Copyright 2015 – 2026 Sriggle Tech Private Limited All rights reserved.746,JMD Megapolis Sohna Road, Sector 48, Gurugram 122018 India</ReportFooter>
+		<ReportConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_Stage_ERM</ReportConnectionString>
+		<SMTPHOST>mail.signature.online</SMTPHOST>
+		<PORT>587</PORT>
+		<SSL>false</SSL>
+		<SMTPUSER>signature@signature.online</SMTPUSER>
+		<SMTPPWD>Test@#321</SMTPPWD>
+		<SMTPTYPE>SMTP</SMTPTYPE>
+		<MAILTYPE>USEREMAIL</MAILTYPE>
+		<SERVICEURL>https://test.signix.online/SIGNIX/</SERVICEURL>
+		<DecimalDigits>2</DecimalDigits>
+		<QuoteDocumentId>10078</QuoteDocumentId>
+		<ReservationDocumentId>10082</ReservationDocumentId>
+	</Category>
+	<!--<Category>
+    <Entity>RGF</Entity>
+    <EntityName>TUI India Pvt. Ltd.</EntityName>
+    <EntityID>10</EntityID>
+    <DbConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_Stage_RGF;Persist Security Info=True;User ID=Sign_PRV;Password=(5.vXha@C;</DbConnectionString>
+    <ReportFooter>&#169; Copyright 2015 – 2026 Sriggle Tech Private Limited All rights reserved.746,JMD Megapolis Sohna Road, Sector 48, Gurugram 122018 India</ReportFooter>
+    <ReportConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_Stage_RGF</ReportConnectionString>
+    <SMTPHOST>mail.signature.online</SMTPHOST>
+    <PORT>587</PORT>
+    <SSL>false</SSL>
+    <SMTPUSER>signature@signature.online</SMTPUSER>
+    <SMTPPWD>Test@#321</SMTPPWD>
+    <SMTPTYPE>SMTP</SMTPTYPE>
+    <MAILTYPE>USEREMAIL</MAILTYPE>
+    <SERVICEURL>https://test.signix.online/SIGNIX/</SERVICEURL>
+    <DecimalDigits>2</DecimalDigits>
+    <QuoteDocumentId>10078</QuoteDocumentId>
+    <ReservationDocumentId>10082</ReservationDocumentId>
+  </Category>-->
+	<Category>
+		<Entity>RGF</Entity>
+		<EntityName>TUI India Pvt. Ltd.</EntityName>
+		<EntityID>10</EntityID>
+		<DbConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_Stage_RGF_Package;Persist Security Info=True;User ID=Sign_PRV;Password=(5.vXha@C;</DbConnectionString>
+		<ReportFooter>&#169; Copyright 2015 – 2026 Sriggle Tech Private Limited All rights reserved.746,JMD Megapolis Sohna Road, Sector 48, Gurugram 122018 India</ReportFooter>
+		<ReportConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_Stage_RGF</ReportConnectionString>
+		<SMTPHOST>mail.signature.online</SMTPHOST>
+		<PORT>587</PORT>
+		<SSL>false</SSL>
+		<SMTPUSER>signature@signature.online</SMTPUSER>
+		<SMTPPWD>Test@#321</SMTPPWD>
+		<SMTPTYPE>SMTP</SMTPTYPE>
+		<MAILTYPE>USEREMAIL</MAILTYPE>
+		<SERVICEURL>https://test.signix.online/SIGNIX/</SERVICEURL>
+		<DecimalDigits>2</DecimalDigits>
+		<QuoteDocumentId>10078</QuoteDocumentId>
+		<ReservationDocumentId>10082</ReservationDocumentId>
+	</Category>
+	<Category>
+		<Entity>ORI</Entity>
+		<EntityName>TUI India Pvt. Ltd.</EntityName>
+		<EntityID>10</EntityID>
+		<DbConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_Stage_ORI;Persist Security Info=True;User ID=Sign_PRV;Password=(5.vXha@C;</DbConnectionString>
+		<ReportFooter>&#169; Copyright 2015 – 2026 Sriggle Tech Private Limited All rights reserved.746,JMD Megapolis Sohna Road, Sector 48, Gurugram 122018 India</ReportFooter>
+		<ReportConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_Stage_ORI</ReportConnectionString>
+		<SMTPHOST>mail.signature.online</SMTPHOST>
+		<PORT>587</PORT>
+		<SSL>false</SSL>
+		<SMTPUSER>signature@signature.online</SMTPUSER>
+		<SMTPPWD>Test@#321</SMTPPWD>
+		<SMTPTYPE>SMTP</SMTPTYPE>
+		<MAILTYPE>USEREMAIL</MAILTYPE>
+		<SERVICEURL>https://test.signix.online/SIGNIX/</SERVICEURL>
+		<DecimalDigits>2</DecimalDigits>
+		<QuoteDocumentId>10078</QuoteDocumentId>
+		<ReservationDocumentId>10082</ReservationDocumentId>
+	</Category>
+	<Category>
+		<Entity>TTP</Entity>
+		<EntityName>TUI India Pvt. Ltd.</EntityName>
+		<EntityID>47</EntityID>
+		<DbConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_Stage_TTP;Persist Security Info=True;User ID=Sign_PRV;Password=(5.vXha@C;</DbConnectionString>
+		<ReportFooter>© Copyright 2015 – 2026 Sriggle Tech Private Limited All rights reserved.746,JMD Megapolis Sohna Road, Sector 48, Gurugram 122018 India</ReportFooter>
+		<ReportConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_Stage_TTP_20250127</ReportConnectionString>
+		<SMTPHOST>mail.signature.online</SMTPHOST>
+		<PORT>587</PORT>
+		<SSL>false</SSL>
+		<SMTPUSER>signature@signature.online</SMTPUSER>
+		<SMTPPWD>Test@#321</SMTPPWD>
+		<SMTPTYPE>SMTP</SMTPTYPE>
+		<MAILTYPE>USEREMAIL</MAILTYPE>
+		<SERVICEURL>https://test.signix.online/SIGNIX/</SERVICEURL>
+		<QuoteDocumentId>8</QuoteDocumentId>
+		<ReservationDocumentId>9</ReservationDocumentId>
+		<DecimalDigits>2</DecimalDigits>
+	</Category>
+	<Category>
+		<Entity>TNM</Entity>
+		<EntityName>TUI India Pvt. Ltd.</EntityName>
+		<EntityID>47</EntityID>
+		<DbConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_Stage_TNMv3;Persist Security Info=True;User ID=Sign_PRV;Password=(5.vXha@C;</DbConnectionString>
+		<ReportFooter>© Copyright 2015 – 2026 Sriggle Tech Private Limited All rights reserved.746,JMD Megapolis Sohna Road, Sector 48, Gurugram 122018 India</ReportFooter>
+		<ReportConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_Stage_TNMv3</ReportConnectionString>
+		<SMTPHOST>mail.signature.online</SMTPHOST>
+		<PORT>587</PORT>
+		<SSL>false</SSL>
+		<SMTPUSER>signature@signature.online</SMTPUSER>
+		<SMTPPWD>Test@#321</SMTPPWD>
+		<SMTPTYPE>SMTP</SMTPTYPE>
+		<MAILTYPE>USEREMAIL</MAILTYPE>
+		<SERVICEURL>https://test.signix.online/SIGNIX/</SERVICEURL>
+		<QuoteDocumentId>8</QuoteDocumentId>
+		<ReservationDocumentId>9</ReservationDocumentId>
+		<DecimalDigits>2</DecimalDigits>
+	</Category>
+	<Category>
+		<Entity>ACD</Entity>
+		<EntityName>TUI India Pvt. Ltd.</EntityName>
+		<EntityID>47</EntityID>
+		<DbConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_Stage_ACD;Persist Security Info=True;User ID=Sign_PRV;Password=(5.vXha@C;</DbConnectionString>
+		<ReportFooter>© Copyright 2015 – 2026 Sriggle Tech Private Limited All rights reserved.746,JMD Megapolis Sohna Road, Sector 48, Gurugram 122018 India</ReportFooter>
+		<ReportConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_Stage_ACD</ReportConnectionString>
+		<SMTPHOST>mail.signature.online</SMTPHOST>
+		<PORT>587</PORT>
+		<SSL>false</SSL>
+		<SMTPUSER>signature@signature.online</SMTPUSER>
+		<SMTPPWD>Test@#321</SMTPPWD>
+		<SMTPTYPE>SMTP</SMTPTYPE>
+		<MAILTYPE>USEREMAIL</MAILTYPE>
+		<SERVICEURL>https://test.signix.online/SIGNIX/</SERVICEURL>
+		<QuoteDocumentId>8</QuoteDocumentId>
+		<ReservationDocumentId>9</ReservationDocumentId>
+		<DecimalDigits>2</DecimalDigits>
+	</Category>
+	<Category>
+		<Entity>TRZ</Entity>
+		<EntityName>TUI India Pvt. Ltd.</EntityName>
+		<EntityID>47</EntityID>
+		<DbConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_Stage_TRZ;Persist Security Info=True;User ID=Sign_PRV;Password=(5.vXha@C;</DbConnectionString>
+		<ReportFooter>© Copyright 2015 – 2026 Sriggle Tech Private Limited All rights reserved.746,JMD Megapolis Sohna Road, Sector 48, Gurugram 122018 India</ReportFooter>
+		<ReportConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_Stage_TRZ</ReportConnectionString>
+		<SMTPHOST>mail.signature.online</SMTPHOST>
+		<PORT>587</PORT>
+		<SSL>false</SSL>
+		<SMTPUSER>signature@signature.online</SMTPUSER>
+		<SMTPPWD>Test@#321</SMTPPWD>
+		<SMTPTYPE>SMTP</SMTPTYPE>
+		<MAILTYPE>USEREMAIL</MAILTYPE>
+		<SERVICEURL>https://test.signix.online/SIGNIX/</SERVICEURL>
+		<QuoteDocumentId>8</QuoteDocumentId>
+		<ReservationDocumentId>9</ReservationDocumentId>
+		<DecimalDigits>2</DecimalDigits>
+	</Category>
+	<!--<Category>
+    <Entity>TUI</Entity>
+    <EntityName>TUI India Pvt. Ltd.</EntityName>
+    <EntityID>10</EntityID>
+    <DbConnectionString>Data Source=192.168.168.70;Initial Catalog=Signature_Dev;Persist Security Info=True;User ID=Signature_Dev;Password=3R%2\ra*;</DbConnectionString>
+    <ReportFooter>&#169; Copyright 2015 – 2026 Sriggle Tech Private Limited All rights reserved.746,JMD Megapolis Sohna Road, Sector 48, Gurugram 122018 India</ReportFooter>
+    <ReportConnectionString>Data Source=192.168.168.70;Initial Catalog=Signature_Dev</ReportConnectionString>
+    <SMTPHOST>mail.signature.online</SMTPHOST>
+    <PORT>587</PORT>
+    <SSL>false</SSL>
+    <SMTPUSER>signature@signature.online</SMTPUSER>
+    <SMTPPWD>Test@#321</SMTPPWD>
+    <SMTPTYPE>SMTP</SMTPTYPE>
+    <MAILTYPE>USEREMAIL</MAILTYPE>
+    <SERVICEURL>https://test.signix.online/SIGNIX/</SERVICEURL>
+    <QuoteDocumentId>8</QuoteDocumentId>
+    <ReservationDocumentId>9</ReservationDocumentId>
+    <DecimalDigits>2</DecimalDigits>
+  </Category>-->
+
+  <Category>
+    <Entity>TSP</Entity>
+    <EntityName>TUI India Pvt. Ltd.</EntityName>
+    <EntityID>10</EntityID>
+    <DbConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_Stage_TSP_20250520;Persist Security Info=True;User ID=Sign_PRV;Password=(5.vXha@C;</DbConnectionString>
+    <ReportFooter>&#169; Copyright 2015 – 2026 Sriggle Tech Private Limited All rights reserved.746,JMD Megapolis Sohna Road, Sector 48, Gurugram 122018 India</ReportFooter>
+    <ReportConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_Stage_TUI</ReportConnectionString>
+    <SMTPHOST>smtp.zoho.com</SMTPHOST>
+    <PORT>587</PORT>
+    <SSL>true</SSL>
+    <SMTPUSER>signature@hi.tours</SMTPUSER>
+    <SMTPPWD>#n5ZAFdS1</SMTPPWD>
+    <SMTPTYPE>SMTP</SMTPTYPE>
+    <MAILTYPE>USEREMAIL</MAILTYPE>
+    <SERVICEURL>https://tuitestapi.trateq.com/SIGNIX/</SERVICEURL>
+    <QuoteDocumentId>10078</QuoteDocumentId>
+    <ReservationDocumentId>10082</ReservationDocumentId>
+    <DecimalDigits>2</DecimalDigits>
+  </Category>
+	<Category>
+		<Entity>HML</Entity>
+		<EntityName>Holiday Market</EntityName>
+		<EntityID>66</EntityID>
+		<DbConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_Stage_HML_03092025;Persist Security Info=True;User ID=Sign_PRV;Password=(5.vXha@C;</DbConnectionString>
+		<ReportFooter>&#169; Copyright 2015 – 2026 Sriggle Tech Private Limited All rights reserved.746,JMD Megapolis Sohna Road, Sector 48, Gurugram 122018 India</ReportFooter>
+		<ReportConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_Stage_HML_03092025</ReportConnectionString>
+		<SMTPHOST>smtp.zoho.com</SMTPHOST>
+		<PORT>587</PORT>
+		<SSL>true</SSL>
+		<SMTPUSER>signature@hi.tours</SMTPUSER>
+		<SMTPPWD>#n5ZAFdS1</SMTPPWD>
+		<SMTPTYPE>SMTP</SMTPTYPE>
+		<MAILTYPE>USEREMAIL</MAILTYPE>
+		<SERVICEURL>https://tuitestapi.trateq.com/SIGNIX/</SERVICEURL>
+		<PAYMENTURL>https://paymenttest.trateq.com/PaymentGateway/PaymentToCapture?Pay=</PAYMENTURL>
+		<QuoteDocumentId>10078</QuoteDocumentId>
+		<ReservationDocumentId>10082</ReservationDocumentId>
+		<DecimalDigits>2</DecimalDigits>
+	</Category>
+	<Category>
+		<Entity>TPL</Entity>
+		<EntityName>TUI India Pvt. Ltd.</EntityName>
+		<EntityID>66</EntityID>
+		<DbConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_STAGE_TPL_20250801;Persist Security Info=True;User ID=Sign_PRV;Password=(5.vXha@C;</DbConnectionString>
+		<ReportFooter>© Copyright 2015 – 2026 Sriggle Tech Private Limited All rights reserved.746,JMD Megapolis Sohna Road, Sector 48, Gurugram 122018 India</ReportFooter>
+		<ReportConnectionString>Data Source=SRIDB07;Initial Catalog=Signature_Stage_TTP_20250127</ReportConnectionString>
+		<SMTPHOST>mail.signature.online</SMTPHOST>
+		<PORT>587</PORT>
+		<SSL>false</SSL>
+		<SMTPUSER>signature@signature.online</SMTPUSER>
+		<SMTPPWD>Test@#321</SMTPPWD>
+		<SMTPTYPE>SMTP</SMTPTYPE>
+		<MAILTYPE>USEREMAIL</MAILTYPE>
+		<SERVICEURL>https://test.signix.online/SIGNIX/</SERVICEURL>
+		<QuoteDocumentId>8</QuoteDocumentId>
+		<ReservationDocumentId>9</ReservationDocumentId>
+		<DecimalDigits>2</DecimalDigits>
+	</Category>
+</Categories>

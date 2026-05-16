@@ -1,0 +1,339 @@
+﻿@model sp_GetProductAndService_Result
+
+<div class="modal fade" id="CreateGoodsItems" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            @using (Html.BeginForm("SaveProductAndService", "Home", FormMethod.Post, new { @id = "productServiceForm" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(m => m.Id)
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Create an Item</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body " style="background:#fff;">
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <div class="dash-form-group d-flex align-items-center h-auto border-0 p-0">
+                                <label class="form-check-label d-block me-2">Type*</label>
+                                <div class="form-check form-check-inline">
+                                    @Html.RadioButtonFor(m => m.Type, "Goods", new { @class = "form-check-input", id = "goods" })
+                                    <label class="form-check-label" for="goods">Goods</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    @Html.RadioButtonFor(m => m.Type, "Service", new { @class = "form-check-input", id = "service" })
+                                    <label class="form-check-label" for="service">Service</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="tabboxcontainer">
+                                <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link active" id="pills-stock-tab" data-bs-toggle="pill" data-bs-target="#pills-stock" type="button" role="tab" aria-controls="pills-stock" aria-selected="true">Stock</button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="pills-non-stock-tab" data-bs-toggle="pill" data-bs-target="#pills-non-stock" type="button" role="tab" aria-controls="pills-non-stock" aria-selected="false">Non-Stock</button>
+                                    </li>
+                                </ul>
+                                <div class="tab-content" id="pills-tabContent">
+                                    <div class="tab-pane fade show active" id="pills-stock" role="tabpanel" aria-labelledby="pills-stock-tab">
+                                        <div class="form-container p-4">
+                                            <div class="row g-3">
+                                                @*<div class="col-md-3">
+                                                <div class="form-floating">
+                                                    @Html.TextBoxFor(m => m.ItemCode, new { @class = "form-control", placeholder = "Please enter item code" })
+                                                    <label for="ItemCode">Item Code*</label>
+                                                </div>
+                                            </div>*@
+                                                <div class="col-md-3">
+                                                    <div class="form-floating">
+                                                        @Html.TextBoxFor(m => m.ItemName, new { @class = "form-control", placeholder = "Please enter item name", id = "txtitempns" })
+                                                        <label for="ItemName">Item Name*</label>
+                                                        <input type="hidden" id="hdnitempns" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-floating">
+                                                        @Html.TextBoxFor(m => m.ItemDescription, new { @class = "form-control", placeholder = "Please enter description", id = "txtdescpns" })
+                                                        <label for="ItemDescription">Item Description*</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-floating">
+                                                        @Html.TextBoxFor(m => m.UnitOfMeasurement, new { @class = "form-control", placeholder = "Please enter unit" })
+                                                        <label for="UnitOfMeasurement">Unit of measurement*</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-floating mb-3">
+                                                        @Html.TextBoxFor(m => m.HSNCode, new { @class = "form-control", placeholder = "Please enter HSN code", id = "txtHSNpns" })
+                                                        <label for="HSNCode">HSN Code*</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-floating mb-3">
+                                                        <select name="Taxability" class="form-select">
+                                                            <option value="">Select Taxability</option>
+                                                            <option value="Taxable">Taxable</option>
+                                                            <option value="Exempt">Exempt</option>
+                                                            <option value="Non-GST">Non-GST</option>
+                                                        </select>
+                                                        <label for="Taxability">Taxability*</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="product-service-fields pt-0 pb-0 p-4 bg-white">
+                                            <div class="row g-3">
+                                                <div class="col-md-4 mt-0 border-end">
+                                                    <div class="modal-sub-heading mt-3 mb-2"> Inventory details</div>
+                                                    <div class="form-sec pe-3">
+                                                        @*<div class="d-flex align-items-center mb-2">
+                                                        <div class="label">Inventory Account*</div>
+                                                        <div class="dropdown flex-grow-1">
+                                                            <select name="InventoryAccount" class="form-select py-1 dropdown-toggle text-decoration-none">
+                                                                <option value="">Select Inventory Account</option>
+                                                                <option value="Account1">Account 1</option>
+                                                                <option value="Account2">Account 2</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>*@
+                                                        <div class="d-flex align-items-center mb-2">
+                                                            <div class="label">Initial Qty on hand*</div>
+                                                            <div class="form-floating">
+                                                                <div class="input-group">
+                                                                    @Html.TextBoxFor(m => m.InitialQtyOnHand, new { @class = "form-control", placeholder = "Please enter qty" })
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex align-items-center mb-2">
+                                                            <div class="label">As on Date*</div>
+                                                            <div class="form-floating">
+                                                                <div class="input-group">
+                                                                    @Html.TextBoxFor(m => m.AsOnDate, "{0:yyyy-MM-dd}", new { @class = "form-control datepicker", type = "date", placeholder = "Fiscal Year Start Date" })
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex align-items-center mb-2">
+                                                            <div class="label">Reorder Point</div>
+                                                            <div class="form-floating">
+                                                                <div class="input-group">
+                                                                    @Html.TextBoxFor(m => m.ReorderPoint, new { @class = "form-control", placeholder = "Reorder Point" })
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 mt-0 border-end">
+                                                    <div class="modal-sub-heading mt-3 mb-2"> Sales details </div>
+                                                    <div class="form-sec ">
+                                                        <div class="d-flex align-items-center mb-2">
+                                                            <div class="label">Selling Price*</div>
+                                                            <div class="form-floating">
+                                                                <div class="input-group">
+                                                                    @Html.TextBoxFor(m => m.SellingPrice, new { @class = "form-control", placeholder = "Please Selling Price" })
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex align-items-center mb-2">
+                                                            <div class="label">Income Account*</div>
+                                                            <input class="form-select typehead offline-agent" type="text" placeholder="Please Select Income Account" id="txtPnsIncAcct">
+                                                            <input type="hidden" id="hdnPnsIncAcctId" value="">
+                                                        </div>
+                                                        <div class="d-flex align-items-center mb-2">
+                                                            <div class="label">Tax Group*</div>
+                                                            <input class="form-select typehead offline-agent" type="text" placeholder="Please select Tax Group" id="txtPnsTaxCode">
+                                                            <input type="hidden" id="hdnPnsTaxID" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 mt-0">
+                                                    <div class="modal-sub-heading mt-3 mb-2 ps-3"> Purchase details</div>
+                                                    <div class="form-sec ps-3">
+                                                        <div class="d-flex align-items-center mb-2">
+                                                            <div class="label">Cost Price*</div>
+                                                            <div class="form-floating">
+                                                                <div class="input-group">
+                                                                    @Html.TextBoxFor(m => m.CostPrice, new { @class = "form-control", placeholder = "Enter Cost Price" })
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex align-items-center mb-2">
+                                                            <div class="label">Expense Account*</div>
+                                                            <input class="form-select typehead offline-agent" type="text" placeholder="Please select Expense Account" id="txtPnsExpAcct">
+                                                            <input type="hidden" id="hdnPnsExpAcctId" value="">
+                                                        </div>
+                                                        <div class="d-flex align-items-center mb-2">
+                                                            <div class="label">Input Tax Credit*</div>
+                                                            <input class="form-select typehead offline-agent" type="text" placeholder="Please select Account" id="txtPnsTaxAcct">
+                                                            <input type="hidden" id="hdnPnsTaxAcctId" value="">
+                                                        </div>
+                                                        <div class="d-flex align-items-center mb-2">
+                                                            <div class="label">Tax Group*</div>
+                                                            <input class="form-select typehead offline-agent" type="text" placeholder="Please select Tax Code" id="txtPnsPurcTaxCode">
+                                                            <input type="hidden" id="hdnPnsPurcTaxID" value="">
+                                                        </div>
+                                                        <div class="d-flex align-items-center pb-2">
+                                                            <div class="label">Vendor*</div>
+                                                            <input class="form-select typehead offline-agent" type="text" placeholder="Please select vendor" id="txtPnsVendor">
+                                                            <input type="hidden" id="hdnPnsVendorID" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Non-Stock Tab -->
+                                    <div class="tab-pane fade" id="pills-non-stock" role="tabpanel" aria-labelledby="pills-non-stock-tab">
+                                        <div class="form-container p-4">
+                                            <div class="row g-3">
+                                                <div class="col-md-3">
+                                                    <div class="form-floating">
+                                                        @Html.TextBoxFor(m => m.ItemCode, new { @class = "form-control", placeholder = "Please enter item code" })
+                                                        <label for="ItemCode">Item Code*</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-floating">
+                                                        @Html.TextBoxFor(m => m.ItemName, new { @class = "form-control", placeholder = "Please enter item name" })
+                                                        <label for="ItemName">Item Name*</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-floating">
+                                                        @Html.TextBoxFor(m => m.ItemDescription, new { @class = "form-control", placeholder = "Please enter description" })
+                                                        <label for="ItemDescription">Item Description*</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-floating">
+                                                        @Html.TextBoxFor(m => m.UnitOfMeasurement, new { @class = "form-control", placeholder = "Please enter unit" })
+                                                        <label for="UnitOfMeasurement">Unit of measurement*</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-floating mb-3">
+                                                        @Html.TextBoxFor(m => m.HSNCode, new { @class = "form-control", placeholder = "Please enter HSN code" })
+                                                        <label for="HSNCode">HSN Code*</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-floating mb-3">
+                                                        <select name="Taxability" class="form-select">
+                                                            <option value="">Select Taxability</option>
+                                                            <option value="Taxable">Taxable</option>
+                                                            <option value="Exempt">Exempt</option>
+                                                            <option value="Non-GST">Non-GST</option>
+                                                        </select>
+                                                        <label for="Taxability">Taxability*</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="product-service-fields pb-0 pt-0 p-4 bg-white">
+                                            <div class="row g-3">
+                                                <div class="col-md-4 border-end mt-0">
+                                                    <div class="modal-sub-heading mt-3 mb-2">Sales details </div>
+                                                    <div class="form-sec ">
+                                                        <div class="d-flex align-items-center mb-2">
+                                                            <div class="label">Selling Price*</div>
+                                                            <div class="form-floating">
+                                                                <div class="input-group">
+                                                                    @Html.TextBoxFor(m => m.SellingPrice, new { @class = "form-control", placeholder = "Please Selling Price" })
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex align-items-center mb-2">
+                                                            <div class="label">Income Account*</div>
+                                                            <div class="dropdown flex-grow-1">
+                                                                <select name="IncomeAccount" class="form-select py-1 dropdown-toggle text-decoration-none">
+                                                                    <option value="">Select Income Account</option>
+                                                                    <option value="Income1">Income 1</option>
+                                                                    <option value="Income2">Income 2</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex align-items-center mb-2">
+                                                            <div class="label">Tax Group*</div>
+                                                            <div class="dropdown flex-grow-1">
+                                                                <select name="SalesTaxGroup" class="form-select py-1 dropdown-toggle text-decoration-none">
+                                                                    <option value="">Select Tax Group</option>
+                                                                    <option value="SalesGroup1">Sales Group 1</option>
+                                                                    <option value="SalesGroup2">Sales Group 2</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 mt-0">
+                                                    <div class="modal-sub-heading mt-3 mb-2 ps-3"> Purchase details </div>
+                                                    <div class="form-sec ps-3">
+                                                        <div class="d-flex align-items-center mb-2">
+                                                            <div class="label">Cost Price*</div>
+                                                            <div class="form-floating">
+                                                                <div class="input-group">
+                                                                    @Html.TextBoxFor(m => m.CostPrice, new { @class = "form-control", placeholder = "Enter Cost Price" })
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex align-items-center mb-2">
+                                                            <div class="label">Expense Account*</div>
+                                                            <div class="dropdown flex-grow-1">
+                                                                <select name="ExpenseAccount" class="form-select py-1 dropdown-toggle text-decoration-none">
+                                                                    <option value="">Select Expense Account</option>
+                                                                    <option value="Expense1">Expense 1</option>
+                                                                    <option value="Expense2">Expense 2</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex align-items-center mb-2">
+                                                            <div class="label">Input Tax Credit*</div>
+                                                            <div class="dropdown flex-grow-1">
+                                                                <select name="InputTaxCredit" class="form-select py-1 dropdown-toggle text-decoration-none">
+                                                                    <option value="">Select Input Tax Credit</option>
+                                                                    <option value="Credit1">Credit 1</option>
+                                                                    <option value="Credit2">Credit 2</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex align-items-center mb-2">
+                                                            <div class="label">Tax Group*</div>
+                                                            <div class="dropdown flex-grow-1">
+                                                                <select name="PurchaseTaxGroup" class="form-select py-1 dropdown-toggle text-decoration-none">
+                                                                    <option value="">Select Tax Group</option>
+                                                                    <option value="PurchaseGroup1">Purchase Group 1</option>
+                                                                    <option value="PurchaseGroup2">Purchase Group 2</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex align-items-center pb-2">
+                                                            <div class="label">Vendor*</div>
+                                                            <div class="dropdown flex-grow-1">
+                                                                <select name="Vendor" class="form-select py-1 dropdown-toggle text-decoration-none">
+                                                                    <option value="">Select Vendor</option>
+                                                                    <option value="Vendor1">Vendor 1</option>
+                                                                    <option value="Vendor2">Vendor 2</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Non-Stock Tab -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            <div class="modal-footer">
+                <!-- Make sure BOTH buttons are type="button" -->
+                <button type="button" class="btn action-btn bg-action-light active" onclick="SaveProductAndService()">Save</button>
+                <button type="button" class="btn action-btn bg-action-light" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

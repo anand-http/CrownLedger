@@ -1,0 +1,338 @@
+﻿
+@{
+    ViewBag.Title = "add-currency";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="generator" content="Hugo 0.88.1">
+    <link rel="icon" href="~/assets/images/favicon-icon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="~/assets/images/favicon-icon.png" type="image/x-icon">
+    <title>add-currency</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="~/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/assets/css/datatables.min.css" rel="stylesheet">
+    <link href="~/assets/css/daterangepicker.css" rel="stylesheet">
+    <link href="~/assets/css/component.css" rel="stylesheet">
+    <link href="~/assets/css/style.css" rel="stylesheet">
+    <link href="~/assets/css/header.css" rel="stylesheet">
+    <link href="~/assets/css/opening-balance.css" rel="stylesheet">
+</head>
+<body class="bg-sky-light">
+    @Html.Partial("~/Views/Shared/_PartialHeader.cshtml")
+    <div class="container">
+        <div class="row">
+            <main class="main-body">
+                <div class="main-body-wrapper">
+                    <div class="collapsebody bg-f8f8f8 collapse show group-lookuptab" id="">
+                        <div class="collapsewrap card bx-shadow ">
+                            <div class="collapseheader ps-0 pe-0 me-0">
+                                <div class="top_content">
+                                    <h1 class="heading">Add Currency</h1>
+                                </div>
+                                <div class="box_container">
+                                    <div class="box_container-heading mb-3">General Details</div>
+                                    <div class="form-container">
+                                        <div class="row g-3">
+                                            <div class="col-md-3">
+                                                <div class="form-floating">
+                                                    <input type="text" class="form-control" id="" value="United State Dollar" placeholder="Please enter first name">
+                                                    <label for="teamName">Currency Name*</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-floating">
+                                                    <select class="form-select" id="" aria-label="Floating label select example">
+                                                        <option value="" selected="">INR</option>
+                                                        <option value="">USD</option>
+                                                    </select>
+                                                    <label for="floatingSelect">Currency Code*</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-floating">
+                                                    <input type="text" class="form-control" value="$" placeholder="Website">
+                                                    <label for="text">Currency Symbol*</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-floating">
+                                                    <input type="email" class="form-control" value="$" id="">
+                                                    <label for="teamName">Exchange Rate</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-floating">
+                                                    <select class="form-select" id="" aria-label="Floating label select example">
+                                                        <option value="">Option 1</option>
+                                                        <option value="" selected="">Select</option>
+                                                        <option value="">Option 2</option>
+                                                    </select>
+                                                    <label for="floatingSelect">Currency Format</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-floating">
+                                                    <input type="text" class="form-control" value="Enter Decimal">
+                                                    <label for="text">Decimal</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-floating">
+                                                    <select class="form-select" id="" aria-label="Floating label select example">
+                                                        <option value="">Option 1</option>
+                                                        <option value="" selected="">Select</option>
+                                                        <option value="">Option 2</option>
+                                                    </select>
+                                                    <label for="floatingSelect">Major</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-floating">
+                                                    <select class="form-select" id="" aria-label="Floating label select example">
+                                                        <option value="">Option 1</option>
+                                                        <option value="" selected="">Select</option>
+                                                        <option value="">Option 2</option>
+                                                    </select>
+                                                    <label for="floatingSelect">Minor</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="dash-form-group">
+                                                    <label class="form-check-label" for="icaccount">Use For Accounting</label>
+                                                    <div class="display-label yes">
+                                                        <span class="dash-check-group">
+                                                            <span class="yes">Yes</span>
+                                                            <span class="no">No</span>
+                                                        </span>
+                                                        <div class="form-switch">
+                                                            <input class="form-check-input" type="checkbox" id="icaccount" checked="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="dash-form-group">
+                                                    <label class="form-check-label" for="icaccount">Active</label>
+                                                    <div class="display-label yes">
+                                                        <span class="dash-check-group">
+                                                            <span class="yes">Yes</span>
+                                                            <span class="no">No</span>
+                                                        </span>
+                                                        <div class="form-switch">
+                                                            <input class="form-check-input" type="checkbox" id="icaccount" checked="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box_container-heading mt-3 mb-3">GL Accounts</div>
+                                    <div class="form-container">
+                                        <div class="row g-3">
+                                            <div class="col-md-3">
+                                                <div class="form-floating">
+                                                    <select class="form-select" id="" aria-label="Floating label select example">
+                                                        <option value="">Option 1</option>
+                                                        <option value="" selected="">Select</option>
+                                                        <option value="">Option 2</option>
+                                                    </select>
+                                                    <label for="floatingSelect">Realized Gain Account</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-floating">
+                                                    <select class="form-select" id="" aria-label="Floating label select example">
+                                                        <option value="">Option 1</option>
+                                                        <option value="" selected="">Select</option>
+                                                        <option value="">Option 2</option>
+                                                    </select>
+                                                    <label for="floatingSelect">Unrealized Gain Account</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-floating">
+                                                    <select class="form-select" id="" aria-label="Floating label select example">
+                                                        <option value="">Option 1</option>
+                                                        <option value="" selected="">Select</option>
+                                                        <option value="">Option 2</option>
+                                                    </select>
+                                                    <label for="floatingSelect">Rounding Gain Account</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-floating">
+                                                    <select class="form-select" id="" aria-label="Floating label select example">
+                                                        <option value="">Option 1</option>
+                                                        <option value="" selected="">Select</option>
+                                                        <option value="">Option 2</option>
+                                                    </select>
+                                                    <label for="floatingSelect">AR Provisioning Account </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-floating">
+                                                    <select class="form-select" id="" aria-label="Floating label select example">
+                                                        <option value="">Option 1</option>
+                                                        <option value="" selected="">Select</option>
+                                                        <option value="">Option 2</option>
+                                                    </select>
+                                                    <label for="floatingSelect">Realized Loss Account</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-floating">
+                                                    <select class="form-select" id="" aria-label="Floating label select example">
+                                                        <option value="">Option 1</option>
+                                                        <option value="" selected="">Select</option>
+                                                        <option value="">Option 2</option>
+                                                    </select>
+                                                    <label for="floatingSelect">Unrealized Loss Account</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-floating">
+                                                    <select class="form-select" id="" aria-label="Floating label select example">
+                                                        <option value="">Option 1</option>
+                                                        <option value="" selected="">Select</option>
+                                                        <option value="">Option 2</option>
+                                                    </select>
+                                                    <label for="floatingSelect">Rounding Loss Account</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-floating">
+                                                    <select class="form-select" id="" aria-label="Floating label select example">
+                                                        <option value="">Option 1</option>
+                                                        <option value="" selected="">Select</option>
+                                                        <option value="">Option 2</option>
+                                                    </select>
+                                                    <label for="floatingSelect">AP Provisioning Account </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-action-section pt-4 justify-content-end">
+                                    <a href="javascript:void(0);" class="action-btn bg-action-light active">Save</a>
+                                    <a href="@Url.Action("maintain_currency_details","Home")" class="action-btn bg-action-light">Cancel</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/datatables.min.js"></script>
+    <script src="assets/js/moment.min.js"></script>
+    <script src="assets/js/daterangepicker.js"></script>
+    <script src="assets/js/typeahead.bundle.js"></script>
+    <script src="assets/js/jquery.timepicker.js"></script>
+    <script src="assets/js/common.js"></script>
+
+
+    <script>
+  $(document).ready(function () {
+      var substringMatcher = function (strs) {
+          return function findMatches(q, cb) {
+              var matches, substringRegex;
+              matches = [];
+              substrRegex = new RegExp(q, 'i');
+              $.each(strs, function (i, str) {
+                  if (substrRegex.test(str)) {
+                      matches.push(str);
+                  }
+              });
+
+              cb(matches);
+          };
+      };
+
+      var agents = ['Nicole Prejean', 'David', 'Smith', 'WEI MIAO', 'laili',
+          'Onsri', 'Wan Yun', 'Enyu', 'Rio Rica', 'Sanjay', 'Priscilla Jia', 'John Smith',
+          'Redha Nuruinda', 'Mylon Jan', 'Ma Lothel', 'Raufa', 'Areanne Glee', 'Mary Jasmine',
+      ];
+
+      $('#the-basics-agents .typeahead').typeahead({
+          hint: true,
+          highlight: true,
+          minLength: 1
+      },
+          {
+              name: 'states',
+              source: substringMatcher(agents)
+          });
+  });
+
+    </script>
+
+    <script>
+$(function() {
+  $('input[name="fiscaldate"]').daterangepicker({
+    singleDatePicker: true,
+    showDropdowns: true,
+    minYear: 1901,
+    maxYear: parseInt(moment().format('YYYY'),10)
+  }, function(start, end, label) {
+    var years = moment().diff(start, 'years');
+  });
+});
+
+$("form").on("change", ".file-upload-field", function(){
+    $(this).parent(".file-upload-wrapper").attr("data-text",         $(this).val().replace(/.*(\/|\\)/, '') );
+});
+
+
+$("#datatable1_wrapper tbody").on("click", ".details-control", function() {
+    var tr = $(this).closest("tr");
+
+    if(tr.next('tr.addnewrow').length){
+      tr.next('tr.addnewrow').remove();
+    }else{
+      let TrRow='<tr class="p-0 addnewrow"><td class="p-0" colspan="6"><table class="table mb-0"><tbody><tr class="subtable"><th>Accounts</th><th class="text-center">Available Balance</th><th class="datatable_right debit-table-row">Debit</th><th class="datatable_right credit-table-row">Credit</th></tr><tr class="subtable"><td>Advance Tax</td><td class="text-center">--</td><td><div class="input-group"><input type="text" class="form-control text-end" placeholder="0.00" aria-label="Search" aria-describedby="addon-wrapping"></div></td><td><div class="input-group"><input type="text" class="form-control text-end" placeholder="0.00" aria-label="Search" aria-describedby="addon-wrapping"></div></td></tr><tr class="subtable"><td colspan="4"><a href="#" class="add-vendor ms-0"><span class="icon"><img src="~/assets/images/addicon.svg"></span>Add Another Account</a></td></tr></tbody></table></td></tr>';
+    tr.after(TrRow);
+    }
+  });
+  $("#datatable1_wrapper tbody").on("click", ".details-control-customer", function() {
+    var tr = $(this).closest("tr");
+
+    if(tr.next('tr.addnewrow').length){
+      tr.next('tr.addnewrow').remove();
+    }else{
+      let TrRow='<tr class="p-0 addnewrow"><td class="p-0" colspan="6"><table class="display customize-table-style dataTable" id="datatable1_wrapper" role="grid" aria-describedby="basic-14_info"><thead><tr role="row"><th>Type</th><th>Date</th><th>Customer</th><th>Currency</th><th>Reference</th><th>Description</th><th>Sub Total</th><th>Tax</th><th class="datatable_right">Total</th></tr></thead><tbody><tr role="row"><td>Invoice</td><td>05-03-2023</td><td>Aman Sharma</td><td>USD</td><td>INV-02</td><td>Sale of Mobile</td><td>$1,005.00</td><td>$125.00</td><td class="datatable_right">$1,100.00</td></tr><tr role="row"><td>Credit Note</td><td>05-03-2023</td><td>Kapil Sharma</td><td>USD</td><td>INV-03</td><td>Sale of Mobile</td><td>$1,005.00</td><td>$154.00</td><td class="datatable_right">$1,350.00</td></tr><tr role="row"><td>Invoice</td><td>05-03-2023</td><td>Jaya Sharma</td><td>USD</td><td>INV-01</td><td>Sale of Mobile</td><td>$1,005.00</td><td>$100.00</td><td class="datatable_right">$1,100.00</td> </tr></tr></tbody></table></td></tr>';
+    tr.after(TrRow);
+    }
+  });
+  $("#datatable1_wrapper tbody").on("click", ".details-control-vendor", function() {
+    var tr = $(this).closest("tr");
+
+    if(tr.next('tr.addnewrow').length){
+      tr.next('tr.addnewrow').remove();
+    }else{
+      let TrRow='<tr class="p-0 addnewrow"><td class="p-0" colspan="6"><table class="display customize-table-style dataTable" id="datatable1_wrapper" role="grid" aria-describedby="basic-14_info"><thead><tr role="row"><th>Type</th><th>Date</th><th>Vendor</th><th>Currency</th><th>Reference</th><th>Description</th><th>Sub Total</th><th>Tax</th><th class="datatable_right">Total</th></tr></thead><tbody><tr role="row"><td>Bill</td><td>05-03-2023</td><td>Aman Sharma</td><td>USD</td><td>Bill-02</td><td>Sale of Mobile</td><td>$1,005.00</td><td>$125.00</td><td class="datatable_right">$1,100.00</td></tr><tr role="row"><td>Credit Note</td><td>05-03-2023</td><td>Kapil Sharma</td><td>USD</td><td>Bill-03</td><td>Sale of Mobile</td><td>$1,005.00</td><td>$154.00</td><td class="datatable_right">$1,350.00</td></tr><tr role="row"><td>Bill</td><td>05-03-2023</td><td>Jaya Sharma</td><td>USD</td><td>Bill-01</td><td>Sale of Mobile</td><td>$1,005.00</td><td>$100.00</td><td class="datatable_right">$1,100.00</td> </tr></tr></tbody></table></td></tr>';
+    tr.after(TrRow);
+    }
+  });
+    </script>
+
+    <script>
+   $(".importfile").click(function () {
+    $(".Openingupload-sec").toggle();
+    $(".Openingform-sec").toggle();
+  });
+    </script>
+
+
+</body>
+

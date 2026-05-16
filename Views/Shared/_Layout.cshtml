@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="generator" content="Hugo 0.88.1">
+    <link rel="icon" href="~/assets/images/favicon-icon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="~/assets/images/favicon-icon.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="~/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/assets/css/datatables.min.css" rel="stylesheet">
+    <link href="~/assets/css/daterangepicker.css" rel="stylesheet">
+    <link href="~/assets/css/component.css" rel="stylesheet">
+    <link href="~/assets/css/style.css" rel="stylesheet">
+    <link href="~/assets/css/header.css" rel="stylesheet">
+    <link href="~/assets/css/home-page.css" rel="stylesheet">
+    <link href="~/assets/css/bank.css" rel="stylesheet">
+    <link href="~/assets/css/vendor.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="~/assets/js/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+    <script src="~/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/js/datatables.min.js"></script>
+    <script src="~/assets/js/moment.min.js"></script>
+    <script src="~/assets/js/daterangepicker.js"></script>
+    <script src="~/assets/js/typeahead.js"></script>
+    <script src="~/assets/js/customtypehead.js"></script>
+    <script src="~/assets/js/common.js"></script>
+    <script src="~/assets/js/gridActions.js"></script>
+    <script src="~/assets/js/importExport.js"></script>
+    <script src="~/assets/js/jquery.timepicker.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="~/assets/js/customCookie.js"></script>
+
+
+    <!-- DataTables core -->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <!-- DataTables -->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+    <!-- ✅ Select Extension (ADD THIS) -->
+    <script src="https://cdn.datatables.net/select/1.7.0/js/dataTables.select.min.js"></script>
+    <!-- Export buttons -->
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
+
+    <!-- Required for Excel/PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+
+    @*@Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")*@
+</head>
+<body>
+    @*<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+            <div class="container">
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    </ul>
+                </div>
+            </div>
+        </nav>*@
+    <div class="body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Sriggle</p>
+        </footer>
+    </div>
+
+    @RenderSection("scripts", required: false)
+
+    <script>
+
+        function getSuffix(element) {
+            var classes = $(element).closest("tr").attr("class").split(" ");
+            var rowClass = classes.find(function (c) { return c.startsWith("row-"); });
+            return rowClass ? rowClass.split("-")[1] : null;
+        }
+        $(document).ready(function () {
+            var path = window.location.pathname.toLowerCase();
+
+            $(".nav-bar .nav-item").removeClass("active");
+
+            if (path.includes("/sales")) {
+                $("a[href*='Sales']").closest(".nav-item").find(".nav-link").addClass("active");
+            }
+            else if (path.includes("/purchase")) {
+                $("a[href*='Purchase']").closest(".nav-item").find(".nav-link").addClass("active");
+            }
+            else if (path.includes("/adjustment")) {
+                $("a[href*='Adjustment']").closest(".nav-item").find(".nav-link").addClass("active");
+            }
+            else if (path.includes("/reports")) {
+                $("a[href*='Reports']").closest(".nav-item").find(".nav-link").addClass("active");
+            }
+            else if (path.includes("/configuration")) {
+                $("a[href*='Configuration']").closest(".nav-item").find(".nav-link").addClass("active");
+            }
+            else if (path.includes("/banking")) {
+                $("a[href*='Banking']").closest(".nav-item").find(".nav-link").addClass("active");
+            }
+            else {
+                $("a[href*='Dashboard']").closest(".nav-item").find(".nav-link").addClass("active");
+            }
+
+        });
+    </script>
+
+</body>
+</html>
