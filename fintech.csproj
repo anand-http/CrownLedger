@@ -387,9 +387,7 @@
     <Content Include="assets\images\home-icon.svg" />
     <Content Include="assets\images\info.svg" />
     <Content Include="assets\images\left-arrow.svg" />
-    <Content Include="assets\images\logo 1.svg" />
-    <Content Include="assets\images\logo_dark.png" />
-    <Content Include="assets\images\new-logo-red.png" />
+    <Content Include="assets\images\logo.png" />
     <Content Include="assets\images\next-arrow.svg" />
     <Content Include="assets\images\outstanding-dashboard-icon.svg" />
     <Content Include="assets\images\plus.svg" />
@@ -402,8 +400,6 @@
     <Content Include="assets\images\sales-icon.svg" />
     <Content Include="assets\images\search.svg" />
     <Content Include="assets\images\setting-icon.svg" />
-    <Content Include="assets\images\signature-logo-new.png" />
-    <Content Include="assets\images\small-white-logo.png" />
     <Content Include="assets\images\sort_asc.png" />
     <Content Include="assets\images\sort_asc_disabled.png" />
     <Content Include="assets\images\sort_both.png" />
